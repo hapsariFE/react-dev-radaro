@@ -40,7 +40,7 @@ class Mainpage(MainpageTemplate):
     self.dd_job_status.raise_event('x-jstatus',jstatus=self.filters['job_status'])
     self.refresh_data_bindings()
     #self.refresh_list(jstatus)
-    #print(jstatus['name'])
+    print(jstatus['name'])
     alert("You changed the filter")
 
 
