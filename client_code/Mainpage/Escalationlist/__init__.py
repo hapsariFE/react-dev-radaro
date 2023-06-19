@@ -12,4 +12,10 @@ class Escalationlist(EscalationlistTemplate):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.repeating_panel_1.items = app_tables.webhook.search()
+  def refresh_list(self):
+    # Load existing data from the Data Table, 
+    # and display them in the RepeatingPanel
+    self.articles_panel.items = anvil.server.call('get_list')
+    self.articles_panel.items = anvil.server.call('get_list')
+    
+    #self.repeating_panel_1.items = app_tables.webhook.search()

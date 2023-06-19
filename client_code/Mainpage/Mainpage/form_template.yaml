@@ -47,6 +47,7 @@ components:
       name: start_date_picker
       data_bindings:
       - {property: date, code: 'self.date_filters[''start'']', writeback: true}
+      event_bindings: {change: date_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: End Date, font_size: 12, font: '', spacing_above: small,
@@ -74,6 +75,7 @@ components:
       name: end_date_picker
       data_bindings:
       - {property: date, code: 'self.date_filters[''end'']', writeback: true}
+      event_bindings: {change: date_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: small,
@@ -116,6 +118,7 @@ components:
       - {code: self.merchant_name, property: items}
       - {property: selected_value, code: 'self.filters[''merchant_name'']', writeback: true}
       name: dd_merchant
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: small,
@@ -158,6 +161,7 @@ components:
       - {code: self.users, property: items}
       - {property: selected_value, code: 'self.filters[''users'']', writeback: true}
       name: dd_assigned
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Job Status, font_size: 12, font: '', spacing_above: small,
@@ -200,7 +204,7 @@ components:
       - {code: self.job_status, property: items}
       - {property: selected_value, code: 'self.filters[''job_status'']', writeback: true}
       name: dd_job_status
-      event_bindings: {}
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: small,
@@ -240,6 +244,7 @@ components:
         width_xs: 2
         col_xs: 3
       name: dd_completion_code
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Escalation Type, font_size: 12, font: '', spacing_above: small,
@@ -282,6 +287,7 @@ components:
       - {code: self.esc_type, property: items}
       - {property: selected_value, code: 'self.filters[''esc_type'']', writeback: true}
       name: dd_esc_type
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Escalation Status, font_size: 12, font: '', spacing_above: small,
@@ -324,6 +330,7 @@ components:
       - {code: self.esc_status, property: items}
       - {property: selected_value, code: 'self.filters[''esc_status'']', writeback: true}
       name: dd_esc_status
+      event_bindings: {change: filter_change}
   - type: form:Mainpage.Escalationlist
     properties: {}
     name: escalationlist_1

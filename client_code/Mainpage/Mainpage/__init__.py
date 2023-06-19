@@ -30,3 +30,11 @@ class Mainpage(MainpageTemplate):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
     self.date_filters['start'] = (date.today() - timedelta(days=6))
     self.date_filters['end'] = date.today()
+
+  def filter_change(self, **event_args):
+    """This method is called when an item is selected"""
+    alert("You changed the filter")
+
+  def date_change(self, **event_args):
+    """This method is called when an item is selected"""
+    alert("You changed the date")

@@ -117,4 +117,7 @@ db_schema:
     - name: latest_status
       admin_ui: {width: 200}
       type: string
+    - name: merchant_name
+      admin_ui: {order: 12, width: 200}
+      type: string
 renamed: true

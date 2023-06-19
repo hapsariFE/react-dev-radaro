@@ -21,3 +21,10 @@ authenticated_callable = anvil.server.callable(require_user=True)
 @authenticated_callable
 def get_users():
   return app_tables.users.search()
+
+@anvil.server.callable
+def get_list():
+  # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
+  return app_tables.webhook.search(
+    tables.order_by("date_created", ascending=False)
+  )
