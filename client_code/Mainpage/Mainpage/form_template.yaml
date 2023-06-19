@@ -324,4 +324,8 @@ components:
       - {code: self.esc_status, property: items}
       - {property: selected_value, code: 'self.filters[''esc_status'']', writeback: true}
       name: dd_esc_status
+  - type: form:Mainpage.Escalationlist
+    properties: {}
+    name: escalationlist_1
+    layout_properties: {}
 is_package: true

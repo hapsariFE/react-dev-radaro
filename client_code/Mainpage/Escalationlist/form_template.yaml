@@ -46,3 +46,4 @@ components:
         name: repeating_panel_1
         layout_properties: {}
 is_package: true
+custom_component: true

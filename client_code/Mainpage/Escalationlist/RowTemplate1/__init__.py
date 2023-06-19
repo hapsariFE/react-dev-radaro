@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+import webbrowser
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
@@ -12,3 +13,9 @@ class RowTemplate1(RowTemplate1Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
+
+  def jobreport_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    webbrowser.open(self.item['job_report'])
+
+

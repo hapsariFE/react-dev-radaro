@@ -16,49 +16,105 @@ metadata: {logo_img: 'asset:R.jpg'}
 startup_form: null
 db_schema:
   job_status:
-    client: search
-    server: full
-    columns:
-    - name: name
-      admin_ui: {order: 0, width: 200}
-      type: string
     title: job_status
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
   escalation_status:
-    client: search
-    server: full
-    columns:
-    - name: name
-      admin_ui: {order: 0, width: 200}
-      type: string
     title: escalation_status
-  escalation_type:
     client: search
     server: full
     columns:
     - name: name
-      admin_ui: {order: 0, width: 200}
+      admin_ui: {width: 200}
       type: string
+  escalation_type:
     title: escalation_type
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
   merchant:
+    title: merchant
     client: search
     server: full
     columns:
     - name: merchant_id
-      admin_ui: {order: 0, width: 200}
+      admin_ui: {width: 200}
       type: string
     - name: name
-      admin_ui: {order: 1, width: 200}
+      admin_ui: {width: 200}
       type: string
-    title: merchant
   users:
+    title: Users
     client: none
     server: full
     columns:
     - name: email
+      admin_ui: {width: 200}
       type: string
-      admin_ui: {order: 0, width: 200}
+    - name: name
+      admin_ui: {width: 200}
+      type: string
     - name: enabled
+      admin_ui: {width: 200}
       type: bool
-      admin_ui: {order: 1, width: 200}
-    title: Users
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+  webhook:
+    title: webhook
+    client: search
+    server: full
+    columns:
+    - name: job_id
+      admin_ui: {width: 200}
+      type: string
+    - name: id
+      admin_ui: {width: 200}
+      type: string
+    - name: customer_name
+      admin_ui: {width: 200}
+      type: string
+    - name: completion_code_id
+      admin_ui: {width: 200}
+      type: string
+    - name: date_created
+      admin_ui: {width: 200}
+      type: datetime
+    - name: last_action_date
+      admin_ui: {width: 200}
+      type: datetime
+    - name: job_reference
+      admin_ui: {width: 200}
+      type: string
+    - name: job_status
+      admin_ui: {width: 200}
+      type: string
+    - name: job_report
+      admin_ui: {width: 200}
+      type: string
+    - name: customer_rating
+      admin_ui: {width: 200}
+      type: string
+    - name: escalation_type
+      admin_ui: {width: 200}
+      type: string
+    - name: latest_status
+      admin_ui: {width: 200}
+      type: string
 renamed: true
