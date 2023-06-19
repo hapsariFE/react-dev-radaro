@@ -19,4 +19,22 @@ components:
   name: jobreport
   layout_properties: {column: SZVWXY}
   event_bindings: {click: jobreport_click}
+- type: Label
+  properties: {}
+  name: label_2
+  layout_properties: {column: USIBSJ}
+  data_bindings:
+  - {property: text, code: 'self.item[''job_status''][''name'']'}
+- type: Label
+  properties: {}
+  name: label_3
+  layout_properties: {column: VPSMPJ}
+  data_bindings:
+  - {property: text, code: 'self.item[''escalation_type''][''name'']'}
+- type: Label
+  properties: {}
+  name: label_4
+  layout_properties: {column: PRERBG}
+  data_bindings:
+  - {property: text, code: 'self.item[''latest_status''][''name'']'}
 is_package: true

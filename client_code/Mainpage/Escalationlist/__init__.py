@@ -10,12 +10,21 @@ class Escalationlist(EscalationlistTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
-
+    
     # Any code you write here will run before the form opens.
-  def refresh_list(self):
+    
+    self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
+    #self.refresh_list()
+    
+  def refresh_list(self,jstatus):
     # Load existing data from the Data Table, 
     # and display them in the RepeatingPanel
-    self.articles_panel.items = anvil.server.call('get_list')
-    self.articles_panel.items = anvil.server.call('get_list')
+    
+    #self.repeating_panel_1.items = anvil.server.call('get_list',jstatus)
+    self.repeating_panel_1.items=app_tables.webhook.search(
+    
+    #tables.order_by("date_created", ascending=False)
+    #,job_status=jstatus
+      )
     
     #self.repeating_panel_1.items = app_tables.webhook.search()

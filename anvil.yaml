@@ -102,22 +102,26 @@ db_schema:
     - name: job_reference
       admin_ui: {width: 200}
       type: string
-    - name: job_status
-      admin_ui: {width: 200}
-      type: string
     - name: job_report
       admin_ui: {width: 200}
       type: string
     - name: customer_rating
       admin_ui: {width: 200}
       type: string
-    - name: escalation_type
-      admin_ui: {width: 200}
-      type: string
-    - name: latest_status
-      admin_ui: {width: 200}
-      type: string
+    - name: job_status
+      admin_ui: {order: 13, width: 200}
+      type: link_single
+      target: job_status
     - name: merchant_name
-      admin_ui: {order: 12, width: 200}
-      type: string
+      admin_ui: {order: 13, width: 200}
+      type: link_single
+      target: merchant
+    - name: escalation_type
+      admin_ui: {order: 13, width: 200}
+      type: link_single
+      target: escalation_type
+    - name: latest_status
+      admin_ui: {order: 14, width: 200}
+      type: link_single
+      target: escalation_status
 renamed: true
