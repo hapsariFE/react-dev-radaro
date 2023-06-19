@@ -1,8 +1,64 @@
-allow_embedding: false
-package_name: M3_App_1
-name: M3 App 1
-startup_form: Form1
-renamed: true
-runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
 dependencies: []
-services: []
+services:
+- source: /runtime/services/tables.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/anvil/users.yml
+  client_config: {allow_signup: false, enable_automatically: true, use_email: true,
+    confirm_email: false}
+  server_config: {user_table: users}
+startup: {type: form, module: Mainpage.Mainpage}
+package_name: Intraday_Dashboard_v2
+allow_embedding: false
+name: Intraday Dashboard v2
+runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
+metadata: {logo_img: 'asset:R.jpg'}
+startup_form: null
+db_schema:
+  job_status:
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {order: 0, width: 200}
+      type: string
+    title: job_status
+  escalation_status:
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {order: 0, width: 200}
+      type: string
+    title: escalation_status
+  escalation_type:
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {order: 0, width: 200}
+      type: string
+    title: escalation_type
+  merchant:
+    client: search
+    server: full
+    columns:
+    - name: merchant_id
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: name
+      admin_ui: {order: 1, width: 200}
+      type: string
+    title: merchant
+  users:
+    client: none
+    server: full
+    columns:
+    - name: email
+      type: string
+      admin_ui: {order: 0, width: 200}
+    - name: enabled
+      type: bool
+      admin_ui: {order: 1, width: 200}
+    title: Users
+renamed: true
