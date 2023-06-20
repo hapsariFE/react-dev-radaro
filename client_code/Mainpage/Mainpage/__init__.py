@@ -37,8 +37,10 @@ class Mainpage(MainpageTemplate):
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
     jstatus = self.dd_job_status.selected_value
-    self.dd_job_status.raise_event('x-jstatus',jstatus=self.filters['job_status'])
-    self.refresh_data_bindings()
+    #self.dd_job_status.raise_event('x-jstatus',jstatus=self.filters['job_status'])
+    self.dd_job_status.raise_event('x-jstatus')
+    #self.parent.raise_event('x-jstatus')
+    #self.refresh_data_bindings()
     #self.refresh_list(jstatus)
     print(jstatus['name'])
     alert("You changed the filter")

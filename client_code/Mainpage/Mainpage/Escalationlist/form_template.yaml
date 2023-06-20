@@ -42,7 +42,7 @@ components:
       layout_properties: {}
       components:
       - type: RepeatingPanel
-        properties: {spacing_above: none, spacing_below: none, item_template: Mainpage.Escalationlist.RowTemplate1}
+        properties: {spacing_above: none, spacing_below: none, item_template: Mainpage.Mainpage.Escalationlist.RowTemplate1}
         name: repeating_panel_1
         layout_properties: {}
 is_package: true

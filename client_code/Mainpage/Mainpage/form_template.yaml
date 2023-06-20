@@ -200,6 +200,7 @@ components:
         row: PKQKNH
         width_xs: 2
         col_xs: 1
+        width: 136.656
       data_bindings:
       - {code: self.job_status, property: items}
       - {property: selected_value, code: 'self.filters[''job_status'']', writeback: true}
@@ -331,7 +332,7 @@ components:
       - {property: selected_value, code: 'self.filters[''esc_status'']', writeback: true}
       name: dd_esc_status
       event_bindings: {change: filter_change}
-  - type: form:Mainpage.Escalationlist
+  - type: form:Mainpage.Mainpage.Escalationlist
     properties: {}
     name: escalationlist_1
     layout_properties: {}
