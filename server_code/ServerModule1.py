@@ -24,18 +24,18 @@ import anvil.server
 
 
 @anvil.server.callable
-def get_list():
+def get_list(jobValue):
   currentUser=anvil.users.get_user()
-    
+  jobStatusValue = jobValue  
 
   print(*currentUser['user_merchant_link'])
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  return app_tables.webhook.search(webhook_merchant_link=q.any_of(*currentUser['user_merchant_link'])
+  return app_tables.webhook.search(webhook_merchant_link=q.any_of(*currentUser['user_merchant_link'],job_status =q.all_of(*jobStatusValue)
     #tables.order_by("date_created", ascending=False),
     #tables.order_by("last_action_date", ascending=False)
     #,job_status=jstatus
-      )
+      ))
 
 #return app_tables.articles.search(ArticleLink=q.any_of(*x['userMerchLink']))
