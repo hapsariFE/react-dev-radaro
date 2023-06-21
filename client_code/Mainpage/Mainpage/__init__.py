@@ -68,7 +68,8 @@ class Mainpage(MainpageTemplate):
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
     jobValue = self.dd_job_status.selected_value
-    print(jobValue)
-    alert("You changed the date")
+    #print(jobValue)
+    
     self.refresh_list(jobValue)
+    alert("You changed the date")
 
