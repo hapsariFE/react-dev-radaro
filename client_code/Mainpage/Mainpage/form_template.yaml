@@ -356,7 +356,15 @@ components:
   - type: DataGrid
     properties:
       role: null
-      columns: []
+      columns:
+      - {id: LFNRAY, title: Job ID, data_key: job_id, $$hashKey: 'object:391'}
+      - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393'}
+      - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395'}
+      - {id: HIBOCD, title: Job Status, data_key: job_status, $$hashKey: 'object:397'}
+      - {id: FREDFV, title: Escalation Type, data_key: escalation_type, $$hashKey: 'object:399'}
+      - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401'}
+      - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403'}
+      - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405'}
       auto_header: true
       tooltip: ''
       border: ''
@@ -369,7 +377,7 @@ components:
       spacing_below: small
       background: ''
     name: data_grid_1
-    layout_properties: {width: 750, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
     components:
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
