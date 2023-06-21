@@ -4,11 +4,6 @@ container:
     visible: true, font_size: 12, font: '', spacing_above: none, spacing_below: none,
     italic: false, background: '', bold: false, underline: false}
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: column_panel_1
-  layout_properties: {column: SZVWXY}
-  components: []
 - type: Button
   properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Job Report, font_size: 12, font: '', spacing_above: small,
