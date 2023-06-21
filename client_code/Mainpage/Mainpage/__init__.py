@@ -34,24 +34,24 @@ class Mainpage(MainpageTemplate):
     
     
     
-  def filter_change(self, **event_args):
+  #def filter_change(self, **event_args):
     """This method is called when an item is selected"""
-    jstatus = self.dd_job_status.selected_value
+    #jstatus = self.dd_job_status.selected_value
     #self.dd_job_status.raise_event('x-jstatus',jstatus=self.filters['job_status'])
-    self.dd_job_status.raise_event('x-jstatus')
+    #self.dd_job_status.raise_event('x-jstatus')
     #self.parent.raise_event('x-jstatus')
     #self.refresh_data_bindings()
     #self.refresh_list(jstatus)
-    print(jstatus['name'])
-    alert("You changed the filter")
+    #print(jstatus['name'])
+    #alert("You changed the filter")
 
 
-  def date_change(self, **event_args):
+  #def date_change(self, **event_args):
     """This method is called when an item is selected"""
 
-    self.refresh_data_bindings()
+    #self.refresh_data_bindings()
    # self.refresh_list()
-    alert("You changed the date")
+    #alert("You changed the date")
 
   def refresh_list(self,jstatus):
      #Load existing data from the Data Table, 
