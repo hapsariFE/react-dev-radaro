@@ -385,4 +385,10 @@ components:
         background: ''}
       name: repeating_panel_1
       layout_properties: {}
+- type: RepeatingPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true,
+    spacing_above: small, spacing_below: small, item_template: Mainpage.Actionlog,
+    background: ''}
+  name: action_panel
+  layout_properties: {grid_position: 'ERFONM,GUQSNV'}
 is_package: true
