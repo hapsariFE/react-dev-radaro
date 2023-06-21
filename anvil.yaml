@@ -76,6 +76,10 @@ db_schema:
     - name: confirmed_email
       admin_ui: {width: 200}
       type: bool
+    - name: user_merchant_link
+      admin_ui: {order: 7, width: 200}
+      type: link_multiple
+      target: merchant
   webhook:
     title: webhook
     client: search
@@ -112,7 +116,7 @@ db_schema:
       admin_ui: {order: 13, width: 200}
       type: link_single
       target: job_status
-    - name: merchant_name
+    - name: webhook_merchant_link
       admin_ui: {order: 13, width: 200}
       type: link_single
       target: merchant

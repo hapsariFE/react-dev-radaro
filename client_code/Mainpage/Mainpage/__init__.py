@@ -57,3 +57,7 @@ class Mainpage(MainpageTemplate):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel
     anvil.server.call('get_list')
+
+  def log_out_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    anvil.users.logout()

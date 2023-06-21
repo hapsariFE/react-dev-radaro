@@ -2,6 +2,14 @@ container:
   type: ColumnPanel
   properties: {col_widths: '{}'}
 components:
+- type: Button
+  properties: {role: filled-button, align: right, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: log out, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: log_out
+  layout_properties: {grid_position: 'HWESZE,STEZAR'}
+  event_bindings: {click: log_out_click}
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
     foreground: '', visible: true, font_size: 20, content: Intraday Intervention,
