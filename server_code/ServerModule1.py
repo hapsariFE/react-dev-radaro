@@ -39,3 +39,11 @@ def get_list():
       )
 
 #return app_tables.articles.search(ArticleLink=q.any_of(*x['userMerchLink']))
+
+
+@anvil.server.callable
+def get_action():
+  # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
+  return app_tables.action_log.search(
+    tables.order_by("created_date", ascending=False)
+  )

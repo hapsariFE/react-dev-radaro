@@ -128,4 +128,38 @@ db_schema:
       admin_ui: {order: 14, width: 200}
       type: link_single
       target: escalation_status
+  action_log:
+    client: search
+    server: full
+    columns:
+    - name: ID
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: job_id
+      admin_ui: {order: 1, width: 200}
+      type: link_single
+      target: webhook
+    - name: escalation_id
+      admin_ui: {order: 3, width: 200}
+      type: link_single
+      target: webhook
+    - name: user
+      admin_ui: {order: 4, width: 200}
+      type: link_single
+      target: users
+    - name: created_date
+      admin_ui: {order: 4, width: 200}
+      type: datetime
+    - name: description
+      admin_ui: {order: 5, width: 200}
+      type: string
+    - name: assign_to
+      admin_ui: {order: 6, width: 200}
+      type: link_single
+      target: users
+    - name: status
+      admin_ui: {order: 7, width: 200}
+      type: link_single
+      target: escalation_status
+    title: Action Log
 renamed: true

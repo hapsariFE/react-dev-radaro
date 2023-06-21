@@ -26,6 +26,7 @@ class Mainpage(MainpageTemplate):
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
     self.refresh_list()
+    self.refresh_action()
   
   #def initialise_start_dates(self):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
@@ -58,6 +59,12 @@ class Mainpage(MainpageTemplate):
      #and display them in the RepeatingPanel+
      self.repeating_panel_1.items = anvil.server.call('get_list')
 
+  def refresh_action(self):
+      # Load existing actions from the Data Table, 
+      # and display them in the RepeatingPanel
+      self.action_panel.items = anvil.server.call('get_action')
+  
+  
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()

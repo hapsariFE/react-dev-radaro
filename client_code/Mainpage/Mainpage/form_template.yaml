@@ -1,6 +1,6 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"JKBNWB":45}'}
 components:
 - type: Button
   properties: {role: filled-button, align: right, tooltip: '', border: '', enabled: true,
