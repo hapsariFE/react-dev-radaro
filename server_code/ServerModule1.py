@@ -24,13 +24,13 @@ def get_users():
 
 
 @anvil.server.callable
-def get_list(jstatus):
-  if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
-    filters['job_status'] = None
+def get_list():
+  #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
+  #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  return app_tables.webhook.readable(
+  return app_tables.webhook.search(
     #tables.order_by("date_created", ascending=False),
     tables.order_by("last_action_date", ascending=False)
-    ,job_status=jstatus
+    #,job_status=jstatus
       )
 

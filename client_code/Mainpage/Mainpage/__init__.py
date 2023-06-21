@@ -56,4 +56,4 @@ class Mainpage(MainpageTemplate):
   def refresh_list(self,jstatus):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel
-    anvil.server.call('get_list',jstatus)
+    anvil.server.call('get_list')

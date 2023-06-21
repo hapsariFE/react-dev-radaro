@@ -12,15 +12,10 @@ class RowTemplate1(RowTemplate1Template):
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
+    #self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
   
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
     webbrowser.open(self.item['job_report'])
 
-  def refresh_list(self, jstatus,**event_args):
-    # Load existing data from the Data Table, 
-    # and display them in the RepeatingPanel
-    
-    self.repeating_panel_1.items = anvil.server.call('get_list',jstatus)
 
