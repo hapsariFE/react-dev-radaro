@@ -4,7 +4,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-authenticated_callable = anvil.server.callable(require_user=True)
+#authenticated_callable = anvil.server.callable(require_user=True)
 
 # This is a server module. It runs on the Anvil server,
 # rather than in the user's browser.
@@ -18,18 +18,18 @@ authenticated_callable = anvil.server.callable(require_user=True)
 #   print("Hello, " + name + "!")
 #   return 42
 #
-@authenticated_callable
-def get_users():
-  return app_tables.users.search()
+#@authenticated_callable
+#def get_users():
+#  return app_tables.users.search()
 
 @anvil.server.callable
 def get_user_list():
   return app_tables.users.search()
 
-@anvil.server.callable
-def get_active_user():
-  active_user = anvil.users.get_user('name')
-  return active_user
+#@anvil.server.callable
+#def get_active_user():
+#  active_user = anvil.users.get_user('name')
+#  return active_user
 
 @anvil.server.callable
 def get_list():
@@ -55,10 +55,10 @@ def get_action():
   )
 
 @anvil.server.callable
-def add_comment(user, description, status, created_date, assign_to):
+def add_comment(description, status, created_date, assign_to):
   app_tables.action_log.add_row(
     #job_id=job_id,
-    user=user,
+    user=anvil.users.get_user,
     description=description,
     status=status,
     created_date = created_date,
