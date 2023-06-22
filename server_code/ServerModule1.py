@@ -27,7 +27,7 @@ import anvil.server
 def get_list(jobValue):
   currentUser=anvil.users.get_user()
   
-  jobStatusValue = jobValue
+  #jobStatusValue = jobValue
   #print(jobStatusValue)
   #print(jobStatusValue['job_status'][0]['name']) 
   #for jobStatusValue in jobStatusValue:
