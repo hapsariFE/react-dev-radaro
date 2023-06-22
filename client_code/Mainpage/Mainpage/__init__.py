@@ -25,7 +25,6 @@ class Mainpage(MainpageTemplate):
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
-    
     anvil.users.login_with_form()
     
     self.refresh_list()
@@ -38,7 +37,7 @@ class Mainpage(MainpageTemplate):
     
     
     
-  #def filter_change(self, **event_args):
+  def filter_change(self, **event_args):
     """This method is called when an item is selected"""
     #jstatus = self.dd_job_status.selected_value
     #self.dd_job_status.raise_event('x-jstatus',jstatus=self.filters['job_status'])
@@ -50,7 +49,7 @@ class Mainpage(MainpageTemplate):
     #alert("You changed the filter")
 
 
-  #def date_change(self, **event_args):
+  def date_change(self, **event_args):
     """This method is called when an item is selected"""
 
     #self.refresh_data_bindings()
@@ -66,7 +65,6 @@ class Mainpage(MainpageTemplate):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
       self.action_panel.items = anvil.server.call('get_action')
-  
   
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
