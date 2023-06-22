@@ -11,7 +11,7 @@ components:
   components: []
 - type: Button
   properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Job Report, font_size: 12, font: '', spacing_above: small,
+    foreground: '', visible: true, text: Report, font_size: 11, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   name: jobreport
@@ -30,4 +30,10 @@ components:
   layout_properties: {column: HIBOCD, grid_position: 'BCKGJB,VPGQDG'}
   data_bindings:
   - {property: text, code: 'self.item[''job_status''][''name'']'}
+- type: Label
+  properties: {}
+  name: label_3
+  layout_properties: {column: FREDFV}
+  data_bindings:
+  - {property: text, code: 'self.item[''escalation_type''][''name'']'}
 is_package: true
