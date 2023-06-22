@@ -22,13 +22,19 @@ authenticated_callable = anvil.server.callable(require_user=True)
 def get_users():
   return app_tables.users.search()
 
+@anvil.server.callable
+def get_user_list():
+  return app_tables.users.search()
+
+@anvil.server.callable
+def get_active_user():
+  active_user = anvil.users.get_user('name')
+  return active_user
 
 @anvil.server.callable
 def get_list():
   currentUser=anvil.users.get_user()
-    
-
-  print(*currentUser['user_merchant_link'])
+  #print(*currentUser['user_merchant_link'])
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
@@ -46,4 +52,15 @@ def get_action():
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
   return app_tables.action_log.search(
     tables.order_by("created_date")
+  )
+
+@anvil.server.callable
+def add_comment(user, description, status, created_date, assign_to):
+  app_tables.action_log.add_row(
+    #job_id=job_id,
+    user=user,
+    description=description,
+    status=status,
+    created_date = created_date,
+    assign_to=assign_to
   )

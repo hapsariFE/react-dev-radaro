@@ -161,5 +161,5 @@ db_schema:
       admin_ui: {order: 7, width: 200}
       type: link_single
       target: escalation_status
-    title: Action Log
+    title: action_log
 renamed: true

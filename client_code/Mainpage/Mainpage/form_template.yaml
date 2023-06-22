@@ -402,10 +402,10 @@ components:
     data_bindings:
     - {property: text, code: '"Job ID: "'}
   - type: TextArea
-    properties: {role: outlined, align: left, height: '', tooltip: '', placeholder: '',
-      border: '', enabled: true, foreground: '', visible: true, text: Add comment,
-      font_size: 10, auto_expand: false, font: '', spacing_above: small, spacing_below: small,
-      italic: false, background: '', bold: false, underline: false}
+    properties: {role: outlined, align: left, height: '', tooltip: '', placeholder: Add comment,
+      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 10,
+      auto_expand: false, font: '', spacing_above: small, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false}
     name: addcomment
     layout_properties: {grid_position: 'WCBCNH,FXVJGA'}
   - type: DropDown
@@ -454,6 +454,8 @@ components:
       include_placeholder: true
     name: dd_assign
     layout_properties: {grid_position: 'EFUDBX,DIPKCH'}
+    data_bindings:
+    - {property: items, code: 'self.item[''self_assign'']'}
   - type: Button
     properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Submit, font_size: 11, font: '', spacing_above: small,
@@ -461,6 +463,7 @@ components:
       underline: false, icon: ''}
     name: submit
     layout_properties: {grid_position: 'YAAKUB,MQBVGO'}
+    event_bindings: {click: submit_button_click}
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: small, spacing_below: small, item_template: Mainpage.Actionlog,
