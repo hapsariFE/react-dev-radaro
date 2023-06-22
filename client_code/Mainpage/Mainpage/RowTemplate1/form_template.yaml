@@ -22,8 +22,7 @@ components:
   name: label_2
   layout_properties: {column: JVSRGA}
   data_bindings:
-  - {property: text, code: 'self.item[''last_action_date''].strftime("%b %d %Y %I:%M
-      %p")'}
+  - {property: text, code: 'self.item[''last_action_date''].strftime("%d/%m/%-y %H:%M")'}
 - type: Label
   properties: {}
   name: label_1

@@ -4,14 +4,14 @@ container:
 components:
 - type: ColumnPanel
   properties: {role: outlined-card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
   name: column_panel_1
   layout_properties: {grid_position: 'ENQJZO,ABMXWP'}
   components:
   - type: Label
     properties: {role: body, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: 12, font: '', spacing_above: small, icon_align: left,
+      visible: true, text: '', font_size: 12, font: '', spacing_above: none, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: true, underline: false,
       icon: ''}
     name: status
@@ -20,7 +20,7 @@ components:
     - {property: text, code: '"Status: "+self.item[''status''][''name'']'}
   - type: Label
     properties: {role: body, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: 11, font: '', spacing_above: small, icon_align: left,
+      visible: true, text: '', font_size: 11, font: '', spacing_above: none, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: true, underline: false,
       icon: ''}
     name: user
@@ -29,17 +29,16 @@ components:
     - {property: text, code: 'self.item[''user''][''name'']'}
   - type: Label
     properties: {role: body, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: 11, font: '', spacing_above: small, icon_align: left,
+      visible: true, text: '', font_size: 11, font: '', spacing_above: none, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: datetime
     layout_properties: {grid_position: 'QNTUTC,AFLYUV'}
     data_bindings:
-    - {property: text, code: 'self.item[''created_date''].strftime("%b %d %Y %I:%M
-        %p")'}
+    - {property: text, code: 'self.item[''created_date''].strftime("%d/%m/%-y %H:%M")'}
   - type: Label
     properties: {role: body, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: '', font_size: 11, font: '', spacing_above: small, icon_align: left,
+      visible: true, text: '', font_size: 11, font: '', spacing_above: none, icon_align: left,
       spacing_below: small, italic: false, background: '', bold: false, underline: false,
       icon: ''}
     name: content

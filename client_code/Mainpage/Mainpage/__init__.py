@@ -20,7 +20,8 @@ class Mainpage(MainpageTemplate):
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
     self.merchant_name = Data.merchant_name
-
+    self.status = Data.esc_status
+    self.assign = self.users
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.

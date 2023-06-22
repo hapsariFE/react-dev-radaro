@@ -4,7 +4,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 
-#authenticated_callable = anvil.server.callable(require_user=True)
+authenticated_callable = anvil.server.callable(require_user=True)
 
 # This is a server module. It runs on the Anvil server,
 # rather than in the user's browser.
@@ -18,9 +18,9 @@ import anvil.server
 #   print("Hello, " + name + "!")
 #   return 42
 #
-#@authenticated_callable
-#def get_users():
-#  return app_tables.users.search()
+@authenticated_callable
+def get_users():
+  return app_tables.users.search()
 
 
 @anvil.server.callable

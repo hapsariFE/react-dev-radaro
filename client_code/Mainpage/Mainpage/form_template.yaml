@@ -400,7 +400,67 @@ components:
     name: job_id
     layout_properties: {grid_position: 'WPIIWL,GCILUJ'}
     data_bindings:
-    - {property: text, code: '"Job ID: " + self.item[''job_id''][''job_id'']'}
+    - {property: text, code: '"Job ID: "'}
+  - type: TextArea
+    properties: {role: outlined, align: left, height: '', tooltip: '', placeholder: '',
+      border: '', enabled: true, foreground: '', visible: true, text: Add comment,
+      font_size: 10, auto_expand: false, font: '', spacing_above: small, spacing_below: small,
+      italic: false, background: '', bold: false, underline: false}
+    name: addcomment
+    layout_properties: {grid_position: 'WCBCNH,FXVJGA'}
+  - type: DropDown
+    properties:
+      role: null
+      align: full
+      tooltip: ''
+      placeholder: Status
+      border: ''
+      enabled: true
+      foreground: ''
+      items: []
+      visible: true
+      font_size: 11
+      font: ''
+      spacing_above: small
+      spacing_below: small
+      italic: false
+      background: ''
+      bold: false
+      underline: false
+      include_placeholder: true
+    name: dd_status
+    layout_properties: {grid_position: 'EFUDBX,MLPLWE'}
+    data_bindings:
+    - {property: items, code: self.esc_status}
+  - type: DropDown
+    properties:
+      role: null
+      align: full
+      tooltip: ''
+      placeholder: Assign
+      border: ''
+      enabled: true
+      foreground: ''
+      items: []
+      visible: true
+      font_size: 11
+      font: ''
+      spacing_above: small
+      spacing_below: small
+      italic: false
+      background: ''
+      bold: false
+      underline: false
+      include_placeholder: true
+    name: dd_assign
+    layout_properties: {grid_position: 'EFUDBX,DIPKCH'}
+  - type: Button
+    properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Submit, font_size: 11, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: submit
+    layout_properties: {grid_position: 'YAAKUB,MQBVGO'}
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: small, spacing_below: small, item_template: Mainpage.Actionlog,
