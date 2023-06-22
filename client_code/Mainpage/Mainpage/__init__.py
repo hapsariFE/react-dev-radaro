@@ -13,9 +13,9 @@ class Mainpage(MainpageTemplate):
     # Set Form properties and Data Bindings.
     self.filters = {}
     self.date_filters = {} 
-    #users = anvil.server.call('get_users')
-    #self.users = [(x['name'], x) for x in users]
-    self.users = 'Danny'
+    users = anvil.server.call('get_user_list')
+    self.users = [(x['name'], x) for x in users]
+    #self.users = 'Danny'
     self.esc_status = Data.esc_status
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
@@ -23,11 +23,15 @@ class Mainpage(MainpageTemplate):
     jobValue = None 
     
 
+    self.status = Data.esc_status
+    #self.assign = 'Danny'
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
     self.refresh_list(jobValue)
+    
+    self.refresh_action()
   
   #def initialise_start_dates(self):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
@@ -62,6 +66,11 @@ class Mainpage(MainpageTemplate):
     #print(**event_args)
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue)
 
+  def refresh_action(self):
+      # Load existing actions from the Data Table, 
+      # and display them in the RepeatingPanel
+      self.action_panel.items = anvil.server.call('get_action')
+  
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
@@ -74,3 +83,22 @@ class Mainpage(MainpageTemplate):
     self.refresh_list(jobValue)
     alert("You changed the date")
 
+  def submit_button_click(self, **event_args):
+     
+     description = self.addcomment.text
+     status = self.dd_status.selected_value
+     created_date = datetime.now()
+     assign_to = self.dd_assign.selected_value
+     #job_id = "15228"
+     anvil.server.call('add_comment', description, status, created_date, assign_to)
+     #Notification("Comment submitted!").show()
+     alert("Comment Submitted")
+     self.refresh_data_bindings()
+     self.clear_inputs() 
+
+  def clear_inputs(self):
+    # Clear our input boxes
+    self.addcomment.text = ""
+    self.dd_status.selected_value = ""
+    self.dd_assign.selected_value = ""
+    self.refresh_data_bindings()

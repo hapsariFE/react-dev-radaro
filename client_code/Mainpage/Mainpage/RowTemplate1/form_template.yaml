@@ -1,3 +1,4 @@
+is_package: true
 container:
   type: DataRowPanel
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
@@ -6,23 +7,33 @@ container:
 components:
 - type: Button
   properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Job Report, font_size: 12, font: '', spacing_above: small,
+    foreground: '', visible: true, text: Report, font_size: 11, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: jobreport
   layout_properties: {column: YBLVEX, grid_position: 'BCKGJB,RVLWDI'}
   event_bindings: {click: jobreport_click}
+  name: jobreport
 - type: Label
   properties: {}
-  name: label_2
   layout_properties: {column: JVSRGA}
   data_bindings:
-  - {property: text, code: 'self.item[''last_action_date''].strftime("%b %d %Y %I:%M
-      %p")'}
+  - {code: 'self.item[''last_action_date''].strftime("%d/%m/%-y %H:%M")', property: text}
+  name: label_2
 - type: Label
   properties: {}
-  name: label_1
   layout_properties: {column: HIBOCD, grid_position: 'BCKGJB,VPGQDG'}
   data_bindings:
-  - {property: text, code: 'self.item[''job_status''][''name'']'}
-is_package: true
+  - {code: 'self.item[''job_status''][''name'']', property: text}
+  name: label_1
+- type: Label
+  properties: {}
+  layout_properties: {column: FREDFV}
+  data_bindings:
+  - {code: 'self.item[''escalation_type''][''name'']', property: text}
+  name: label_3
+- type: Label
+  properties: {}
+  layout_properties: {column: MVQPXP}
+  data_bindings:
+  - {code: 'self.item[''latest_status''][''name'']', property: text}
+  name: label_4

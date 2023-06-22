@@ -22,6 +22,14 @@ import anvil.server
 #def get_users():
 #  return app_tables.users.search()
 
+@anvil.server.callable
+def get_user_list():
+  return app_tables.users.search()
+
+#@anvil.server.callable
+#def get_active_user():
+#  active_user = anvil.users.get_user('name')
+#  return active_user
 
 @anvil.server.callable
 def get_list(jobValue):
@@ -45,3 +53,22 @@ def get_list(jobValue):
       )
 
 #return app_tables.articles.search(ArticleLink=q.any_of(*x['userMerchLink']))
+
+
+@anvil.server.callable
+def get_action():
+  # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
+  return app_tables.action_log.search(
+    tables.order_by("created_date")
+  )
+
+@anvil.server.callable
+def add_comment(description, status, created_date, assign_to):
+  app_tables.action_log.add_row(
+    #job_id=job_id,
+    user=anvil.users.get_user,
+    description=description,
+    status=status,
+    created_date = created_date,
+    assign_to=assign_to
+  )
