@@ -20,6 +20,7 @@ class Mainpage(MainpageTemplate):
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
     self.merchant_name = Data.merchant_name
+    
     jobValue = None 
     compCode = None
     
