@@ -235,7 +235,7 @@ components:
         border: ''
         enabled: true
         foreground: ''
-        items: []
+        items: ['1']
         visible: true
         font_size: 12
         font: ''
@@ -252,6 +252,7 @@ components:
         row: PKQKNH
         width_xs: 2
         col_xs: 3
+        width: 136.667
       name: dd_completion_code
       event_bindings: {change: filter_change}
     - type: Label
