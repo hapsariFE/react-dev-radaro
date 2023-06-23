@@ -41,12 +41,21 @@ def get_list(jobValue,compCode):
   #for jobStatusValue in jobStatusValue:
    # print(jobStatusValue['name'])
   #if jobValue
+  total = []
+  for r in currentUser['user_merchant_link']:
+    #print(*currentUser['user_merchant_link'])
+    total += r
+    print(r)
+    
+  links = [[r] for r in currentUser['user_merchant_link']]
+  print(links)
 
+#  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
   #print(*currentUser['user_merchant_link'])
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  return app_tables.webhook.client_readable(webhook_merchant_link=currentUser['user_merchant_link']).search(**kwargs)
+  return app_tables.webhook.client_readable(webhook_merchant_link=r).search(**kwargs)
     #tables.order_by("date_created", ascending=False),
     #tables.order_by("last_action_date", ascending=False)
     #,job_status=jstatus
