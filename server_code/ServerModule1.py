@@ -55,7 +55,9 @@ def get_list(jobValue,compCode):
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  return app_tables.webhook.client_readable(webhook_merchant_link=r).search(**kwargs)
+  custTable = app_tables.webhook.search(q.all_of(job_status=q.all_of(jobValue),completion_code_id=q.all_of(compCode),))
+  return custTable
+  #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),
     #tables.order_by("last_action_date", ascending=False)
     #,job_status=jstatus
