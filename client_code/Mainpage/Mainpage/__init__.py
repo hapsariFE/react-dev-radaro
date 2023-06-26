@@ -80,7 +80,10 @@ class Mainpage(MainpageTemplate):
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
     jobValue = self.dd_job_status.selected_value
-    compCode = self.dd_completion_code
+    compCode = self.dd_completion_code.selected_value
+    escType = self.dd_esc_type.selected_value
+    escStatus = self.dd_esc_status.selected_value
+    merchName = self.dd_merchant.selected_value
     #print(jobValue)
     
     self.refresh_list(jobValue,compCode)

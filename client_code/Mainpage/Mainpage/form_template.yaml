@@ -235,7 +235,7 @@ components:
         border: ''
         enabled: true
         foreground: ''
-        items: ['1']
+        items: ['1', '2']
         visible: true
         font_size: 12
         font: ''
