@@ -23,10 +23,11 @@ class Mainpage(MainpageTemplate):
     startDate= datetime.now()
     endDate = datetime.now()
     escType= None
-    jobValue = None 
+    #jobValue = self.dd_job_status.selected_value
     compCode = None
     escStatus = None
     merchName = None
+    #print(jobValue)
 
     self.status = Data.esc_status
     #self.assign = 'Danny'
@@ -34,6 +35,8 @@ class Mainpage(MainpageTemplate):
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
+    jobValue = self.job_status
+    #print(*jobValue)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     
     self.refresh_action()
@@ -90,8 +93,8 @@ class Mainpage(MainpageTemplate):
     startDate = self.start_date_picker.date
     endDate = self.end_date_picker.date
     #print(jobValue)
-    print(startDate)
-    print(endDate)
+    #print(startDate)
+    #print(endDate)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     alert("You changed the date")
 

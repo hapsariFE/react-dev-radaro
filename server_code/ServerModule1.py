@@ -42,22 +42,27 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
    # print(jobStatusValue['name'])
   #if jobValue
   total = []
-  for r in currentUser['user_merchant_link']:
+  #for r in currentUser['user_merchant_link']:
     #print(*currentUser['user_merchant_link'])
-    total += r
-    print(r)
+  #  total += r
+    #print(r)
     
   links = [[r] for r in currentUser['user_merchant_link']]
-  print(links)
+  #print(links)
   #merchTable = app_tables.merchant.search(merchant_id=q.any_of(*currentUser['user_merchant_link'][0]))
   #print(merchTable)
+  selected_statuses = [jobValue for jobValue in app_tables.job_status.search()]
+  print(selected_statuses)
+  print("-----")
+  selected_status_rows = [status_row for status_row in app_tables.webhook.search(job_status=q.any_of(*selected_statuses))]
+  print(selected_status_rows)
 
 #  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
   #print(*currentUser['user_merchant_link'])
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  custTable = app_tables.webhook.client_readable(webhook_merchant_link=currentUser['user_merchant_link'][0]).search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate))
+  custTable = app_tables.webhook.client_readable(webhook_merchant_link=currentUser['user_merchant_link'][0]).search(job_status=q.any_of(*selected_statuses),completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate))
   return custTable
   #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),
