@@ -20,10 +20,13 @@ class Mainpage(MainpageTemplate):
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
     self.merchant_name = Data.merchant_name
-    
+    startDate= datetime.now()
+    endDate = datetime.now()
+    escType= None
     jobValue = None 
     compCode = None
-    
+    escStatus = None
+    merchName = None
 
     self.status = Data.esc_status
     #self.assign = 'Danny'
@@ -31,7 +34,7 @@ class Mainpage(MainpageTemplate):
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
-    self.refresh_list(jobValue,compCode)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     
     self.refresh_action()
   
@@ -61,12 +64,12 @@ class Mainpage(MainpageTemplate):
    # self.refresh_list()
     #alert("You changed the date")
 
-  def refresh_list(self,jobValue,compCode):
+  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate)
 
   def refresh_action(self):
       # Load existing actions from the Data Table, 
@@ -84,9 +87,12 @@ class Mainpage(MainpageTemplate):
     escType = self.dd_esc_type.selected_value
     escStatus = self.dd_esc_status.selected_value
     merchName = self.dd_merchant.selected_value
+    startDate = self.start_date_picker.date
+    endDate = self.end_date_picker.date
     #print(jobValue)
-    
-    self.refresh_list(jobValue,compCode)
+    print(startDate)
+    print(endDate)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     alert("You changed the date")
 
   def submit_button_click(self, **event_args):

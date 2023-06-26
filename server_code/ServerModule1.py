@@ -32,7 +32,7 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_list(jobValue,compCode):
+def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   #jobStatusValue = jobValue
@@ -57,7 +57,7 @@ def get_list(jobValue,compCode):
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  custTable = app_tables.webhook.client_readable(webhook_merchant_link=currentUser['user_merchant_link'][0]).search(job_status=jobValue,completion_code_id=compCode)
+  custTable = app_tables.webhook.client_readable(webhook_merchant_link=currentUser['user_merchant_link'][0]).search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate))
   return custTable
   #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),

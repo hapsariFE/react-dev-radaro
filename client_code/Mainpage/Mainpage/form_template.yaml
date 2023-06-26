@@ -55,7 +55,7 @@ components:
       name: start_date_picker
       data_bindings:
       - {property: date, code: 'self.date_filters[''start'']', writeback: true}
-      event_bindings: {change: date_change}
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: End Date, font_size: 12, font: '', spacing_above: small,
@@ -83,7 +83,7 @@ components:
       name: end_date_picker
       data_bindings:
       - {property: date, code: 'self.date_filters[''end'']', writeback: true}
-      event_bindings: {change: date_change}
+      event_bindings: {change: filter_change}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: small,
