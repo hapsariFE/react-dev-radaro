@@ -35,7 +35,7 @@ class Mainpage(MainpageTemplate):
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
-    jobValue = self.job_status
+    jobValue = None
     #print(*jobValue)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     
