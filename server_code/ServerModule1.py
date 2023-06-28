@@ -43,9 +43,11 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
 #  Jobvalues = [row for row in jobValue]
   if jobValue is None:  
     jobValue = [jobValue for jobValue in app_tables.job_status.search()]
-  #jjv = [row for row in jobValue]
+  else:
+    jobValue = [row for row in jobValue]
+
   print("-----")
-  print(jobValue)
+  #print(*jjv)
   #selected_status_rows = [status_row for status_row in app_tables.webhook.search(job_status=q.any_of(*selected_statuses))]
   #print(selected_status_rows)
   related_rows = currentUser['user_merchant_link']
