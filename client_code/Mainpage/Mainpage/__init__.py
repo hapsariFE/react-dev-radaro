@@ -35,7 +35,9 @@ class Mainpage(MainpageTemplate):
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
-    jobValue = self.dd_job_status.selected_value
+    jobValue = if self.dd_job_status.selected_value == None
+                row['job_status']
+                else: row['job_status'] == self.dd_job_status.selected_value
     #print(*jobValue)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     
@@ -96,7 +98,7 @@ class Mainpage(MainpageTemplate):
     #print(startDate)
     #print(endDate)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
-    alert("You changed the date")
+    alert("You changed the filter")
 
   def submit_button_click(self, **event_args):
      
