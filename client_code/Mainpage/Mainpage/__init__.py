@@ -96,7 +96,7 @@ class Mainpage(MainpageTemplate):
     #print(startDate)
     #print(endDate)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
-    alert("You changed the date")
+    alert("You changed the filter")
 
   def submit_button_click(self, **event_args):
      
