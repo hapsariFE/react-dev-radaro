@@ -358,6 +358,7 @@ components:
     properties:
       role: null
       columns:
+      - {id: YFVFNN, title: Selection, data_key: '', $$hashKey: 'object:8500', expand: true}
       - {id: LFNRAY, title: Job ID, data_key: job_id, $$hashKey: 'object:391'}
       - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393'}
       - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395'}
@@ -378,7 +379,7 @@ components:
       spacing_below: small
       background: ''
     name: data_grid_1
-    layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 759.646, row: BEEIKG, width_xs: 12, col_xs: 0}
     components:
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,

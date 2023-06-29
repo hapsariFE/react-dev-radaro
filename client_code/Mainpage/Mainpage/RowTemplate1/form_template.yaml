@@ -37,3 +37,10 @@ components:
   data_bindings:
   - {code: 'self.item[''latest_status''][''name'']', property: text}
   name: label_4
+- type: RadioButton
+  properties: {role: null, selected: false, align: left, tooltip: '', border: '',
+    enabled: true, foreground: '', value: '', visible: true, text: '', font_size: null,
+    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
+    bold: false, group_name: orderSelection, underline: false}
+  name: orderSelection_radio
+  layout_properties: {column: YFVFNN}
