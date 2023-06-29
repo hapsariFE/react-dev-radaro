@@ -29,14 +29,17 @@ class Mainpage(MainpageTemplate):
     merchName = None
     #print(jobValue)
     print(startDate)
-    self.start_date_picker.DATE = startDate
+    self.start_date_picker.date = startDate
+    self.end_date_picker.date = endDate
     self.status = Data.esc_status
     #self.assign = 'Danny'
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
+    self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
+    self.end_date_picker.date = endDate
     #print(*jobValue)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
     
