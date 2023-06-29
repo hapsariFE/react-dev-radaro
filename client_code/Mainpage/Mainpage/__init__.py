@@ -20,15 +20,16 @@ class Mainpage(MainpageTemplate):
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
     self.merchant_name = Data.merchant_name
-    startDate= datetime.now()
-    endDate = datetime.now()
+    startDate= (date.today() - timedelta(days=6))
+    endDate = date.today()
     escType= None
     #jobValue = self.dd_job_status.selected_value
     compCode = None
     escStatus = None
     merchName = None
     #print(jobValue)
-
+    print(startDate)
+    self.start_date_picker.DATE = startDate
     self.status = Data.esc_status
     #self.assign = 'Danny'
     
