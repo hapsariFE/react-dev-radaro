@@ -18,4 +18,12 @@ class RowTemplate1(RowTemplate1Template):
     """This method is called when the button is clicked"""
     webbrowser.open(self.item['job_report'])
 
+  def orderSelection_radio_clicked(self, **event_args):
+    """This method is called when this radio button is selected"""
+    selectedRow = self.item
+    print(selectedRow['id'])
+
+    
+
+
 
