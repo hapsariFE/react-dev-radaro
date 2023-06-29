@@ -358,7 +358,7 @@ components:
     properties:
       role: null
       columns:
-      - {id: YFVFNN, title: Selection, data_key: '', $$hashKey: 'object:8500', expand: true}
+      - {id: YFVFNN, title: Selection, data_key: '', $$hashKey: 'object:8500'}
       - {id: LFNRAY, title: Job ID, data_key: job_id, $$hashKey: 'object:391'}
       - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393'}
       - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395'}

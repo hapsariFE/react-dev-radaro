@@ -32,11 +32,13 @@ class Mainpage(MainpageTemplate):
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     self.status = Data.esc_status
+    
     #self.assign = 'Danny'
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
+    #self.set_event_handler("custom_event", handle_custom_event)
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
@@ -81,7 +83,7 @@ class Mainpage(MainpageTemplate):
   def refresh_action(self):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
-      self.action_panel.items = anvil.server.call('get_action')
+      self.action_panel.items = anvil.server.call('get_action',None)
   
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -121,3 +123,7 @@ class Mainpage(MainpageTemplate):
     self.dd_status.selected_value = ""
     self.dd_assign.selected_value = ""
     self.refresh_data_bindings()
+
+  #def handle_custom_event(self,actionData):
+  #  self.action_panel.items = anvil.server.call('get_action',actionData)
+    

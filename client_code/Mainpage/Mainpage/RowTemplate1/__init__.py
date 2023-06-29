@@ -9,6 +9,8 @@ import webbrowser
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
+    #self.data = data
+    #self.orderSelectionRadio.set_event_handler("change", orderSelection_radio_clicked) 
     # Set Form properties and Data Bindings.
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
@@ -21,7 +23,14 @@ class RowTemplate1(RowTemplate1Template):
   def orderSelection_radio_clicked(self, **event_args):
     """This method is called when this radio button is selected"""
     selectedRow = self.item
-    print(selectedRow['id'])
+    actionData = anvil.server.call('get_action',selectedRow)
+
+    #self.raise_event("custom_event", actionData)
+    
+    print(*actionData)
+    values = [row for row in actionData]
+    print(*values)
+   
 
     
 

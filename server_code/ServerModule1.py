@@ -88,10 +88,10 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
 
 
 @anvil.server.callable
-def get_action():
+def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
-  return app_tables.action_log.search(
-    tables.order_by("created_date")
+  return app_tables.action_log.search(tables.order_by("created_date"),escalation_id=rowValue
+    
   )
 
 @anvil.server.callable
