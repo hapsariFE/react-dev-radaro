@@ -45,6 +45,19 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   #  jobValue = [jobValue for jobValue in app_tables.job_status.search()]
   #else:
    # jobValue = [row for row in jobValue]
+  filter_dict = {}
+
+  if jobValue != None:
+    filter_dict['job_status'] = jobValue
+
+  if compCode != None:
+    filter_dict['completion_code_id'] = compCode
+
+  if escType != None:
+    filter_dict['escalation_type'] = escType
+
+  if escStatus != None:
+    filter_dict['escStatus'] = escStatus
 
   print("-----")
   #print(*jjv)
@@ -62,7 +75,8 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
+  custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
+ #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
   return custTable
   #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),
