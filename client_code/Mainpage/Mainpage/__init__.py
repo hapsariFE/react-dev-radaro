@@ -13,8 +13,8 @@ class Mainpage(MainpageTemplate):
     # Set Form properties and Data Bindings.
     self.filters = {}
     self.date_filters = {} 
-    users = anvil.server.call('get_user_list')
-    self.users = [(x['name'], x) for x in users]
+    #users = anvil.server.call('get_user_list')
+    self.users = ""
     #self.users = 'Danny'
     self.esc_status = Data.esc_status
     self.esc_type = Data.esc_type
@@ -39,6 +39,9 @@ class Mainpage(MainpageTemplate):
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
+    users = anvil.server.call('get_user_list')
+    self.users = [(x['name'], x) for x in users]
+    self.refresh_data_bindings()
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate

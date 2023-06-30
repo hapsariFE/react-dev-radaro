@@ -24,7 +24,12 @@ import anvil.server
 
 @anvil.server.callable
 def get_user_list():
-  return app_tables.users.search()
+  currentUser=anvil.users.get_user()
+  related_rows = currentUser['user_merchant_link']
+  print(related_rows)
+  values = [[row] for row in related_rows]
+  print(values)
+  return app_tables.users.search(user_merchant_link=q.any_of(*values))
 
 #@anvil.server.callable
 #def get_active_user():
@@ -98,7 +103,7 @@ def get_action(rowValue):
     print(rowValue)
     print("-----bb")
     #print(rowValue['job_status'])
-    return app_tables.action_log.search(tables.order_by("created_date"),escalation_id=q.any_of(rowValue)
+    return app_tables.action_log.search(tables.order_by("created_date",ascending=False),escalation_id=q.any_of(rowValue)
     
   )
 
