@@ -11,11 +11,11 @@ from anvil.js import get_dom_node
 class jobreport(jobreportTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    self.xy_panel_1 = None
+    #self.xy_panel_1 = None
     self.init_components(**properties)
 
-  iframe = jQuery("<iframe width='100%' height='800px'>").attr("src","https://www.wired.co.uk/")
-  iframe.appendTo(get_dom_node(self.xy_panel_1))
+    iframe = jQuery("<iframe width='100%' height='100%'>").attr("src","https://rtra.cc/yF4Xhh4")
+    iframe.appendTo(get_dom_node(self.xy_panel_1))
 
 
 
