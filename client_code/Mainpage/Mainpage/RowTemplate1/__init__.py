@@ -29,9 +29,9 @@ class RowTemplate1(RowTemplate1Template):
 
     self.parent.raise_event("x-custom_event", record=actionData)
     
-    print(*actionData)
-    values = [row for row in actionData]
-    print(*values)
+    #print(*actionData)
+    #values = [row for row in actionData]
+    #print(*values)
    
 
     
