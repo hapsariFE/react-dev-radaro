@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from ...jobreport import jobreport
 import webbrowser
 
 class RowTemplate1(RowTemplate1Template):
@@ -19,7 +20,10 @@ class RowTemplate1(RowTemplate1Template):
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
     alert(
-      content=open(self.item['job_report']))
+      content=jobreport(),
+      title="Job Report",
+      large=True,
+    )
   #webbrowser.open(self.item['job_report'])
 
   def orderSelection_radio_clicked(self, **event_args):
