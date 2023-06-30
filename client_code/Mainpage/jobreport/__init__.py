@@ -14,7 +14,7 @@ class jobreport(jobreportTemplate):
     #self.xy_panel_1 = None
     self.init_components(**properties)
 
-    iframe = jQuery("<iframe width='100%' height='100%'>").attr("src","https://rtra.cc/yF4Xhh4")
+    iframe = jQuery("<iframe width='100%' height='100%'>").attr("src","https://account.radaro.com.au/public-report/MTk5/1a5dbc5e-1360-4bb8-ace2-5e2895037849?domain=api-2.radaro.com.au&cluster_number=s2")
     iframe.appendTo(get_dom_node(self.xy_panel_1))
 
 
