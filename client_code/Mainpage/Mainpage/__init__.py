@@ -32,13 +32,13 @@ class Mainpage(MainpageTemplate):
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     self.status = Data.esc_status
-    
+    actionData= None
     #self.assign = 'Danny'
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
-    #self.set_event_handler("custom_event", handle_custom_event)
+    self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
@@ -124,6 +124,6 @@ class Mainpage(MainpageTemplate):
     self.dd_assign.selected_value = ""
     self.refresh_data_bindings()
 
-  #def handle_custom_event(self,actionData):
-  #  self.action_panel.items = anvil.server.call('get_action',actionData)
+  def handle_custom_event(self,record, **event_args):
+   self.action_panel.items = anvil.server.call('get_action',record)
     

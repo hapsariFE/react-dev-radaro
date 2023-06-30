@@ -36,7 +36,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
-  print(jobValue)
+  #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
   #print(selectedGroups)
   #RelatedJobStatus = jobValue['name']
@@ -59,7 +59,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   if escStatus != None:
     filter_dict['escStatus'] = escStatus
 
-  print("-----")
+  #print("-----")
   #print(*jjv)
   #selected_status_rows = [status_row for status_row in app_tables.webhook.search(job_status=q.any_of(*selected_statuses))]
   #print(selected_status_rows)
@@ -67,7 +67,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   #print(RelatedJobStatus)
   #print(related_rows)
   values = [row for row in related_rows]
-  print(values)
+  #print(values)
   
 
 #  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
@@ -90,7 +90,14 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
 @anvil.server.callable
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
-  return app_tables.action_log.search(tables.order_by("created_date"),escalation_id=rowValue
+  print("-----aa")
+  print(rowValue)
+  print("-----bb")
+  print(rowValue)
+  if rowValue is None: 
+    print("No Escalation Selected")
+  else:
+    return app_tables.action_log.search(tables.order_by("created_date"),escalation_id=q.any_of(rowValue)
     
   )
 

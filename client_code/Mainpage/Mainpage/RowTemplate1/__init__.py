@@ -25,7 +25,7 @@ class RowTemplate1(RowTemplate1Template):
     selectedRow = self.item
     actionData = anvil.server.call('get_action',selectedRow)
 
-    #self.raise_event("custom_event", actionData)
+    self.parent.raise_event("x-custom_event", record=actionData)
     
     print(*actionData)
     values = [row for row in actionData]
