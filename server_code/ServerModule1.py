@@ -29,6 +29,12 @@ def get_user_list():
   print(related_rows)
   values = [[row] for row in related_rows]
   print(values)
+  Xvalues = []
+  x_rows = currentUser['user_merchant_link']
+  x_list =[r['name'] for r in x_rows]
+  print(x_list)
+  #rows = list(dict(r) for r in related_rows)
+  #print(rows)
   return app_tables.users.search(user_merchant_link=q.any_of(*values))
 
 #@anvil.server.callable
@@ -41,6 +47,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
+  
   #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
   #print(selectedGroups)
@@ -99,9 +106,9 @@ def get_action(rowValue):
   if rowValue is None: 
     print("No Escalation Selected")
   else:
-    print("-----aa")
-    print(rowValue)
-    print("-----bb")
+    #print("-----aa")
+    #print(rowValue)
+    #print("-----bb")
     #print(rowValue['job_status'])
     return app_tables.action_log.search(tables.order_by("created_date",ascending=False),escalation_id=q.any_of(rowValue)
     

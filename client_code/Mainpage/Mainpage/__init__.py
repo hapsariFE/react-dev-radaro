@@ -23,6 +23,7 @@ class Mainpage(MainpageTemplate):
     startDate= (date.today() - timedelta(days=6))
     endDate = date.today()
     escType= None
+    
     #jobValue = self.dd_job_status.selected_value
     compCode = None
     escStatus = None
@@ -40,6 +41,10 @@ class Mainpage(MainpageTemplate):
     anvil.users.login_with_form()
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     users = anvil.server.call('get_user_list')
+    #x_rows = users['user_merchant_link']
+    #x_list =[r['name'] for r in x_rows]
+    #print(x_list)
+    #print(users)
     self.users = [(x['name'], x) for x in users]
     self.refresh_data_bindings()
     self.start_date_picker.date = startDate
