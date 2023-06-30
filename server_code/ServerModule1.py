@@ -90,13 +90,14 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
 @anvil.server.callable
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
-  print("-----aa")
-  print(rowValue)
-  print("-----bb")
-  print(rowValue)
+  
   if rowValue is None: 
     print("No Escalation Selected")
   else:
+    print("-----aa")
+    print(rowValue)
+    print("-----bb")
+    #print(rowValue['job_status'])
     return app_tables.action_log.search(tables.order_by("created_date"),escalation_id=q.any_of(rowValue)
     
   )

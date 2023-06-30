@@ -125,5 +125,5 @@ class Mainpage(MainpageTemplate):
     self.refresh_data_bindings()
 
   def handle_custom_event(self,record, **event_args):
-   self.action_panel.items = anvil.server.call('get_action',record)
+   self.action_panel.items = record
     
