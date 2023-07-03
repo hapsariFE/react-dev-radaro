@@ -125,12 +125,19 @@ class Mainpage(MainpageTemplate):
      status = self.dd_status.selected_value
      created_date = datetime.now()
      assign_to = self.dd_assign.selected_value
-     #job_id = "15228"
-     anvil.server.call('add_comment', description, status, created_date, assign_to)
+     print(assign_to)
+     print(created_date)
+     print(status)
+     if assign_to is None:
+       alert("Please select a Assignee")
+     else if status is None:  
+     else:
+       anvil.server.call('add_comment', description, status, created_date, assign_to)
+       alert("Comment Submitted")
+       self.refresh_data_bindings()
+       self.clear_inputs() 
      #Notification("Comment submitted!").show()
-     alert("Comment Submitted")
-     self.refresh_data_bindings()
-     self.clear_inputs() 
+     
 
   def clear_inputs(self):
     # Clear our input boxes
