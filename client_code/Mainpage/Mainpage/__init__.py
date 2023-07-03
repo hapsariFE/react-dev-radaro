@@ -130,7 +130,10 @@ class Mainpage(MainpageTemplate):
      print(status)
      if assign_to is None:
        alert("Please select a Assignee")
-     else if status is None:  
+     elif status is None:
+       alert("Please select a Status")
+     elif description is "":
+       alert("Please submit a comment")
      else:
        anvil.server.call('add_comment', description, status, created_date, assign_to)
        alert("Comment Submitted")

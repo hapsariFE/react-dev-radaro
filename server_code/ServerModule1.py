@@ -156,12 +156,14 @@ def get_selectedMerchant(selectedMerchant):
     
 
 @anvil.server.callable
-def add_comment(description, status, created_date, assign_to):
+def add_comment(description, status, created_date, assign_x):
+  x_assign = app_tables.users.get(name=assign_x)
+  print(*x_assign)
   app_tables.action_log.add_row(
     #job_id=job_id,
     user=anvil.users.get_user,
     description=description,
     status=status,
     created_date = created_date,
-    assign_to=assign_to
+    assign_to=x_assign
   )
