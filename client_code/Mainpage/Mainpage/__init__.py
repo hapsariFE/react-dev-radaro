@@ -125,6 +125,7 @@ class Mainpage(MainpageTemplate):
      status = self.dd_status.selected_value
      created_date = datetime.now()
      assign_to = self.dd_assign.selected_value
+     
      print(assign_to)
      print(created_date)
      print(status)
