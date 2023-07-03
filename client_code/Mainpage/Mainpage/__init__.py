@@ -19,7 +19,7 @@ class Mainpage(MainpageTemplate):
     self.esc_status = Data.esc_status
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
-    self.merchant_name = Data.merchant_name
+    self.merchant_name = ""
     startDate= (date.today() - timedelta(days=6))
     endDate = date.today()
     escType= None
@@ -34,12 +34,16 @@ class Mainpage(MainpageTemplate):
     self.end_date_picker.date = endDate
     self.status = Data.esc_status
     actionData= None
+    merchant_name = None
     #self.assign = 'Danny'
     
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
+    merchName = anvil.server.call('get_merchant_list')
+    #print(merchant_name)
+    self.merchant_name = merchName
     users = anvil.server.call('get_user_list')
     #x_rows = users['user_merchant_link']
     #x_list =[r['name'] for r in x_rows]
@@ -51,7 +55,7 @@ class Mainpage(MainpageTemplate):
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
     #print(*jobValue)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
     
     self.refresh_action()
   
@@ -81,12 +85,12 @@ class Mainpage(MainpageTemplate):
    # self.refresh_list()
     #alert("You changed the date")
 
-  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate):
+  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
 
   def refresh_action(self):
       # Load existing actions from the Data Table, 
@@ -103,13 +107,13 @@ class Mainpage(MainpageTemplate):
     compCode = self.dd_completion_code.selected_value
     escType = self.dd_esc_type.selected_value
     escStatus = self.dd_esc_status.selected_value
-    merchName = self.dd_merchant.selected_value
+    merchant_name = self.dd_merchant.selected_value
     startDate = self.start_date_picker.date
     endDate = self.end_date_picker.date
     #print(jobValue)
     #print(startDate)
     #print(endDate)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
     alert("You changed the filter")
 
   def submit_button_click(self, **event_args):

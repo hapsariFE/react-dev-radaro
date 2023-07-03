@@ -21,6 +21,15 @@ import anvil.server
 #@authenticated_callable
 #def get_users():
 #  return app_tables.users.search()
+@anvil.server.callable
+def get_merchant_list():
+  currentUser=anvil.users.get_user()
+  Xvalues = []
+  x_rows = currentUser['user_merchant_link']
+  x_list =[r['name'] for r in x_rows]
+  print(x_list)
+  return x_list
+
 
 @anvil.server.callable
 def get_user_list():
@@ -29,10 +38,7 @@ def get_user_list():
   print(related_rows)
   values = [[row] for row in related_rows]
   print(values)
-  Xvalues = []
-  x_rows = currentUser['user_merchant_link']
-  x_list =[r['name'] for r in x_rows]
-  print(x_list)
+  
   #rows = list(dict(r) for r in related_rows)
   #print(rows)
   return app_tables.users.search(user_merchant_link=q.any_of(*values))
@@ -43,11 +49,11 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
+def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
-  
+  print(merchant_name)
   #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
   #print(selectedGroups)
@@ -71,15 +77,29 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   if escStatus != None:
     filter_dict['escStatus'] = escStatus
 
+  
+    
+
   #print("-----")
   #print(*jjv)
   #selected_status_rows = [status_row for status_row in app_tables.webhook.search(job_status=q.any_of(*selected_statuses))]
   #print(selected_status_rows)
-  related_rows = currentUser['user_merchant_link']
-  #print(RelatedJobStatus)
-  #print(related_rows)
-  values = [row for row in related_rows]
+  
   #print(values)
+  
+  related_rows = currentUser['user_merchant_link']
+    #print(RelatedJobStatus)
+    #print(related_rows)
+  values = [row for row in related_rows]
+  if merchant_name is None:
+    custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
+
+  else:
+    #filter_dict['webhook_merchant_link'] = merchant_name
+    merchant_row = app_tables.merchant.search(name=merchant_name)
+    #print(merchant_row)
+    custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row))
+
   
 
 #  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
@@ -87,7 +107,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate):
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
   #  filters['job_status'] = None
   # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
+  
  #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
   return custTable
   #.search(**kwargs)
