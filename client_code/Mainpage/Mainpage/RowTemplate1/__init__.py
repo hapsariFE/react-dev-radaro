@@ -29,7 +29,11 @@ class RowTemplate1(RowTemplate1Template):
   def orderSelection_radio_clicked(self, **event_args):
     """This method is called when this radio button is selected"""
     selectedRow = self.item
+    SelectedMerchant = self.item['webhook_merchant_link']
+    #print(*SelectedMerchant)
+    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     actionData = anvil.server.call('get_action',selectedRow)
+    print(assignList)
 
     self.parent.raise_event("x-custom_event", record=actionData)
     

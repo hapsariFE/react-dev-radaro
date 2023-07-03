@@ -23,6 +23,8 @@ class Mainpage(MainpageTemplate):
     startDate= (date.today() - timedelta(days=6))
     endDate = date.today()
     escType= None
+    self.assigned = ""
+    #self.dd_assign=""
     
     #jobValue = self.dd_job_status.selected_value
     compCode = None
@@ -49,6 +51,7 @@ class Mainpage(MainpageTemplate):
     #x_list =[r['name'] for r in x_rows]
     #print(x_list)
     #print(users)
+    
     self.users = [(x['name'], x) for x in users]
     self.refresh_data_bindings()
     self.start_date_picker.date = startDate
@@ -137,5 +140,6 @@ class Mainpage(MainpageTemplate):
     self.refresh_data_bindings()
 
   def handle_custom_event(self,record, **event_args):
+   
    self.action_panel.items = record
     

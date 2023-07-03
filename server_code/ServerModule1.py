@@ -135,6 +135,16 @@ def get_action(rowValue):
   )
 
 @anvil.server.callable
+def get_selectedMerchant(selectedMerchant):
+  #valuesMerch = [row for row in selectedMerchant]
+  
+  
+  if selectedMerchant is None:
+    print("No Escalation Selected")
+  else:
+    return app_tables.users.search(user_merchant_link = )
+
+@anvil.server.callable
 def add_comment(description, status, created_date, assign_to):
   app_tables.action_log.add_row(
     #job_id=job_id,

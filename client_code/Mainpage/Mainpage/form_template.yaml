@@ -457,7 +457,7 @@ components:
     name: dd_assign
     layout_properties: {grid_position: 'EFUDBX,DIPKCH'}
     data_bindings:
-    - {property: items, code: self.users}
+    - {property: items, code: self.assigned}
   - type: Button
     properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Submit, font_size: 11, font: '', spacing_above: small,
