@@ -33,9 +33,14 @@ class RowTemplate1(RowTemplate1Template):
     #print(*SelectedMerchant)
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     actionData = anvil.server.call('get_action',selectedRow)
-    print(assignList)
+    #print("------")
+    #print(list(assignList))
+    #atest = assignList['name']
+    #print(atest)
+    #print(*assignList)
+    
 
-    self.parent.raise_event("x-custom_event", record=actionData)
+    self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
     
     #print(*actionData)
     #values = [row for row in actionData]

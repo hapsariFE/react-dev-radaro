@@ -139,7 +139,9 @@ class Mainpage(MainpageTemplate):
     self.dd_assign.selected_value = ""
     self.refresh_data_bindings()
 
-  def handle_custom_event(self,record, **event_args):
+  def handle_custom_event(self,record,assign, **event_args):
    
    self.action_panel.items = record
+   self.assigned = assign
+   self.refresh_data_bindings()
     

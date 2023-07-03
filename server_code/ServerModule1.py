@@ -27,7 +27,7 @@ def get_merchant_list():
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
   x_list =[r['name'] for r in x_rows]
-  print(x_list)
+ # print(x_list)
   return x_list
 
 
@@ -35,9 +35,9 @@ def get_merchant_list():
 def get_user_list():
   currentUser=anvil.users.get_user()
   related_rows = currentUser['user_merchant_link']
-  print(related_rows)
+ # print(related_rows)
   values = [[row] for row in related_rows]
-  print(values)
+  #print(values)
   
   #rows = list(dict(r) for r in related_rows)
   #print(rows)
@@ -53,7 +53,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
-  print(merchant_name)
+  #print(merchant_name)
   #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
   #print(selectedGroups)
@@ -137,12 +137,23 @@ def get_action(rowValue):
 @anvil.server.callable
 def get_selectedMerchant(selectedMerchant):
   #valuesMerch = [row for row in selectedMerchant]
-  
+  related_rows = selectedMerchant
+    #print(RelatedJobStatus)
+    #print(related_rows)
+  values = [row for row in related_rows]
+  #print(related_rows)
+ # print(values)
   
   if selectedMerchant is None:
     print("No Escalation Selected")
   else:
-    return app_tables.users.search(user_merchant_link = )
+    xMerch = app_tables.users.search(user_merchant_link=[related_rows])
+    values = [[row] for row in xMerch]
+    x_list =[r['name'] for r in xMerch]
+    print("xxxxxx")
+    print(x_list)
+    return x_list
+    
 
 @anvil.server.callable
 def add_comment(description, status, created_date, assign_to):
