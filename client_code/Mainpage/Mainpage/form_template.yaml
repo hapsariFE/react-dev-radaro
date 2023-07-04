@@ -436,7 +436,7 @@ components:
       underline: false
       include_placeholder: true
     name: dd_status
-    layout_properties: {grid_position: 'EFUDBX,MLPLWE'}
+    layout_properties: {grid_position: 'EFUDBX,MLPLWE', full_width_row: false}
     data_bindings:
     - {property: items, code: self.esc_status}
   - type: DropDown
@@ -460,7 +460,7 @@ components:
       underline: false
       include_placeholder: true
     name: dd_assign
-    layout_properties: {grid_position: 'EFUDBX,DIPKCH'}
+    layout_properties: {grid_position: 'EFUDBX,DIPKCH', full_width_row: false}
     data_bindings:
     - {property: items, code: self.assigned}
   - type: Button
