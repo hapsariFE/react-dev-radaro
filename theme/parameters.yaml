@@ -15,22 +15,10 @@ roles:
   components: [ColumnPanel, LinearPanel, XYPanel, RepeatingPanel]
   display_in_toolbox: false
   title: Tonal Card
-- name: outlined-button
-  components: [Button, FileLoader]
-  display_in_toolbox: true
-  title: Outlined Button
-- name: filled-button
-  components: [Button, FileLoader]
-  display_in_toolbox: false
-  title: Filled Button
-- name: elevated-button
-  components: [Button, FileLoader]
-  display_in_toolbox: false
-  title: Elevated Button
-- name: tonal-button
-  components: [Button, FileLoader]
-  display_in_toolbox: false
-  title: Tonal Button
+- {name: outlined-button, components: null, display_in_toolbox: true, title: Outlined Button}
+- {name: filled-button, components: null, display_in_toolbox: false, title: Filled Button}
+- {name: elevated-button, components: null, display_in_toolbox: false, title: Elevated Button}
+- {name: tonal-button, components: null, display_in_toolbox: false, title: Tonal Button}
 - name: outlined
   components: [TextBox, TextArea, DatePicker, DropDown]
   display_in_toolbox: true

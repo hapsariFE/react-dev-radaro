@@ -3,7 +3,7 @@ container:
   properties: {col_widths: '{"JKBNWB":59,"GUQSNV":16}'}
 components:
 - type: Button
-  properties: {role: filled-button, align: right, tooltip: '', border: '', enabled: true,
+  properties: {role: elevated-button, align: right, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: log out, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
@@ -40,7 +40,7 @@ components:
         width: 53.3281
       name: startdate
     - type: DatePicker
-      properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
+      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
         placeholder: '', border: '', enabled: true, foreground: '', visible: true,
         font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
         date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
@@ -51,7 +51,7 @@ components:
         row: FSHRWD
         width_xs: 2
         col_xs: 1
-        width: 53.3281
+        width: 136.656
       name: start_date_picker
       data_bindings:
       - {property: date, code: 'self.date_filters[''start'']', writeback: true}
@@ -69,7 +69,7 @@ components:
         col_xs: 2
       name: enddate
     - type: DatePicker
-      properties: {role: null, align: left, max_date: '', pick_time: false, tooltip: '',
+      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
         placeholder: '', border: '', enabled: true, foreground: '', visible: true,
         font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
         date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
@@ -80,6 +80,7 @@ components:
         row: FSHRWD
         width_xs: 2
         col_xs: 3
+        width: 136.656
       name: end_date_picker
       data_bindings:
       - {property: date, code: 'self.date_filters[''end'']', writeback: true}
@@ -98,7 +99,7 @@ components:
       name: merchant
     - type: DropDown
       properties:
-        role: dropdown-border
+        role: outlined
         align: full
         tooltip: ''
         placeholder: All
@@ -122,6 +123,7 @@ components:
         row: FSHRWD
         width_xs: 2
         col_xs: 5
+        width: 136.656
       data_bindings:
       - {code: self.merchant_name, property: items}
       - {property: selected_value, code: 'self.filters[''merchant_name'']', writeback: true}
@@ -141,7 +143,7 @@ components:
       name: label_1_copy_2
     - type: DropDown
       properties:
-        role: dropdown-border
+        role: outlined
         align: full
         tooltip: ''
         placeholder: All
@@ -165,6 +167,7 @@ components:
         row: FSHRWD
         width_xs: 2
         col_xs: 7
+        width: 136.656
       data_bindings:
       - {code: self.users, property: items}
       - {property: selected_value, code: 'self.filters[''users'']', writeback: true}
@@ -184,7 +187,7 @@ components:
       name: label_1_copy_3
     - type: DropDown
       properties:
-        role: dropdown-border
+        role: outlined
         align: full
         tooltip: ''
         placeholder: All
@@ -228,7 +231,7 @@ components:
       name: label_2
     - type: DropDown
       properties:
-        role: dropdown-border
+        role: outlined
         align: full
         tooltip: ''
         placeholder: All
@@ -252,7 +255,7 @@ components:
         row: PKQKNH
         width_xs: 2
         col_xs: 3
-        width: 136.667
+        width: 136.656
       name: dd_completion_code
       event_bindings: {change: filter_change}
     - type: Label
@@ -269,7 +272,7 @@ components:
       name: label_2_copy
     - type: DropDown
       properties:
-        role: dropdown-border
+        role: outlined
         align: full
         tooltip: ''
         placeholder: All
@@ -293,6 +296,7 @@ components:
         row: PKQKNH
         width_xs: 2
         col_xs: 1
+        width: 136.656
       data_bindings:
       - {code: self.esc_type, property: items}
       - {property: selected_value, code: 'self.filters[''esc_type'']', writeback: true}
@@ -312,7 +316,7 @@ components:
       name: label_2_copy_2
     - type: DropDown
       properties:
-        role: dropdown-border
+        role: outlined
         align: full
         tooltip: ''
         placeholder: All
@@ -336,6 +340,7 @@ components:
         row: PKQKNH
         width_xs: 2
         col_xs: 3
+        width: 136.656
       data_bindings:
       - {code: self.esc_status, property: items}
       - {property: selected_value, code: 'self.filters[''esc_status'']', writeback: true}
@@ -412,7 +417,7 @@ components:
     layout_properties: {grid_position: 'WCBCNH,FXVJGA'}
   - type: DropDown
     properties:
-      role: null
+      role: outlined
       align: full
       tooltip: ''
       placeholder: Status
@@ -436,7 +441,7 @@ components:
     - {property: items, code: self.esc_status}
   - type: DropDown
     properties:
-      role: null
+      role: outlined
       align: full
       tooltip: ''
       placeholder: Assign
