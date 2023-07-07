@@ -26,15 +26,3 @@ class Modal(ModalTemplate):
     self.refresh_data_bindings()
     # Any code you write here will run before the form opens.
   
-  def refresh_action(self):
-      # Load existing actions from the Data Table, 
-      # and display them in the RepeatingPanel
-      self.m_action_panel.items = anvil.server.call('get_action',None)
-
-
-  
-  def handle_custom_event(self,record,assign, **event_args):
-   
-   self.m_action_panel.items = record
-   self.assigned = assign
-   self.refresh_data_bindings()
