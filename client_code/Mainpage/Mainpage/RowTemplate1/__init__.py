@@ -56,8 +56,10 @@ class RowTemplate1(RowTemplate1Template):
     self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
     alert(
      content=Modal(),
-     title="Comment History",
-     large=True,
+     title="Job ID :",
+     large=false,
+     
+     buttons=[("Save", True), ("Cancel", False)], 
    )
 
    
