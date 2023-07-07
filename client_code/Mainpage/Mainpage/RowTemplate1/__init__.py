@@ -49,11 +49,19 @@ class RowTemplate1(RowTemplate1Template):
 
   def comment_button_click(self, **event_args):
     """This method is called when the button is clicked"""
+   # print(*self.item)
+   # selectedRow = self.item
+    record_copy = dict(self.item)
+   # SelectedMerchant = self.item['webhook_merchant_link']
+   # print(record_copy)
+    #assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    #actionData = anvil.server.call('get_action',selectedRow)
     alert(
-      content=ActionPage(),
+      content=ActionPage(item=record_copy),
       title="Action Log",
       large=True,
    )
+    
 
 
 

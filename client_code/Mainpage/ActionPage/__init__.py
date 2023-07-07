@@ -14,10 +14,17 @@ class ActionPage(ActionPageTemplate):
     self.assigned = ""
     #self.dd_assign = ""
     #self.dd_status = ""
+    #print(self.item)
     
     self.init_components(**properties)
-    
-    
-    
+    print(self.item)
+    selectedRow = self.item
+    SelectedMerchant = self.item['webhook_merchant_link']
+    #print(record_copy)
+    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    actionData = anvil.server.call('get_action',selectedRow)
+    self.action_panel.items = record
+    self.assigned = assign
+    self.refresh_data_bindings()
 
     # Any code you write here will run before the form opens.
