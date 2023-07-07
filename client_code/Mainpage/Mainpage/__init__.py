@@ -20,7 +20,7 @@ class Mainpage(MainpageTemplate):
     self.esc_type = Data.esc_type
     self.job_status = Data.job_status
     self.merchant_name = ""
-    startDate= (date.today() - timedelta(days=6))
+    startDate= (date.today() - timedelta(days=60))
     endDate = date.today()
     escType= None
     self.assigned = ""
@@ -99,7 +99,7 @@ class Mainpage(MainpageTemplate):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
       self.action_panel.items = anvil.server.call('get_action',None)
-  
+    
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()

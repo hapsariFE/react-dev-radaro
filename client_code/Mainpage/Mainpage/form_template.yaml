@@ -372,6 +372,7 @@ components:
       - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401'}
       - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403'}
       - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405'}
+      - {id: FUNZSD, title: '', data_key: comment_history, $$hashKey: 'object:18690'}
       auto_header: true
       tooltip: ''
       border: ''
@@ -384,7 +385,7 @@ components:
       spacing_below: small
       background: ''
     name: data_grid_1
-    layout_properties: {width: 759.646, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 514.208, row: BEEIKG, width_xs: 12, col_xs: 0}
     components:
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
