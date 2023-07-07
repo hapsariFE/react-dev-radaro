@@ -6,6 +6,14 @@ container:
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: Button
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Action Log, font_size: null, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
+  name: comment_button
+  layout_properties: {column: YBLVEX}
+  event_bindings: {click: comment_button_click}
+- type: Button
   properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: Report, font_size: 11, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
