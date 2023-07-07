@@ -57,7 +57,7 @@ class RowTemplate1(RowTemplate1Template):
     alert(
      content=Modal(),
      title="Job ID :",
-     large=false,
+     large=True,
      
      buttons=[("Save", True), ("Cancel", False)], 
    )
