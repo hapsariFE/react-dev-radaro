@@ -1,4 +1,4 @@
-from ._anvil_designer import ActionPageTemplate
+from ._anvil_designer import ModalTemplate
 from anvil import *
 import anvil.server
 import anvil.users
@@ -7,25 +7,34 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ... import Data
 
-class ActionPage(ActionPageTemplate):
+class Modal(ModalTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
     self.esc_status = Data.esc_status
     self.assigned = ""
-    #self.dd_assign = ""
-    #self.dd_status = ""
-    #print(self.item)
     
     self.init_components(**properties)
+    print("------")
     
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    #print(record_copy)
+    print(selectedRow)
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     actionData = anvil.server.call('get_action',selectedRow)
-    print(actionData)
-    #self.action_panel.items = record
-    #self.assigned = assign
+    self.action_panel.items = actionData
+    self.assigned = assignList
     self.refresh_data_bindings()
-
     # Any code you write here will run before the form opens.
+  
+  def refresh_action(self):
+      # Load existing actions from the Data Table, 
+      # and display them in the RepeatingPanel
+      self.m_action_panel.items = anvil.server.call('get_action',None)
+
+
+  
+  def handle_custom_event(self,record,assign, **event_args):
+   
+   self.m_action_panel.items = record
+   self.assigned = assign
+   self.refresh_data_bindings()

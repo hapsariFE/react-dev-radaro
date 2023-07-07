@@ -122,6 +122,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 @anvil.server.callable
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
+  print(rowValue)
   
   if rowValue is None: 
     print("No Escalation Selected")

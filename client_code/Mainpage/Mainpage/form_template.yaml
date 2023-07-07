@@ -1,3 +1,4 @@
+is_package: true
 container:
   type: ColumnPanel
   properties: {col_widths: '{"JKBNWB":59,"GUQSNV":16}'}
@@ -7,24 +8,24 @@ components:
     foreground: '', visible: true, text: log out, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  name: log_out
   layout_properties: {grid_position: 'HWESZE,STEZAR'}
   event_bindings: {click: log_out_click}
+  name: log_out
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
     foreground: '', visible: true, font_size: 20, content: Intraday Intervention,
     font: '', spacing_above: small, spacing_below: none, data: null, background: '',
     format: markdown}
-  name: rich_text_1
   layout_properties:
     col_widths: {}
     grid_position: DQMOCH,BIXAFN
+  name: rich_text_1
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
       border: '', visible: true, role: null, tooltip: ''}
-    name: grid_panel_1
     layout_properties: {width: 1400}
+    name: grid_panel_1
     components:
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
@@ -52,10 +53,10 @@ components:
         width_xs: 2
         col_xs: 1
         width: 136.656
-      name: start_date_picker
       data_bindings:
-      - {property: date, code: 'self.date_filters[''start'']', writeback: true}
+      - {code: 'self.date_filters[''start'']', writeback: true, property: date}
       event_bindings: {change: filter_change}
+      name: start_date_picker
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: End Date, font_size: 12, font: '', spacing_above: small,
@@ -81,10 +82,10 @@ components:
         width_xs: 2
         col_xs: 3
         width: 136.656
-      name: end_date_picker
       data_bindings:
-      - {property: date, code: 'self.date_filters[''end'']', writeback: true}
+      - {code: 'self.date_filters[''end'']', writeback: true, property: date}
       event_bindings: {change: filter_change}
+      name: end_date_picker
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: small,
@@ -126,9 +127,9 @@ components:
         width: 136.656
       data_bindings:
       - {code: self.merchant_name, property: items}
-      - {property: selected_value, code: 'self.filters[''merchant_name'']', writeback: true}
-      name: dd_merchant
+      - {code: 'self.filters[''merchant_name'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
+      name: dd_merchant
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: small,
@@ -170,9 +171,9 @@ components:
         width: 136.656
       data_bindings:
       - {code: self.users, property: items}
-      - {property: selected_value, code: 'self.filters[''users'']', writeback: true}
-      name: dd_assigned
+      - {code: 'self.filters[''users'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
+      name: dd_assigned
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Job Status, font_size: 12, font: '', spacing_above: small,
@@ -214,9 +215,9 @@ components:
         width: 136.656
       data_bindings:
       - {code: self.job_status, property: items}
-      - {property: selected_value, code: 'self.filters[''job_status'']', writeback: true}
-      name: dd_job_status
+      - {code: 'self.filters[''job_status'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
+      name: dd_job_status
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: small,
@@ -256,8 +257,8 @@ components:
         width_xs: 2
         col_xs: 3
         width: 136.656
-      name: dd_completion_code
       event_bindings: {change: filter_change}
+      name: dd_completion_code
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Escalation Type, font_size: 12, font: '', spacing_above: small,
@@ -299,9 +300,9 @@ components:
         width: 136.656
       data_bindings:
       - {code: self.esc_type, property: items}
-      - {property: selected_value, code: 'self.filters[''esc_type'']', writeback: true}
-      name: dd_esc_type
+      - {code: 'self.filters[''esc_type'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
+      name: dd_esc_type
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: '',
         visible: true, text: Escalation Status, font_size: 12, font: '', spacing_above: small,
@@ -343,22 +344,21 @@ components:
         width: 136.656
       data_bindings:
       - {code: self.esc_status, property: items}
-      - {property: selected_value, code: 'self.filters[''esc_status'']', writeback: true}
-      name: dd_esc_status
+      - {code: 'self.filters[''esc_status'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
+      name: dd_esc_status
 - type: GridPanel
   properties: {}
-  name: grid_panel_2
   layout_properties: {grid_position: 'ERFONM,JKBNWB'}
+  name: grid_panel_2
   components:
   - type: RichText
     properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
       foreground: '', visible: true, font_size: 20, content: Escalation Dashboard,
       font: '', spacing_above: small, spacing_below: small, data: null, background: '',
       format: markdown}
-    name: rich_text_2
     layout_properties: {row: OEOIGA, width_xs: 5, col_xs: 4, width: 220}
-    components: []
+    name: rich_text_2
   - type: DataGrid
     properties:
       role: null
@@ -372,6 +372,7 @@ components:
       - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401'}
       - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403'}
       - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405'}
+      - {id: FUNZSD, title: '', data_key: comment_history, $$hashKey: 'object:18690'}
       auto_header: true
       tooltip: ''
       border: ''
@@ -383,38 +384,38 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
+    layout_properties: {width: 514.208, row: BEEIKG, width_xs: 12, col_xs: 0}
     name: data_grid_1
-    layout_properties: {width: 759.646, row: BEEIKG, width_xs: 12, col_xs: 0}
     components:
     - type: RepeatingPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
         visible: true, spacing_above: none, spacing_below: none, item_template: Mainpage.Mainpage.RowTemplate1,
         background: ''}
-      name: repeating_panel_1
       layout_properties: {}
+      name: repeating_panel_1
 - type: ColumnPanel
   properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
     spacing_below: small, background: ''}
-  name: column_panel_1
   layout_properties: {grid_position: 'ERFONM,GUQSNV'}
+  name: column_panel_1
   components:
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: 'Job ID :', font_size: 14, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
       underline: false, icon: ''}
-    name: job_id
     layout_properties: {grid_position: 'WPIIWL,GCILUJ'}
     data_bindings:
-    - {property: text, code: '"Job ID: "'}
+    - {code: '"Job ID: "', property: text}
+    name: job_id
   - type: TextArea
     properties: {role: outlined, align: left, height: '', tooltip: '', placeholder: Add comment,
       border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 10,
       auto_expand: false, font: '', spacing_above: small, spacing_below: small, italic: false,
       background: '', bold: false, underline: false}
-    name: addcomment
     layout_properties: {grid_position: 'WCBCNH,FXVJGA'}
+    name: addcomment
   - type: DropDown
     properties:
       role: outlined
@@ -435,10 +436,10 @@ components:
       bold: false
       underline: false
       include_placeholder: true
-    name: dd_status
     layout_properties: {grid_position: 'EFUDBX,MLPLWE', full_width_row: false}
     data_bindings:
-    - {property: items, code: self.esc_status}
+    - {code: self.esc_status, property: items}
+    name: dd_status
   - type: DropDown
     properties:
       role: outlined
@@ -459,22 +460,21 @@ components:
       bold: false
       underline: false
       include_placeholder: true
-    name: dd_assign
     layout_properties: {grid_position: 'EFUDBX,DIPKCH', full_width_row: false}
     data_bindings:
-    - {property: items, code: self.assigned}
+    - {code: self.assigned, property: items}
+    name: dd_assign
   - type: Button
     properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Submit, font_size: 11, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
-    name: submit
     layout_properties: {grid_position: 'YAAKUB,MQBVGO'}
     event_bindings: {click: submit_button_click}
+    name: submit
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-      visible: true, spacing_above: small, spacing_below: small, item_template: Mainpage.ActionPage.Actionlog,
+      visible: true, spacing_above: small, spacing_below: small, item_template: Mainpage.Modal.Actionlog,
       background: ''}
-    name: action_panel
     layout_properties: {grid_position: 'BKXZMM,ACHLBH'}
-is_package: true
+    name: action_panel

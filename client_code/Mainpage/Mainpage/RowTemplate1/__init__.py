@@ -6,7 +6,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ...jobreport import jobreport
-from ...ActionPage import ActionPage
+
+from ...Modal import Modal
 import webbrowser
 
 class RowTemplate1(RowTemplate1Template):
@@ -20,15 +21,11 @@ class RowTemplate1(RowTemplate1Template):
   
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
-    #alert(
-    #  content=jobreport(),
-    #  title="Job Report",
-    #  large=True,
-   #)
-    webbrowser.open(self.item['job_report'])
-
+   
+    webbrowser.open(self.item['job_report']) 
+  """
   def orderSelection_radio_clicked(self, **event_args):
-    """This method is called when this radio button is selected"""
+    #This method is called when this radio button is selected
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
     #print(*SelectedMerchant)
@@ -39,8 +36,6 @@ class RowTemplate1(RowTemplate1Template):
     #atest = assignList['name']
     #print(atest)
     #print(*assignList)
-    
-
     self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
     
     #print(*actionData)
@@ -48,7 +43,7 @@ class RowTemplate1(RowTemplate1Template):
     #print(*values)
 
   def comment_button_click(self, **event_args):
-    """This method is called when the button is clicked"""
+   #This method is called when the button is clicked
    # print(*self.item)
    # selectedRow = self.item
     record_copy = dict(self.item)
@@ -61,13 +56,29 @@ class RowTemplate1(RowTemplate1Template):
       title="Action Log",
       large=True,
    )
-    
-
-
-
-
-
-
+""" 
+  def comment_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    #selectedRow = self.item
+    #SelectedMerchant = self.item['webhook_merchant_link']
+    #print(*SelectedMerchant)
+    #assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    #actionData = anvil.server.call('get_action',selectedRow)
+    #print("------")
+    #print(list(assignList))
+    #atest = assignList['name']
+    #print(atest)
+    #print(*assignList)
+    record_copy = dict(self.item)
+    print(*self.item)
+    #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
+    alert(
+     content=Modal(item = self.item),
+     title="Job ID :",
+     large=True,
+     
+     buttons=[("Save", True), ("Cancel", False)], 
+   )
 
    
 
