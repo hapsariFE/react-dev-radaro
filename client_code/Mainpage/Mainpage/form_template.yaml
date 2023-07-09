@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"JKBNWB":59,"GUQSNV":16}'}
+  properties: {col_widths: '{"JKBNWB":59}'}
 components:
 - type: Button
   properties: {role: elevated-button, align: right, tooltip: '', border: '', enabled: true,
@@ -13,9 +13,8 @@ components:
   name: log_out
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: 20, content: Intraday Intervention,
-    font: '', spacing_above: small, spacing_below: none, data: null, background: '',
-    format: markdown}
+    foreground: '', visible: true, font_size: 20, content: Escalation Dashboard, font: '',
+    spacing_above: small, spacing_below: none, data: null, background: '', format: markdown}
   layout_properties:
     col_widths: {}
     grid_position: DQMOCH,BIXAFN
@@ -352,18 +351,10 @@ components:
   layout_properties: {grid_position: 'ERFONM,JKBNWB'}
   name: grid_panel_2
   components:
-  - type: RichText
-    properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
-      foreground: '', visible: true, font_size: 20, content: Escalation Dashboard,
-      font: '', spacing_above: small, spacing_below: small, data: null, background: '',
-      format: markdown}
-    layout_properties: {row: OEOIGA, width_xs: 5, col_xs: 4, width: 220}
-    name: rich_text_2
   - type: DataGrid
     properties:
       role: null
       columns:
-      - {id: YFVFNN, title: Selection, data_key: '', $$hashKey: 'object:8500'}
       - {id: LFNRAY, title: Job ID, data_key: job_id, $$hashKey: 'object:391'}
       - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393'}
       - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395'}
@@ -371,8 +362,8 @@ components:
       - {id: FREDFV, title: Escalation Type, data_key: escalation_type, $$hashKey: 'object:399'}
       - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401'}
       - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403'}
-      - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405'}
-      - {id: FUNZSD, title: '', data_key: comment_history, $$hashKey: 'object:18690'}
+      - {id: YBLVEX, title: View Job Report, data_key: job_report, $$hashKey: 'object:405'}
+      - {id: FUNZSD, title: Comment History, data_key: comment_history, $$hashKey: 'object:18690'}
       auto_header: true
       tooltip: ''
       border: ''
@@ -384,7 +375,7 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
-    layout_properties: {width: 514.208, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
     name: data_grid_1
     components:
     - type: RepeatingPanel
@@ -393,88 +384,3 @@ components:
         background: ''}
       layout_properties: {}
       name: repeating_panel_1
-- type: ColumnPanel
-  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-    spacing_below: small, background: ''}
-  layout_properties: {grid_position: 'ERFONM,GUQSNV'}
-  name: column_panel_1
-  components:
-  - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: 'Job ID :', font_size: 14, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
-    layout_properties: {grid_position: 'WPIIWL,GCILUJ'}
-    data_bindings:
-    - {code: '"Job ID: "', property: text}
-    name: job_id
-  - type: TextArea
-    properties: {role: outlined, align: left, height: '', tooltip: '', placeholder: Add comment,
-      border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 10,
-      auto_expand: false, font: '', spacing_above: small, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false}
-    layout_properties: {grid_position: 'WCBCNH,FXVJGA'}
-    name: addcomment
-  - type: DropDown
-    properties:
-      role: outlined
-      align: full
-      tooltip: ''
-      placeholder: Status
-      border: ''
-      enabled: true
-      foreground: ''
-      items: []
-      visible: true
-      font_size: 11
-      font: ''
-      spacing_above: small
-      spacing_below: small
-      italic: false
-      background: ''
-      bold: false
-      underline: false
-      include_placeholder: true
-    layout_properties: {grid_position: 'EFUDBX,MLPLWE', full_width_row: false}
-    data_bindings:
-    - {code: self.esc_status, property: items}
-    name: dd_status
-  - type: DropDown
-    properties:
-      role: outlined
-      align: full
-      tooltip: ''
-      placeholder: Assign
-      border: ''
-      enabled: true
-      foreground: ''
-      items: []
-      visible: true
-      font_size: 11
-      font: ''
-      spacing_above: small
-      spacing_below: small
-      italic: false
-      background: ''
-      bold: false
-      underline: false
-      include_placeholder: true
-    layout_properties: {grid_position: 'EFUDBX,DIPKCH', full_width_row: false}
-    data_bindings:
-    - {code: self.assigned, property: items}
-    name: dd_assign
-  - type: Button
-    properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Submit, font_size: 11, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    layout_properties: {grid_position: 'YAAKUB,MQBVGO'}
-    event_bindings: {click: submit_button_click}
-    name: submit
-  - type: RepeatingPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-      visible: true, spacing_above: small, spacing_below: small, item_template: Mainpage.Modal.Actionlog,
-      background: ''}
-    layout_properties: {grid_position: 'BKXZMM,ACHLBH'}
-    name: action_panel

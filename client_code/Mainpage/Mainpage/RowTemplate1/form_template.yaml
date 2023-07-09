@@ -6,8 +6,8 @@ container:
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: Button
-  properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Report, font_size: 11, font: '', spacing_above: small,
+  properties: {role: tonal-button, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: '', font_size: 11, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   layout_properties: {column: YBLVEX, grid_position: 'BCKGJB,RVLWDI'}
@@ -38,18 +38,10 @@ components:
   - {code: 'self.item[''latest_status''][''name'']', property: text}
   name: label_4
 - type: Button
-  properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: comment, font_size: null, font: '', spacing_above: small,
+  properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: '', font_size: null, font: '11', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   layout_properties: {column: FUNZSD}
   event_bindings: {click: comment_click}
   name: button_1
-- type: RadioButton
-  properties: {role: null, selected: false, align: left, tooltip: '', border: '',
-    enabled: true, foreground: '', value: '', visible: true, text: '', font_size: null,
-    font: '', spacing_above: small, spacing_below: small, italic: false, background: '',
-    bold: false, group_name: orderSelection, underline: false}
-  layout_properties: {column: YFVFNN}
-  event_bindings: {clicked: orderSelection_radio_clicked}
-  name: orderSelection_radio

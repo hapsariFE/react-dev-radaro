@@ -60,7 +60,7 @@ class Mainpage(MainpageTemplate):
     #print(*jobValue)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
     
-    self.refresh_action()
+    #self.refresh_action()
   
   #def initialise_start_dates(self):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
@@ -95,10 +95,10 @@ class Mainpage(MainpageTemplate):
     #print(**event_args)
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
 
-  def refresh_action(self):
+  #def refresh_action(self):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
-      self.action_panel.items = anvil.server.call('get_action',None)
+      #self.action_panel.items = anvil.server.call('get_action',None)
     
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -117,7 +117,7 @@ class Mainpage(MainpageTemplate):
     #print(startDate)
     #print(endDate)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
-    alert("You changed the filter")
+    #alert("You changed the filter")
 
   def submit_button_click(self, **event_args):
      
