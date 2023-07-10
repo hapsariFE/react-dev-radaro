@@ -48,7 +48,7 @@ components:
     layout_properties: {grid_position: 'MDQQNV,GWPPUK', full_width_row: false}
     data_bindings:
     - {property: items, code: self.assigned}
-    event_bindings: {change: dd_assign_change}
+    event_bindings: {change: form_change}
   - type: DropDown
     properties:
       role: outlined

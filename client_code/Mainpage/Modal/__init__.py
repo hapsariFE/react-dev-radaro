@@ -31,5 +31,7 @@ class Modal(ModalTemplate):
     assign = self.dd_assign.selected_value
     status = self.dd_status.selected_value
     description = self.addcomment.text
+    print(description)
+    #self.parent.raise_event()
 
   

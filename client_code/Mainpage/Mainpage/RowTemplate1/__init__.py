@@ -15,6 +15,10 @@ class RowTemplate1(RowTemplate1Template):
     #self.data = data
     #self.orderSelectionRadio.set_event_handler("change", orderSelection_radio_clicked) 
     # Set Form properties and Data Bindings.
+    assign = None
+    status = None
+    description = ""
+    
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     #self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
@@ -80,7 +84,7 @@ class RowTemplate1(RowTemplate1Template):
      buttons=[("Save", True), ("Cancel", False)], 
    )
     if save_clicked:
-      anvil.server.call('add_comment', self.item, record_copy)
+      #anvil.server.call('add_comment', self.item, record_copy)
       self.refresh_data_bindings()
       #self.parent.raise_event('x-edit-article', article=self.item)
       # Now refresh the page
