@@ -157,15 +157,28 @@ def get_selectedMerchant(selectedMerchant):
     
 
 @anvil.server.callable
-def add_comment(description, status, created_date, assign_x):
-  x_assign = app_tables.users.get(name=assign_x)
-  print(*x_assign)
-  currentUser = anvil.users.get_user()
-  app_tables.action_log.add_row(
-    #job_id=job_id,
+def add_comment(article, article_dict):
+  if app_tables.webhook.has_row(article):
+    article_dict['last_action_date'] = datetime.now()
+    app_tables.action_log.add_row(
+    job_id=article['job_id'],
     user=currentUser,
     description=description,
     status=status,
     created_date = created_date,
     assign_to=x_assign
   )
+    article.update(**article_dict)
+  else:
+    raise Exception("Article does not exist")
+ # x_assign = app_tables.users.get(name=assign_x)
+#  print(*x_assign)
+ # currentUser = anvil.users.get_user()
+ # app_tables.action_log.add_row(
+    #job_id=job_id,
+ #   user=currentUser,
+ #   description=description,
+  #  status=status,
+  #  created_date = created_date,
+  #  assign_to=x_assign
+ # )
