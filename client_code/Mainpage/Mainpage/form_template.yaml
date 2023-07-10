@@ -27,10 +27,10 @@ components:
     name: grid_panel_1
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: ' Start Date', font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: ' Start Date', font_size: 12, font: '',
+        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: ZPIVJB,TXYOGB
@@ -57,10 +57,10 @@ components:
       event_bindings: {change: filter_change}
       name: start_date_picker
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: Merchant Portal, font_size: 12, font: '',
+        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: VAIUAH,CDIYFH
@@ -102,8 +102,8 @@ components:
       event_bindings: {change: filter_change}
       name: dd_merchant
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -147,10 +147,10 @@ components:
       event_bindings: {change: filter_change}
       name: dd_assigned
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Escalation Status, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: Escalation Status, font_size: 12, font: '',
+        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: YRIIGM,PHJKJN
@@ -192,8 +192,8 @@ components:
       event_bindings: {change: filter_change}
       name: dd_esc_status
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: ' End  Date', font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: ' End  Date', font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -222,8 +222,8 @@ components:
       event_bindings: {change: filter_change}
       name: end_date_picker
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Job Status, font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: Job Status, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -267,10 +267,10 @@ components:
       event_bindings: {change: filter_change}
       name: dd_job_status
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: Completion Code, font_size: 12, font: '',
+        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: MZOWYR,CFXUPS
@@ -309,10 +309,10 @@ components:
       event_bindings: {change: filter_change}
       name: dd_completion_code
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Escalation Type, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
+          Disabled', visible: true, text: Escalation Type, font_size: 12, font: '',
+        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: CPYRQB,UXMVIQ

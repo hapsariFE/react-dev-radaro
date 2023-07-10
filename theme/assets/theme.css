@@ -1002,7 +1002,10 @@ input[disabled] ~ span {
   border-bottom: 1px solid %color:Surface Variant%;
   border-radius: 24px 24px 0 0;
 }
-
+.auto-grid-header {
+    font-size: 12px;
+    color: %color:On Disabled%;
+}
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header div.data-row-col > div {
   padding: 12px;
   text-align: center !important;
