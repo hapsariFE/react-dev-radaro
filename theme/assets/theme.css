@@ -785,7 +785,7 @@ input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil
 }
 
 input.anvil-component, .anvil-component select, .anvil-datepicker input, textarea.anvil-component {
-  padding: 8px 16px;
+  padding: 4px 16px;
   border: 0;
   border-bottom: 1px solid %color:Outline%;
 }
@@ -844,8 +844,8 @@ input.anvil-component::placeholder, textarea.anvil-component::placeholder  {
 
 input.anvil-component:hover, input.anvil-component:focus, textarea.anvil-component:hover, textarea.anvil-component:focus, 
 .anvil-component select:hover, .anvil-component select:focus, .anvil-datepicker input:hover, .anvil-datepicker input:focus {
-  border-bottom: 2px solid %color:Primary%;
-  padding-bottom: 7px;
+  border-bottom: 2px solid %color:Outline%;
+  padding-bottom: 4px;
   box-shadow: none;
 }
 
@@ -876,7 +876,7 @@ textarea.anvil-component.anvil-role-outlined:hover, textarea.anvil-component.anv
 input.anvil-component.anvil-role-outlined:hover, input.anvil-component.anvil-role-outlined:focus,
 .anvil-component.anvil-role-outlined select:hover, .anvil-component.anvil-role-outlined select:focus,
 .anvil-datepicker.anvil-role-outlined input:hover, .anvil-datepicker.anvil-role-outlined input:focus{
-  border: 2px solid %color:Primary%;
+  border: 1px solid %color:Outline%;
   /*padding: 7px 15px;*/
 }
 
@@ -884,7 +884,7 @@ textarea.anvil-component.anvil-role-outlined-error:hover, textarea.anvil-compone
 input.anvil-component.anvil-role-outlined-error:hover, input.anvil-component.anvil-role-outlined-error:focus,
 .anvil-component.anvil-role-outlined-error select:hover, .anvil-component.anvil-role-outlined-error select:focus,
 .anvil-datepicker.anvil-role-outlined-error input:hover, .anvil-datepicker.anvil-role-outlined-error input:focus{
-  border: 2px solid %color:Error%;
+  border: 1px solid %color:Error%;
   /*padding-bottom: 6px;*/
 }
 

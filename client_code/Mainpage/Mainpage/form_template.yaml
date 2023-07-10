@@ -49,7 +49,7 @@ components:
         col_widths: {}
         grid_position: RZBXLA,PIZDUB
         row: FSHRWD
-        width_xs: 1
+        width_xs: 2
         col_xs: 1
         width: 136.656
       data_bindings:
@@ -79,7 +79,7 @@ components:
         col_widths: {}
         grid_position: JOFSIP,YDQDGU
         row: FSHRWD
-        width_xs: 1
+        width_xs: 2
         col_xs: 3
         width: 85.5521
       data_bindings:
