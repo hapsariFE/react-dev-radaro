@@ -29,7 +29,7 @@ a>.anvil-component-icon.right_edge-icon,
   padding-bottom: 8px;
 }
 .anvil-label>.label-text, a>.link-text {
-  padding-top: 8px;
+  padding-top: 2px; 
   padding-bottom: 8px;
 }
 .file-loader>label {
@@ -502,10 +502,13 @@ color: %color:On Primary Container%;
 
 /* Component: Dialog (alert), Notification */
 .modal-content, body>div[data-notify="container"] {
-  border-radius: 28px;
-  background: linear-gradient(0deg, %color:Primary Overlay 3%, %color:Primary Overlay 3%), %color:Background%;
-  box-shadow: none;
-  border: none;
+  border-radius: 10px;
+  border: solid 1px %color:Outline%;
+  background-color: %color:Background%;
+    /* 2dp */  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  
+
+
 }
 
 .modal-header {
@@ -534,7 +537,8 @@ color: %color:On Primary Container%;
 
 /* Notifications */
 body>div[data-notify="container"] {
-  background: linear-gradient(0deg, %color:Primary Overlay 3%, %color:Primary Overlay 3%), %color:Background%;
+  background-color: %color:Background%;
+  
   border: none;
   padding: 24px;
   /* 24dp */ box-shadow: 0 9px 46px 8px rgba(0, 0, 0, 0.14), 0 11px 15px -7px rgba(0, 0, 0, 0.12), 0 24px 38px 3px rgba(0, 0, 0, 0.2);
@@ -586,37 +590,40 @@ button.close > span, button.close {
 /* Component: Button */
 
 .btn, .btn-default, .file-loader>label {
-  border-radius: 100px;
+
   font-size: 14px;
   font-weight: 500;
   padding: 10px 24px;
   min-height: 40px;
+  color:%color:On Primary Container%;
   letter-spacing: 0.1px;
-  
-  border: none;
   background-image: none;
-  background-color:  #00FFAF;
-  color: %color:Primary%;
+  border-radius: 7px;
+  background-color: %color:On Primary%;
+  border: solid 1px %color:Outline%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+
   text-shadow: none;
-  box-shadow: none;
-  -webkit-box-shadow: none;
+  /*-webkit-box-shadow: none;*/
   
   position: relative;
 }
 
 .btn:hover,.file-loader>label:hover {
-  background-color: %color:Light Overlay 1%;
+  color:%color:On Primary%;
+  background-color: %color:On Primary Container%;
   background-image: none;
-  outline: none;
-  color: %color:Primary%;
+  border: solid 1px %color:Outline%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .btn:active, .btn:focus, .btn:active:focus, .file-loader>label:active, .file-loader>label:focus, .file-loader>label:active:focus {
-  background-color: %color:Light Overlay 2%;
+  color:%color:On Primary%;
+  background-color: %color:On Primary Container%;
   background-image: none;
-  outline: none;
-  box-shadow: none;
-  color: %color:Primary%;
+  border: solid 1px %color:Outline%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+
 }
 
 
@@ -657,7 +664,7 @@ button.close > span, button.close {
 
 .anvil-role-elevated-button > .btn, .anvil-role-elevated-button.file-loader>label {
   color: %color:Primary%;
-  background-color: %color:Surface%;border-radius: 5px;
+  background-color: %color:Background%;border-radius: 7px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
@@ -717,24 +724,24 @@ button.close > span, button.close {
 
 .anvil-role-outlined-card {
   overflow: hidden;
-  border-radius: 12px;
-  background-color: %color:Surface%;
+  border-radius: 7px;
+  background-color: %color:Background%;
   border: solid 1px %color:Outline%;
   padding: 15px;
 }
 
 .anvil-role-elevated-card {
   overflow: hidden;
-  border-radius: 12px;
-  background-color: %color:Surface%;
+  border-radius: 7px;
+  background-color: %color:Background%;
   /* 2dp */  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
   padding: 15px;
 }
 
 .anvil-role-tonal-card {
   overflow: hidden;
-  border-radius: 12px;
-  background-color: %color:Surface Variant%;
+  border-radius: 7px;
+  background-color: %color:Surface%;
   padding: 15px;
 }
 
@@ -870,7 +877,7 @@ input.anvil-component.anvil-role-outlined:hover, input.anvil-component.anvil-rol
 .anvil-component.anvil-role-outlined select:hover, .anvil-component.anvil-role-outlined select:focus,
 .anvil-datepicker.anvil-role-outlined input:hover, .anvil-datepicker.anvil-role-outlined input:focus{
   border: 2px solid %color:Primary%;
-  padding: 7px 15px;
+  /*padding: 7px 15px;*/
 }
 
 textarea.anvil-component.anvil-role-outlined-error:hover, textarea.anvil-component.anvil-role-outlined-error:focus, 
@@ -878,7 +885,7 @@ input.anvil-component.anvil-role-outlined-error:hover, input.anvil-component.anv
 .anvil-component.anvil-role-outlined-error select:hover, .anvil-component.anvil-role-outlined-error select:focus,
 .anvil-datepicker.anvil-role-outlined-error input:hover, .anvil-datepicker.anvil-role-outlined-error input:focus{
   border: 2px solid %color:Error%;
-  padding-bottom: 6px;
+  /*padding-bottom: 6px;*/
 }
 
 textarea.anvil-component.anvil-role-outlined[disabled], input.anvil-component.anvil-role-outlined[disabled], 
@@ -887,7 +894,7 @@ textarea.anvil-component.anvil-role-outlined-error[disabled], input.anvil-compon
 .anvil-component.anvil-role-outlined-error select[disabled], .anvil-datepicker.anvil-role-outlined-error input[disabled] {
   border: 1px solid %color:On Disabled%;
   color: %color:On Disabled%;
-  padding-bottom: 8px;
+  /*padding-bottom: 8px;*/
 }
 
 .daterangepicker td.active {

@@ -76,13 +76,15 @@ class RowTemplate1(RowTemplate1Template):
     record_copy = dict(self.item)
     print(*self.item)
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
+    
     save_clicked = alert(
      content=Modal(item = self.item),
      title="Job ID :",
-     large=True,
-     
+     width=150,
+
      buttons=[("Save", True), ("Cancel", False)], 
    )
+
     if save_clicked:
       #anvil.server.call('add_comment', self.item, record_copy)
       self.refresh_data_bindings()
