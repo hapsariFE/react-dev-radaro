@@ -27,8 +27,8 @@ components:
     name: grid_panel_1
     components:
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Start Date, font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
+        visible: true, text: ' Start Date', font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -37,7 +37,7 @@ components:
         row: FSHRWD
         width_xs: 1
         col_xs: 0
-        width: 27.7708
+        width: 53.3281
       name: startdate
     - type: DatePicker
       properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
@@ -57,37 +57,7 @@ components:
       event_bindings: {change: filter_change}
       name: start_date_picker
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: End Date, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      layout_properties:
-        col_widths: {}
-        grid_position: RTRAIL,UUMMHX
-        row: FSHRWD
-        width_xs: 1
-        col_xs: 2
-        width: 27.7708
-      name: enddate
-    - type: DatePicker
-      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
-        placeholder: '', border: '', enabled: true, foreground: '', visible: true,
-        font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
-        date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
-          %b %Y'}
-      layout_properties:
-        col_widths: {}
-        grid_position: JOFSIP,YDQDGU
-        row: FSHRWD
-        width_xs: 2
-        col_xs: 3
-        width: 85.5521
-      data_bindings:
-      - {code: 'self.date_filters[''end'']', writeback: true, property: date}
-      event_bindings: {change: filter_change}
-      name: end_date_picker
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
         visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
@@ -96,8 +66,8 @@ components:
         grid_position: VAIUAH,CDIYFH
         row: FSHRWD
         width_xs: 1
-        col_xs: 4
-        width: 27.7708
+        col_xs: 3
+        width: 53.3281
       name: merchant
     - type: DropDown
       properties:
@@ -124,7 +94,7 @@ components:
         grid_position: EMXCMF,TSKJLG
         row: FSHRWD
         width_xs: 1
-        col_xs: 5
+        col_xs: 4
         width: 66.6562
       data_bindings:
       - {code: self.merchant_name, property: items}
@@ -132,7 +102,7 @@ components:
       event_bindings: {change: filter_change}
       name: dd_merchant
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
         visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
@@ -141,8 +111,8 @@ components:
         grid_position: EZYFRF,HGBXAO
         row: FSHRWD
         width_xs: 1
-        col_xs: 6
-        width: 27.7708
+        col_xs: 5
+        width: 53.3281
       name: label_1_copy_2
     - type: DropDown
       properties:
@@ -169,7 +139,7 @@ components:
         grid_position: XXIQOH,CMUKOB
         row: FSHRWD
         width_xs: 1
-        col_xs: 7
+        col_xs: 6
         width: 66.6562
       data_bindings:
       - {code: self.users, property: items}
@@ -177,7 +147,82 @@ components:
       event_bindings: {change: filter_change}
       name: dd_assigned
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
+        visible: true, text: Escalation Status, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: YRIIGM,PHJKJN
+        row: FSHRWD
+        width_xs: 1
+        col_xs: 7
+        width: 53.3281
+      name: label_2_copy_2
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: AXXCLW,RLIILH
+        row: FSHRWD
+        width_xs: 1
+        col_xs: 8
+        width: 66.6562
+      data_bindings:
+      - {code: self.esc_status, property: items}
+      - {code: 'self.filters[''esc_status'']', writeback: true, property: selected_value}
+      event_bindings: {change: filter_change}
+      name: dd_esc_status
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
+        visible: true, text: ' End  Date', font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: RTRAIL,UUMMHX
+        row: PKQKNH
+        width_xs: 1
+        col_xs: 0
+        width: 53.3281
+      name: enddate
+    - type: DatePicker
+      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
+        placeholder: '', border: '', enabled: true, foreground: '', visible: true,
+        font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
+        date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
+          %b %Y'}
+      layout_properties:
+        col_widths: {}
+        grid_position: JOFSIP,YDQDGU
+        row: PKQKNH
+        width_xs: 2
+        col_xs: 1
+        width: 85.5521
+      data_bindings:
+      - {code: 'self.date_filters[''end'']', writeback: true, property: date}
+      event_bindings: {change: filter_change}
+      name: end_date_picker
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
         visible: true, text: Job Status, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
@@ -187,7 +232,7 @@ components:
         row: PKQKNH
         width_xs: 1
         col_xs: 0
-        width: 27.7708
+        width: 53.3281
       name: label_1_copy_3
     - type: DropDown
       properties:
@@ -222,7 +267,7 @@ components:
       event_bindings: {change: filter_change}
       name: dd_job_status
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
         visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
@@ -232,7 +277,7 @@ components:
         row: PKQKNH
         width_xs: 1
         col_xs: 2
-        width: 27.7708
+        width: 53.3281
       name: label_2
     - type: DropDown
       properties:
@@ -264,7 +309,7 @@ components:
       event_bindings: {change: filter_change}
       name: dd_completion_code
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Outline',
         visible: true, text: Escalation Type, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
@@ -274,7 +319,7 @@ components:
         row: PKQKNH
         width_xs: 1
         col_xs: 0
-        width: 27.7708
+        width: 53.3281
       name: label_2_copy
     - type: DropDown
       properties:
@@ -308,51 +353,6 @@ components:
       - {code: 'self.filters[''esc_type'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
       name: dd_esc_type
-    - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Outline',
-        visible: true, text: Escalation Status, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      layout_properties:
-        col_widths: {}
-        grid_position: YRIIGM,PHJKJN
-        row: PKQKNH
-        width_xs: 1
-        col_xs: 2
-        width: 27.7708
-      name: label_2_copy_2
-    - type: DropDown
-      properties:
-        role: outlined
-        align: full
-        tooltip: ''
-        placeholder: All
-        border: ''
-        enabled: true
-        foreground: ''
-        items: []
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
-      layout_properties:
-        col_widths: {}
-        grid_position: AXXCLW,RLIILH
-        row: PKQKNH
-        width_xs: 1
-        col_xs: 3
-        width: 66.6562
-      data_bindings:
-      - {code: self.esc_status, property: items}
-      - {code: 'self.filters[''esc_status'']', writeback: true, property: selected_value}
-      event_bindings: {change: filter_change}
-      name: dd_esc_status
 - type: GridPanel
   properties: {}
   layout_properties: {grid_position: 'ERFONM,JKBNWB'}
@@ -382,7 +382,7 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
-    layout_properties: {width: 661.9996659999999, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
     name: data_grid_1
     components:
     - type: RepeatingPanel
