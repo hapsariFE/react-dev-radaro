@@ -80,7 +80,7 @@ class RowTemplate1(RowTemplate1Template):
      buttons=[("Save", True), ("Cancel", False)], 
    )
     if save_clicked:
-      anvil.server.call('add_comment', self.item, article_copy)
+      anvil.server.call('add_comment', self.item, record_copy)
       self.refresh_data_bindings()
       #self.parent.raise_event('x-edit-article', article=self.item)
       # Now refresh the page

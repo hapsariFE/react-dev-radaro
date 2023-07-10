@@ -25,4 +25,11 @@ class Modal(ModalTemplate):
     self.assigned = assignList
     self.refresh_data_bindings()
     # Any code you write here will run before the form opens.
+
+  def form_change(self, **event_args):
+    """This method is called when an item is selected"""
+    assign = self.dd_assign.selected_value
+    status = self.dd_status.selected_value
+    description = self.addcomment.text
+
   
