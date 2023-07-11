@@ -104,6 +104,9 @@ class Mainpage(MainpageTemplate):
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
+    self.repeating_panel_1.items = None
+    self.refresh_data_bindings()
+    open_form('Mainpage.Mainpage')
 
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
