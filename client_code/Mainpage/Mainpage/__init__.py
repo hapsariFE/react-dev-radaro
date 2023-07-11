@@ -43,6 +43,7 @@ class Mainpage(MainpageTemplate):
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
+    self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     merchName = anvil.server.call('get_merchant_list')
     #print(merchant_name)
     self.merchant_name = merchName

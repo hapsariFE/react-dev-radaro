@@ -89,9 +89,9 @@ class RowTemplate1(RowTemplate1Template):
     #if save_clicked:
       #anvil.server.call('add_comment', self.item, record_copy)
       #self.refresh_data_bindings()
-      #self.parent.raise_event('x-edit-article', article=self.item)
+    self.parent.raise_event('x-edit-article', article=self.item)
       # Now refresh the page
-      #self.refresh_data_bindings()
+    self.refresh_data_bindings()
 
    
 
