@@ -5,7 +5,7 @@ container:
 components:
 - type: Button
   properties: {role: null, align: right, tooltip: '', border: '', enabled: true, foreground: '',
-    visible: true, text: log out, font_size: null, font: '11', spacing_above: small,
+    visible: true, text: log out, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   layout_properties: {grid_position: 'HWESZE,STEZAR'}

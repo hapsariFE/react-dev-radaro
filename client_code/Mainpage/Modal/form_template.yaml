@@ -1,7 +1,7 @@
 container: {type: ColumnPanel}
 components:
 - type: ColumnPanel
-  properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"QFIVOG":25}',
     spacing_below: small, background: ''}
   name: column_panel_1
@@ -11,7 +11,7 @@ components:
   components:
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Add Comment, font_size: null, font: '14', spacing_above: small,
+      visible: true, text: Add Comment, font_size: 14, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
       underline: false, icon: ''}
     name: label_1
@@ -42,7 +42,7 @@ components:
         foreground: ''
         items: []
         visible: true
-        font_size: 11
+        font_size: 12
         font: ''
         spacing_above: small
         spacing_below: small
@@ -67,7 +67,7 @@ components:
         foreground: ''
         items: []
         visible: true
-        font_size: 11
+        font_size: 12
         font: ''
         spacing_above: small
         spacing_below: small
