@@ -319,3 +319,6 @@ color_scheme:
   - {name: Primary Overlay 1, color: 'rgba(0, 104, 116, 0.05)'}
   - {name: Primary Overlay 2, color: 'rgba(0, 104, 116, 0.08)'}
   - {name: Primary Overlay 3, color: 'rgba(0, 104, 116, 0.11)'}
+  - {name: Filter Border, color: '#e6e6e6'}
+  - {name: Filter Font, color: '#999999'}
+  - {name: Font, color: '#262626'}

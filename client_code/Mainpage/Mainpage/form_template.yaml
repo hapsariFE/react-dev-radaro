@@ -27,17 +27,17 @@ components:
     name: grid_panel_1
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: ' Start Date', font_size: 12, font: '',
-        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: ' Start Date', font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: ZPIVJB,TXYOGB
         row: FSHRWD
         width_xs: 1
         col_xs: 0
-        width: 53.3281
+        width: 34.9844
       name: startdate
     - type: DatePicker
       properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
@@ -57,17 +57,17 @@ components:
       event_bindings: {change: filter_change}
       name: start_date_picker
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: Merchant Portal, font_size: 12, font: '',
-        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: VAIUAH,CDIYFH
         row: FSHRWD
         width_xs: 1
         col_xs: 3
-        width: 53.3281
+        width: 34.9844
       name: merchant
     - type: DropDown
       properties:
@@ -102,8 +102,8 @@ components:
       event_bindings: {change: filter_change}
       name: dd_merchant
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -112,7 +112,7 @@ components:
         row: FSHRWD
         width_xs: 1
         col_xs: 5
-        width: 53.3281
+        width: 34.9844
       name: label_1_copy_2
     - type: DropDown
       properties:
@@ -147,8 +147,8 @@ components:
       event_bindings: {change: filter_change}
       name: dd_assigned
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: Escalation Status, font_size: 12, font: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Escalation Status, font_size: 12, font: '',
         spacing_above: none, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       layout_properties:
@@ -157,7 +157,7 @@ components:
         row: FSHRWD
         width_xs: 1
         col_xs: 7
-        width: 53.3281
+        width: 34.9844
       name: label_2_copy_2
     - type: DropDown
       properties:
@@ -192,8 +192,8 @@ components:
       event_bindings: {change: filter_change}
       name: dd_esc_status
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: ' End  Date', font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: ' End  Date', font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -202,7 +202,7 @@ components:
         row: PKQKNH
         width_xs: 1
         col_xs: 0
-        width: 53.3281
+        width: 34.9844
       name: enddate
     - type: DatePicker
       properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
@@ -222,8 +222,8 @@ components:
       event_bindings: {change: filter_change}
       name: end_date_picker
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: Job Status, font_size: 12, font: '', spacing_above: none,
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Job Status, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -267,17 +267,17 @@ components:
       event_bindings: {change: filter_change}
       name: dd_job_status
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: Completion Code, font_size: 12, font: '',
-        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: MZOWYR,CFXUPS
         row: PKQKNH
         width_xs: 1
         col_xs: 2
-        width: 53.3281
+        width: 34.9844
       name: label_2
     - type: DropDown
       properties:
@@ -309,17 +309,17 @@ components:
       event_bindings: {change: filter_change}
       name: dd_completion_code
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:On
-          Disabled', visible: true, text: Escalation Type, font_size: 12, font: '',
-        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Escalation Type, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
       layout_properties:
         col_widths: {}
         grid_position: CPYRQB,UXMVIQ
         row: PKQKNH
         width_xs: 1
         col_xs: 0
-        width: 53.3281
+        width: 34.9844
       name: label_2_copy
     - type: DropDown
       properties:

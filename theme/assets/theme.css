@@ -98,7 +98,8 @@ a>.anvil-component-icon.right_edge-icon,
 
 /* Typography */
 body {
-  font-family: Lato, Roboto, Noto, Arial, sans-serif;
+  font:Lato;
+  /*font-family: Roboto, Noto, Arial, sans-serif;*/
   font-size: 14px;
   line-height: 1.4286;
   color: %color:On Surface%;
@@ -594,14 +595,14 @@ button.close > span, button.close {
   font-size: 14px;
   font-weight: 500;
   padding: 3px 24px;
-  min-height: 25px;
+  min-height: 30px;
   color:%color:On Primary Container%;
   letter-spacing: 0.1px;
   background-image: none;
   border-radius: 25px;
   background-color: %color:On Primary%;
   border: solid 1px %color:Outline%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 
   text-shadow: none;
   /*-webkit-box-shadow: none;*/
@@ -622,35 +623,42 @@ button.close > span, button.close {
   background-color: %color:On Primary Container%;
   background-image: none;
   border: solid 1px %color:Outline%;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 
 }
 
 
 .anvil-role-outlined-button > .btn, .anvil-role-outlined-button.file-loader>label {
-  color: %color:Primary%;
+  background-color: %color:On Primary%;
+  color: %color:Font%;
+  box-shadow:none;
   border: solid 1px %color:Outline%;
 }
 
 .anvil-role-outlined-button > .btn:hover, .anvil-role-outlined-button.file-loader>label:hover {
-  background-color: %color:Light Overlay 1%;
+  background-color: %color:On Primary%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .anvil-role-outlined-button > .btn:focus, .anvil-role-outlined-button > .btn:active, 
 .anvil-role-outlined-button.file-loader>label:focus, .anvil-role-outlined-button.file-loader>label:active{
-  background-color: %color:Light Overlay 2%;
-  color: %color:Primary%;
+  background-color: %color:On Primary%;
+  color: %color:Font%;
+  box-shadow:none;
 }
 
 .anvil-role-filled-button > .btn, .btn-primary, .anvil-role-filled-button.file-loader>label {
-  background-color: %color:Primary%;
-  color: %color:On Primary%; 
+  background-color: %color:Font%;
+  color: %color:On Primary%;
+  box-shadow:none;
 }
 
 .anvil-role-filled-button > .btn:hover, .btn-primary:hover, .anvil-role-filled-button.file-loader>label:hover {
+  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
+  /*background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Font%;*/
+  background-color: %color:Font%;
+  color: %color:On Primary%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
-  background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Primary%;
-  color: %color:On Primary%; 
 }
 
 .anvil-role-filled-button > .btn:focus, .btn-primary:focus, .anvil-role-filled-button > .btn:active, 
@@ -658,8 +666,11 @@ button.close > span, button.close {
 .anvil-role-filled-button.file-loader>label:focus, .anvil-role-filled-button.file-loader>label:active, 
 .anvil-role-filled-button.file-loader>label:active:focus
 {
-  background: linear-gradient(0deg, %color:Light Overlay 2%, %color:Light Overlay 2%), %color:Primary%;
-  color: %color:On Primary%; 
+  /*background: linear-gradient(0deg, %color:Light Overlay 2%, %color:Light Overlay 2%), %color:Primary%;*/
+  background-color: %color:On Primary%;
+  color: %color:Font%;
+  box-shadow:none;
+  
 }
 
 .anvil-role-elevated-button > .btn, .anvil-role-elevated-button.file-loader>label {
@@ -867,9 +878,9 @@ textarea.anvil-component.anvil-role-input-error[disabled], input.anvil-component
 textarea.anvil-component.anvil-role-outlined, input.anvil-component.anvil-role-outlined, 
 .anvil-component.anvil-role-outlined select, .anvil-datepicker.anvil-role-outlined input {
   background-color: transparent;
-  border: 1px solid %color:Outline%;
-  border-radius: 4px;
-  color: %color:On Surface%;
+  border: 1px solid %color:Filter Border%;
+  border-radius: 5px;
+  color: %color:Filter Font%;
 
 }
 
@@ -877,7 +888,8 @@ textarea.anvil-component.anvil-role-outlined:hover, textarea.anvil-component.anv
 input.anvil-component.anvil-role-outlined:hover, input.anvil-component.anvil-role-outlined:focus,
 .anvil-component.anvil-role-outlined select:hover, .anvil-component.anvil-role-outlined select:focus,
 .anvil-datepicker.anvil-role-outlined input:hover, .anvil-datepicker.anvil-role-outlined input:focus{
-  border: 1px solid %color:Outline%;
+  border: 1px solid %color:Font%;
+  color: %color:Font%;
   /*padding: 7px 15px;*/
 
 }
@@ -1006,8 +1018,9 @@ input[disabled] ~ span {
   border-radius: 24px 24px 0 0;
 }
 .auto-grid-header {
-    font-size: 12px;
-    color: %color:On Disabled%;
+  font-size: 12px;
+  font:Lato;
+  color: %color:Filter Font%;
 }
 .anvil-role-tonal-data-grid.anvil-data-grid > .data-grid-child-panel>div.auto-grid-header div.data-row-col > div {
   padding: 12px;

@@ -6,10 +6,10 @@ container:
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: Button
-  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: '',
-    visible: true, text: '', font_size: 11, font: '', spacing_above: small, icon_align: top,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
+  properties: {role: outlined-button, align: left, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: '', font_size: 11, font: '', spacing_above: small,
+    icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
+    underline: false, icon: ''}
   layout_properties: {column: YBLVEX, grid_position: 'BCKGJB,RVLWDI'}
   event_bindings: {click: jobreport_click}
   name: jobreport
@@ -38,7 +38,7 @@ components:
   - {code: 'self.item[''latest_status''][''name'']', property: text}
   name: label_4
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+  properties: {role: outlined-button, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: '', font_size: null, font: '11', spacing_above: small,
     icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: 'fa:comments'}
