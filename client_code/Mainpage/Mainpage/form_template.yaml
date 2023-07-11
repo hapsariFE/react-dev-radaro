@@ -185,7 +185,7 @@ components:
         row: FSHRWD
         width_xs: 1
         col_xs: 8
-        width: 66.6562
+        width: 53.3281
       data_bindings:
       - {code: self.esc_status, property: items}
       - {code: 'self.filters[''esc_status'']', writeback: true, property: selected_value}
