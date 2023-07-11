@@ -31,7 +31,7 @@ class Mainpage(MainpageTemplate):
     escStatus = None
     merchName = None
     #print(jobValue)
-    print(startDate)
+    #print(startDate)
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     self.status = Data.esc_status

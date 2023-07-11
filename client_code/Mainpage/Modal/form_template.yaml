@@ -23,7 +23,7 @@ components:
       background: '', bold: false, underline: false}
     name: addcomment
     layout_properties: {grid_position: 'ZMRGEF,UBVMMR'}
-    event_bindings: {change: form_change}
+    event_bindings: {}
   - type: DropDown
     properties:
       role: outlined
@@ -48,7 +48,7 @@ components:
     layout_properties: {grid_position: 'MDQQNV,GWPPUK', full_width_row: false}
     data_bindings:
     - {property: items, code: self.assigned}
-    event_bindings: {change: form_change}
+    event_bindings: {}
   - type: DropDown
     properties:
       role: outlined
@@ -73,7 +73,7 @@ components:
     layout_properties: {grid_position: 'MDQQNV,VFJXTA', full_width_row: false}
     data_bindings:
     - {property: items, code: self.esc_status}
-    event_bindings: {change: form_change}
+    event_bindings: {}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Comment History, font_size: 14, font: '', spacing_above: small,

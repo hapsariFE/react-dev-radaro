@@ -122,7 +122,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 @anvil.server.callable
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
-  print(rowValue)
+ # print(rowValue)
   
   if rowValue is None: 
     print("No Escalation Selected")
@@ -151,8 +151,8 @@ def get_selectedMerchant(selectedMerchant):
     xMerch = app_tables.users.search(user_merchant_link=[related_rows])
     values = [[row] for row in xMerch]
     x_list =[r['name'] for r in xMerch]
-    print("xxxxxx")
-    print(x_list)
+   # print("xxxxxx")
+  #  print(x_list)
     return x_list
     
 
@@ -160,16 +160,19 @@ def get_selectedMerchant(selectedMerchant):
 def add_comment(article, description, status, created_date, assign_to):
   #if app_tables.webhook.has_row(article):
     #article_dict['last_action_date'] = datetime.now()
+   assignrow = app_tables.users.get(name=assign_to)
    tx = article['job_id']
-   print(tx)
-   app_tables.action_log.add_row(
+   print(assignrow)
+   row = app_tables.action_log.add_row(
     job_id=article,
     user=anvil.users.get_user(),
     description=description,
     status=status,
     created_date = created_date,
-    assign_to=assign_to
+    assign_to=assignrow,
+     escalation_id=article
   )
+   print(*row)
    # article.update(**article_dict)
   #else:
   #  raise Exception("Article does not exist")

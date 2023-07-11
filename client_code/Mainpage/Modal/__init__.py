@@ -15,7 +15,7 @@ class Modal(ModalTemplate):
     self.assigned = ""
     
     self.init_components(**properties)
-    print("------")
+    #print("------")
     
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
@@ -27,13 +27,6 @@ class Modal(ModalTemplate):
     self.refresh_data_bindings()
     # Any code you write here will run before the form opens.
 
-  def form_change(self, **event_args):
-    """This method is called when an item is selected"""
-    assign = self.dd_assign.selected_value
-    status = self.dd_status.selected_value
-    description = self.addcomment.text
-    print(description)
-    #self.parent.raise_event()
 
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -42,9 +35,9 @@ class Modal(ModalTemplate):
     created_date = datetime.now()
     assign_to = self.dd_assign.selected_value
      
-    print(assign_to)
-    print(created_date)
-    print(status)
+    #print(assign_to)
+    #print(created_date)
+    #print(status)
     if assign_to is None:
      alert("Please select a Assignee")
     elif status is None:
@@ -53,9 +46,11 @@ class Modal(ModalTemplate):
       alert("Please submit a comment")
     else:
      anvil.server.call('add_comment',self.item, description, status, created_date, assign_to)
+     actionData = anvil.server.call('get_action',self.item)
+     self.action_panel.items = actionData
      alert("Comment Submitted")
      self.refresh_data_bindings()
-     self.clear_inputs() 
+     self.clear_button_click() 
      Notification("Comment submitted!").show()
 
   def clear_button_click(self, **event_args):

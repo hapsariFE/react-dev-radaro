@@ -74,13 +74,13 @@ class RowTemplate1(RowTemplate1Template):
     #print(atest)
     #print(*assignList)
     record_copy = dict(self.item)
-    print(*self.item)
+    #print(*self.item)
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
     
     save_clicked = alert(
      content=Modal(item = self.item),
-     title="Job ID :",
-     width=150,
+     title="Job ID : " + self.item["job_reference"],
+     large=True,
 
      buttons=[("Exit", False)], 
    )
