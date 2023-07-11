@@ -24,6 +24,8 @@ class Mainpage(MainpageTemplate):
     endDate = date.today()
     escType= None
     self.assigned = ""
+    assigned_to = None
+    
     #self.dd_assign=""
     
     #jobValue = self.dd_job_status.selected_value
@@ -59,7 +61,7 @@ class Mainpage(MainpageTemplate):
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
     #print(*jobValue)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     
     #self.refresh_action()
   
@@ -89,12 +91,12 @@ class Mainpage(MainpageTemplate):
    # self.refresh_list()
     #alert("You changed the date")
 
-  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name):
+  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
 
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
@@ -117,10 +119,11 @@ class Mainpage(MainpageTemplate):
     merchant_name = self.dd_merchant.selected_value
     startDate = self.start_date_picker.date
     endDate = self.end_date_picker.date
+    assigned_to = self.dd_assigned.selected_value
     #print(jobValue)
     #print(startDate)
     #print(endDate)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     #alert("You changed the filter")
 
      

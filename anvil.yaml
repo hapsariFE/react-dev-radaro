@@ -129,6 +129,10 @@ db_schema:
       admin_ui: {order: 14, width: 200}
       type: link_single
       target: escalation_status
+    - name: latest_assignee
+      admin_ui: {order: 13, width: 200}
+      type: link_single
+      target: users
   action_log:
     client: search
     server: full

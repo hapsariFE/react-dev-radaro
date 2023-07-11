@@ -45,3 +45,9 @@ components:
   layout_properties: {column: FUNZSD}
   event_bindings: {click: comment_click}
   name: button_1
+- type: Label
+  properties: {}
+  name: label_5
+  layout_properties: {column: DCIFYE}
+  data_bindings:
+  - {property: text, code: 'self.item[''latest_assignee''][''name'']'}

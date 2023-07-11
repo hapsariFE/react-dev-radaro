@@ -50,11 +50,19 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name):
+def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
-  #print(merchant_name)
+  assignrow = app_tables.users.get(name=assigned_to)
+  print(assignrow)
+  defaultassign = get_user_list()
+  print(*defaultassign)
+  print(*[r for r in defaultassign])
+  if assignrow == None:
+    assignrow = [[r] for r in defaultassign]
+
+  
   #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
   #print(selectedGroups)
@@ -65,6 +73,8 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   #else:
    # jobValue = [row for row in jobValue]
   filter_dict = {}
+  #if assignrow != None:
+  #  filter_dict['latest_assignee'] = assignrow
 
   if jobValue != None:
     filter_dict['job_status'] = jobValue
@@ -163,6 +173,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
    article_dict['last_action_date'] = datetime.now()
    article_dict['latest_status'] = status
    assignrow = app_tables.users.get(name=assign_to)
+   article_dict['latest_assignee'] = assignrow
    tx = article['job_id']
    #print(assignrow)
    row = app_tables.action_log.add_row(
