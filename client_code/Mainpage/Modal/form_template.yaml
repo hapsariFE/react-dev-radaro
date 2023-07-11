@@ -75,7 +75,7 @@ components:
     - {property: items, code: self.esc_status}
     event_bindings: {}
   - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
@@ -83,7 +83,7 @@ components:
     layout_properties: {grid_position: 'OQUJXT,NDYRZW', full_width_row: false}
     event_bindings: {click: submit_button_click}
   - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: Clear, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
