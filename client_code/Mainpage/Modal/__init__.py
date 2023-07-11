@@ -34,6 +34,7 @@ class Modal(ModalTemplate):
     status = self.dd_status.selected_value
     created_date = datetime.now()
     assign_to = self.dd_assign.selected_value
+    record_copy = dict(self.item)
      
     #print(assign_to)
     #print(created_date)
@@ -45,7 +46,7 @@ class Modal(ModalTemplate):
     elif description is "":
       alert("Please submit a comment")
     else:
-     anvil.server.call('add_comment',self.item, description, status, created_date, assign_to)
+     anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to)
      actionData = anvil.server.call('get_action',self.item)
      self.action_panel.items = actionData
      #alert("Comment Submitted")
