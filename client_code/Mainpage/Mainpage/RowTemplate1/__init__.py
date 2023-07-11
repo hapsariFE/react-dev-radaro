@@ -80,7 +80,8 @@ class RowTemplate1(RowTemplate1Template):
     save_clicked = alert(
      content=Modal(item = self.item),
      title="Job ID : " + self.item["job_reference"],
-     large=True,
+     #large=True,
+     
 
      buttons=[("Exit", False)], 
    )

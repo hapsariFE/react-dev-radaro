@@ -41,7 +41,7 @@ components:
   properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
     foreground: '', visible: true, text: '', font_size: null, font: '11', spacing_above: small,
     icon_align: top, spacing_below: small, italic: false, background: '', bold: false,
-    underline: false, icon: ''}
+    underline: false, icon: 'fa:comments'}
   layout_properties: {column: FUNZSD}
   event_bindings: {click: comment_click}
   name: button_1

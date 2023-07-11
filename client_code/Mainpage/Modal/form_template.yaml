@@ -2,7 +2,7 @@ container: {type: ColumnPanel}
 components:
 - type: ColumnPanel
   properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"QFIVOG":25,"JXNSVQ":20,"VINRUB":15}',
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"QFIVOG":25}',
     spacing_below: small, background: ''}
   name: column_panel_1
   layout_properties:
@@ -74,6 +74,22 @@ components:
     data_bindings:
     - {property: items, code: self.esc_status}
     event_bindings: {}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: submit_button
+    layout_properties: {grid_position: 'OQUJXT,NDYRZW', full_width_row: false}
+    event_bindings: {click: submit_button_click}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Clear, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: clear_button
+    layout_properties: {grid_position: 'OQUJXT,NGBDYK', full_width_row: false}
+    event_bindings: {click: clear_button_click}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Comment History, font_size: 14, font: '', spacing_above: small,
@@ -83,22 +99,6 @@ components:
     layout_properties: {grid_position: 'RYDJVG,QFIVOG'}
     data_bindings:
     - {property: text, code: '"Comment History"'}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: submit_button
-    layout_properties: {grid_position: 'RYDJVG,JXNSVQ'}
-    event_bindings: {click: submit_button_click}
-  - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: Clear, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
-    name: clear_button
-    layout_properties: {grid_position: 'RYDJVG,VINRUB'}
-    event_bindings: {click: clear_button_click}
   - type: RepeatingPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
       visible: true, spacing_above: small, spacing_below: small, item_template: Mainpage.Modal.Actionlog,
