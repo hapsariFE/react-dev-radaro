@@ -31,7 +31,7 @@ class Mainpage(MainpageTemplate):
     escStatus = None
     merchName = None
     #print(jobValue)
-    print(startDate)
+    #print(startDate)
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     self.status = Data.esc_status
@@ -119,36 +119,8 @@ class Mainpage(MainpageTemplate):
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name)
     #alert("You changed the filter")
 
-  def submit_button_click(self, **event_args):
-     
-     description = self.addcomment.text
-     status = self.dd_status.selected_value
-     created_date = datetime.now()
-     assign_to = self.dd_assign.selected_value
-     
-     print(assign_to)
-     print(created_date)
-     print(status)
-     if assign_to is None:
-       alert("Please select a Assignee")
-     elif status is None:
-       alert("Please select a Status")
-     elif description is "":
-       alert("Please submit a comment")
-     else:
-       anvil.server.call('add_comment', description, status, created_date, assign_to)
-       alert("Comment Submitted")
-       self.refresh_data_bindings()
-       self.clear_inputs() 
-     #Notification("Comment submitted!").show()
      
 
-  def clear_inputs(self):
-    # Clear our input boxes
-    self.addcomment.text = ""
-    self.dd_status.selected_value = ""
-    self.dd_assign.selected_value = ""
-    self.refresh_data_bindings()
 
   def handle_custom_event(self,record,assign, **event_args):
    

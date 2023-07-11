@@ -132,9 +132,6 @@ db_schema:
     client: search
     server: full
     columns:
-    - name: ID
-      admin_ui: {order: 0, width: 200}
-      type: string
     - name: job_id
       admin_ui: {order: 1, width: 200}
       type: link_single
