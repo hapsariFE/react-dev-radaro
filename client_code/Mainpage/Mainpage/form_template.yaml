@@ -93,7 +93,7 @@ components:
         col_widths: {}
         grid_position: EMXCMF,TSKJLG
         row: FSHRWD
-        width_xs: 1
+        width_xs: 2
         col_xs: 4
         width: 66.6562
       data_bindings:
@@ -138,7 +138,7 @@ components:
         col_widths: {}
         grid_position: XXIQOH,CMUKOB
         row: FSHRWD
-        width_xs: 1
+        width_xs: 2
         col_xs: 6
         width: 66.6562
       data_bindings:
@@ -183,7 +183,7 @@ components:
         col_widths: {}
         grid_position: AXXCLW,RLIILH
         row: FSHRWD
-        width_xs: 1
+        width_xs: 2
         col_xs: 8
         width: 53.3281
       data_bindings:
@@ -258,7 +258,7 @@ components:
         col_widths: {}
         grid_position: XKXRFX,BSIHTO
         row: PKQKNH
-        width_xs: 1
+        width_xs: 2
         col_xs: 1
         width: 66.6562
       data_bindings:
@@ -303,7 +303,7 @@ components:
         col_widths: {}
         grid_position: QAXRSU,BLDEFZ
         row: PKQKNH
-        width_xs: 1
+        width_xs: 2
         col_xs: 3
         width: 66.6562
       event_bindings: {change: filter_change}
@@ -345,7 +345,7 @@ components:
         col_widths: {}
         grid_position: RYQXQU,BGAQBK
         row: PKQKNH
-        width_xs: 1
+        width_xs: 2
         col_xs: 1
         width: 66.6562
       data_bindings:
@@ -369,7 +369,7 @@ components:
       - {id: FREDFV, title: Escalation Type, data_key: escalation_type, $$hashKey: 'object:399'}
       - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401'}
       - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403'}
-      - {id: YBLVEX, title: View Job Report, data_key: job_report, $$hashKey: 'object:405'}
+      - {id: YBLVEX, title: Job Report, data_key: job_report, $$hashKey: 'object:405'}
       - {id: FUNZSD, title: Comment History, data_key: comment_history, $$hashKey: 'object:18690'}
       auto_header: true
       tooltip: ''
@@ -382,7 +382,7 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
-    layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 750, row: BEEIKG, width_xs: 12, col_xs: 0}
     name: data_grid_1
     components:
     - type: RepeatingPanel
