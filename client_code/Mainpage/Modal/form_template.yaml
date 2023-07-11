@@ -83,7 +83,7 @@ components:
       event_bindings: {}
     - type: Button
       properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
+        foreground: '', visible: true, text: Submit, font_size: 12, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: submit_button
@@ -91,7 +91,7 @@ components:
       event_bindings: {click: submit_button_click}
     - type: Button
       properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear, font_size: null, font: '', spacing_above: small,
+        foreground: '', visible: true, text: Clear, font_size: 12, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: clear_button
