@@ -76,7 +76,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     filter_dict['escalation_type'] = escType
 
   if escStatus != None:
-    filter_dict['escStatus'] = escStatus
+    filter_dict['latest_status'] = escStatus
 
   
     
