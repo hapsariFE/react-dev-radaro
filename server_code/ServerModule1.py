@@ -162,7 +162,7 @@ def add_comment(article, description, status, created_date, assign_to):
     #article_dict['last_action_date'] = datetime.now()
    assignrow = app_tables.users.get(name=assign_to)
    tx = article['job_id']
-   print(assignrow)
+   #print(assignrow)
    row = app_tables.action_log.add_row(
     job_id=article,
     user=anvil.users.get_user(),
@@ -172,7 +172,7 @@ def add_comment(article, description, status, created_date, assign_to):
     assign_to=assignrow,
      escalation_id=article
   )
-   print(*row)
+   #print(*row)
    # article.update(**article_dict)
   #else:
   #  raise Exception("Article does not exist")

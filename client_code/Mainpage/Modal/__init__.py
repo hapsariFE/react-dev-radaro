@@ -19,7 +19,7 @@ class Modal(ModalTemplate):
     
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    print(selectedRow)
+    #print(selectedRow)
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     actionData = anvil.server.call('get_action',selectedRow)
     self.action_panel.items = actionData
@@ -48,7 +48,7 @@ class Modal(ModalTemplate):
      anvil.server.call('add_comment',self.item, description, status, created_date, assign_to)
      actionData = anvil.server.call('get_action',self.item)
      self.action_panel.items = actionData
-     alert("Comment Submitted")
+     #alert("Comment Submitted")
      self.refresh_data_bindings()
      self.clear_button_click() 
      Notification("Comment submitted!").show()
