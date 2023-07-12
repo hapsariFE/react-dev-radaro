@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"JKBNWB":74,"VHPPCR":10,"EETSUW":40,"ZDHCTG":10,"NBATXT":17,"STEZAR":20,"ZWTDKT":23}'}
+  properties: {col_widths: '{"JKBNWB":74,"VHPPCR":15,"EETSUW":30,"ZDHCTG":15,"NBATXT":17,"STEZAR":20,"ZWTDKT":23}'}
 components:
 - type: Label
   properties: {}
