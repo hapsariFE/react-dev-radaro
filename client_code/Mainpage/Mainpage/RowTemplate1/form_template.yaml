@@ -2,7 +2,7 @@ is_package: true
 container:
   type: DataRowPanel
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
-    visible: true, font_size: 12, font: '', spacing_above: none, spacing_below: none,
+    visible: true, font_size: null, font: '', spacing_above: none, spacing_below: none,
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: Button
@@ -14,25 +14,33 @@ components:
   event_bindings: {click: jobreport_click}
   name: jobreport
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   layout_properties: {column: JVSRGA}
   data_bindings:
-  - {code: 'self.item[''last_action_date''].strftime("%d/%m/%-y %H:%M")', property: text}
+  - {code: 'self.item[''last_action_date''].strftime("%d-%m-%-y %H:%M")', property: text}
   name: label_2
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   layout_properties: {column: HIBOCD, grid_position: 'BCKGJB,VPGQDG'}
   data_bindings:
   - {code: 'self.item[''job_status''][''name'']', property: text}
   name: label_1
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   layout_properties: {column: FREDFV}
   data_bindings:
   - {code: 'self.item[''escalation_type''][''name'']', property: text}
   name: label_3
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   layout_properties: {column: MVQPXP}
   data_bindings:
   - {code: 'self.item[''latest_status''][''name'']', property: text}
@@ -46,7 +54,9 @@ components:
   event_bindings: {click: comment_click}
   name: button_1
 - type: Label
-  properties: {}
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_5
   layout_properties: {column: DCIFYE}
   data_bindings:

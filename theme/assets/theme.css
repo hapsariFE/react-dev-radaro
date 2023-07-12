@@ -100,7 +100,7 @@ a>.anvil-component-icon.right_edge-icon,
 body {
   font:Lato;
   /*font-family: Roboto, Noto, Arial, sans-serif;*/
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.4286;
   color: %color:On Surface%;
   background-color: %color:Background%;
@@ -141,7 +141,7 @@ color: %color:On Primary Container%;
 }
 
 .anvil-role-body {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 20px;
   font-weight: 400;
 }
