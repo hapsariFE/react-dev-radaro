@@ -1,7 +1,7 @@
 is_package: true
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"JKBNWB":74,"VHPPCR":10,"EETSUW":40,"ZDHCTG":10,"NBATXT":15,"NXFBFT":25,"STEZAR":20}'}
+  properties: {col_widths: '{"JKBNWB":74,"VHPPCR":10,"EETSUW":40,"ZDHCTG":10,"NBATXT":17,"STEZAR":20,"ZWTDKT":23}'}
 components:
 - type: Label
   properties: {}
@@ -14,13 +14,13 @@ components:
     spacing_below: small, background: '', horizontal_align: left}
   name: image_1
   layout_properties: {grid_position: 'AXMFDZ,EETSUW HWESZE,NBATXT'}
-- type: RichText
-  properties: {role: null, align: left, tooltip: '', enable_slots: true, border: '',
-    foreground: '', visible: true, font_size: null, content: Escalation Dashboard,
-    font: '', spacing_above: small, spacing_below: small, data: null, background: '',
-    format: markdown}
-  name: rich_text_2
-  layout_properties: {grid_position: 'AXMFDZ,EETSUW HWESZE,NXFBFT'}
+- type: Label
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+    visible: true, text: Escalation Dashboard, font_size: 24, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  name: label_1
+  layout_properties: {grid_position: 'AXMFDZ,EETSUW HWESZE,ZWTDKT'}
 - type: Button
   properties: {role: null, align: right, tooltip: '', border: '', enabled: true, foreground: '',
     visible: true, text: log out, font_size: null, font: '', spacing_above: small,
