@@ -8,6 +8,7 @@ from ... import Data
 from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
 
+
 class Mainpage(MainpageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -136,57 +137,4 @@ class Mainpage(MainpageTemplate):
     """function used for sorting in combination with headers""" 
     """https://anvil.works/forum/t/how-to-add-sorting-functionality-to-datagrid-with-repeating-panels/17750/6"""
     
-    self.lb_sort_col.text = column_name
-    if sorting_way == True:
-      self.lb_asc_dsc.text = 'dsc'
-    else:
-      self.lb_asc_dsc.text = 'asc'
-    if int(self.total.text) < 2000: #large data need to be sorted on server side by a new call
-      key_func = lambda x: x[column_name] or ''
-      if column_name == 'DUMMY':  # replace 'user_column' with the actual name of the column, replace DUMMY to make an exception for user columns
-        key_func = lambda x: x[column_name]['email']  # replace 'email' with the actual key for the user email
-      self.repeating_panel_assay.items = sorted([r for r in self.repeating_panel_assay.items],
-                                                  key=key_func,
-                                                  reverse=sorting_way)
-    else:#big data server side sorting
-      self.Search_click()
-
-  def set_sorting(self, object_name, column_name, **event_args):
-    """This method is called when the link is clicked, sort after ACN column"""
-    sorting_way = None#variable for sorting order
-    list_all_links = [self.h_matrix, self.h_long, self.h_short,
-                      self.h_application, self.h_indication, self.h_active_inactive]
-    #check if some other column were already sorted and set their icon back to the normal unsorted state
-    for links in list_all_links:
-      if object_name != links:
-        links.icon = 'fa:sort'
-    #change icon of sorted column
-    if object_name.icon == 'fa:sort':#never sorted
-      object_name.icon = 'fa:sort-asc'#set ascending
-      sorting_way = False # ascending
-    elif object_name.icon == 'fa:sort-asc':#already sorted as ascending
-      object_name.icon = 'fa:sort-desc'#set descending
-      sorting_way = True # descending
-    elif object_name.icon == 'fa:sort-desc':#once again get back to ascending
-      object_name.icon = 'fa:sort-asc'
-      sorting_way = False # ascending
-    self.sorting_function(column_name,sorting_way)
-    pass
-
-  def h_matrix_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    object_name = self.h_matrix#Link name
-    column_name = 'matrix'#real name in database
-    self.set_sorting(object_name, column_name)
-
-  def h_long_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    object_name = self.h_long#Link name
-    column_name = 'name_long'#real name in database
-    self.set_sorting(object_name, column_name)
-
-  def h_short_click(self, **event_args):
-    """This method is called when the link is clicked"""
-    object_name = self.h_short#Link name
-    column_name = 'name_short'#real name in database
-    self.set_sorting(object_name, column_name)
+    
