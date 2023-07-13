@@ -399,7 +399,7 @@ components:
       - {id: YBLVEX, title: Job Report, data_key: job_report, $$hashKey: 'object:405',
         width: '80'}
       - {id: FUNZSD, title: Comment History, data_key: comment_history, $$hashKey: 'object:18690',
-        width: '80'}
+        width: '120'}
       auto_header: true
       tooltip: ''
       border: ''
@@ -411,7 +411,7 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
-    layout_properties: {width: 451.5, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 611.328, row: BEEIKG, width_xs: 12, col_xs: 0}
     name: data_grid_1
     components:
     - type: RepeatingPanel
