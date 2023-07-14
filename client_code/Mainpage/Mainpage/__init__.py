@@ -51,6 +51,7 @@ class Mainpage(MainpageTemplate):
     #print(merchant_name)
     self.merchant_name = merchName
     users = anvil.server.call('get_user_list')
+    print(merchName)
     #x_rows = users['user_merchant_link']
     #x_list =[r['name'] for r in x_rows]
     #print(x_list)
