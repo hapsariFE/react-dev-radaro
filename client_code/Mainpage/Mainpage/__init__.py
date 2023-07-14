@@ -62,7 +62,7 @@ class Mainpage(MainpageTemplate):
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
-    #print(*jobValue)
+    print(self.start_date_picker.date)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     
     #self.refresh_action()
