@@ -1,0 +1,27 @@
+container: {type: DataRowPanel}
+components:
+- type: Label
+  properties: {}
+  name: label_1
+  layout_properties: {column: VTUJFJ}
+  data_bindings:
+  - {property: text, code: 'self.item[''status''][''name'']'}
+- type: Label
+  properties: {}
+  name: label_2
+  layout_properties: {column: VEQFME}
+  data_bindings:
+  - {property: text, code: 'self.item[''assign_to''][''name'']'}
+- type: Label
+  properties: {}
+  name: label_3
+  layout_properties: {column: MQEENE}
+  data_bindings:
+  - {property: text, code: 'self.item[''user''][''name'']'}
+- type: Label
+  properties: {}
+  name: label_4
+  layout_properties: {column: ZNGNTV}
+  data_bindings:
+  - {property: text, code: 'self.item[''created_date''].strftime("%d %b, %Y %H:%M")'}
+is_package: true
