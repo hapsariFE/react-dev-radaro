@@ -217,10 +217,13 @@ def add_comment(article, article_dict, description, status, created_date, assign
   #  assign_to=x_assign
  # )
 
-@anvil.server.callable
-def return_text_from_file():
-    # Read the contents of a file 
-    with open(data_files['anvil_upload.xlsx']) as f:
-        text = f.read()
-    return text
 
+
+def import_excel_data(file):
+  with open(file, "rb") as f:
+    df = pd.read_excel(f)
+    for d in df.to_dict(orient="records"):
+      # d is now a dict of {columnname -> value} for this row 
+      # We use Python's **kwargs syntax to pass the whole dict as 
+      # keyword arguments 
+      app_tables.test_table.add_row(**d)
