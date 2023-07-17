@@ -8,6 +8,9 @@ services:
   client_config: {allow_signup: false, enable_automatically: true, use_email: true,
     confirm_email: false}
   server_config: {user_table: users}
+- source: /runtime/services/anvil/secrets.yml
+  client_config: {}
+  server_config: {}
 startup: {type: form, module: Mainpage.Mainpage}
 package_name: Intraday_Dashboard_v2
 allow_embedding: false

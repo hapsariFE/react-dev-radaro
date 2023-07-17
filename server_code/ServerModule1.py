@@ -1,3 +1,4 @@
+import anvil.secrets
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -22,6 +23,10 @@ from datetime import datetime, timedelta, date
 #@authenticated_callable
 #def get_users():
 #  return app_tables.users.search()
+@anvil.server.http_endpoint("/users/list")
+def get_user_list():
+  return [u['email'] for u in app_tables.users.search()]
+
 @anvil.server.callable
 def get_merchant_list():
   currentUser=anvil.users.get_user()
