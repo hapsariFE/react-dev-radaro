@@ -11,6 +11,9 @@ services:
 - source: /runtime/services/anvil/secrets.yml
   client_config: {}
   server_config: {}
+- source: /runtime/services/anvil/files.yml
+  client_config: {}
+  server_config: {file_table: files}
 startup: {type: form, module: Mainpage.Mainpage}
 package_name: Intraday_Dashboard_v2
 allow_embedding: false
@@ -19,14 +22,6 @@ runtime_options: {version: 2, client_version: '3', server_version: python3-full,
 metadata: {logo_img: 'asset:R.jpg'}
 startup_form: null
 db_schema:
-  job_status:
-    title: job_status
-    client: search
-    server: full
-    columns:
-    - name: name
-      admin_ui: {width: 200}
-      type: string
   escalation_status:
     title: escalation_status
     client: search
@@ -35,6 +30,17 @@ db_schema:
     - name: name
       admin_ui: {width: 200}
       type: string
+  test_table:
+    client: none
+    server: full
+    columns:
+    - name: id
+      admin_ui: {order: 0, width: 200}
+      type: string
+    - name: name
+      admin_ui: {order: 1, width: 200}
+      type: string
+    title: test table
   escalation_type:
     title: escalation_type
     client: search
@@ -43,17 +49,28 @@ db_schema:
     - name: name
       admin_ui: {width: 200}
       type: string
-  merchant:
-    title: merchant
+  job_status:
+    title: job_status
     client: search
     server: full
     columns:
-    - name: merchant_id
-      admin_ui: {width: 200}
-      type: string
     - name: name
       admin_ui: {width: 200}
       type: string
+  files:
+    client: none
+    server: full
+    columns:
+    - name: path
+      type: string
+      admin_ui: {order: 0, width: 200}
+    - name: file
+      type: media
+      admin_ui: {order: 1, width: 200}
+    - name: file_version
+      type: string
+      admin_ui: {order: 2, width: 200}
+    title: Files
   users:
     title: users
     client: none
@@ -84,6 +101,48 @@ db_schema:
       admin_ui: {order: 7, width: 200}
       type: link_multiple
       target: merchant
+  action_log:
+    client: search
+    server: full
+    columns:
+    - name: job_id
+      admin_ui: {order: 1, width: 200}
+      type: link_single
+      target: webhook
+    - name: escalation_id
+      admin_ui: {order: 3, width: 200}
+      type: link_single
+      target: webhook
+    - name: user
+      admin_ui: {order: 4, width: 200}
+      type: link_single
+      target: users
+    - name: created_date
+      admin_ui: {order: 4, width: 200}
+      type: datetime
+    - name: description
+      admin_ui: {order: 5, width: 200}
+      type: string
+    - name: assign_to
+      admin_ui: {order: 6, width: 200}
+      type: link_single
+      target: users
+    - name: status
+      admin_ui: {order: 7, width: 200}
+      type: link_single
+      target: escalation_status
+    title: action_log
+  merchant:
+    title: merchant
+    client: search
+    server: full
+    columns:
+    - name: merchant_id
+      admin_ui: {width: 200}
+      type: string
+    - name: name
+      admin_ui: {width: 200}
+      type: string
   webhook:
     title: webhook
     client: search
@@ -136,35 +195,4 @@ db_schema:
       admin_ui: {order: 13, width: 200}
       type: link_single
       target: users
-  action_log:
-    client: search
-    server: full
-    columns:
-    - name: job_id
-      admin_ui: {order: 1, width: 200}
-      type: link_single
-      target: webhook
-    - name: escalation_id
-      admin_ui: {order: 3, width: 200}
-      type: link_single
-      target: webhook
-    - name: user
-      admin_ui: {order: 4, width: 200}
-      type: link_single
-      target: users
-    - name: created_date
-      admin_ui: {order: 4, width: 200}
-      type: datetime
-    - name: description
-      admin_ui: {order: 5, width: 200}
-      type: string
-    - name: assign_to
-      admin_ui: {order: 6, width: 200}
-      type: link_single
-      target: users
-    - name: status
-      admin_ui: {order: 7, width: 200}
-      type: link_single
-      target: escalation_status
-    title: action_log
 renamed: true

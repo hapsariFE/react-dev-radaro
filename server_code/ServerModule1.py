@@ -1,3 +1,5 @@
+import anvil.files
+from anvil.files import data_files
 import anvil.secrets
 import anvil.users
 import anvil.tables as tables
@@ -214,3 +216,11 @@ def add_comment(article, article_dict, description, status, created_date, assign
   #  created_date = created_date,
   #  assign_to=x_assign
  # )
+
+@anvil.server.callable
+def return_text_from_file():
+    # Read the contents of a file 
+    with open(data_files['anvil_upload.xlsx']) as f:
+        text = f.read()
+    return text
+
