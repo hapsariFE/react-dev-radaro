@@ -7,6 +7,8 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 import anvil.server
 from datetime import datetime, timedelta, date
+import pandas as pd
+
 
 #authenticated_callable = anvil.server.callable(require_user=True)
 
