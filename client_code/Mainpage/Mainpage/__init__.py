@@ -137,5 +137,8 @@ class Mainpage(MainpageTemplate):
   def sorting_function(self, column_name, sorting_way):
     """function used for sorting in combination with headers""" 
     """https://anvil.works/forum/t/how-to-add-sorting-functionality-to-datagrid-with-repeating-panels/17750/6"""
+
+
+
     
     

@@ -220,7 +220,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
  # )
 
 
-
+@anvil.server.callable
 def import_excel_data(file):
   with open(file, "rb") as f:
     df = pd.read_excel(f)
