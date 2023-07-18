@@ -966,7 +966,7 @@ textarea.anvil-component.anvil-role-input-error, input.anvil-component.anvil-rol
   width: 15px;
   height: 15px;
   border-radius: 1px;
-  background-color: %color:Surface Variant%; 
+  background-color: %color:Filter Font%; 
 /*   color: %color:On Surface Variant%; */
 }
 
@@ -975,7 +975,7 @@ textarea.anvil-component.anvil-role-input-error, input.anvil-component.anvil-rol
 }
 
 .checkbox input:hover, .radio input:hover {
-  background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Surface Variant%;
+  background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Filter Font%;
 }
 
 .checkbox input:focus, .radio input:focus {

@@ -147,11 +147,37 @@ class Mainpage(MainpageTemplate):
 
   def clear_search(self, **event_args):
     self.text_box_search.text = ""
-    self.repeating_panel_1.items = anvil.server.call(
-      'search_webhook',
-      self.text_box_search.text
-    )
+    jobValue = self.dd_job_status.selected_value
+    compCode = self.dd_completion_code.selected_value
+    escType = self.dd_esc_type.selected_value
+    escStatus = self.dd_esc_status.selected_value
+    merchant_name = self.dd_merchant.selected_value
+    startDate = self.start_date_picker.date
+    endDate = self.end_date_picker.date
+    assigned_to = self.dd_assigned.selected_value
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     self.clear_icon.visible = False
+
+  def resolved_checkbox_change(self, **event_args):
+    """This method is called when this checkbox is checked or unchecked"""
+    jobValue = self.dd_job_status.selected_value
+    compCode = self.dd_completion_code.selected_value
+    escType = self.dd_esc_type.selected_value
+    merchant_name = self.dd_merchant.selected_value
+    startDate = self.start_date_picker.date
+    endDate = self.end_date_picker.date
+    assigned_to = self.dd_assigned.selected_value
+    if self.resolved_checkbox() == 0:
+      print("not set")
+    elif self.resolved_checkbox() == 1:
+      print("set")
+    escStatus = self.dd_esc_status.selected_value
+
+    
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+
+
+
     
     
 
