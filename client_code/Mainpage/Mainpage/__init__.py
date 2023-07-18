@@ -143,6 +143,7 @@ class Mainpage(MainpageTemplate):
       'search_webhook',
       self.text_box_search.text
     )
+    self.clear_icon.visible = True
 
   def clear_search(self, **event_args):
     self.text_box_search.text = ""
@@ -150,6 +151,7 @@ class Mainpage(MainpageTemplate):
       'search_webhook',
       self.text_box_search.text
     )
+    self.clear_icon.visible = False
     
     
 

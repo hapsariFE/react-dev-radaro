@@ -378,7 +378,7 @@ components:
         font_size: 14, font: 'theme:Font', spacing_above: small, type: text, spacing_below: small,
         italic: false, background: '', bold: false, underline: false}
       name: text_box_search
-      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 114}
+      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 116}
       event_bindings: {pressed_enter: search}
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
@@ -390,11 +390,11 @@ components:
       event_bindings: {click: search}
     - type: Link
       properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+        visible: false, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
         spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
         italic: false, background: '', bold: false, underline: false, icon: 'fa:times-circle'}
-      name: link_1
-      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 5, width: 148}
+      name: clear_icon
+      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 5, width: 148}
       event_bindings: {click: clear_search}
 - type: GridPanel
   properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
