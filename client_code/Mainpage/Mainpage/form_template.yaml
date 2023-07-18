@@ -373,7 +373,7 @@ components:
       event_bindings: {change: filter_change}
       name: dd_esc_type
     - type: TextBox
-      properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
         border: '', enabled: true, foreground: 'theme:Filter Font', visible: true,
         text: '', font_size: 12, font: '', spacing_above: small, type: text, spacing_below: small,
         italic: true, background: '', bold: false, underline: false}
