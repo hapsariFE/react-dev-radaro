@@ -144,5 +144,14 @@ class Mainpage(MainpageTemplate):
       self.text_box_search.text
     )
 
+  def clear_search(self, **event_args):
+    self.text_box_search.text = ""
+    self.repeating_panel_1.items = anvil.server.call(
+      'search_webhook',
+      self.text_box_search.text
+    )
     
+    
+
+  
     
