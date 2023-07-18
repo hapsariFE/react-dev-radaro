@@ -51,7 +51,7 @@ class Mainpage(MainpageTemplate):
     #print(merchant_name)
     self.merchant_name = merchName
     users = anvil.server.call('get_user_list')
-    print(merchName)
+    #print(merchName)
     #x_rows = users['user_merchant_link']
     #x_list =[r['name'] for r in x_rows]
     #print(x_list)
@@ -62,7 +62,7 @@ class Mainpage(MainpageTemplate):
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
-    print(self.start_date_picker.date)
+    #print(self.start_date_picker.date)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     
     #self.refresh_action()
