@@ -12,7 +12,7 @@ roles:
   display_in_toolbox: false
   title: Elevated Card
 - name: tonal-card
-  components: [ColumnPanel, LinearPanel, XYPanel, RepeatingPanel]
+  components: [ColumnPanel, LinearPanel, XYPanel, RepeatingPanel, Label]
   display_in_toolbox: false
   title: Tonal Card
 - {name: outlined-button, components: null, display_in_toolbox: true, title: Outlined Button}
