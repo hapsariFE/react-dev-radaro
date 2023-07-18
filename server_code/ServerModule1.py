@@ -229,3 +229,15 @@ def import_excel_data(file):
       # We use Python's **kwargs syntax to pass the whole dict as 
       # keyword arguments 
       app_tables.test_table.add_row(**d)
+
+@anvil.server.callable
+def search_webhook(query):
+  result = app_tables.webhook.search()
+  if query:
+    result = [
+      x for x in result
+      if query in x['job_id']
+      or query in x['job_reference']
+      or query in x['customer_name']    
+    ]
+  return result

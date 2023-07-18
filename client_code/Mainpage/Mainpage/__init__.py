@@ -138,7 +138,11 @@ class Mainpage(MainpageTemplate):
     """function used for sorting in combination with headers""" 
     """https://anvil.works/forum/t/how-to-add-sorting-functionality-to-datagrid-with-repeating-panels/17750/6"""
 
-
+  def search(self, **event_args):
+    self.repeating_panel_1.items = anvil.server.call(
+      'search_webhook',
+      self.text_box_search.text
+    )
 
     
     
