@@ -6,7 +6,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 from ...jobreport import jobreport
-
+from ...Modal_wide import Modal_wide
 from ...Modal import Modal
 import webbrowser
 
@@ -96,6 +96,39 @@ class RowTemplate1(RowTemplate1Template):
     self.parent.raise_event('x-edit-article', article=self.item)
       # Now refresh the page
     self.refresh_data_bindings()
+
+  def widecomment_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    #selectedRow = self.item
+    #SelectedMerchant = self.item['webhook_merchant_link']
+    #print(*SelectedMerchant)
+    #assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    #actionData = anvil.server.call('get_action',selectedRow)
+    #print("------")
+    #print(list(assignList))
+    #atest = assignList['name']
+    #print(atest)
+    #print(*assignList)
+    record_copy = dict(self.item)
+    #print(*self.item)
+    #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
+    
+    save_clicked = alert(
+     content=Modal_wide(item = self.item),
+     title="Job ID : " + self.item["job_reference"],
+     large=True,
+     
+
+     buttons=[("Exit", False)], 
+   )
+
+    #if save_clicked:
+      #anvil.server.call('add_comment', self.item, record_copy)
+      #self.refresh_data_bindings()
+    self.parent.raise_event('x-edit-article', article=self.item)
+      # Now refresh the page
+    self.refresh_data_bindings()
+
 
 
 

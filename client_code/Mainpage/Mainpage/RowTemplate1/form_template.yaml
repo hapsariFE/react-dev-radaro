@@ -70,4 +70,18 @@ components:
       spacing_below: small, background: '', horizontal_align: center}
     name: image_2
     layout_properties: {grid_position: 'FNFUHH,KXTXNW'}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: button_1
+    layout_properties: {grid_position: 'FNFUHH,IXEBZG'}
+    event_bindings: {click: widecomment_click}
   event_bindings: {click: comment_click}
+- type: ColumnPanel
+  properties: {role: tonal-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '', spacing_below: small,
+    background: ''}
+  name: outlined_card_1
+  layout_properties: {column: null}

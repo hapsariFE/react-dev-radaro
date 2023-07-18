@@ -56,7 +56,7 @@ components:
         row: FSHRWD
         width_xs: 1
         col_xs: 0
-        width: 34.9844
+        width: 29.3281
       name: startdate
     - type: DatePicker
       properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',

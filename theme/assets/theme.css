@@ -733,6 +733,17 @@ button.close > span, button.close {
 
 /* Component: Card */
 
+.anvil-role-bottom-card> {
+  /*border-bottom-style: dotted;*/
+  overflow: hidden;
+  border-radius: 7px;
+  background-color: %color:Background%;
+  border: solid 1px %color:Outline%;
+  padding: 15px;  
+}
+
+
+
 .anvil-role-outlined-card {
   overflow: hidden;
   border-radius: 7px;
@@ -751,9 +762,10 @@ button.close > span, button.close {
 
 .anvil-role-tonal-card {
   overflow: hidden;
-  border-radius: 7px;
-  background-color: %color:Surface%;
-  padding: 15px;
+  border-bottom: solid 1px %color:Filter Border%;
+  /*border-radius: 7px;*/
+  /*background-color: %color:Surface%;*/
+  /*padding: 15px;*/
 }
 
 
