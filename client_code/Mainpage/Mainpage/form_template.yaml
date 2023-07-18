@@ -379,6 +379,7 @@ components:
         italic: true, background: '', bold: false, underline: false}
       name: text_box_search
       layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 116}
+      event_bindings: {pressed_enter: search}
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Search, font_size: 12, font: '', spacing_above: small,

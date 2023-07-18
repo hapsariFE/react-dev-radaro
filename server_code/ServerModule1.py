@@ -236,8 +236,8 @@ def search_webhook(query):
   if query:
     result = [
       x for x in result
-      if query in x['job_id']
-      or query in x['job_reference']
-      or query in x['customer_name']    
+      if query in x['job_id'].lower()
+      or query in x['job_reference'].lower()
+      or query in x['customer_name'].lower() 
     ]
   return result
