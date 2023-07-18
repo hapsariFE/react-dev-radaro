@@ -167,9 +167,12 @@ class Mainpage(MainpageTemplate):
     startDate = self.start_date_picker.date
     endDate = self.end_date_picker.date
     assigned_to = self.dd_assigned.selected_value
-    escStatus = self.dd_esc_status.selected_value
+    ##escStatus = self.dd_esc_status.selected_value
     ##self.item['Resolved'] = self.resolved_checkbox.checked
-    escStatus = 'Resolved'
+    if self.resolved_checkbox.checked == True:
+      escStatus = app_tables.escalation_status.get(name="Resolved")
+    else:
+      escStatus = self.dd_esc_status.selected_value
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     
     
