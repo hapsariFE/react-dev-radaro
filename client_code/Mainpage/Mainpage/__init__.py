@@ -158,7 +158,7 @@ class Mainpage(MainpageTemplate):
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     self.clear_icon.visible = False
 
-  def resolved_checkbox_change(self, **event_args):
+  def resolved_checkbox_click(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     jobValue = self.dd_job_status.selected_value
     compCode = self.dd_completion_code.selected_value
@@ -167,14 +167,16 @@ class Mainpage(MainpageTemplate):
     startDate = self.start_date_picker.date
     endDate = self.end_date_picker.date
     assigned_to = self.dd_assigned.selected_value
-    if self.resolved_checkbox() == 0:
-      print("not set")
-    elif self.resolved_checkbox() == 1:
-      print("set")
     escStatus = self.dd_esc_status.selected_value
+    ##self.item['Resolved'] = self.resolved_checkbox.checked
+    escStatus = 'Resolved'
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+    
+    
+
 
     
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+
 
 
 

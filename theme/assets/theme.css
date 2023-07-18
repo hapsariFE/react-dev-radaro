@@ -962,11 +962,13 @@ textarea.anvil-component.anvil-role-input-error, input.anvil-component.anvil-rol
 /* Component: CheckBox, RadioButton */
 .checkbox input, .radio input {
   -webkit-appearance: none;
+  background-color: %color:On Primary%;
+  border: 1px solid %color:Filter Border%;
   appearance: none;
-  width: 15px;
-  height: 15px;
+  width: 19px;
+  height: 19px;
   border-radius: 1px;
-  background-color: %color:Filter Font%; 
+    
 /*   color: %color:On Surface Variant%; */
 }
 
@@ -975,7 +977,7 @@ textarea.anvil-component.anvil-role-input-error, input.anvil-component.anvil-rol
 }
 
 .checkbox input:hover, .radio input:hover {
-  background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Filter Font%;
+  background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:On Primary%;
 }
 
 .checkbox input:focus, .radio input:focus {
@@ -1003,8 +1005,9 @@ input[disabled] ~ span {
 }
 
 .checkbox input:checked, .radio input:checked {
-  background-color: %color:Primary Container%;
-  color: %color:On Primary Container%;
+  background-color: %color:On Primary%;
+  border-color: Outline%;
+  color: %color: Outline%;
 }
 
 .checkbox input:checked:before {
