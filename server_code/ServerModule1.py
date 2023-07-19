@@ -66,8 +66,8 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   
   #print(assignrow)
   defaultassign = get_user_list()
-  print(*defaultassign)
-  print(*[r for r in defaultassign])
+  #print(*defaultassign)
+  #print(*[r for r in defaultassign])
   #if assignrow == None:
   #  assignrow = [[r] for r in defaultassign]
 
