@@ -20,14 +20,14 @@ class RowTemplate1(RowTemplate1Template):
     #description = ""
     
     self.init_components(**properties)
-    print(self.item['latest_status']['name'])
-    if self.item['job_status']['name'] == "Failed":
+    #print(self.item['latest_status']['name'])
+    #if self.item['job_status']['name'] == "Failed":
       #self.label_4.bold = True
-      my_media = anvil.URLMedia("https://radaro-api.s3.ap-southeast-2.amazonaws.com/media-2/Merchant/b0cc7b64-7f6a-4392-8043-54437660de96.png")
-      self.label_1.icon = my_media
-      print(my_media)
-      self.label_1.background = "Black"
-      self.refresh_data_bindings()
+     # my_media = anvil.URLMedia("https://radaro-api.s3.ap-southeast-2.amazonaws.com/media-2/Merchant/b0cc7b64-7f6a-4392-8043-54437660de96.png")
+      #self.label_1.icon = my_media
+      #print(my_media)
+     # self.label_1.background = "Black"
+      #self.refresh_data_bindings()
     #  self.label_1.background = "Black"
       
 

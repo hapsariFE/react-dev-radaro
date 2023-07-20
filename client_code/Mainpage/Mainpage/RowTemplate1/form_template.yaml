@@ -26,15 +26,14 @@ components:
   data_bindings:
   - {code: 'self.item[''last_action_date''].strftime("%d %b, %Y %H:%M")', property: text}
   name: label_2
-- type: Label
-  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: 16, font: '', spacing_above: small, icon_align: left,
-    spacing_below: small, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
-  layout_properties: {column: HIBOCD, grid_position: 'BCKGJB,VPGQDG'}
+- type: Image
+  properties: {role: null, vertical_align: center, height: 30, tooltip: '', border: '',
+    foreground: '', visible: true, display_mode: original_size, spacing_above: small,
+    source: '', spacing_below: small, background: '', horizontal_align: center}
+  name: image_3
+  layout_properties: {column: HIBOCD}
   data_bindings:
-  - {code: 'self.item[''job_status''][''name'']', property: text}
-  name: label_1
+  - {property: source, code: 'self.item[''job_status''][''icon'']'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
@@ -43,14 +42,6 @@ components:
   data_bindings:
   - {code: 'self.item[''escalation_type''][''name'']', property: text}
   name: label_3
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
-  layout_properties: {column: MVQPXP}
-  data_bindings:
-  - {code: 'self.item[''latest_status''][''name'']', property: text}
-  name: label_4
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
@@ -80,10 +71,11 @@ components:
     layout_properties: {grid_position: 'FNFUHH,IXEBZG'}
     event_bindings: {click: widecomment_click}
   event_bindings: {click: comment_click}
-- type: ColumnPanel
-  properties: {role: tonal-card, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '', spacing_below: small,
-    background: ''}
-  name: outlined_card_1
-  layout_properties: {column: null}
-  data_bindings: []
+- type: Image
+  properties: {role: null, vertical_align: center, height: 29, tooltip: '', border: '',
+    foreground: '', visible: true, display_mode: original_size, spacing_above: small,
+    source: '', spacing_below: small, background: '', horizontal_align: center}
+  name: image_4
+  layout_properties: {column: MVQPXP}
+  data_bindings:
+  - {property: source, code: 'self.item[''latest_status''][''icon'']'}
