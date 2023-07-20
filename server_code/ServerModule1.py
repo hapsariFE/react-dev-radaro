@@ -8,6 +8,9 @@ from anvil.tables import app_tables
 import anvil.server
 from datetime import datetime, timedelta, date
 import pandas as pd
+import anvil.server
+
+anvil.server.connect("server_Q63XQNKSLFAUNK5EL6GYQPKE-SOY2CEZ4RU7EHXKU")
 
 
 #authenticated_callable = anvil.server.callable(require_user=True)
@@ -229,6 +232,8 @@ def import_excel_data(file):
       # We use Python's **kwargs syntax to pass the whole dict as 
       # keyword arguments 
       app_tables.test_table.add_row(**d)
+
+import_excel_data("anvil_upload.xlsx")
 
 @anvil.server.callable
 def search_webhook(query):

@@ -3,7 +3,7 @@ dependencies: []
 services:
 - source: /runtime/services/tables.yml
   client_config: {}
-  server_config: {}
+  server_config: {auto_create_missing_columns: true}
 - source: /runtime/services/anvil/users.yml
   client_config: {allow_signup: false, enable_automatically: true, use_email: true,
     confirm_email: false}
@@ -195,4 +195,5 @@ db_schema:
       admin_ui: {order: 13, width: 200}
       type: link_single
       target: users
+uplink_visible: true
 renamed: true
