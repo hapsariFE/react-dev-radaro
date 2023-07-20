@@ -30,6 +30,9 @@ db_schema:
     - name: name
       admin_ui: {width: 200}
       type: string
+    - name: icon
+      admin_ui: {order: 1, width: 200}
+      type: string
   test_table:
     client: none
     server: full
@@ -56,6 +59,9 @@ db_schema:
     columns:
     - name: name
       admin_ui: {width: 200}
+      type: string
+    - name: icon
+      admin_ui: {order: 1, width: 200}
       type: string
   files:
     client: full

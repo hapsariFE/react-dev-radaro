@@ -6,12 +6,12 @@ container:
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    text: '', font_size: 18, font: '', spacing_above: small, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_1
   layout_properties: {column: VTUJFJ}
   data_bindings:
-  - {property: text, code: 'self.item[''status''][''name'']'}
+  - {property: icon, code: 'self.item[''status''][''icon'']'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
