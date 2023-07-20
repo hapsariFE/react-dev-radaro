@@ -105,10 +105,11 @@ body {
   color: %color:On Surface%;
   background-color: %color:Background%;
   min-height: calc(100vh - 56px);
+  margin: 0 auto;
   max-width: 1440px;
   display: flex;
   justify-content: center;
-  align-items: center;
+  
   }
 
 @media print {
