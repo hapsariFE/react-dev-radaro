@@ -85,3 +85,4 @@ components:
     background: ''}
   name: outlined_card_1
   layout_properties: {column: null}
+  data_bindings: []
