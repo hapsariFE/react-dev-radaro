@@ -1088,6 +1088,8 @@ div.plot-container.plotly svg.main-svg {
   box-shadow: 0px 0px 100px 100px %color:Surface Variant%;
 }
 
+/*Toggles*/
+
 .anvil-role-switch label,
 .anvil-role-switch-rounded label {
    position: relative;
@@ -1141,12 +1143,12 @@ div.plot-container.plotly svg.main-svg {
 }
 .anvil-role-switch input:checked + span::before,
 .anvil-role-switch-rounded input:checked + span::before {
- background-color: %color:Primary 500%;
+ background-color: %color:Primary%;
 }
 
 .anvil-role-switch input:focus + span::before,
 .anvil-role-switch-rounded input:focus + span::before {
- box-shadow: 0 0 1px %color:Primary 500%;
+ box-shadow: 0 0 1px %color:Primary%;
 }
 
 .anvil-role-switch input:checked + span::after,
@@ -1157,7 +1159,7 @@ div.plot-container.plotly svg.main-svg {
 }
 
 .anvil-role-switch-rounded span::after {
- border-radius: 50%;
+ border-radius: .5em; /*50%*/
 }
 .anvil-role-switch-rounded span::before {
  border-radius: .5em;

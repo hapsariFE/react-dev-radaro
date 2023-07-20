@@ -400,14 +400,20 @@ components:
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 88.6562}
       event_bindings: {click: search}
     - type: CheckBox
-      properties: {role: switch-rounded, align: left, tooltip: '', border: '', enabled: true,
+      properties: {role: switch-rounded, align: right, tooltip: '', border: '', enabled: true,
         foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true,
-        text: '   Show Resolved items', font_size: 14, font: '', spacing_above: small,
-        spacing_below: small, italic: false, background: '', bold: false, checked: false,
-        underline: false}
+        text: '', font_size: 20, font: '', spacing_above: none, spacing_below: small,
+        italic: false, background: '', bold: false, checked: false, underline: false}
       name: resolved_checkbox
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 6, width: 146.828}
+      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 5, width: 58.4062}
       event_bindings: {change: resolved_checkbox_click}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Show resolved items, font_size: 12, font: '',
+        spacing_above: medium, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_3
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 6, width: 146.828}
 - type: GridPanel
   properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
     border: '', visible: true, role: null, tooltip: ''}
