@@ -64,9 +64,11 @@ components:
       name: label_5
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 0, width: 75.4844}
     - type: Image
-      properties: {height: 27}
+      properties: {role: null, vertical_align: center, height: 27, tooltip: '', border: '',
+        foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
+        source: '', spacing_below: small, background: '', horizontal_align: left}
       name: image_3
-      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2}
+      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2, width: 76.7812}
       data_bindings:
       - {property: source, code: 'self.item[''job_status''][''icon'']'}
     - type: Label
