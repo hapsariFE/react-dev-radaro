@@ -1,32 +1,28 @@
 is_package: true
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"JKBNWB":74,"VHPPCR":10,"EETSUW":40,"ZDHCTG":10,"NBATXT":17,"STEZAR":20,"ZWTDKT":23}'}
+  properties: {col_widths: '{"JKBNWB":74,"EETSUW":40,"NBATXT":17,"STEZAR":20,"ZWTDKT":23}'}
 components:
-- type: Label
-  properties: {}
-  name: label_3
-  layout_properties: {grid_position: 'AXMFDZ,VHPPCR', full_width_row: true}
 - type: Image
   properties: {role: null, vertical_align: center, height: 47, tooltip: '', border: '',
     foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
     source: 'data:image/jpeg;base64,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',
     spacing_below: small, background: '', horizontal_align: left}
   name: image_1
-  layout_properties: {grid_position: 'AXMFDZ,EETSUW HWESZE,NBATXT'}
+  layout_properties: {grid_position: 'HWESZE,NBATXT'}
 - type: Label
   properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
     visible: true, text: Escalation Dashboard, font_size: 24, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
     underline: false, icon: ''}
   name: label_1
-  layout_properties: {grid_position: 'AXMFDZ,EETSUW HWESZE,ZWTDKT'}
+  layout_properties: {grid_position: 'HWESZE,ZWTDKT'}
 - type: Button
   properties: {role: null, align: right, tooltip: '', border: '', enabled: true, foreground: '',
     visible: true, text: log out, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
-  layout_properties: {grid_position: 'AXMFDZ,EETSUW HWESZE,STEZAR'}
+  layout_properties: {grid_position: 'HWESZE,STEZAR'}
   event_bindings: {click: log_out_click}
   name: log_out
 - type: RichText
@@ -35,13 +31,13 @@ components:
     spacing_below: none, data: null, background: '', format: markdown}
   layout_properties:
     col_widths: {}
-    grid_position: AXMFDZ,EETSUW HUADUY,VANXVL
+    grid_position: HUADUY,VANXVL
     full_width_row: true
   name: rich_text_1
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
-      border: '', visible: true, role: null, tooltip: ''}
+      border: 1px, visible: true, role: null, tooltip: ''}
     layout_properties: {width: 1400}
     name: grid_panel_1
     components:
@@ -372,14 +368,29 @@ components:
       - {code: 'self.filters[''esc_type'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
       name: dd_esc_type
-    - type: TextBox
-      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
-        border: '', enabled: true, foreground: 'theme:Font', visible: true, text: '',
-        font_size: 14, font: 'theme:Font', spacing_above: small, type: text, spacing_below: small,
-        italic: false, background: '', bold: false, underline: false}
-      name: text_box_search
-      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 116}
-      event_bindings: {pressed_enter: search}
+    - type: ColumnPanel
+      properties: {role: null, tooltip: '', border: 1px solid, foreground: 'theme:Filter
+          Border', visible: true, wrap_on: never, col_spacing: none, spacing_above: none,
+        col_widths: '{"MVKOEY":50}', spacing_below: none, background: ''}
+      name: searchbox
+      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 314.688}
+      components:
+      - type: TextBox
+        properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
+          border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
+          font_size: 14, font: 'theme:Font', spacing_above: none, type: text, spacing_below: none,
+          italic: false, background: '', bold: false, underline: false}
+        name: text_box_search
+        layout_properties: {row: HZZHOZ, width_xs: 2, col_xs: 3, width: 116, grid_position: 'TYKSEW,MVKOEY'}
+        event_bindings: {pressed_enter: search}
+      - type: Link
+        properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
+          visible: false, text: '', font_size: null, wrap_on: never, font: '', col_spacing: none,
+          spacing_above: none, icon_align: right, col_widths: '', spacing_below: none,
+          italic: false, background: '', bold: false, underline: false, icon: 'fa:times-circle'}
+        name: clear_icon
+        layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 8, width: 148, grid_position: 'TYKSEW,RDQTJH'}
+        event_bindings: {click: clear_search}
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Search, font_size: 12, font: '', spacing_above: small,
@@ -388,14 +399,6 @@ components:
       name: button_1
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 88.6562}
       event_bindings: {click: search}
-    - type: Link
-      properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: false, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
-        spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
-        italic: false, background: '', bold: false, underline: false, icon: 'fa:times-circle'}
-      name: clear_icon
-      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 5, width: 148}
-      event_bindings: {click: clear_search}
     - type: CheckBox
       properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
         foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true,
@@ -408,7 +411,7 @@ components:
 - type: GridPanel
   properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
     border: '', visible: true, role: null, tooltip: ''}
-  layout_properties: {grid_position: 'AXMFDZ,EETSUW ERFONM,JKBNWB', full_width_row: true}
+  layout_properties: {grid_position: 'ERFONM,JKBNWB', full_width_row: true}
   name: grid_panel_2
   components:
   - type: DataGrid
@@ -453,7 +456,3 @@ components:
         background: ''}
       layout_properties: {}
       name: repeating_panel_1
-- type: Label
-  properties: {}
-  name: label_4
-  layout_properties: {grid_position: 'AXMFDZ,ZDHCTG'}
