@@ -377,9 +377,9 @@ components:
       components:
       - type: TextBox
         properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
-          border: none, enabled: true, foreground: 'theme:Filter Font', visible: true,
-          text: '', font_size: 14, font: 'Theme: Font', spacing_above: none, type: text,
-          spacing_below: none, italic: false, background: '', bold: false, underline: false}
+          border: none, enabled: true, foreground: 'theme:Primary Container', visible: true,
+          text: '', font_size: 14, font: '', spacing_above: none, type: text, spacing_below: none,
+          italic: false, background: '', bold: false, underline: false}
         name: text_box_search
         layout_properties: {row: HZZHOZ, width_xs: 2, col_xs: 3, width: 116, grid_position: 'TYKSEW,MVKOEY'}
         event_bindings: {pressed_enter: search}
