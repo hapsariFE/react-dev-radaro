@@ -371,15 +371,15 @@ components:
     - type: ColumnPanel
       properties: {role: null, tooltip: '', border: 1px solid, foreground: 'theme:Filter
           Border', visible: true, wrap_on: never, col_spacing: none, spacing_above: none,
-        col_widths: '{"MVKOEY":50}', spacing_below: none, background: ''}
+        col_widths: '{"MVKOEY":65,"RDQTJH":15}', spacing_below: none, background: ''}
       name: searchbox
       layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 314.688}
       components:
       - type: TextBox
         properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
-          border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
-          font_size: 14, font: 'theme:Font', spacing_above: none, type: text, spacing_below: none,
-          italic: false, background: '', bold: false, underline: false}
+          border: none, enabled: true, foreground: 'theme:Filter Font', visible: true,
+          text: '', font_size: 14, font: 'Theme: Font', spacing_above: none, type: text,
+          spacing_below: none, italic: false, background: '', bold: false, underline: false}
         name: text_box_search
         layout_properties: {row: HZZHOZ, width_xs: 2, col_xs: 3, width: 116, grid_position: 'TYKSEW,MVKOEY'}
         event_bindings: {pressed_enter: search}
