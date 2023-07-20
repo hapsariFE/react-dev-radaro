@@ -1,7 +1,9 @@
 is_package: true
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"JKBNWB":74}'}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"JKBNWB":74}',
+    spacing_below: small, background: ''}
 components:
 - type: GridPanel
   properties: {}
@@ -388,39 +390,32 @@ components:
           Border', visible: true, wrap_on: never, col_spacing: none, spacing_above: none,
         col_widths: '{"MVKOEY":65,"RDQTJH":15}', spacing_below: none, background: ''}
       name: searchbox
-      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 314.688}
+      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 233.25}
       components:
       - type: TextBox
-        properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Enter search term,
-          border: none, enabled: true, foreground: 'theme:Primary Container', visible: true,
-          text: '', font_size: 14, font: '', spacing_above: none, type: text, spacing_below: none,
+        properties: {role: outlined, align: left, hide_text: false, tooltip: enter a search term and hit enter,
+          placeholder: Search, border: none, enabled: true, foreground: '', visible: true,
+          text: '', font_size: null, font: '', spacing_above: none, type: text, spacing_below: none,
           italic: false, background: '', bold: false, underline: false}
         name: text_box_search
         layout_properties: {row: HZZHOZ, width_xs: 2, col_xs: 3, width: 116, grid_position: 'TYKSEW,MVKOEY'}
         event_bindings: {pressed_enter: search}
       - type: Link
-        properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-          visible: false, text: '', font_size: null, wrap_on: never, font: '', col_spacing: none,
-          spacing_above: none, icon_align: right, col_widths: '', spacing_below: none,
-          italic: false, background: '', bold: false, underline: false, icon: 'fa:times-circle'}
+        properties: {role: null, url: '', align: left, tooltip: clear search, border: '',
+          foreground: '', visible: false, text: '', font_size: null, wrap_on: never,
+          font: '', col_spacing: none, spacing_above: none, icon_align: right, col_widths: '',
+          spacing_below: none, italic: false, background: '', bold: false, underline: false,
+          icon: 'fa:times-circle'}
         name: clear_icon
         layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 8, width: 148, grid_position: 'TYKSEW,RDQTJH'}
         event_bindings: {click: clear_search}
-    - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Search, font_size: 12, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:search'}
-      name: button_1
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 88.6562}
-      event_bindings: {click: search}
     - type: CheckBox
       properties: {role: switch-rounded, align: right, tooltip: '', border: '', enabled: true,
         foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true,
         text: '', font_size: 20, font: '', spacing_above: none, spacing_below: small,
         italic: false, background: '', bold: false, checked: false, underline: false}
       name: resolved_checkbox
-      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 5, width: 58.4062}
+      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 3, width: 58.4062}
       event_bindings: {change: resolved_checkbox_click}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
@@ -428,7 +423,15 @@ components:
         spacing_above: medium, icon_align: left, spacing_below: small, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_3
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 6, width: 146.828}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 4, width: 146.828}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: false, text: Search, font_size: 12, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:search'}
+      name: button_1
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 146.828}
+      event_bindings: {click: search}
 - type: GridPanel
   properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
     border: '', visible: true, role: null, tooltip: ''}

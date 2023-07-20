@@ -794,13 +794,16 @@ button.close > span, button.close {
 
 /* Component: TextBox + TextArea */
 
+
+
 /*this affects dropdowns, text boxes and text areas:*/
 input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil-datepicker input {
   font-size: 16px;
+  color:%color:Filter Font%;
   line-height: 1.5;
   border-radius: 4px 4px 0 0;
   background-color: %color:Surface Variant%;
-  color: %color:On Surface Variant%;
+  
   box-shadow: none;
 }
 
@@ -813,6 +816,9 @@ input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil
 }
 
 input.anvil-component, .anvil-component select, .anvil-datepicker input, textarea.anvil-component {
+  font:color:Filter Font%;
+  font-size: 12px;
+  color:Filter Font%;
   padding: 4px 16px;
   border: 0;
   border-bottom: 1px solid %color:Outline%;
