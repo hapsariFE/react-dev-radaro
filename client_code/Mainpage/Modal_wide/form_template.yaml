@@ -63,15 +63,12 @@ components:
         underline: false, icon: ''}
       name: label_5
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 0, width: 75.4844}
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 18, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: label_6
-      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 1, width: 76.7812}
+    - type: Image
+      properties: {height: 27}
+      name: image_3
+      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2}
       data_bindings:
-      - {property: icon, code: 'self.item[''job_status''][''icon'']'}
+      - {property: source, code: 'self.item[''job_status''][''icon'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Escalation Status :', font_size: 14, font: '',
@@ -79,15 +76,14 @@ components:
         background: '', bold: false, underline: false, icon: ''}
       name: label_13
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 3, width: 76.1406}
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 18, font: '', spacing_above: small, icon_align: left,
-        spacing_below: small, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: label_14
-      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 4, width: 76.7812}
+    - type: Image
+      properties: {role: null, vertical_align: center, height: 26, tooltip: '', border: '',
+        foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
+        source: '', spacing_below: small, background: '', horizontal_align: left}
+      name: image_1
+      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 6, width: 75.5521}
       data_bindings:
-      - {property: icon, code: 'self.item[''latest_status''][''icon'']'}
+      - {property: source, code: 'self.item[''latest_status''][''icon'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Job Report :', font_size: 14, font: '', spacing_above: small,

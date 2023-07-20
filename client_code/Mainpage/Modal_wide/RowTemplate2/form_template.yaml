@@ -6,14 +6,6 @@ container:
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 18, font: '', spacing_above: small, icon_align: left, spacing_below: none,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: label_1
-  layout_properties: {column: VTUJFJ}
-  data_bindings:
-  - {property: icon, code: 'self.item[''status''][''icon'']'}
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_2
@@ -42,4 +34,12 @@ components:
     background: ''}
   name: outlined_card_1
   layout_properties: {column: null}
+- type: Image
+  properties: {role: null, vertical_align: center, height: 28, tooltip: '', border: '',
+    foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
+    source: '', spacing_below: small, background: '', horizontal_align: left}
+  name: image_1
+  layout_properties: {column: VTUJFJ}
+  data_bindings:
+  - {property: source, code: 'self.item[''status''][''icon'']'}
 is_package: true
