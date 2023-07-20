@@ -182,7 +182,7 @@ class Mainpage(MainpageTemplate):
       escStatus = app_tables.escalation_status.get(name="Resolved")
     else:
       escStatus = self.dd_esc_status.selected_value
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus)
     
     
 

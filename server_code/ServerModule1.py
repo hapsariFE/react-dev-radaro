@@ -70,7 +70,9 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   #print(*[r for r in defaultassign])
   #if assignrow == None:
   #  assignrow = [[r] for r in defaultassign]
+  #print(escStatus)
 
+  
   
   #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
@@ -97,10 +99,22 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     filter_dict['escalation_type'] = escType
 
   if escStatus != None:
-    filter_dict['latest_status'] = escStatus
+  #  filter_dict['latest_status'] = escStatus
+    
+    if resolvedStatus is False:
+      escStatus = app_tables.escalation_status.search(name=q.any_of(q.none_of("Resolved"),q.any_of(escStatus['name']))) 
+      print(escStatus)
+      
+
+    if resolvedStatus is True:
+      escStatus = app_tables.escalation_status.search(name=q.all_of(q.any_of("Resolved"),q.any_of(*escStatus),))
 
   
-    
+  if escStatus == None:
+    if resolvedStatus is False:
+      escStatus = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
+    if resolvedStatus is True:
+      escStatus = app_tables.escalation_status.search() 
 
   #print("-----")
   #print(*jjv)
@@ -108,13 +122,13 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   #print(selected_status_rows)
   
   #print(values)
-  
+  #print(jobValue)
   related_rows = currentUser['user_merchant_link']
     #print(RelatedJobStatus)
     #print(related_rows)
   values = [row for row in related_rows]
   if merchant_name is None and assigned_to is None :
-    custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_assignee=q.any_of(*defaultassign))
+    custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_assignee=q.any_of(*defaultassign),latest_status=q.any_of(*escStatus))
 
   elif merchant_name is None and assigned_to is not None :
     custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
@@ -137,7 +151,21 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
       or searchText in x['job_reference'].lower()
       or searchText in x['customer_name'].lower() 
     ]
+    
+  #custTable = custTable
+  #status_row = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
+  #print(*status_row)
+  #if resolvedStatus:
+  #  custTable = [
+  #    x for x in custTable
+  #    if statusRow in x['esc_status']]
 
+ #   if resolvedStatus:
+ #    custTable = [
+#       x for x in custTable
+#       if  in x['job_status']
+
+ 
   
 
 #  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
@@ -148,6 +176,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   
  #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
   return custTable
+  
   #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),
     #tables.order_by("last_action_date", ascending=False)

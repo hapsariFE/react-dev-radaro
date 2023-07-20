@@ -404,7 +404,7 @@ components:
         underline: false}
       name: resolved_checkbox
       layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 6, width: 148}
-      event_bindings: {change: resolved_checkbox_click}
+      event_bindings: {change: filter_change}
 - type: GridPanel
   properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
     border: '', visible: true, role: null, tooltip: ''}
