@@ -61,3 +61,8 @@ class Modal_wide(Modal_wideTemplate):
     self.dd_status.selected_value = ""
     self.dd_assign.selected_value = ""
     self.refresh_data_bindings()
+
+  def jobreport_click(self, **event_args):
+    """This method is called when the button is clicked"""
+   
+    webbrowser.open(self.item['job_report']) 

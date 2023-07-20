@@ -33,6 +33,7 @@ components:
           spacing_below: small, background: '', horizontal_align: left}
         name: image_2
         layout_properties: {grid_position: 'CMNEIY,VCWDMF'}
+      event_bindings: {click: jobreport_click}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Add Comment, font_size: 14, font: '', spacing_above: small,
