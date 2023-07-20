@@ -10,9 +10,6 @@ from datetime import datetime, timedelta, date
 import pandas as pd
 import anvil.server
 
-anvil.server.connect("server_Q63XQNKSLFAUNK5EL6GYQPKE-SOY2CEZ4RU7EHXKU")
-
-
 #authenticated_callable = anvil.server.callable(require_user=True)
 
 # This is a server module. It runs on the Anvil server,
@@ -222,7 +219,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
   #  assign_to=x_assign
  # )
 
-
+"""
 @anvil.server.callable
 def import_excel_data(file):
   with open(file, "rb") as f:
@@ -234,7 +231,7 @@ def import_excel_data(file):
       app_tables.test_table.add_row(**d)
 
 import_excel_data("anvil_upload.xlsx")
-
+"""
 @anvil.server.callable
 def search_webhook(query):
   result = app_tables.webhook.search()
