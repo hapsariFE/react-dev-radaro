@@ -29,7 +29,7 @@ components:
 - type: Image
   properties: {role: null, vertical_align: center, height: 30, tooltip: '', border: '',
     foreground: '', visible: true, display_mode: original_size, spacing_above: small,
-    source: '', spacing_below: small, background: '', horizontal_align: center}
+    source: '', spacing_below: small, background: '', horizontal_align: left}
   name: image_3
   layout_properties: {column: HIBOCD}
   data_bindings:
@@ -74,7 +74,7 @@ components:
 - type: Image
   properties: {role: null, vertical_align: center, height: 29, tooltip: '', border: '',
     foreground: '', visible: true, display_mode: original_size, spacing_above: small,
-    source: '', spacing_below: small, background: '', horizontal_align: center}
+    source: '', spacing_below: small, background: '', horizontal_align: left}
   name: image_4
   layout_properties: {column: MVQPXP}
   data_bindings:
