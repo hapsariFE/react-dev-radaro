@@ -40,6 +40,8 @@ class Mainpage(MainpageTemplate):
     self.status = Data.esc_status
     actionData= None
     merchant_name = None
+    searchText = None
+    resolvedStatus = False
     #self.assign = 'Danny'
     
     self.init_components(**properties) 
@@ -63,7 +65,7 @@ class Mainpage(MainpageTemplate):
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
     #print(self.start_date_picker.date)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
     
     #self.refresh_action()
   
@@ -93,12 +95,12 @@ class Mainpage(MainpageTemplate):
    # self.refresh_list()
     #alert("You changed the date")
 
-  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to):
+  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
 
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
@@ -122,10 +124,16 @@ class Mainpage(MainpageTemplate):
     startDate = self.start_date_picker.date
     endDate = self.end_date_picker.date
     assigned_to = self.dd_assigned.selected_value
+    searchText = self.text_box_search.text
+    resolvedStatus = self.resolved_checkbox.checked
+    if searchText is not "":
+      #print(searchText == "")
+      self.clear_icon.visible = True
+      
     #print(jobValue)
     #print(startDate)
     #print(endDate)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
     #alert("You changed the filter")
   
   def handle_custom_event(self,record,assign, **event_args):
@@ -138,24 +146,25 @@ class Mainpage(MainpageTemplate):
     """function used for sorting in combination with headers""" 
     """https://anvil.works/forum/t/how-to-add-sorting-functionality-to-datagrid-with-repeating-panels/17750/6"""
 
-  def search(self, **event_args):
-    self.repeating_panel_1.items = anvil.server.call(
-      'search_webhook',
-      self.text_box_search.text
-    )
-    self.clear_icon.visible = True
+  #def search(self, **event_args):
+  #  self.repeating_panel_1.items = anvil.server.call(
+  #    'search_webhook',
+  #    self.text_box_search.text
+  #  )
+   # self.clear_icon.visible = True
 
   def clear_search(self, **event_args):
-    self.text_box_search.text = ""
-    jobValue = self.dd_job_status.selected_value
-    compCode = self.dd_completion_code.selected_value
-    escType = self.dd_esc_type.selected_value
-    escStatus = self.dd_esc_status.selected_value
-    merchant_name = self.dd_merchant.selected_value
-    startDate = self.start_date_picker.date
-    endDate = self.end_date_picker.date
-    assigned_to = self.dd_assigned.selected_value
-    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
+    self.text_box_search.text = None
+    self.filter_change()
+    #jobValue = self.dd_job_status.selected_value
+    #compCode = self.dd_completion_code.selected_value
+    #escType = self.dd_esc_type.selected_value
+    #escStatus = self.dd_esc_status.selected_value
+    #merchant_name = self.dd_merchant.selected_value
+    #startDate = self.start_date_picker.date
+    #endDate = self.end_date_picker.date
+    #assigned_to = self.dd_assigned.selected_value
+    #self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     self.clear_icon.visible = False
 
   def resolved_checkbox_click(self, **event_args):

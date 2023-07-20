@@ -59,7 +59,7 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to):
+def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
@@ -129,6 +129,14 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     merchant_row = app_tables.merchant.search(name=merchant_name)
     #print(merchant_row)
     custTable = app_tables.webhook.search(**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row))
+
+  if searchText:
+    custTable = [
+      x for x in custTable
+      if searchText in x['job_id'].lower()
+      or searchText in x['job_reference'].lower()
+      or searchText in x['customer_name'].lower() 
+    ]
 
   
 

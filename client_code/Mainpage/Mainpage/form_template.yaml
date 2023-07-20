@@ -379,7 +379,7 @@ components:
         italic: false, background: '', bold: false, underline: false}
       name: text_box_search
       layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 116}
-      event_bindings: {pressed_enter: search}
+      event_bindings: {pressed_enter: filter_change}
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Search, font_size: 12, font: '', spacing_above: small,
@@ -387,14 +387,14 @@ components:
         underline: false, icon: 'fa:search'}
       name: button_1
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 88.6562}
-      event_bindings: {click: search}
+      event_bindings: {click: filter_change}
     - type: Link
       properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
         visible: false, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
         spacing_above: small, icon_align: left, col_widths: '', spacing_below: small,
         italic: false, background: '', bold: false, underline: false, icon: 'fa:times-circle'}
       name: clear_icon
-      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 5, width: 148}
+      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 5, width: 22.7083}
       event_bindings: {click: clear_search}
     - type: CheckBox
       properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
