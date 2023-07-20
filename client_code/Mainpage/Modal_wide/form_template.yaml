@@ -16,15 +16,41 @@ components:
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Customer Name, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_3
+      layout_properties: {row: GKXDTS, width_xs: 5, col_xs: 0, width: 143.797}
+    - type: Label
+      properties: {}
+      name: label_4
+      layout_properties: {row: GKXDTS, width_xs: 5, col_xs: 5}
+      data_bindings:
+      - {property: text, code: 'self.item[''customer_name'']'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: Job Status, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_5
+      layout_properties: {row: JKJKTK, width_xs: 5, col_xs: 0, width: 143.797}
+    - type: Label
+      properties: {}
+      name: label_6
+      layout_properties: {row: JKJKTK, width_xs: 5, col_xs: 5}
+      data_bindings:
+      - {property: text, code: 'self.item[''job_status''][''name'']'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: Job Report, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_2
-      layout_properties: {row: WPWBAI, width_xs: 5, col_xs: 0, width: 143.797}
+      layout_properties: {row: GQPSFW, width_xs: 5, col_xs: 0, width: 143.797}
     - type: Link
       properties: {col_widths: '{}'}
       name: link_2
-      layout_properties: {row: WPWBAI, width_xs: 5, col_xs: 5}
+      layout_properties: {row: GQPSFW, width_xs: 3, col_xs: 5}
       components:
       - type: Image
         properties: {role: null, vertical_align: center, height: 20, tooltip: '',
