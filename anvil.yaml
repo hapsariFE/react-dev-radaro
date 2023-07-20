@@ -101,6 +101,9 @@ db_schema:
       admin_ui: {order: 7, width: 200}
       type: link_multiple
       target: merchant
+    - name: Logo
+      admin_ui: {order: 8, width: 200}
+      type: string
   action_log:
     client: search
     server: full
