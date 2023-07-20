@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ... import Data
 from datetime import datetime, timedelta, date
+import webbrowser
 
 class Modal_wide(Modal_wideTemplate):
   def __init__(self, **properties):
