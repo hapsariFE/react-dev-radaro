@@ -27,9 +27,10 @@ components:
   - {code: 'self.item[''last_action_date''].strftime("%d %b, %Y %H:%M")', property: text}
   name: label_2
 - type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: 16, font: '', spacing_above: small, icon_align: left, spacing_below: small,
-    italic: false, background: '', bold: false, underline: false, icon: ''}
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: 16, font: '', spacing_above: small, icon_align: left,
+    spacing_below: small, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
   layout_properties: {column: HIBOCD, grid_position: 'BCKGJB,VPGQDG'}
   data_bindings:
   - {code: 'self.item[''job_status''][''name'']', property: text}

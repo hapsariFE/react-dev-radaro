@@ -20,6 +20,21 @@ class RowTemplate1(RowTemplate1Template):
     #description = ""
     
     self.init_components(**properties)
+    print(self.item['latest_status']['name'])
+    if self.item['job_status']['name'] == "Failed":
+      #self.label_4.bold = True
+      my_media = anvil.URLMedia("https://radaro-api.s3.ap-southeast-2.amazonaws.com/media-2/Merchant/b0cc7b64-7f6a-4392-8043-54437660de96.png")
+      self.label_1.icon = my_media
+      print(my_media)
+      self.label_1.background = "Black"
+      self.refresh_data_bindings()
+    #  self.label_1.background = "Black"
+      
+
+    #elif 
+      
+      
+    self.refresh_data_bindings()
     # Any code you write here will run before the form opens.
     #self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
   

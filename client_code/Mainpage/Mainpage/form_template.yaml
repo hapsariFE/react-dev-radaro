@@ -447,7 +447,7 @@ components:
       - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395',
         width: '140', expand: false}
       - {id: HIBOCD, title: Job Status, data_key: job_status, $$hashKey: 'object:397',
-        width: '120'}
+        width: '140'}
       - {id: FREDFV, title: Escalation Type, data_key: escalation_type, $$hashKey: 'object:399',
         width: '140'}
       - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401',
@@ -471,7 +471,7 @@ components:
       spacing_above: small
       spacing_below: small
       background: ''
-    layout_properties: {width: 611.328, row: BEEIKG, width_xs: 12, col_xs: 0}
+    layout_properties: {width: 1028, row: BEEIKG, width_xs: 12, col_xs: 0}
     name: data_grid_1
     components:
     - type: RepeatingPanel
