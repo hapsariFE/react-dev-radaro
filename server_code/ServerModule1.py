@@ -72,8 +72,8 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   #  assignrow = [[r] for r in defaultassign]
   #print(escStatus)
 
-  
-  
+  print("ooooooo")
+  print(escStatus)
   #print(jobValue)
   #selectedGroups = [r for r in currentUser['user_merchant_link']]
   #print(selectedGroups)
@@ -102,18 +102,22 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   #  filter_dict['latest_status'] = escStatus
     
     if resolvedStatus is False:
-      escStatus = app_tables.escalation_status.search(name=q.any_of(q.none_of("Resolved"),q.any_of(escStatus['name']))) 
-      print(escStatus)
+      print(escStatus['name'])
+      escStatus = app_tables.escalation_status.search(name=q.all_of(q.none_of("Resolved"),q.any_of(escStatus['name']))) 
+      print("----")
+      print(*escStatus)
       
 
     if resolvedStatus is True:
-      escStatus = app_tables.escalation_status.search(name=q.all_of(q.any_of("Resolved"),q.any_of(*escStatus),))
+      escStatus = app_tables.escalation_status.search(name=q.all_of(q.any_of("Resolved"),q.any_of(escStatus['name']),))
 
   
   if escStatus == None:
     if resolvedStatus is False:
       escStatus = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
+      print("1")
     if resolvedStatus is True:
+      print("2")
       escStatus = app_tables.escalation_status.search() 
 
   #print("-----")

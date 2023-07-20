@@ -47,6 +47,7 @@ class Mainpage(MainpageTemplate):
     self.init_components(**properties) 
     # Any code you write here will run before the form opens.
     anvil.users.login_with_form()
+    print("test1")
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     merchName = anvil.server.call('get_merchant_list')
@@ -65,6 +66,7 @@ class Mainpage(MainpageTemplate):
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
     #print(self.start_date_picker.date)
+    print("test2")
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
     
     #self.refresh_action()
