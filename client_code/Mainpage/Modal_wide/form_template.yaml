@@ -64,11 +64,11 @@ components:
       name: label_5
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 0, width: 75.4844}
     - type: Image
-      properties: {role: null, vertical_align: center, height: 27, tooltip: '', border: '',
-        foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
+      properties: {role: null, vertical_align: center, height: '25', tooltip: '',
+        border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
         source: '', spacing_below: small, background: '', horizontal_align: left}
       name: image_3
-      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2, width: 76.7812}
+      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2, width: 76.7708}
       data_bindings:
       - {property: source, code: 'self.item[''job_status''][''icon'']'}
     - type: Label
@@ -79,11 +79,11 @@ components:
       name: label_13
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 3, width: 76.1406}
     - type: Image
-      properties: {role: null, vertical_align: center, height: 26, tooltip: '', border: '',
-        foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
+      properties: {role: null, vertical_align: center, height: '25', tooltip: '',
+        border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
         source: '', spacing_below: small, background: '', horizontal_align: left}
       name: image_1
-      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 6, width: 75.5521}
+      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 6, width: 76.7708}
       data_bindings:
       - {property: source, code: 'self.item[''latest_status''][''icon'']'}
     - type: Label
@@ -217,11 +217,16 @@ components:
       properties:
         role: null
         columns:
-        - {id: ZNGNTV, title: Submitted on, data_key: created_date, $$hashKey: 'object:49867'}
-        - {id: MQEENE, title: Submitted by, data_key: user, $$hashKey: 'object:49866'}
-        - {id: VTUJFJ, title: Status, data_key: status, $$hashKey: 'object:49865'}
-        - {id: XYWCYA, title: Description, data_key: description, $$hashKey: 'object:50279'}
-        - {id: VEQFME, title: Assigned to, data_key: assign_to, $$hashKey: 'object:50277'}
+        - {id: ZNGNTV, title: Submitted on, data_key: created_date, $$hashKey: 'object:49867',
+          width: '160'}
+        - {id: MQEENE, title: Submitted by, data_key: user, $$hashKey: 'object:49866',
+          width: '120'}
+        - {id: VTUJFJ, title: Status, data_key: status, $$hashKey: 'object:49865',
+          width: '100'}
+        - {id: XYWCYA, title: Description, data_key: description, $$hashKey: 'object:50279',
+          width: '330'}
+        - {id: VEQFME, title: Assigned to, data_key: assign_to, $$hashKey: 'object:50277',
+          width: '120', expand: true}
         auto_header: true
         tooltip: ''
         border: ''
@@ -234,7 +239,7 @@ components:
         spacing_below: small
         background: ''
       name: data_grid_1
-      layout_properties: {row: GWVHLC, width_xs: 12, col_xs: 0, width: 970}
+      layout_properties: {row: GWVHLC, width_xs: 12, col_xs: 0, width: 610.729}
       components:
       - type: RepeatingPanel
         properties: {role: null, tooltip: '', border: '', foreground: '', items: null,

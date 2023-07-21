@@ -27,7 +27,7 @@ components:
   - {code: 'self.item[''last_action_date''].strftime("%d %b, %Y %H:%M")', property: text}
   name: label_2
 - type: Image
-  properties: {role: null, vertical_align: center, height: 30, tooltip: '', border: '',
+  properties: {role: null, vertical_align: center, height: '25', tooltip: '', border: '',
     foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
     source: '', spacing_below: small, background: '', horizontal_align: left}
   name: image_3
@@ -72,7 +72,7 @@ components:
     event_bindings: {click: widecomment_click}
   event_bindings: {click: widecomment_click}
 - type: Image
-  properties: {role: null, vertical_align: center, height: 29, tooltip: '', border: '',
+  properties: {role: null, vertical_align: center, height: '25', tooltip: '', border: '',
     foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
     source: '', spacing_below: small, background: '', horizontal_align: left}
   name: image_4
