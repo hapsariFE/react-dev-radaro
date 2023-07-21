@@ -62,7 +62,7 @@ components:
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
-      border: 1px, visible: true, role: null, tooltip: ''}
+      border: 1px, visible: false, role: null, tooltip: ''}
     layout_properties: {width: 1400}
     name: grid_panel_1
     components:
