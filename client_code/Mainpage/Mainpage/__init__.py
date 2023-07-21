@@ -193,7 +193,12 @@ class Mainpage(MainpageTemplate):
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus)
 
   def filter_display(self, **event_args):
-    if self.
+    if self.grid_panel_1.visible:
+      self.grid_panel_1.visible = False
+      self.button_2.icon = 'fa:angle-down'
+    else:
+      self.grid_panel_1.visible = True
+      self.button_2.icon = 'fa:angle-up'
 
     
     

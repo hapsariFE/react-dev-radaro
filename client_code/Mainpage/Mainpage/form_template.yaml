@@ -43,9 +43,12 @@ components:
     event_bindings: {click: log_out_click}
     name: log_out
 - type: Button
-  properties: {text: button_2}
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+    foreground: '', visible: true, text: Show/Hide Filters, font_size: null, font: '',
+    spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '',
+    bold: false, underline: false, icon: 'fa:angle-up'}
   name: button_2
-  layout_properties: {row: MSZXYV, width_xs: 2, col_xs: 0, grid_position: 'DDJBET,ICKICE'}
+  layout_properties: {row: LDOXRJ, width_xs: 2, col_xs: 0, grid_position: 'YLFGVY,TBWSGY'}
   event_bindings: {click: filter_display}
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
