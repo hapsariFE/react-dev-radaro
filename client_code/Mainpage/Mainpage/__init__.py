@@ -191,6 +191,10 @@ class Mainpage(MainpageTemplate):
     else:
       escStatus = self.dd_esc_status.selected_value
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus)
+
+  def filter_display(self, **event_args):
+    if self.
+
     
     
 

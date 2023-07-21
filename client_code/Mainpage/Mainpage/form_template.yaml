@@ -42,6 +42,11 @@ components:
       col_xs: 10}
     event_bindings: {click: log_out_click}
     name: log_out
+- type: Button
+  properties: {text: button_2}
+  name: button_2
+  layout_properties: {row: MSZXYV, width_xs: 2, col_xs: 0, grid_position: 'DDJBET,ICKICE'}
+  event_bindings: {click: filter_display}
 - type: RichText
   properties: {role: null, align: center, tooltip: '', enable_slots: true, border: '',
     foreground: '', visible: true, font_size: 20, content: '', font: '', spacing_above: small,
