@@ -28,7 +28,7 @@ components:
   name: label_2
 - type: Image
   properties: {role: null, vertical_align: center, height: 30, tooltip: '', border: '',
-    foreground: '', visible: true, display_mode: original_size, spacing_above: small,
+    foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
     source: '', spacing_below: small, background: '', horizontal_align: left}
   name: image_3
   layout_properties: {column: HIBOCD}
@@ -73,7 +73,7 @@ components:
   event_bindings: {click: widecomment_click}
 - type: Image
   properties: {role: null, vertical_align: center, height: 29, tooltip: '', border: '',
-    foreground: '', visible: true, display_mode: original_size, spacing_above: small,
+    foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
     source: '', spacing_below: small, background: '', horizontal_align: left}
   name: image_4
   layout_properties: {column: MVQPXP}
