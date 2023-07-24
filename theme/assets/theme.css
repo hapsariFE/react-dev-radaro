@@ -1170,3 +1170,13 @@ div.plot-container.plotly svg.main-svg {
 .anvil-role-switch-rounded span::before {
  border-radius: .5em;
 }
+
+/* expand and collapse testing */
+* { margin:0; padding:0; }
+body { font-family: sans-serif;} 
+#content { margin: 50px; } 
+a { text-decoration: none; }  
+ 
+.expandable {
+  background: #fff;
+  overflow: hidden;
