@@ -199,7 +199,7 @@ class Mainpage(MainpageTemplate):
     else:
       self.grid_panel_1.visible = True
       self.button_2.icon = 'fa:angle-up'
-
+d
     
     
 

@@ -7,7 +7,7 @@ container:
 components:
 - type: GridPanel
   properties: {}
-  layout_properties: {grid_position: 'BJNURA,FQSNJK'}
+  layout_properties: {grid_position: 'BJNURA,MZFOOM'}
   name: grid_panel_3
   components:
   - type: Image
@@ -38,8 +38,8 @@ components:
       foreground: '', visible: true, text: log out, font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
-    layout_properties: {grid_position: 'HWESZE,STEZAR', row: BTNFSF, width_xs: 4,
-      col_xs: 10}
+    layout_properties: {grid_position: 'HWESZE,STEZAR', row: DEXPXX, width_xs: 3,
+      col_xs: 9}
     event_bindings: {click: log_out_click}
     name: log_out
 - type: Button
