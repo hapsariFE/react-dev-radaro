@@ -3,24 +3,412 @@ container:
   type: HtmlTemplate
   properties: {html: '@theme:standard-page.html'}
 components:
-- type: FlowPanel
-  properties: {}
-  name: navbar_links
-  layout_properties: {slot: nav-right}
+- type: Label
+  properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+    visible: true, text: Escalation Dashboard, font_size: 28, font: '', spacing_above: small,
+    icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
+    underline: false, icon: ''}
+  layout_properties: {grid_position: 'HWESZE,ZWTDKT', row: BTNFSF, width_xs: 4, col_xs: 3,
+    width: 303.328, slot: title}
+  name: label_1
 - type: ColumnPanel
-  properties: {role: outlined-card}
-  name: outlined_card_1
-  layout_properties: {slot: left-nav}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '', spacing_below: small,
+    background: ''}
+  name: filterpanel
+  layout_properties: {slot: filterpanel}
+  components:
+  - type: GridPanel
+    properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
+      border: 1px, visible: true, role: null, tooltip: ''}
+    layout_properties:
+      col_widths: {}
+      grid_position: JGDGII,VXWMJJ
+      full_width_row: true
+    name: grid_panel_1
+    components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: ' Start Date', font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: ZPIVJB,TXYOGB
+        row: FSHRWD
+        width_xs: 1
+        col_xs: 0
+        width: 29.3281
+      name: startdate
+    - type: DatePicker
+      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
+        placeholder: '', border: '', enabled: true, foreground: '', visible: true,
+        font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
+        date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
+          %b %Y'}
+      layout_properties:
+        col_widths: {}
+        grid_position: RZBXLA,PIZDUB
+        row: FSHRWD
+        width_xs: 2
+        col_xs: 1
+        width: 136.656
+      data_bindings:
+      - {code: 'self.date_filters[''start'']', writeback: true, property: date}
+      event_bindings: {change: filter_change}
+      name: start_date_picker
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Merchant Portal, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: VAIUAH,CDIYFH
+        row: FSHRWD
+        width_xs: 1
+        col_xs: 3
+        width: 34.9844
+      name: merchant
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: EMXCMF,TSKJLG
+        row: FSHRWD
+        width_xs: 2
+        col_xs: 4
+        width: 66.6562
+      data_bindings:
+      - {code: self.merchant_name, property: items}
+      - {code: 'self.filters[''merchant_name'']', writeback: true, property: selected_value}
+      event_bindings: {change: filter_change}
+      name: dd_merchant
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Assigned To, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: EZYFRF,HGBXAO
+        row: FSHRWD
+        width_xs: 1
+        col_xs: 5
+        width: 34.9844
+      name: label_1_copy_2
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: XXIQOH,CMUKOB
+        row: FSHRWD
+        width_xs: 2
+        col_xs: 6
+        width: 66.6562
+      data_bindings:
+      - {code: self.users, property: items}
+      - {code: 'self.filters[''users'']', writeback: true, property: selected_value}
+      event_bindings: {change: filter_change}
+      name: dd_assigned
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Escalation Status, font_size: 12, font: '',
+        spacing_above: none, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: YRIIGM,PHJKJN
+        row: FSHRWD
+        width_xs: 1
+        col_xs: 7
+        width: 34.9844
+      name: label_2_copy_2
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: AXXCLW,RLIILH
+        row: FSHRWD
+        width_xs: 2
+        col_xs: 8
+        width: 53.3281
+      data_bindings:
+      - {code: self.esc_status, property: items}
+      - {code: 'self.filters[''esc_status'']', writeback: true, property: selected_value}
+      event_bindings: {change: filter_change}
+      name: dd_esc_status
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: ' End  Date', font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: RTRAIL,UUMMHX
+        row: PKQKNH
+        width_xs: 1
+        col_xs: 0
+        width: 34.9844
+      name: enddate
+    - type: DatePicker
+      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
+        placeholder: '', border: '', enabled: true, foreground: '', visible: true,
+        font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
+        date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
+          %b %Y'}
+      layout_properties:
+        col_widths: {}
+        grid_position: JOFSIP,YDQDGU
+        row: PKQKNH
+        width_xs: 2
+        col_xs: 1
+        width: 85.5521
+      data_bindings:
+      - {code: 'self.date_filters[''end'']', writeback: true, property: date}
+      event_bindings: {change: filter_change}
+      name: end_date_picker
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Job Status, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: BIPTRH,JGAGJC
+        row: PKQKNH
+        width_xs: 1
+        col_xs: 0
+        width: 53.3281
+      name: label_1_copy_3
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: XKXRFX,BSIHTO
+        row: PKQKNH
+        width_xs: 2
+        col_xs: 1
+        width: 66.6562
+      data_bindings:
+      - {code: self.job_status, property: items}
+      - {code: 'self.filters[''job_status'']', writeback: true, property: selected_value}
+      event_bindings: {change: filter_change}
+      name: dd_job_status
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: MZOWYR,CFXUPS
+        row: PKQKNH
+        width_xs: 1
+        col_xs: 2
+        width: 34.9844
+      name: label_2
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: ['1', '2']
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: QAXRSU,BLDEFZ
+        row: PKQKNH
+        width_xs: 2
+        col_xs: 3
+        width: 66.6562
+      event_bindings: {change: filter_change}
+      name: dd_completion_code
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Escalation Type, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties:
+        col_widths: {}
+        grid_position: CPYRQB,UXMVIQ
+        row: PKQKNH
+        width_xs: 1
+        col_xs: 0
+        width: 34.9844
+      name: label_2_copy
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: 12
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      layout_properties:
+        col_widths: {}
+        grid_position: RYQXQU,BGAQBK
+        row: PKQKNH
+        width_xs: 2
+        col_xs: 1
+        width: 66.6562
+      data_bindings:
+      - {code: self.esc_type, property: items}
+      - {code: 'self.filters[''esc_type'']', writeback: true, property: selected_value}
+      event_bindings: {change: filter_change}
+      name: dd_esc_type
+    - type: ColumnPanel
+      properties: {role: null, tooltip: '', border: 1px solid, foreground: 'theme:Filter
+          Border', visible: true, wrap_on: never, col_spacing: none, spacing_above: none,
+        col_widths: '{"MVKOEY":65,"RDQTJH":15}', spacing_below: none, background: ''}
+      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 233.25}
+      name: searchbox
+      components:
+      - type: TextBox
+        properties: {role: outlined, align: left, hide_text: false, tooltip: enter a search term and hit enter,
+          placeholder: Search, border: none, enabled: true, foreground: '', visible: true,
+          text: '', font_size: null, font: '', spacing_above: none, type: text, spacing_below: none,
+          italic: false, background: '', bold: false, underline: false}
+        layout_properties: {row: HZZHOZ, width_xs: 2, col_xs: 3, width: 116, grid_position: 'TYKSEW,MVKOEY'}
+        event_bindings: {pressed_enter: filter_change}
+        name: text_box_search
+      - type: Link
+        properties: {role: null, url: '', align: left, tooltip: clear search, border: '',
+          foreground: '', visible: false, text: '', font_size: null, wrap_on: never,
+          font: '', col_spacing: none, spacing_above: none, icon_align: right, col_widths: '',
+          spacing_below: none, italic: false, background: '', bold: false, underline: false,
+          icon: 'fa:times-circle'}
+        layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 8, width: 148, grid_position: 'TYKSEW,RDQTJH'}
+        event_bindings: {click: clear_search}
+        name: clear_icon
+    - type: CheckBox
+      properties: {role: switch-rounded, align: right, tooltip: '', border: '', enabled: true,
+        foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true,
+        text: '', font_size: 20, font: '', spacing_above: none, spacing_below: small,
+        italic: false, background: '', bold: false, checked: false, underline: false}
+      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 3, width: 58.4062}
+      event_bindings: {change: filter_change}
+      name: resolved_checkbox
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Show resolved items, font_size: 12, font: '',
+        spacing_above: medium, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 4, width: 146.828}
+      name: label_3
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: false, text: Search, font_size: 12, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:search'}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 146.828}
+      event_bindings: {click: filter_change}
+      name: button_1
 - type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: filter_panel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+    spacing_below: small, background: ''}
+  name: column_panel_2
   layout_properties: {slot: default}
   components:
-  - type: DropDown
+  - type: form:Mainpage.Mainpage
     properties: {}
-    name: drop_down_1
-    layout_properties: {grid_position: 'GYYBYX,MZSVVB'}
-  - type: DropDown
-    properties: {}
-    name: drop_down_2
-    layout_properties: {grid_position: 'GYYBYX,JEQPOG'}
+    name: mainpage_1
+    layout_properties: {grid_position: 'XLOVEZ,HLDREB', full_width_row: true}

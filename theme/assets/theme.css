@@ -7,7 +7,11 @@
   padding-bottom: 10px;
   margin-bottom: -10px;
 }
-
+html, structure {
+  max-width: 1440px;
+  display: flex;
+  justify-content: center;
+    }
 .content > .placeholder {
   margin: 16px;
   color: #888;
@@ -106,10 +110,10 @@ body {
   background-color: %color:Background%;
   min-height: calc(100vh - 56px);
   margin: 0 auto;
-  max-width: 1440px;
+  /*overflow: hidden; Hide scrollbars */
+/*  max-width: 1440px;
   display: flex;
-  justify-content: center;
-  
+  justify-content: center;*/
   }
 
 @media print {
@@ -213,6 +217,7 @@ color: %color:On Primary Container%;
 
 .content .anvil-measure-this {
   padding-bottom: 1px; /* Prevent margin collapse messing up embedding */
+  
 }
 
 /* Allow overflows to show drop shadows in ColumnPanels
@@ -475,6 +480,7 @@ color: %color:On Primary Container%;
   margin: 0;
   padding: 0;
   min-height: 56px;
+  max-width:1440px;
 }
 
 .anvil-highlight .app-bar-nav > .anvil-container:not(.has-components):not(a) {
@@ -779,7 +785,7 @@ button.close > span, button.close {
   margin-left: -12px;
   margin-right: -12px;
   width: initial;
-  max-width: initial;
+  max-width: initial;      
 }
 
 /* If the first row of a card is a full_width_row, it goes to the top */
@@ -1195,12 +1201,16 @@ div.plot-container.plotly svg.main-svg {
   background-color: #777;
   color: white;
   cursor: pointer;
-  padding: 18px;
-  width: 100%;
-  border: none;
-  text-align: left;
+  padding: 3px 18px;
+  /*width: 25%;*/
+  border: solid 1px;
+  border-radius:25px;
+  text-align: center;
   outline: none;
-  font-size: 15px;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .active, .collapsible:hover {
@@ -1219,10 +1229,10 @@ div.plot-container.plotly svg.main-svg {
   content: "\2212";
 }
 
-.content2 {
+.filterpanel {
   padding: 0 18px;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  background-color: #f1f1f1;
+  
 }

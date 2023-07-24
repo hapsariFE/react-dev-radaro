@@ -1,6 +1,6 @@
 <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" rel="preload" as="font" crossorigin="anonymous">
 
-<div class="structure">
+<div class="structure"> 
   <div class="app-bar" anvil-drop-container=".anvil-container" anvil-drop-redirect=".placeholder">
     <a class="sidebar-toggle" anvil-if-slot-empty="top-left-btn" anvil-drop-slot="top-left-btn" href="javascript:void(0)"><i class="fa fa-bars"></i></a>
     <a class="sidebar-toggle anvil-designer-only" anvil-if-slot-empty="top-left-btn" anvil-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn"><i class="fa fa-blank"></i></a>
@@ -25,16 +25,13 @@
     </div>
 
         <div class="content">
-        <button class="collapsible">Open Collapsible</button>
-            <div class="content2"><p>open and close</p>  
-      <div anvil-slot-repeat="default" class="anvil-measure-this"></div>
-      <div class="placeholder drop-here" anvil-if-slot-empty="default" anvil-drop-slot="default">Drop a ColumnPanel here.</div>
+          <button class="collapsible">Show Filter</button>
+
+          <div class="filterpanel" anvil-slot="filterpanel"></div>
+          <div class="default" anvil-slot="default"></div>
     </div>
   </div>
-     </div>
-  
-
-
+ 
   <div class="nav-shield"></div>
 </div>
 <div anvil-drop-default anvil-drop-redirect=".placeholder" anvil-drop-container=".anvil-container"></div>
