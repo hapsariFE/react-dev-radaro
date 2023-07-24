@@ -6,9 +6,12 @@
     <a class="sidebar-toggle anvil-designer-only" anvil-if-slot-empty="top-left-btn" anvil-if-slot-empty="left-nav" anvil-drop-slot="top-left-btn"><i class="fa fa-blank"></i></a>
     <div class="top-left-btn" anvil-slot="top-left-btn"></div>
     <div class="title" anvil-slot="title">
+      
       <div class="placeholder anvil-designer-only" anvil-if-slot-empty="title" anvil-drop-here>Drop title here</div>
     </div>
+    
     <div class="app-bar-nav" anvil-slot="nav-right">
+      
       <div class="placeholder anvil-designer-only" anvil-if-slot-empty="nav-right" anvil-drop-here>Drop a FlowPanel here</div>
     </div>
     <div style="clear:both"></div>
@@ -20,22 +23,17 @@
     <div class="left-nav-placeholder anvil-designer-only" anvil-if-slot-empty="left-nav" anvil-drop-slot="left-nav">
       <div class="prompt">To add a sidebar, drop a ColumnPanel here.</div>
     </div>
-    
-    <div class="content">
-      <div id="content"> 
-      <a href="#nav"><span>Click Here</span></a>
-      <div class="expandable" id="nav">
-      <p>Cum enim magna parturient ac elementum, tincidunt tempor ac lectus platea placerat. Eros dis lectus. Ut aliquam. Porttitor risus mattis mauris lacus a, aliquam augue cras elementum! Adipiscing, vel ridiculus diam pellentesque sociis habitasse pellentesque, augue parturient sed elementum aenean. Tincidunt tristique.</p>
-      </div>
-      <a href="#nav2"><span>Click Here</span></a>
-      <div class="expandable" id="nav2">
-      <p>Cum enim magna parturient ac elementum, tincidunt tempor ac lectus platea placerat. Eros dis lectus. Ut aliquam. Porttitor risus mattis mauris lacus a, aliquam augue cras elementum! Adipiscing, vel ridiculus diam pellentesque sociis habitasse pellentesque, augue parturient sed elementum aenean. Tincidunt tristique.</p>
-      </div>
-      </div> 
+
+        <div class="content">
+        <button class="collapsible">Open Collapsible</button>
+            <div class="content2"><p>open and close</p>  
       <div anvil-slot-repeat="default" class="anvil-measure-this"></div>
       <div class="placeholder drop-here" anvil-if-slot-empty="default" anvil-drop-slot="default">Drop a ColumnPanel here.</div>
     </div>
   </div>
+     </div>
+  
+
 
   <div class="nav-shield"></div>
 </div>
@@ -134,5 +132,19 @@
   
   addMarginToContent()
   window.addEventListener('resize', addMarginToContent);
- 
+
+  var coll = document.getElementsByClassName("collapsible");
+  var i;
+
+  for (i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var content = this.nextElementSibling;
+      if (content.style.maxHeight){
+        content.style.maxHeight = null;
+      } else {
+        content.style.maxHeight = content.scrollHeight + "px";
+      } 
+    });
+  }
 </script>

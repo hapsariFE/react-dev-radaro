@@ -195,8 +195,7 @@ class Mainpage(MainpageTemplate):
 
   def filter_display(self, **event_args):
     if self.grid_panel_1.visible:
-      #self.grid_panel_1.visible = False
-      animate(self.grid_panel_1, fade_out, 5000)
+      self.grid_panel_1.visible = False
       self.button_2.icon = 'fa:angle-down'
     else:
       self.grid_panel_1.visible = True
