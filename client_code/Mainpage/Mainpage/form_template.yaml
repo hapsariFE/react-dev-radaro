@@ -33,10 +33,6 @@ components:
       spacing_below: small, background: '', horizontal_align: right}
     layout_properties: {row: AHLURG, width_xs: 3, col_xs: 9, width: 220}
     name: image_2
-  - type: FileLoader
-    properties: {}
-    name: file_loader_1
-    layout_properties: {row: OBKYPE, width_xs: 2, col_xs: 0}
   - type: Button
     properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
       foreground: '', visible: true, text: log out, font_size: null, font: '', spacing_above: small,
