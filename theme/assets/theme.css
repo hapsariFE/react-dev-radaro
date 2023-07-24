@@ -1171,12 +1171,27 @@ div.plot-container.plotly svg.main-svg {
  border-radius: .5em;
 }
 
-/* expand and collapse testing */
+/* expand and collapse testing 
+
 * { margin:0; padding:0; }
 body { font-family: sans-serif;} 
 #content { margin: 50px; } 
 a { text-decoration: none; }  
- 
+ */
 .expandable {
   background: #fff;
   overflow: hidden;
+
+  transition: all .5s ease-in-out;
+  line-height: 0;
+  padding: 0 1em;
+  color: transparent;
+}
+ 
+.expandable:target {
+  line-height: 1.5;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: black;
+}
+ 

@@ -14,7 +14,7 @@ services:
 - source: /runtime/services/anvil/files.yml
   client_config: {}
   server_config: {file_table: files}
-startup: {type: form, module: Homepage}
+startup: {type: form, module: Mainpage.Mainpage}
 package_name: Intraday_Dashboard_v2
 allow_embedding: false
 name: Intraday Dashboard v2
