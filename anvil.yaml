@@ -63,6 +63,12 @@ db_schema:
     - name: icon
       admin_ui: {order: 1, width: 200}
       type: string
+    - name: Column2
+      admin_ui: {width: 200}
+      type: string
+    - name: sysName
+      admin_ui: {width: 200}
+      type: string
   files:
     client: full
     server: full
@@ -77,6 +83,58 @@ db_schema:
       type: string
       admin_ui: {order: 2, width: 200}
     title: Files
+  import_test:
+    title: import_test
+    client: none
+    server: full
+    columns:
+    - name: job_id
+      admin_ui: {width: 200}
+      type: number
+    - name: id
+      admin_ui: {width: 200}
+      type: number
+    - name: customer_name
+      admin_ui: {width: 200}
+      type: string
+    - name: completion_code_id
+      admin_ui: {width: 200}
+      type: number
+    - name: date_created
+      admin_ui: {width: 200}
+      type: datetime
+    - name: last_action_date
+      admin_ui: {width: 200}
+      type: datetime
+    - name: job_reference
+      admin_ui: {width: 200}
+      type: string
+    - name: webhook_merchant_link
+      admin_ui: {width: 200}
+      type: link_single
+      target: merchant
+    - name: job_status
+      admin_ui: {width: 200}
+      type: link_single
+      target: job_status
+    - name: latest_status
+      admin_ui: {width: 200}
+      type: link_single
+      target: escalation_status
+    - name: customer_rating
+      admin_ui: {width: 200}
+      type: number
+    - name: escalation_type
+      admin_ui: {width: 200}
+      type: link_single
+      target: escalation_type
+    - name: job_report
+      admin_ui: {width: 200}
+      type: string
+    - name: latest_asssignee
+      admin_ui: {width: 200}
+      type: link_single
+      target: users
   users:
     title: users
     client: none
@@ -204,5 +262,8 @@ db_schema:
       admin_ui: {order: 13, width: 200}
       type: link_single
       target: users
+    - name: watch_list
+      admin_ui: {width: 200}
+      type: bool
 uplink_visible: true
 renamed: true
