@@ -7,6 +7,12 @@
   padding-bottom: 10px;
   margin-bottom: -10px;
 }
+html, structure {
+  max-width: 1440px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+    }
 
 .content > .placeholder {
   margin: 16px;
@@ -14,6 +20,8 @@
   font-size: 18px;
   outline: 1px dotted;
   padding: 16px;
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 
@@ -106,10 +114,10 @@ body {
   background-color: %color:Background%;
   min-height: calc(100vh - 56px);
   margin: 0 auto;
-  max-width: 1440px;
+  /*overflow: hidden; Hide scrollbars */
+/*  max-width: 1440px;
   display: flex;
-  justify-content: center;
-  
+  justify-content: center;*/
   }
 
 @media print {
@@ -213,6 +221,7 @@ color: %color:On Primary Container%;
 
 .content .anvil-measure-this {
   padding-bottom: 1px; /* Prevent margin collapse messing up embedding */
+  
 }
 
 /* Allow overflows to show drop shadows in ColumnPanels
@@ -398,21 +407,28 @@ color: %color:On Primary Container%;
 }
 
 .content {
-  flex: 1;
+  /*flex: 1;
+  display: flex;*/
   overflow-x: hidden;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+
 }
 
 /* Components: App Bar */
 .app-bar {
   min-height: 56px;
   padding: 0 16px 0 72px;
-  position: fixed;
-  width: 100%;
-  
+  max-width: 1440px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
   line-height: 40px;
   font-size: 20px;
 
-  background-color: %color:Surface%;
+  background-color: %color:Background%;
   transition: background-color 250ms;
   -webkit-transition: background-color 250ms;
   -moz-transition: background-color 250ms;
@@ -420,24 +436,24 @@ color: %color:On Primary Container%;
   
   z-index: 1;
 }
-
+/*
 .app-bar.scrolled {
-  background: linear-gradient(0deg, %color:Primary Overlay 2%, %color:Primary Overlay 2%), %color:Background%;
+  background: %color:Background%;
   transition: background 250ms;
   -webkit-transition: background 250ms;
   -moz-transition: background 250ms;
   -o-transition: background 250ms;
 }
-
+*/
 .app-bar .anvil-component {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .app-bar > .sidebar-toggle { display:block; float:left;  margin-left: -61px; }
-.app-bar > .top-left-btn { float: left; margin-left: -60px; margin-right: -40px; }
-.app-bar > .title { float: left; }
-.app-bar > .title > .placeholder { outline: 1px dotted; padding-left: 16px; padding-right: 16px; margin: 8px 8px 0; display:none; }
+.app-bar > .top-left-btn { float: left; } /*margin-left: -60px; margin-right: -40px; }*/
+.app-bar > .title { float: center; width: 100%}
+/*.app-bar > .title > .placeholder { outline: 1px dotted; padding-left: 16px; padding-right: 16px; margin: 8px 8px 0; display:none; }*/
 .app-bar > .app-bar-nav { float: right; font-weight: normal; }
 .app-bar > .app-bar-nav .placeholder { margin-top: 8px; padding: 0 8px; }
 .anvil-highlight .app-bar > .app-bar-nav .placeholder { outline: 1px dotted #ccc; }
@@ -475,6 +491,7 @@ color: %color:On Primary Container%;
   margin: 0;
   padding: 0;
   min-height: 56px;
+  max-width:1440px;
 }
 
 .anvil-highlight .app-bar-nav > .anvil-container:not(.has-components):not(a) {
@@ -607,6 +624,7 @@ button.close > span, button.close {
   border-radius: 25px;
   background-color: %color:On Primary%;
   border: solid 1px %color:Outline%;
+
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 
   text-shadow: none;
@@ -779,7 +797,7 @@ button.close > span, button.close {
   margin-left: -12px;
   margin-right: -12px;
   width: initial;
-  max-width: initial;
+  max-width: initial;      
 }
 
 /* If the first row of a card is a full_width_row, it goes to the top */
@@ -1169,4 +1187,65 @@ div.plot-container.plotly svg.main-svg {
 }
 .anvil-role-switch-rounded span::before {
  border-radius: .5em;
+}
+
+/* expandable testing */
+
+.expandable {
+  background: #fff;
+  overflow: hidden;
+
+  transition: all .5s ease-in-out;
+  line-height: 0;
+  padding: 0 1em;
+  color: transparent;
+}
+ 
+.expandable:target {
+  line-height: 1.5;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  color: black;
+}
+/* collapsible testing */
+
+.collapsible {
+  background-color: #777;
+  color: white;
+  cursor: pointer;
+  padding: 3px 18px;
+  /*width: 25%;*/
+  border: solid 1px;
+  border-radius:25px;
+  text-align: center;
+  outline: none;
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.active, .collapsible:hover {
+  background-color: #555;
+}
+
+.collapsible:after {
+  content: '\002B';
+  color: white;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.filterpanel {
+  padding: 0 18px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  
 }
