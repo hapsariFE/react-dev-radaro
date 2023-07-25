@@ -144,6 +144,10 @@ class RowTemplate1(RowTemplate1Template):
       # Now refresh the page
     self.refresh_data_bindings()
 
+  def update_item(self, **event_args):
+    watch_list = self.watch.checked
+    row_id=self.item['id']
+    anvil.server.call('update_item',row_id,watch_list)
 
 
 

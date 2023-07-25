@@ -79,4 +79,5 @@ components:
   name: watch
   layout_properties: {column: LDAFAU}
   data_bindings:
-  - {property: checked, code: 'self.item[''watch_list'']', writeback: true}
+  - {property: checked, code: 'self.item[''watch_list'']', writeback: false}
+  event_bindings: {change: update_item}

@@ -284,3 +284,13 @@ def search_webhook(query):
       or query in x['customer_name'].lower() 
     ]
   return result
+
+@anvil.server.callable
+def update_item(row_id,watch_list):
+  watch_list = watch_list
+  row_id=row_id
+  row=app_tables.webhook.get(id=row_id)  
+  #job_id=article
+    #if app_tables.webhook.has_row(article):
+  row['watch_list']=watch_list
+  #app_tables.webhook.update(row_id,watch_list)
