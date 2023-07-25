@@ -11,7 +11,7 @@ components:
   layout_properties: {slot: filterpanel}
   components:
   - type: GridPanel
-    properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
+    properties: {spacing_above: small, spacing_below: none, background: '', foreground: '',
       border: 1px, visible: true, role: null, tooltip: ''}
     layout_properties:
       col_widths: {}
@@ -395,7 +395,7 @@ components:
       name: button_1
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: small,
+    wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: column_panel_2
   layout_properties: {slot: default}
