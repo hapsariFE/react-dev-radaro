@@ -385,12 +385,27 @@ components:
         background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 4, width: 146.828}
       name: label_3
+    - type: CheckBox
+      properties: {role: switch-rounded, align: right, tooltip: '', border: '', enabled: true,
+        foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true,
+        text: '', font_size: 20, font: '', spacing_above: none, spacing_below: small,
+        italic: false, background: '', bold: false, checked: false, underline: false}
+      name: watch_list
+      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 6, width: 15.2188}
+      event_bindings: {change: filter_change}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: Show watch list, font_size: 12, font: '', spacing_above: medium,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 7, width: 60.4375}
+      name: label_3_copy
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: false, text: Search, font_size: 12, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: 'fa:search'}
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 3, width: 146.828}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 146.828}
       event_bindings: {click: filter_change}
       name: button_1
 - type: ColumnPanel

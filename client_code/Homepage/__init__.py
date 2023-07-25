@@ -42,6 +42,7 @@ class Homepage(HomepageTemplate):
     merchant_name = None
     searchText = None
     resolvedStatus = False
+    watch = False
 
 
 
