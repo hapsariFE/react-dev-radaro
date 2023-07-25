@@ -1231,7 +1231,8 @@ div.plot-container.plotly svg.main-svg {
 }
 
 .collapsible:after {
-  content: '\002B';
+  /*content: '\002B';*/
+  content: '\142F';
   color: white;
   font-weight: bold;
   float: right;
@@ -1239,7 +1240,8 @@ div.plot-container.plotly svg.main-svg {
 }
 
 .active:after {
-  content: "\2212";
+  /*content: "\2212";*/
+  content: "\1431";
 }
 
 .filterpanel {
