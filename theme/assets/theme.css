@@ -9,6 +9,7 @@
 }
 html, structure {
   max-width: 1440px;
+  text-align: center;
   display: flex;
   justify-content: center;
     }
@@ -18,6 +19,8 @@ html, structure {
   font-size: 18px;
   outline: 1px dotted;
   padding: 16px;
+  display: flex;
+  justify-content: center;
   text-align: center;
 }
 
@@ -405,19 +408,24 @@ color: %color:On Primary Container%;
 .content {
   flex: 1;
   overflow-x: hidden;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+
 }
 
 /* Components: App Bar */
 .app-bar {
   min-height: 56px;
   padding: 0 16px 0 72px;
-  position: fixed;
-  width: 100%;
-  
+  max-width: 1440px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
   line-height: 40px;
   font-size: 20px;
 
-  background-color: %color:Surface%;
+  background-color: %color:Background%;
   transition: background-color 250ms;
   -webkit-transition: background-color 250ms;
   -moz-transition: background-color 250ms;
@@ -425,24 +433,24 @@ color: %color:On Primary Container%;
   
   z-index: 1;
 }
-
+/*
 .app-bar.scrolled {
-  background: linear-gradient(0deg, %color:Primary Overlay 2%, %color:Primary Overlay 2%), %color:Background%;
+  background: %color:Background%;
   transition: background 250ms;
   -webkit-transition: background 250ms;
   -moz-transition: background 250ms;
   -o-transition: background 250ms;
 }
-
+*/
 .app-bar .anvil-component {
   margin-top: 0;
   margin-bottom: 0;
 }
 
 .app-bar > .sidebar-toggle { display:block; float:left;  margin-left: -61px; }
-.app-bar > .top-left-btn { float: left; margin-left: -60px; margin-right: -40px; }
-.app-bar > .title { float: left; }
-.app-bar > .title > .placeholder { outline: 1px dotted; padding-left: 16px; padding-right: 16px; margin: 8px 8px 0; display:none; }
+.app-bar > .top-left-btn { float: left; } /*margin-left: -60px; margin-right: -40px; }*/
+.app-bar > .title { float: center; width: 100%}
+/*.app-bar > .title > .placeholder { outline: 1px dotted; padding-left: 16px; padding-right: 16px; margin: 8px 8px 0; display:none; }*/
 .app-bar > .app-bar-nav { float: right; font-weight: normal; }
 .app-bar > .app-bar-nav .placeholder { margin-top: 8px; padding: 0 8px; }
 .anvil-highlight .app-bar > .app-bar-nav .placeholder { outline: 1px dotted #ccc; }
@@ -613,6 +621,7 @@ button.close > span, button.close {
   border-radius: 25px;
   background-color: %color:On Primary%;
   border: solid 1px %color:Outline%;
+
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 
   text-shadow: none;
@@ -1211,6 +1220,7 @@ div.plot-container.plotly svg.main-svg {
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 
 .active, .collapsible:hover {
