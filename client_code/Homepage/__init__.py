@@ -42,6 +42,7 @@ class Homepage(HomepageTemplate):
     merchant_name = None
     searchText = None
     resolvedStatus = False
+    watch = False
 
 
 
@@ -74,7 +75,7 @@ class Homepage(HomepageTemplate):
     self.end_date_picker.date = endDate
     #print(self.start_date_picker.date)
     #print("test2")
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
     
     #self.refresh_action()
   
@@ -104,12 +105,12 @@ class Homepage(HomepageTemplate):
    # self.refresh_list()
     #alert("You changed the date")
 
-  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus):
+  def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
      #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    self.mainpage_1.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
+    self.mainpage_1.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
 
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
@@ -135,6 +136,7 @@ class Homepage(HomepageTemplate):
     assigned_to = self.dd_assigned.selected_value
     searchText = self.text_box_search.text
     resolvedStatus = self.resolved_checkbox.checked
+    watch = self.watch_list.checked
     if searchText is not "":
       #print(searchText == "")
       self.clear_icon.visible = True
@@ -142,7 +144,7 @@ class Homepage(HomepageTemplate):
     #print(jobValue)
     #print(startDate)
     #print(endDate)
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
     #alert("You changed the filter")
   
   def handle_custom_event(self,record,assign, **event_args):
@@ -191,7 +193,7 @@ class Homepage(HomepageTemplate):
       escStatus = app_tables.escalation_status.get(name="Resolved")
     else:
       escStatus = self.dd_esc_status.selected_value
-    self.mainpage_1.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus)
+    self.mainpage_1.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus,watch)
 
 
   def filter_display(self, **event_args):

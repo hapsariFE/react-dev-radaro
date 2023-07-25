@@ -44,7 +44,7 @@ a>.anvil-component-icon.right_edge-icon,
     padding: 8px;
 }
 .checkbox label, .radio label {
-    padding-top: 8px; padding-right: 8px; padding-bottom: 8px;
+    padding-top: 2px; padding-right: 8px; padding-bottom: 8px;
 }
 
 /*TODO: see if this spacing stuff needs to be changed*/

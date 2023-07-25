@@ -59,7 +59,7 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus):
+def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
@@ -97,6 +97,9 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 
   if escType != None:
     filter_dict['escalation_type'] = escType
+
+  if watch is True :
+    filter_dict['watch_list'] = True
 
   if escStatus != None:
   #  filter_dict['latest_status'] = escStatus
@@ -284,3 +287,13 @@ def search_webhook(query):
       or query in x['customer_name'].lower() 
     ]
   return result
+
+@anvil.server.callable
+def update_item(row_id,watch_list):
+  watch_list = watch_list
+  row_id=row_id
+  row=app_tables.webhook.get(id=row_id)  
+  #job_id=article
+    #if app_tables.webhook.has_row(article):
+  row['watch_list']=watch_list
+  #app_tables.webhook.update(row_id,watch_list)
