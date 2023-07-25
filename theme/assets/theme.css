@@ -406,11 +406,13 @@ color: %color:On Primary Container%;
 }
 
 .content {
-  flex: 1;
+  /*flex: 1;
+  display: flex;*/
   overflow-x: hidden;
   text-align: center;
   justify-content: center;
   align-items: center;
+  width:100%;
 
 }
 
