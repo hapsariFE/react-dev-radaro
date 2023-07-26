@@ -1281,5 +1281,6 @@ div.plot-container.plotly svg.main-svg {
 
 .active:after {
 	transform: rotate(-45deg);
+  vertical-align: bottom;
 }
 
