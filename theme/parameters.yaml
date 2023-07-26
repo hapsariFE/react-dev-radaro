@@ -41,6 +41,7 @@ roles:
   components: [CheckBox]
 - name: switch-rounded
   components: [CheckBox]
+- {name: star-button}
 color_scheme:
   preset_groups:
   - name: Colour Scheme

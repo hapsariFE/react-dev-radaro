@@ -6,7 +6,7 @@ container:
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: Link
-  properties: {col_widths: '{}'}
+  properties: {col_widths: '{"OYYRAS":30}'}
   name: link_1
   layout_properties: {column: YBLVEX}
   event_bindings: {click: jobreport_click}

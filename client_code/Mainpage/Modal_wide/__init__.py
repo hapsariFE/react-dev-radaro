@@ -14,9 +14,10 @@ class Modal_wide(Modal_wideTemplate):
     # Set Form properties and Data Bindings.
     self.esc_status = Data.esc_status
     self.assigned = ""
-
+    
     self.init_components(**properties)
     #print("------")
+    # Any code you write here will run before the form opens.
 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
@@ -25,8 +26,11 @@ class Modal_wide(Modal_wideTemplate):
     actionData = anvil.server.call('get_action',selectedRow)
     self.action_panelwide.items = actionData
     self.assigned = assignList
+    if self.item['watch_list'] == False:
+      self.favourite.source = "_/theme/Star%201.png"
+    else:
+      self.favourite.source= "_/theme/Star%20filled.png"
     self.refresh_data_bindings()
-    # Any code you write here will run before the form opens.
 
 
   def submit_button_click(self, **event_args):
@@ -67,3 +71,18 @@ class Modal_wide(Modal_wideTemplate):
     """This method is called when the button is clicked"""
    
     webbrowser.open(self.item['job_report']) 
+
+  def update_item(self, **event_args):
+    watch_list = self.item['watch_list']
+    print(watch_list)
+    if watch_list == False:
+      watch_list = True
+      self.favourite.source= "_/theme/Star%20filled.png"
+      self.refresh_data_bindings()
+    else:
+      watch_list = False
+      self.favourite.source = "_/theme/Star%201.png"
+    row_id=self.item['id']
+    anvil.server.call('update_item',row_id,watch_list)
+    print(watch_list)
+    self.refresh_data_bindings()
