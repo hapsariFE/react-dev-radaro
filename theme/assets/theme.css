@@ -97,7 +97,7 @@ a>.anvil-component-icon.right_edge-icon,
   margin-right: 12px;
 }
 
-.flow-panel.flow-spacing-huge > .flow-panel-gutter { margin: 0 -20px; }
+.flow-panel.flow-spacing-huge > .flow-panel-gutter { margin: 0 -20px 20px -20px; }
 .flow-panel.flow-spacing-huge > .flow-panel-gutter > .flow-panel-item{ 
   margin-left: 20px;
   margin-right: 20px;
@@ -291,7 +291,7 @@ color: %color:On Primary Container%;
 .nav-holder .left-nav, .left-nav-placeholder {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(0deg, %color:Primary Overlay 1%, %color:Primary Overlay 1%), %color:Background%;
+  background: linear-gradient(0deg, %color:Primary Overlay 1%, %color:Primary Overlay 1%), %color:Header%;
 /*   border-right: 1px solid #e0e0e0; */
   font-size: 14px;
   font-weight: 500;
@@ -420,7 +420,7 @@ color: %color:On Primary Container%;
 /* Components: App Bar */
 .app-bar {
   min-height: 56px;
-  padding: 0 16px 0 72px;
+  padding: 0 16px 0px 72px;
   max-width: 1440px;
   text-align: center;
   display: flex;
@@ -428,7 +428,7 @@ color: %color:On Primary Container%;
   line-height: 40px;
   font-size: 20px;
 
-  background-color: %color:Background%;
+  background-color: %color:Header%;
   transition: background-color 250ms;
   -webkit-transition: background-color 250ms;
   -moz-transition: background-color 250ms;
@@ -777,10 +777,13 @@ button.close > span, button.close {
 
 .anvil-role-elevated-card {
   overflow: hidden;
-  border-radius: 7px;
+  border-radius: 30px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   background-color: %color:Background%;
   /* 2dp */  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
-  padding: 15px;
+  padding: 0px 5px 5px 15px;
 }
 
 .anvil-role-tonal-card {

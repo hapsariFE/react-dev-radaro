@@ -19,7 +19,7 @@ package_name: Intraday_Dashboard_v2
 allow_embedding: false
 name: Intraday Dashboard v2
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null}
-metadata: {logo_img: 'asset:R.jpg'}
+metadata: {logo_img: 'asset:RadaroLogo_BlackHigh.png'}
 startup_form: null
 db_schema:
   escalation_status:

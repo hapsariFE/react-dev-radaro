@@ -327,3 +327,4 @@ color_scheme:
   - {name: Filter Border, color: '#e6e6e6'}
   - {name: Filter Font, color: '#999999'}
   - {name: Font, color: '#262626'}
+  - {name: Header, color: '#fafafa'}
