@@ -298,3 +298,54 @@ def update_item(row_id,watch_list):
   row['watch_list']=watch_list
   #app_tables.webhook.update(row_id,watch_list)
 
+@tables.in_transaction
+def get_next_value_in_sequence():
+  row = int(app_tables.webhook.search(tables.order_by("id", ascending=False))[0]['id'])
+  
+  row += 1
+  return row
+
+@anvil.server.callable
+def manual_import(file):
+  with anvil.media.TempFile(file) as file_name:
+    if file.content_type == 'text/csv':
+      df = pd.read_csv(file_name)
+    else:
+      df = pd.read_excel(file_name)
+
+    app_tables.import_test.delete_all_rows()
+    df = df.replace({pd.np.nan: None})
+    df = df.drop(['external_job_id', 'manager_name', 'manager_email', 'manager_phone','driver_phone','total_job_time', 'time_at_job', 'time_inside_geofence', 'geofence_entered_at','pickup_address', 'pickup_address_2', 'pickup_name', 'pickup_email', 'pickup_phone', 'pickup_before_date', 'pickup_geofence_entered_at', 'time_at_pickup', 'pickup_after_date'], axis=1)
+    #print(df['customer_rating'])
+    counter = get_next_value_in_sequence()
+    df= df.loc[df['customer_rating'].isin([1,2,3])]
+    for d in df.to_dict(orient="records"):
+      # d is now a dict of {columnname -> value} for this row
+      # We use Python's **kwargs syntax to pass the whole dict as
+      # keyword arguments
+     # print(d['order_status'])
+     # print(*d)
+      app_tables.webhook.add_row(
+        job_id = str(d['order_id']),
+      id= str(counter),
+      customer_name = d['customer_name'],
+      completion_code_id =str(d['completion_codes']),
+      date_created = datetime.now(),
+      last_action_date =datetime.now(),
+      job_reference = d['order_title'],
+      webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
+      job_status = app_tables.job_status.get(sysName= d['order_status']),
+      job_report = d['full_report_url'],
+      customer_rating= str(d['customer_rating']),
+      escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
+      latest_assignee = None,
+      latest_status = app_tables.escalation_status.get(name= "New"))
+      app_tables.action_log.add_row(
+        assign_to=None,
+        user=app_tables.users.get(name= "System"),
+        description="CSV Import",
+        escalation_id=app_tables.webhook.get(id= str(counter)),
+        job_id=app_tables.webhook.get(id= str(counter)),
+        status = app_tables.escalation_status.get(name= "New"),
+        created_date=datetime.now())
+      counter += 1
