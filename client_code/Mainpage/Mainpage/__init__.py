@@ -51,7 +51,7 @@ class Mainpage(MainpageTemplate):
     anvil.users.login_with_form()
     currentUser=anvil.users.get_user()
     my_media = anvil.URLMedia(currentUser['Logo'])
-    self.image_2.source = my_media
+    #self.image_2.source = my_media
     self.refresh_data_bindings()
     #print("test1")
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
