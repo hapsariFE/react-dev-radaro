@@ -49,7 +49,8 @@ components:
   name: label_5
   layout_properties: {column: DCIFYE}
   data_bindings:
-  - {property: text, code: 'self.item[''latest_assignee''][''name'']'}
+  - {property: text, code: 'self.item[''latest_assignee''][''name''] if self.item[''latest_assignee'']
+      else ''---'''}
 - type: Link
   properties: {col_widths: '{}'}
   name: link_2
