@@ -145,6 +145,8 @@ color: %color:On Primary Container%;
   font-size: 32px;
   line-height: 40px;
   font-weight: 400;
+  padding-top: 10px; 
+  padding-bottom: 4px;
 }
 
 .anvil-role-title {
