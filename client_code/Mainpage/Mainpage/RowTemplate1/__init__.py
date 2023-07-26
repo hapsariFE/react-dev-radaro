@@ -156,7 +156,6 @@ class RowTemplate1(RowTemplate1Template):
   def update_item2(self, **event_args):
     """This method is called when the link is clicked"""
     watch_list = self.item['watch_list']
-    print(watch_list)
     if watch_list == False:
       watch_list = True
       self.favourite.source= "_/theme/Star%20filled.png"
@@ -166,7 +165,6 @@ class RowTemplate1(RowTemplate1Template):
       self.favourite.source = "_/theme/Star%20outline.png"
     row_id=self.item['id']
     anvil.server.call('update_item',row_id,watch_list)
-    print(watch_list)
     self.refresh_data_bindings()
 
 
