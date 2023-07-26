@@ -27,7 +27,7 @@ class Modal_wide(Modal_wideTemplate):
     self.action_panelwide.items = actionData
     self.assigned = assignList
     if self.item['watch_list'] == False:
-      self.favourite.source = "_/theme/Star%201.png"
+      self.favourite.source = "_/theme/Star%20outline.png"
     else:
       self.favourite.source= "_/theme/Star%20filled.png"
     self.refresh_data_bindings()
@@ -81,7 +81,7 @@ class Modal_wide(Modal_wideTemplate):
       self.refresh_data_bindings()
     else:
       watch_list = False
-      self.favourite.source = "_/theme/Star%201.png"
+      self.favourite.source = "_/theme/Star%20outline.png"
     row_id=self.item['id']
     anvil.server.call('update_item',row_id,watch_list)
     print(watch_list)

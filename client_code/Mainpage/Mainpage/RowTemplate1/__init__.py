@@ -18,7 +18,7 @@ class RowTemplate1(RowTemplate1Template):
     #assign = None
     #status = None
     #description = ""
-    
+
     self.init_components(**properties)
     #print(self.item['latest_status']['name'])
     #if self.item['job_status']['name'] == "Failed":
@@ -29,7 +29,11 @@ class RowTemplate1(RowTemplate1Template):
      # self.label_1.background = "Black"
       #self.refresh_data_bindings()
     #  self.label_1.background = "Black"
-      
+    if self.item['watch_list'] == False:
+      self.favourite.source = "_/theme/Star%20outline.png"
+    else:
+      self.favourite.source= "_/theme/Star%20filled.png"
+    self.refresh_data_bindings()
 
     #elif 
       
@@ -148,7 +152,24 @@ class RowTemplate1(RowTemplate1Template):
     watch_list = self.watch.checked
     row_id=self.item['id']
     anvil.server.call('update_item',row_id,watch_list)
+
+  def update_item2(self, **event_args):
+    """This method is called when the link is clicked"""
+    watch_list = self.item['watch_list']
+    print(watch_list)
+    if watch_list == False:
+      watch_list = True
+      self.favourite.source= "_/theme/Star%20filled.png"
+      self.refresh_data_bindings()
+    else:
+      watch_list = False
+      self.favourite.source = "_/theme/Star%20outline.png"
+    row_id=self.item['id']
+    anvil.server.call('update_item',row_id,watch_list)
+    print(watch_list)
     self.refresh_data_bindings()
+
+
 
 
 
