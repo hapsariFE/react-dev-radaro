@@ -22,7 +22,7 @@ class Mainpage(MainpageTemplate):
     self.job_status = Data.job_status
     self.merchant_name = ""
     startDate= (date.today() - timedelta(days=60))
-    endDate = date.today()
+    endDate = (date.today() + timedelta(days=1))
     escType= None
     self.assigned = ""
     assigned_to = None
