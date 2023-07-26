@@ -11,7 +11,8 @@ components:
   name: label_2
   layout_properties: {column: VEQFME}
   data_bindings:
-  - {property: text, code: 'self.item[''assign_to''][''name'']'}
+  - {property: text, code: 'self.item[''assign_to''][''name''] if self.item[''assign_to'']
+      else ''---'''}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
     text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
