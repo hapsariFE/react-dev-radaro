@@ -55,7 +55,8 @@ components:
       name: label_12
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 7}
       data_bindings:
-      - {property: text, code: 'self.item[''latest_assignee''][''name'']'}
+      - {property: text, code: 'self.item[''latest_assignee''][''name''] if self.item[''latest_assignee'']
+          else ''---'''}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Job Status :', font_size: 14, font: '', spacing_above: small,
