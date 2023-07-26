@@ -27,9 +27,9 @@ import anvil.server
 #@authenticated_callable
 #def get_users():
 #  return app_tables.users.search()
-@anvil.server.http_endpoint("/users/list")
-def get_user_list():
-  return [u['email'] for u in app_tables.users.search()]
+#@anvil.server.http_endpoint("/users/list")
+#def get_user_list():
+#  return [u['email'] for u in app_tables.users.search()]
 
 @anvil.server.callable
 def get_merchant_list():
@@ -135,7 +135,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     #print(related_rows)
   values = [row for row in related_rows]
   if merchant_name is None and assigned_to is None :
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_assignee=q.any_of(*defaultassign),latest_status=q.any_of(*escStatus))
+    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
 
   elif merchant_name is None and assigned_to is not None :
     custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
@@ -143,7 +143,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   elif merchant_name is not None and assigned_to is None :
     merchant_row = app_tables.merchant.search(name=merchant_name)
     #print(merchant_row)
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_assignee=q.any_of(*defaultassign),latest_status=q.any_of(*escStatus))
+    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
 
   else:
     #filter_dict['webhook_merchant_link'] = merchant_name
@@ -276,17 +276,17 @@ def import_excel_data(file):
 
 import_excel_data("anvil_upload.xlsx")
 """
-@anvil.server.callable
-def search_webhook(query):
-  result = app_tables.webhook.search()
-  if query:
-    result = [
-      x for x in result
-      if query in x['job_id'].lower()
-      or query in x['job_reference'].lower()
-      or query in x['customer_name'].lower() 
-    ]
-  return result
+#@anvil.server.callable
+#def search_webhook(query):
+#  result = app_tables.webhook.search()
+#  if query:
+#    result = [
+#      x for x in result
+#      if query in x['job_id'].lower()
+#      or query in x['job_reference'].lower()
+#     or query in x['customer_name'].lower() 
+ #   ]
+#  return result
 
 @anvil.server.callable
 def update_item(row_id,watch_list):
@@ -297,3 +297,4 @@ def update_item(row_id,watch_list):
     #if app_tables.webhook.has_row(article):
   row['watch_list']=watch_list
   #app_tables.webhook.update(row_id,watch_list)
+
