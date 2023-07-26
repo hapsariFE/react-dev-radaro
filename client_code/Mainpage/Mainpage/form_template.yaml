@@ -474,3 +474,8 @@ components:
         background: ''}
       layout_properties: {}
       name: repeating_panel_1
+  - type: FileLoader
+    properties: {}
+    name: file_loader_1
+    layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0}
+    event_bindings: {change: file_loader_1_change}

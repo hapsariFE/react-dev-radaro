@@ -202,6 +202,11 @@ class Mainpage(MainpageTemplate):
       self.grid_panel_1.visible = True
       self.button_2.icon = 'fa:angle-up'
 
+  def file_loader_1_change(self, file, **event_args):
+    """This method is called when a new file is loaded into this FileLoader"""
+    anvil.server.call('manual_import',file)
+    self.filter_change()
+    self.refresh_data_bindings()
     
     
 
