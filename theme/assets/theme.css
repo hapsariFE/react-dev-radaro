@@ -1246,12 +1246,28 @@ div.plot-container.plotly svg.main-svg {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
-  
 }
 
 .collapsible: {
 	border-style: solid;
-	border-width: 0.25em 0.25em 0 0;
+	border-width: 0.15em 0.15em 0 0;
+	content: '';
+	display: inline-block;
+	height: 1.0em;
+	left: 0.15em;
+	position: relative;
+	top: 0.15em;
+	vertical-align: top;
+	width: 1.0em;
+}
+
+.active, .collapsible:hover {
+  color: #555;
+}
+
+.collapsible:after {
+	border-style: solid;
+	border-width: 0.15em 0.15em 0 0;
 	content: '';
 	display: inline-block;
 	height: 1.0em;
@@ -1263,21 +1279,7 @@ div.plot-container.plotly svg.main-svg {
 	width: 1.0em;
 }
 
-.active, .collapsible:hover {
-  color: #555;
-}
-
-.active, .collapsible:after {
-	border-style: solid;
-	border-width: 0.25em 0.25em 0 0;
-	content: '';
-	display: inline-block;
-	height: 1.0em;
-	left: 0.15em;
-	position: relative;
-	top: 0.15em;
+.active:after {
 	transform: rotate(-45deg);
-	vertical-align: top;
-	width: 1.0em;
 }
 
