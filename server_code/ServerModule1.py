@@ -351,7 +351,8 @@ def manual_import(file):
       date_delivered=d['completed_at'],
       job_reference2=d['order_title_2'],
       job_reference3=d['order_title_3'],
-      address=d['deliver_address'])
+      address=d['deliver_address'],
+      watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),
@@ -391,7 +392,8 @@ def manual_import(file):
       date_delivered=d['completed_at'],
       job_reference2=d['order_title_2'],
       job_reference3=d['order_title_3'],
-      address=d['deliver_address'])
+      address=d['deliver_address'],
+      watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),

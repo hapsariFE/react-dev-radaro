@@ -134,6 +134,7 @@ class Mainpage(MainpageTemplate):
     assigned_to = self.dd_assigned.selected_value
     searchText = self.text_box_search.text
     resolvedStatus = self.resolved_checkbox.checked
+    #watch = False
 
     if searchText is not "":
       #print(searchText == "")
