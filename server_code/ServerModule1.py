@@ -364,7 +364,8 @@ def manual_import(file):
       counter += 1
 
     counter = get_next_value_in_sequence()
-    compdf= compdf.loc[compdf['completion_codes'].isin([501,2,3])]
+    compdf = compdf.
+    compdf= compdf.loc[compdf['completion_codes'].str.contains("501",)]
     compdf['completed_at'] = pd.to_datetime(compdf['completed_at'])
     for d in compdf.to_dict(orient="records"):
       # d is now a dict of {columnname -> value} for this row
