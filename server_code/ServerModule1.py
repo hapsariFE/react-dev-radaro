@@ -156,7 +156,11 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
       x for x in custTable
       if searchText.lower() in x['job_id'].lower()
       or searchText.lower() in x['job_reference'].lower()
-      or searchText.lower() in x['customer_name'].lower() 
+      or searchText.lower() in x['customer_name'].lower()
+      #or searchText.lower() in x['mobile_number'].lower()
+      #or searchText.lower() in x['sub_brand'].lower()
+      
+      
     ]
     
   #custTable = custTable

@@ -262,5 +262,14 @@ db_schema:
     - name: watch_list
       admin_ui: {width: 200}
       type: bool
+    - name: sub_brand
+      admin_ui: {order: 15, width: 200}
+      type: string
+    - name: mobile_number
+      admin_ui: {order: 16, width: 200}
+      type: string
+    - name: date_delivered
+      admin_ui: {order: 17, width: 200}
+      type: datetime
 uplink_visible: true
 renamed: true
