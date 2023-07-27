@@ -364,8 +364,9 @@ def manual_import(file):
       counter += 1
 
     counter = get_next_value_in_sequence()
-    compdf = compdf.
-    compdf= compdf.loc[compdf['completion_codes'].str.contains("501",)]
+    #compdf = compdf.
+    compdf2 = compdf
+    compdf= compdf.loc[compdf['completion_codes'].str.contains("501",na=False)]
     compdf['completed_at'] = pd.to_datetime(compdf['completed_at'])
     for d in compdf.to_dict(orient="records"):
       # d is now a dict of {columnname -> value} for this row
@@ -385,7 +386,90 @@ def manual_import(file):
       job_status = app_tables.job_status.get(sysName= d['order_status']),
       job_report = d['full_report_url'],
       customer_rating= str(d['customer_rating']),
-      escalation_type = app_tables.escalation_type.get(name= "Customer not home"),
+      escalation_type = app_tables.escalation_type.get(name= "Customer Not home"),
+      latest_assignee = None,
+      latest_status = app_tables.escalation_status.get(name= "New"),
+      sub_brand=d['subbrand_name'],
+      mobile_number=str(d['customer_phone']),
+      date_delivered=d['completed_at'],
+      job_reference2=d['order_title_2'],
+      job_reference3=d['order_title_3'],
+      address=d['deliver_address'],
+      watch_list=False)
+      app_tables.action_log.add_row(
+        assign_to=None,
+        user=app_tables.users.get(name= "System"),
+        description="CSV Import",
+        escalation_id=app_tables.webhook.get(id= str(counter)),
+        job_id=app_tables.webhook.get(id= str(counter)),
+        status = app_tables.escalation_status.get(name= "New"),
+        created_date=datetime.now())
+      counter += 1
+
+    counter = get_next_value_in_sequence()
+    compdf3 = compdf2
+    compdf2= compdf2.loc[compdf2['completion_codes'].str.contains("502",na=False)]
+    compdf2['completed_at'] = pd.to_datetime(compdf2['completed_at'])
+    for d in compdf2.to_dict(orient="records"):
+      # d is now a dict of {columnname -> value} for this row
+      # We use Python's **kwargs syntax to pass the whole dict as
+      # keyword arguments
+     # print(d['order_status'])
+     # print(*d)
+      app_tables.webhook.add_row(
+        job_id = str(d['order_id']),
+      id= str(counter),
+      customer_name = d['customer_name'],
+      completion_code_id =str(d['completion_codes']),
+      date_created = datetime.now(),
+      last_action_date =datetime.now(),
+      job_reference = d['order_title'],
+      webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
+      job_status = app_tables.job_status.get(sysName= d['order_status']),
+      job_report = d['full_report_url'],
+      customer_rating= str(d['customer_rating']),
+      escalation_type = app_tables.escalation_type.get(name= "Customer Rejected Goods"),
+      latest_assignee = None,
+      latest_status = app_tables.escalation_status.get(name= "New"),
+      sub_brand=d['subbrand_name'],
+      mobile_number=str(d['customer_phone']),
+      date_delivered=d['completed_at'],
+      job_reference2=d['order_title_2'],
+      job_reference3=d['order_title_3'],
+      address=d['deliver_address'],
+      watch_list=False)
+      app_tables.action_log.add_row(
+        assign_to=None,
+        user=app_tables.users.get(name= "System"),
+        description="CSV Import",
+        escalation_id=app_tables.webhook.get(id= str(counter)),
+        job_id=app_tables.webhook.get(id= str(counter)),
+        status = app_tables.escalation_status.get(name= "New"),
+        created_date=datetime.now())
+      counter += 1
+      
+    counter = get_next_value_in_sequence()
+    compdf3= compdf3.loc[compdf3['completion_codes'].str.contains("202",na=False)]
+    compdf3['completed_at'] = pd.to_datetime(compdf3['completed_at'])
+    for d in compdf3.to_dict(orient="records"):
+      # d is now a dict of {columnname -> value} for this row
+      # We use Python's **kwargs syntax to pass the whole dict as
+      # keyword arguments
+     # print(d['order_status'])
+     # print(*d)
+      app_tables.webhook.add_row(
+        job_id = str(d['order_id']),
+      id= str(counter),
+      customer_name = d['customer_name'],
+      completion_code_id =str(d['completion_codes']),
+      date_created = datetime.now(),
+      last_action_date =datetime.now(),
+      job_reference = d['order_title'],
+      webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
+      job_status = app_tables.job_status.get(sysName= d['order_status']),
+      job_report = d['full_report_url'],
+      customer_rating= str(d['customer_rating']),
+      escalation_type = app_tables.escalation_type.get(name= "Up-Sell Service Opportunity"),
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
       sub_brand=d['subbrand_name'],

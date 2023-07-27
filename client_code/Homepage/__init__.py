@@ -131,7 +131,11 @@ class Homepage(HomepageTemplate):
     escType = self.dd_esc_type.selected_value
     escStatus = self.dd_esc_status.selected_value
     merchant_name = self.dd_merchant.selected_value
+    if self.start_date_picker.date is None:
+      self.start_date_picker.date= (date.today() - timedelta(days=60))
     startDate = self.start_date_picker.date
+    if self.end_date_picker.date is None:
+      self.end_date_picker.date =(date.today() - timedelta(days=60))
     endDate = self.end_date_picker.date
     assigned_to = self.dd_assigned.selected_value
     searchText = self.text_box_search.text
