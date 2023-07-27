@@ -470,7 +470,7 @@ components:
       enabled: true
       files: []
       foreground: ''
-      visible: false
+      visible: true
       text: Upload
       font_size: null
       font: ''
@@ -485,5 +485,5 @@ components:
       multiple: false
       icon: fa:upload
     name: file_loader_1
-    layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0, width: 1014}
+    layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0, width: 1013.98}
     event_bindings: {change: file_loader_1_change}
