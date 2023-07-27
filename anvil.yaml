@@ -271,5 +271,14 @@ db_schema:
     - name: date_delivered
       admin_ui: {order: 17, width: 200}
       type: datetime
+    - name: job_reference2
+      admin_ui: {order: 18, width: 200}
+      type: string
+    - name: job_reference3
+      admin_ui: {order: 19, width: 200}
+      type: string
+    - name: address
+      admin_ui: {order: 20, width: 200}
+      type: string
 uplink_visible: true
 renamed: true
