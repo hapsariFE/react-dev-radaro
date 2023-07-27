@@ -131,7 +131,11 @@ class Homepage(HomepageTemplate):
     escType = self.dd_esc_type.selected_value
     escStatus = self.dd_esc_status.selected_value
     merchant_name = self.dd_merchant.selected_value
+    if self.start_date_picker.date is None:
+      self.start_date_picker.date= (date.today() - timedelta(days=60))
     startDate = self.start_date_picker.date
+    if self.end_date_picker.date is None:
+      self.end_date_picker.date =(date.today() - timedelta(days=60))
     endDate = self.end_date_picker.date
     assigned_to = self.dd_assigned.selected_value
     searchText = self.text_box_search.text
@@ -205,4 +209,8 @@ class Homepage(HomepageTemplate):
       self.button_2.icon = 'fa:angle-up'
 
     
-    
+  def file_loader_1_change(self, file, **event_args):
+    """This method is called when a new file is loaded into this FileLoader"""
+    anvil.server.call('manual_import',file)
+    self.filter_change()
+    self.refresh_data_bindings()    

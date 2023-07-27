@@ -459,31 +459,3 @@ components:
         background: ''}
       layout_properties: {}
       name: repeating_panel_1
-  - type: FileLoader
-    properties:
-      role: null
-      show_state: true
-      align: center
-      tooltip: ''
-      border: ''
-      file_types: null
-      enabled: true
-      files: []
-      foreground: ''
-      visible: false
-      text: Upload
-      font_size: null
-      font: ''
-      spacing_above: small
-      icon_align: left
-      spacing_below: small
-      italic: false
-      file: null
-      background: ''
-      bold: false
-      underline: false
-      multiple: false
-      icon: fa:upload
-    name: file_loader_1
-    layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0, width: 1014}
-    event_bindings: {change: file_loader_1_change}
