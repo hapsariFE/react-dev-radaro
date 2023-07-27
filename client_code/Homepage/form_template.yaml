@@ -347,10 +347,10 @@ components:
       event_bindings: {change: filter_change}
       name: dd_esc_type
     - type: ColumnPanel
-      properties: {role: null, tooltip: '', border: 1px solid, foreground: 'theme:Filter
+      properties: {role: outlined-card, tooltip: '', border: 1px solid, foreground: 'theme:Filter
           Border', visible: true, wrap_on: never, col_spacing: none, spacing_above: none,
         col_widths: '{"MVKOEY":65,"RDQTJH":15}', spacing_below: none, background: ''}
-      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 233.25}
+      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 182.5}
       name: searchbox
       components:
       - type: TextBox

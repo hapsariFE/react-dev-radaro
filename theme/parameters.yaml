@@ -20,7 +20,7 @@ roles:
 - {name: elevated-button, components: null, display_in_toolbox: false, title: Elevated Button}
 - {name: tonal-button, components: null, display_in_toolbox: false, title: Tonal Button}
 - name: outlined
-  components: [TextBox, TextArea, DatePicker, DropDown]
+  components: [TextBox, TextArea, DatePicker, DropDown, ColumnPanel]
   display_in_toolbox: true
   title: Outlined TextBox
 - name: display

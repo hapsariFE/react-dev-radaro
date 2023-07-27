@@ -774,7 +774,7 @@ button.close > span, button.close {
   border-radius: 7px;
   background-color: %color:Background%;
   border: solid 1px %color:Outline%;
-  padding: 15px;
+  /*padding: 15px;*/
 }
 
 .anvil-role-elevated-card {
