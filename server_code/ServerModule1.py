@@ -135,32 +135,33 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     #print(related_rows)
   values = [row for row in related_rows]
   if merchant_name is None and assigned_to is None :
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
+    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
 
   elif merchant_name is None and assigned_to is not None :
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
+    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
 
   elif merchant_name is not None and assigned_to is None :
     merchant_row = app_tables.merchant.search(name=merchant_name)
     #print(merchant_row)
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
+    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
 
   else:
     #filter_dict['webhook_merchant_link'] = merchant_name
     merchant_row = app_tables.merchant.search(name=merchant_name)
     #print(merchant_row)
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date"),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
+    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
 
   if searchText:
     custTable = [
       x for x in custTable
+
       if searchText.lower() in x['job_id'].lower()
       or searchText.lower() in x['job_reference'].lower()
       or searchText.lower() in x['customer_name'].lower()
-      #or searchText.lower() in x['mobile_number'].lower()
-      #or searchText.lower() in x['sub_brand'].lower()
-      
-      
+      or searchText.lower() in x['mobile_number'].lower()
+      or searchText.lower() in x['sub_brand'].lower()
+      or searchText.lower() in x['job_reference2'].lower()
+      or searchText.lower() in x['job_reference3'].lower()
     ]
     
   #custTable = custTable
