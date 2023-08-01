@@ -31,6 +31,11 @@ import anvil.server
 #def get_user_list():
 #  return [u['email'] for u in app_tables.users.search()]
 
+@anvil.server.http_endpoint('/incoming_msg')
+def incoming_msg(**kwargs): 
+  json = anvil.server.request.body_json
+  print(json)
+
 @anvil.server.callable
 def get_merchant_list():
   currentUser=anvil.users.get_user()
