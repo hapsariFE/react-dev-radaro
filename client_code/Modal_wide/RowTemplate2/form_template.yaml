@@ -1,0 +1,46 @@
+container:
+  type: DataRowPanel
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
+    visible: true, font_size: null, font: '', spacing_above: none, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false}
+components:
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_2
+  layout_properties: {column: VEQFME}
+  data_bindings:
+  - {property: text, code: 'self.item[''assign_to''][''name''] if self.item[''assign_to'']
+      else ''---'''}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_3
+  layout_properties: {column: MQEENE}
+  data_bindings:
+  - {property: text, code: 'self.item[''user''][''name'']'}
+- type: Label
+  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
+    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    italic: false, background: '', bold: false, underline: false, icon: ''}
+  name: label_4
+  layout_properties: {column: ZNGNTV}
+  data_bindings:
+  - {property: text, code: 'self.item[''created_date''].strftime("%d %b, %Y %H:%M")'}
+- type: ColumnPanel
+  properties: {role: tonal-card, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '', spacing_below: none,
+    background: ''}
+  name: outlined_card_1
+  layout_properties: {column: null}
+- type: Image
+  properties: {role: null, vertical_align: center, height: '25', tooltip: '', border: '',
+    foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
+    source: '', spacing_below: small, background: '', horizontal_align: left}
+  name: image_1
+  layout_properties: {column: VTUJFJ}
+  data_bindings:
+  - {property: source, code: 'self.item[''status''][''icon'']'}
+is_package: true

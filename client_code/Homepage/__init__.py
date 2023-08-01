@@ -56,8 +56,8 @@ class Homepage(HomepageTemplate):
     self.image_2.source = my_media
     self.refresh_data_bindings()
     #print("test1")
-    self.mainpage_1.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
-    self.mainpage_1.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
+    self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
+    self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     merchName = anvil.server.call('get_merchant_list')
     #print(merchant_name)
     self.merchant_name = merchName
@@ -110,7 +110,7 @@ class Homepage(HomepageTemplate):
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    self.mainpage_1.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
 
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
@@ -120,9 +120,9 @@ class Homepage(HomepageTemplate):
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
     anvil.users.logout()
-    self.mainpage_1.repeating_panel_1.items = None
+    self.repeating_panel_1.items = None
     self.refresh_data_bindings()
-    open_form('Mainpage.Mainpage')
+    open_form('Homepage')
 
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
@@ -197,7 +197,7 @@ class Homepage(HomepageTemplate):
       escStatus = app_tables.escalation_status.get(name="Resolved")
     else:
       escStatus = self.dd_esc_status.selected_value
-    self.mainpage_1.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus,watch)
+    self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,resolvedStatus,watch)
 
 
   def filter_display(self, **event_args):
