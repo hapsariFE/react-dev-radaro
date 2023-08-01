@@ -415,10 +415,54 @@ components:
   name: column_panel_2
   layout_properties: {slot: default}
   components:
-  - type: form:Mainpage.Mainpage
-    properties: {}
-    name: mainpage_1
-    layout_properties: {grid_position: 'FJRGJM,VMGVVQ', full_width_row: true}
+  - type: GridPanel
+    properties: {spacing_above: none, spacing_below: none, background: '', foreground: '',
+      border: '', visible: true, role: null, tooltip: ''}
+    name: grid_panel_2
+    layout_properties: {grid_position: 'AFYRBE,BAUDMP', full_width_row: true}
+    components:
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: LDAFAU, title: '', data_key: watch_list, $$hashKey: 'object:132614'}
+        - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393',
+          width: '120', expand: false}
+        - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395',
+          width: '120', expand: false}
+        - {id: HIBOCD, title: Job Status, data_key: job_status, $$hashKey: 'object:397',
+          width: '120'}
+        - {id: FREDFV, title: Escalation Type, data_key: escalation_type, $$hashKey: 'object:399',
+          width: '160'}
+        - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401',
+          width: '120'}
+        - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403',
+          width: '160'}
+        - {id: DCIFYE, title: Assigned To, data_key: assigned_to, $$hashKey: 'object:33580',
+          width: '120', expand: false}
+        - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405', width: '40'}
+        - {id: FUNZSD, title: '', data_key: comment_history, $$hashKey: 'object:18690',
+          width: '40'}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: none
+        spacing_below: none
+        background: ''
+      layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
+      name: data_grid_1
+      components:
+      - type: RepeatingPanel
+        properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
+          visible: true, spacing_above: none, spacing_below: none, item_template: Homepage.RowTemplate1,
+          background: ''}
+        layout_properties: {}
+        name: repeating_panel_1
 - type: FlowPanel
   properties: {role: null, spacing: huge, align: center, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}

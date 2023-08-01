@@ -7,13 +7,13 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ...jobreport import jobreport
 from ...Modal_wide import Modal_wide
-from ...Modal import Modal
+#from ...Modal import Modal
 import webbrowser
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
     #self.data = data
-    #self.orderSelectionRadio.set_event_handler("change", orderSelection_radio_clicked) 
+    #self.orderSelectionRadio.set_event_handler("change", orderSelection_radio_clicked)
     # Set Form properties and Data Bindings.
     #assign = None
     #status = None
@@ -35,20 +35,20 @@ class RowTemplate1(RowTemplate1Template):
       self.favourite.source= "_/theme/Star%20filled.png"
     self.refresh_data_bindings()
 
-    #elif 
-      
-      
+    #elif
+
+
     self.refresh_data_bindings()
     # Any code you write here will run before the form opens.
     #self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
-  
+
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
-   
-    webbrowser.open(self.item['job_report']) 
+
+    webbrowser.open(self.item['job_report'])
 
 
-  
+
 
   """
   def orderSelection_radio_clicked(self, **event_args):
@@ -64,7 +64,7 @@ class RowTemplate1(RowTemplate1Template):
     #print(atest)
     #print(*assignList)
     self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
-    
+
     #print(*actionData)
     #values = [row for row in actionData]
     #print(*values)
@@ -83,7 +83,7 @@ class RowTemplate1(RowTemplate1Template):
       title="Action Log",
       large=True,
    )
-""" 
+"""
   def comment_click(self, **event_args):
     """This method is called when the button is clicked"""
     #selectedRow = self.item
@@ -99,14 +99,14 @@ class RowTemplate1(RowTemplate1Template):
     record_copy = dict(self.item)
     #print(*self.item)
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
-    
+
     save_clicked = alert(
      content=Modal(item = self.item),
      title="Job ID : " + self.item["job_reference"],
      #large=True,
-     
 
-     buttons=[("Exit", False)], 
+
+     buttons=[("Exit", False)],
    )
 
     #if save_clicked:
@@ -131,14 +131,14 @@ class RowTemplate1(RowTemplate1Template):
     record_copy = dict(self.item)
     #print(*self.item)
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
-    
+
     save_clicked = alert(
      content=Modal_wide(item = self.item),
      title="Job ID : " + self.item["job_reference"],
      large=True,
-     
 
-     buttons=[("Exit", False)], 
+
+     buttons=[("Exit", False)],
    )
 
     #if save_clicked:
@@ -166,14 +166,3 @@ class RowTemplate1(RowTemplate1Template):
     row_id=self.item['id']
     anvil.server.call('update_item',row_id,watch_list)
     self.refresh_data_bindings()
-
-
-
-
-
-   
-
-    
-
-
-

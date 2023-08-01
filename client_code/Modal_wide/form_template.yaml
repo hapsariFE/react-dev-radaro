@@ -320,11 +320,10 @@ components:
       components:
       - type: RepeatingPanel
         properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-          visible: true, spacing_above: none, spacing_below: none, item_template: Mainpage.Modal_wide.RowTemplate2,
+          visible: true, spacing_above: none, spacing_below: none, item_template: Modal_wide.RowTemplate2,
           background: ''}
         name: action_panelwide
         layout_properties: {}
 is_package: true
 custom_component: true
-properties:
-- {name: prop, type: string, default_value: '', default_binding_prop: true}
+properties: []

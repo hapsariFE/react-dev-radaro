@@ -5,16 +5,17 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-from ... import Data
+#from ... import Data
+from ..Data import *
 from datetime import datetime, timedelta, date
 import webbrowser
 
 class Modal_wide(Modal_wideTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    self.esc_status = Data.esc_status
+    self.esc_status = esc_status
     self.assigned = ""
-    
+
     self.init_components(**properties)
     #print("------")
     # Any code you write here will run before the form opens.
@@ -69,8 +70,8 @@ class Modal_wide(Modal_wideTemplate):
 
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
-   
-    webbrowser.open(self.item['job_report']) 
+
+    webbrowser.open(self.item['job_report'])
 
   def update_item(self, **event_args):
     watch_list = self.item['watch_list']
