@@ -58,7 +58,7 @@ class Modal_wide(Modal_wideTemplate):
       #alert("Comment Submitted")
       self.refresh_data_bindings()
       self.clear_button_click()
-      Notification("Comment submitted!").show()
+      Notification("Your comment was submitted").show()
 
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -85,3 +85,36 @@ class Modal_wide(Modal_wideTemplate):
     row_id=self.item['id']
     anvil.server.call('update_item',row_id,watch_list)
     self.refresh_data_bindings()
+
+  def next_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    #selectedRow = self.item
+    #SelectedMerchant = self.item['webhook_merchant_link']
+    #print(*SelectedMerchant)
+    #assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    #actionData = anvil.server.call('get_action',selectedRow)
+    #print("------")
+    #print(list(assignList))
+    #atest = assignList['name']
+    #print(atest)
+    #print(*assignList)
+    record_copy = dict(self.item)
+    #print(*self.item)
+    #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
+
+    save_clicked = alert(
+     content=Modal_wide(item = self.item),
+     title="Job ID : " + self.item["job_reference"],
+     large=True,
+
+
+     buttons=[("Exit", False)],
+   )
+
+    #if save_clicked:
+      #anvil.server.call('add_comment', self.item, record_copy)
+      #self.refresh_data_bindings()
+    self.parent.raise_event('x-edit-article', article=self.item)
+      # Now refresh the page
+    self.refresh_data_bindings()
+
