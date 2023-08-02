@@ -38,7 +38,7 @@ class RowTemplate1(RowTemplate1Template):
     #elif
 
 
-    self.refresh_data_bindings()
+    #self.refresh_data_bindings()
     # Any code you write here will run before the form opens.
     #self.repeating_panel_1.set_event_handler('x-jstatus', self.refresh_list)
 
