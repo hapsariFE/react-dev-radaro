@@ -69,13 +69,14 @@ class Homepage(HomepageTemplate):
     #print(users)
     
     self.users = [(x['name'], x) for x in users]
+    self.refresh_data_bindings()
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
     #print(self.start_date_picker.date)
     #print("test2")
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    self.refresh_data_bindings()
+   
     #self.refresh_action()
   
   #def initialise_start_dates(self):
