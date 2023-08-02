@@ -56,7 +56,7 @@ class Homepage(HomepageTemplate):
     self.image_2.source = my_media
     self.refresh_data_bindings()
     #print("test1")
-    #self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
+    self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     merchName = anvil.server.call('get_merchant_list')
     #print(merchant_name)
@@ -76,8 +76,7 @@ class Homepage(HomepageTemplate):
     #print(self.start_date_picker.date)
     #print("test2")
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-   
-    #no change
+
     #self.refresh_action()
   
   #def initialise_start_dates(self):
@@ -112,7 +111,7 @@ class Homepage(HomepageTemplate):
     
     #print(**event_args)
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    self.refresh_data_bindings()
+    
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
@@ -152,11 +151,11 @@ class Homepage(HomepageTemplate):
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
     #alert("You changed the filter")
   
-  #def handle_custom_event(self,record,assign, **event_args):
+  def handle_custom_event(self,record,assign, **event_args):
    
-   #self.action_panel.items = record
-   #self.assigned = assign
-   #self.refresh_data_bindings()
+   self.action_panel.items = record
+   self.assigned = assign
+   self.refresh_data_bindings()
 
   def sorting_function(self, column_name, sorting_way):
     """function used for sorting in combination with headers""" 
