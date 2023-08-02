@@ -101,10 +101,10 @@ class Modal_wide(Modal_wideTemplate):
     #job_status = [(x['name'], x) for x in app_tables.job_status.search()]
     #[(x['name'], x) for x in users]
     record_copy = dict(self.item)
-    record_copy2 = dict(self.items)
+    
     print(*self.item)
     print(record_copy)
-    print(record_copy2)
+    
     
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
