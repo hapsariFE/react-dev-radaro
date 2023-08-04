@@ -269,6 +269,27 @@ def add_comment(article, article_dict, description, status, created_date, assign
   #  assign_to=x_assign
  # )
 
+@anvil.server.callable
+def new(job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date):
+  merchant_row = app_tables.merchant.get(name=merchant_name) 
+  status_row = app_tables.job_status.get(name='Failed') 
+  counter = get_next_value_in_sequence()
+  row = app_tables.webhook.add_row(
+     job_id = job,
+     customer_name = customer,
+     mobile_number = mobile,
+     webhook_merchant_link = merchant_row,
+     sub_brand = subbrand,
+     id = str(counter),
+     latest_status = esc_status,
+     job_status = status_row,
+     escalation_type = esc_type,
+     date_created = date_created,
+     last_action_date = last_action_date
+   )
+
+
+
 """
 @anvil.server.callable
 def import_excel_data(file):

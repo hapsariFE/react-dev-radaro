@@ -7,7 +7,7 @@ import anvil.tables.query as q
 from ..Data import *
 from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
-
+from ..New import *
 
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
@@ -214,3 +214,13 @@ class Homepage(HomepageTemplate):
     anvil.server.call('manual_import',file)
     self.filter_change()
     self.refresh_data_bindings()    
+
+  def new_escalation(self, **event_args):
+    """This method is called when the button is clicked"""
+    save_clicked = alert(
+     content=New(),
+     title="Create a new escalation",
+     large=False,
+     buttons=[("Exit", False)],
+   )
+    
