@@ -220,7 +220,7 @@ class Homepage(HomepageTemplate):
     save_clicked = alert(
      content=New(),
      title="Create a new escalation",
-     large=True,
+     large=False,
      buttons=[("Exit", False)],
    )
 
