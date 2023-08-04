@@ -270,13 +270,16 @@ def add_comment(article, article_dict, description, status, created_date, assign
  # )
 
 @anvil.server.callable
-def new(job, customer, mobile, subbrand, description, esc_status, esc_type, date_created, last_action_date):
-   row = app_tables.webhook.add_row(
+def new(job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date):
+  merchant_row = app_tables.merchant.get(name=merchant_name) 
+  counter = get_next_value_in_sequence()
+  row = app_tables.webhook.add_row(
      job_id = job,
      customer_name = customer,
      mobile_number = mobile,
-     #webhook_merchant_link = merchant_name,
+     webhook_merchant_link = merchant_row,
      sub_brand = subbrand,
+     id = str(counter),
      latest_status = esc_status,
      escalation_type = esc_type,
      date_created = date_created,

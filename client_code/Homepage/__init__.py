@@ -223,4 +223,4 @@ class Homepage(HomepageTemplate):
      large=False,
      buttons=[("Exit", False)],
    )
-
+    #self.refresh_data_bindings()

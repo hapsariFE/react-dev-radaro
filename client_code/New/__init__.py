@@ -13,12 +13,13 @@ class New(NewTemplate):
     # Set Form properties and Data Bindings.
     self.esc_status = esc_status
     self.esc_type = esc_type
+    #self.merchant_name = ""
+    #merchant_name = None
+    self.merchant_name = anvil.server.call('get_merchant_list')  
+
     
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-
-
-
 
 
 
@@ -40,7 +41,7 @@ class New(NewTemplate):
     job = self.job_input.text
     customer = self.customer_input.text
     mobile = self.mobile_input.text
-    #merchant_name = 124.['merchant_id']
+    merchant_name = self.dd_merchant.selected_value
     subbrand = self.subbrand_input.text
     description = self.addcomment_input.text
     esc_status = self.dd_esc_status.selected_value
@@ -61,7 +62,8 @@ class New(NewTemplate):
     elif description is "":
       alert("Please submit a comment")
     else:
-      anvil.server.call('new',job, customer, mobile, subbrand, description, esc_status, esc_type, date_created, last_action_date)
+      anvil.server.call('new',job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date)
+      self.refresh_data_bindings()
       self.clear_button_click()
       Notification("Your comment was submitted").show()
 

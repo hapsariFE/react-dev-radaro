@@ -81,6 +81,8 @@ components:
       name: dd_merchant
       layout_properties: {row: SUBZPA, width_xs: 12, col_xs: 0, width: 108.922}
       event_bindings: {}
+      data_bindings:
+      - {property: items, code: self.merchant_name}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: sub brand,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
