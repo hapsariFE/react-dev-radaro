@@ -5,6 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime, timedelta, date
 from ..Data import *
 
 class New(NewTemplate):
@@ -39,9 +40,9 @@ class New(NewTemplate):
     job = self.job_input.text
     customer = self.customer_input.text
     mobile = self.mobile_input.text
-    merchant_name = self.dd_merchant.selected_value
+    #merchant_name = 124.['merchant_id']
     subbrand = self.subbrand_input.text
-    description = self.addcomment.text
+    description = self.addcomment_input.text
     esc_status = self.dd_esc_status.selected_value
     esc_type = self.dd_esc_type.selected_value     
     date_created = datetime.now()
@@ -60,8 +61,9 @@ class New(NewTemplate):
     elif description is "":
       alert("Please submit a comment")
     else:
-      anvil.server.call('new',job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date)
-
+      anvil.server.call('new',job, customer, mobile, subbrand, description, esc_status, esc_type, date_created, last_action_date)
+      self.clear_button_click()
+      Notification("Your comment was submitted").show()
 
 
 
