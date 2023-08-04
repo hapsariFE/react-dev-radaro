@@ -15,12 +15,12 @@ components:
     layout_properties: {grid_position: 'COHRHH,SXZGQJ', full_width_row: true}
     components:
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Job ID : ', font_size: null, font: '', spacing_above: none,
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Job ID : ', font_size: 14, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_1
-      layout_properties: {row: UZVXNL, width_xs: 3, col_xs: 0, width: 90.2656}
+      layout_properties: {row: UZVXNL, width_xs: 3, col_xs: 0, width: 86.1562}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -30,12 +30,12 @@ components:
       layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: UZVXNL, width_xs: 3,
         col_xs: 3, width: 26.2031}
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Customer name :', font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Customer name :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       name: label_3
-      layout_properties: {row: TEJPOI, width_xs: 3, col_xs: 0, width: 90.2656}
+      layout_properties: {row: TEJPOI, width_xs: 3, col_xs: 0, width: 86.1562}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -44,12 +44,12 @@ components:
       name: customer_input
       layout_properties: {row: TEJPOI, width_xs: 3, col_xs: 3, width: 26.2031}
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Customer Mobile :', font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Customer Mobile :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       name: label_4
-      layout_properties: {row: KWYRGS, width_xs: 3, col_xs: 0, width: 90.2656}
+      layout_properties: {row: KWYRGS, width_xs: 3, col_xs: 0, width: 86.1562}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
@@ -58,12 +58,26 @@ components:
       name: mobile_input
       layout_properties: {row: KWYRGS, width_xs: 3, col_xs: 3, width: 26.2031}
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Escalation Type :', font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Sub brand :', font_size: 14, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
+      name: label_6
+      layout_properties: {row: ZGDAHT, width_xs: 3, col_xs: 0, width: 86.1562}
+    - type: TextBox
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: small, type: text, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false}
+      name: subbrand_input
+      layout_properties: {row: ZGDAHT, width_xs: 3, col_xs: 3, width: 28.2031}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Escalation Type :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       name: label_2
-      layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 0, width: 90.2656}
+      layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 0, width: 86.1562}
     - type: DropDown
       properties:
         role: outlined
@@ -88,12 +102,12 @@ components:
       layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 3, width: 60.2031}
       data_bindings: []
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Escalation Status :', font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Escalation Status :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       name: label_5
-      layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 0, width: 90.2656}
+      layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 0, width: 56.1406}
     - type: DropDown
       properties:
         role: outlined
@@ -117,4 +131,19 @@ components:
       name: dd_esc_status
       layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 3, width: 60.2031}
       data_bindings: []
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: button_1
+      layout_properties: {row: RQWNGD, width_xs: 4, col_xs: 6, width: 90.2656}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Clear, font_size: null, font: '', spacing_above: small,
+        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: button_2
+      layout_properties: {row: RQWNGD, width_xs: 4, col_xs: 8, width: 123.297}
+      event_bindings: {}
 is_package: true
