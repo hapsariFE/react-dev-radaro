@@ -18,3 +18,17 @@ class New(NewTemplate):
 
 
 
+
+
+
+  def clear_button_click(self, **event_args):
+    """This method is called when the button is clicked"""
+        # Clear our input boxes
+    self.job_input.text = ""
+    self.customer_input.text = ""
+    self.mobile_input.text = ""
+    self.subbrand_input.text = ""
+    self.dd_esc_status.selected_value = ""
+    self.dd_esc_type.selected_value = ""
+    self.refresh_data_bindings()
+

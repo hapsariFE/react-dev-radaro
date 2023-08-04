@@ -221,6 +221,6 @@ class Homepage(HomepageTemplate):
      content=New(),
      title="Create a new escalation",
      large=True,
-     buttons=[("Submit", True),("Cancel", False)],
+     buttons=[("Exit", False)],
    )
 

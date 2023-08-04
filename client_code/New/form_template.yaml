@@ -97,10 +97,11 @@ components:
         background: ''
         bold: false
         underline: false
-        include_placeholder: false
+        include_placeholder: true
       name: dd_esc_type
-      layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 3, width: 60.2031}
-      data_bindings: []
+      layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 3, width: 82.0156}
+      data_bindings:
+      - {property: items, code: self.esc_type}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Escalation Status :', font_size: 14, font: '',
@@ -127,23 +128,24 @@ components:
         background: ''
         bold: false
         underline: false
-        include_placeholder: false
+        include_placeholder: true
       name: dd_esc_status
-      layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 3, width: 60.2031}
-      data_bindings: []
+      layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 3, width: 82.0156}
+      data_bindings:
+      - {property: items, code: self.esc_status}
     - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      properties: {role: filled-button, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Submit, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: button_1
-      layout_properties: {row: RQWNGD, width_xs: 4, col_xs: 6, width: 90.2656}
+      layout_properties: {row: RQWNGD, width_xs: 4, col_xs: 6, width: 119.359}
     - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear, font_size: null, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: outlined-button, align: center, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: Clear, font_size: null,
+        font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
       name: button_2
-      layout_properties: {row: RQWNGD, width_xs: 4, col_xs: 8, width: 123.297}
-      event_bindings: {}
+      layout_properties: {row: RQWNGD, width_xs: 4, col_xs: 8, width: 119.359}
+      event_bindings: {click: clear_button_click}
 is_package: true
