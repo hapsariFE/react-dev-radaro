@@ -1,0 +1,122 @@
+container:
+  type: ColumnPanel
+  properties: {col_widths: '{"VWZSSL":7}'}
+components:
+- type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}', spacing_below: small,
+    background: ''}
+  name: column_panel_1
+  layout_properties: {grid_position: 'QHRNJM,VWZSSL', full_width_row: true}
+  components:
+  - type: GridPanel
+    properties: {}
+    name: grid_panel_1
+    layout_properties: {grid_position: 'COHRHH,SXZGQJ', full_width_row: true}
+    components:
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Job ID : ', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_1
+      layout_properties: {row: UZVXNL, width_xs: 3, col_xs: 0, width: 90.2656}
+    - type: TextBox
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false}
+      name: job_input
+      layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: UZVXNL, width_xs: 3,
+        col_xs: 1, width: 26.2031}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Customer name :', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_3
+      layout_properties: {row: TEJPOI, width_xs: 3, col_xs: 0, width: 90.2656}
+    - type: TextBox
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false}
+      name: customer_input
+      layout_properties: {row: TEJPOI, width_xs: 3, col_xs: 4, width: 26.2031}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Customer Mobile :', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_4
+      layout_properties: {row: KWYRGS, width_xs: 3, col_xs: 0, width: 90.2656}
+    - type: TextBox
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false}
+      name: mobile_input
+      layout_properties: {row: KWYRGS, width_xs: 3, col_xs: 4, width: 26.2031}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Escalation Type :', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_2
+      layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 0, width: 90.2656}
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: none
+        spacing_below: none
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: dd_esc_type
+      layout_properties: {row: IMXBDW, width_xs: 3, col_xs: 4, width: 60.2031}
+      data_bindings:
+      - {property: items, code: 'self.item[''esc_type'']'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: 'Escalation Status :', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_5
+      layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 0, width: 90.2656}
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: All
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: none
+        spacing_below: none
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: dd_esc_status
+      layout_properties: {row: RQWNGD, width_xs: 3, col_xs: 4, width: 60.2031}
+      data_bindings:
+      - {property: items, code: 'self.item[''esc_status'']'}
+is_package: true
