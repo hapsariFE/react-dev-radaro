@@ -28,7 +28,11 @@ class New(NewTemplate):
     self.customer_input.text = ""
     self.mobile_input.text = ""
     self.subbrand_input.text = ""
+    self.addcomment_input.text = ""    
     self.dd_esc_status.selected_value = ""
     self.dd_esc_type.selected_value = ""
     self.refresh_data_bindings()
+
+
+
 
