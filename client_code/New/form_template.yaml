@@ -39,17 +39,17 @@ components:
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: name,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: customer_input
-      layout_properties: {row: REDCSS, width_xs: 12, col_xs: 0, width: 111}
+      layout_properties: {row: REDCSS, width_xs: 12, col_xs: 0, width: 163.141}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: mobile,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: mobile_input
-      layout_properties: {row: UUCJNM, width_xs: 12, col_xs: 0, width: 107.25}
+      layout_properties: {row: UUCJNM, width_xs: 12, col_xs: 0, width: 163.141}
       event_bindings: {}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -86,10 +86,10 @@ components:
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: sub brand,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
         background: '', bold: false, underline: false}
       name: subbrand_input
-      layout_properties: {row: QXSIDJ, width_xs: 12, col_xs: 0, width: 74.922}
+      layout_properties: {row: QXSIDJ, width_xs: 12, col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Escalation :', font_size: 14, font: '', spacing_above: none,
@@ -147,11 +147,11 @@ components:
       - {property: items, code: self.esc_status}
     - type: TextArea
       properties: {role: outlined, align: left, height: 77, tooltip: '', placeholder: enter comment here,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 10,
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         auto_expand: false, font: '', spacing_above: none, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: addcomment_input
-      layout_properties: {row: XIOFIZ, width_xs: 12, col_xs: 0, width: 154.297}
+      layout_properties: {row: XIOFIZ, width_xs: 12, col_xs: 0, width: 163.141}
     - type: Button
       properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Submit, font_size: 12, font: '', spacing_above: none,

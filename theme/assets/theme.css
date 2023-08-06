@@ -930,6 +930,13 @@ textarea.anvil-component.anvil-role-outlined, input.anvil-component.anvil-role-o
 
 }
 
+.anvil-component.anvil-role-outlined::placeholder {
+  background-color: transparent;
+  border-radius: 5px;
+  color: %color:Filter Font%;
+}
+
+
 textarea.anvil-component.anvil-role-outlined:hover, textarea.anvil-component.anvil-role-outlined:focus, 
 input.anvil-component.anvil-role-outlined:hover, input.anvil-component.anvil-role-outlined:focus,
 .anvil-component.anvil-role-outlined select:hover, .anvil-component.anvil-role-outlined select:focus,

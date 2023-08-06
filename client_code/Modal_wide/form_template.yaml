@@ -214,7 +214,7 @@ components:
     components:
     - type: TextArea
       properties: {role: outlined, align: left, height: 75, tooltip: '', placeholder: Enter text here,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: 10,
+        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         auto_expand: false, font: '', spacing_above: small, spacing_below: small,
         italic: true, background: '', bold: false, underline: false}
       name: addcomment
