@@ -880,13 +880,13 @@ input.anvil-component.anvil-spacing-below-medium { margin-bottom: 12px; }
 input.anvil-component.anvil-spacing-below-large { margin-bottom: 20px; }
 
 input.anvil-component::-webkit-input-placeholder, textarea.anvil-component::-webkit-input-placeholder {
-  color: %color:On Surface%;
+  color: %color:Filter Font%;
 }
 input.anvil-component::-moz-placeholder, textarea.anvil-component::-moz-placeholder {
-  color: %color:On Surface%;
+  color: %color:Filter Font%;
 }
 input.anvil-component::placeholder, textarea.anvil-component::placeholder  {
-  color: %color:On Surface%;
+  color: %color:Filter Font%;;
 }
 
 .app-bar input.anvil-component::-webkit-input-placeholder, .app-bar textarea.anvil-component::-webkit-input-placeholder {
@@ -929,13 +929,6 @@ textarea.anvil-component.anvil-role-outlined, input.anvil-component.anvil-role-o
   color: %color:Filter Font%;
 
 }
-
-.anvil-component.anvil-role-outlined::placeholder {
-  background-color: transparent;
-  border-radius: 5px;
-  color: %color:Filter Font%;
-}
-
 
 textarea.anvil-component.anvil-role-outlined:hover, textarea.anvil-component.anvil-role-outlined:focus, 
 input.anvil-component.anvil-role-outlined:hover, input.anvil-component.anvil-role-outlined:focus,

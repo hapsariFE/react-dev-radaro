@@ -16,19 +16,19 @@ components:
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: 'Job ID : ', font_size: 14, font: '', spacing_above: none,
+        visible: true, text: 'Job Details : ', font_size: 14, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: label_1
-      layout_properties: {row: UZVXNL, width_xs: 9, col_xs: 0, width: 148.609}
+      layout_properties: {row: UZVXNL, width_xs: 9, col_xs: 0, width: 140.344}
     - type: TextBox
-      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: '',
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: job ID,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
+        font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: job_input
       layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: YNGQHU, width_xs: 12,
-        col_xs: 0, width: 26.2031}
+        col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Customer Details :', font_size: 14, font: '', spacing_above: none,
