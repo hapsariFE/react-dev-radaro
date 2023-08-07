@@ -379,7 +379,7 @@ def manual_import(file):
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),
-        description="CSV Import",
+        description="Low Rating",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
@@ -422,7 +422,7 @@ def manual_import(file):
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),
-        description="CSV Import",
+        description="Customer Not home",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
@@ -464,7 +464,7 @@ def manual_import(file):
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),
-        description="CSV Import",
+        description="Customer Rejected Goods",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
@@ -505,7 +505,7 @@ def manual_import(file):
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),
-        description="CSV Import",
+        description="Up-Sell Service Opportunity",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
