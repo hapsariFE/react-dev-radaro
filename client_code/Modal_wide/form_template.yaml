@@ -192,14 +192,14 @@ components:
     layout_properties: {grid_position: 'KTJXJG,YWNEHA'}
   - type: Button
     properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
+      foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: 'fa:chevron-left'}
     name: button_2
     layout_properties: {grid_position: 'KTJXJG,BCTDMD'}
   - type: Button
     properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: small,
+      foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: small,
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: 'fa:chevron-right'}
     name: button_1

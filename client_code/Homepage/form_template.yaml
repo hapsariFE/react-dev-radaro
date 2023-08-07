@@ -403,10 +403,10 @@ components:
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: new, font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+        icon_align: right, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:plus-circle'}
       name: button_2
-      layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 11, width: 49.5781}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 10, width: 129.156}
       event_bindings: {click: new_escalation}
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
