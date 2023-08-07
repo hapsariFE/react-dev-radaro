@@ -112,15 +112,8 @@ class Modal_wide(Modal_wideTemplate):
      content=Modal_wide(item = self.item),
      title="Job ID : " + self.item["job_reference"],
      large=True,
-
-
      buttons=[("Exit", False)],
    )
 
-    #if save_clicked:
-      #anvil.server.call('add_comment', self.item, record_copy)
-      #self.refresh_data_bindings()
-    self.parent.raise_event('x-edit-article', article=self.item)
-      # Now refresh the page
-    self.refresh_data_bindings()
+
 

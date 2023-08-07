@@ -70,8 +70,9 @@ class New(NewTemplate):
       anvil.server.call('new',job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
       self.refresh_data_bindings()
       self.clear_button_click()
-      Notification("Your escalation was submitted").show()
-
+      n = Notification("Your escalation was submitted")
+      n.show()
+    self.raise_event('x-close-alert', article=self.item)
 
 
 
