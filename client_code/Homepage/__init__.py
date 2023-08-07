@@ -16,7 +16,6 @@ class Homepage(HomepageTemplate):
     self.date_filters = {} 
     #users = anvil.server.call('get_user_list')
     self.users = ""
-    #self.users = 'Danny'
     self.esc_status = esc_status
     self.esc_type = esc_type
     self.job_status = job_status

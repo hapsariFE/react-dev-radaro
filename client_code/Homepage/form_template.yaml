@@ -8,7 +8,7 @@ components:
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '', spacing_below: none,
     background: ''}
   name: filterpanel
-  layout_properties: {slot: filterpanel}
+  layout_properties: {slot: filter_panel}
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: none, background: '', foreground: '',
@@ -261,7 +261,7 @@ components:
       name: dd_job_status
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: Completion Code, font_size: 12, font: '', spacing_above: none,
+          Font', visible: true, text: Sub Brand, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       layout_properties:
@@ -270,7 +270,7 @@ components:
         row: PKQKNH
         width_xs: 1
         col_xs: 2
-        width: 34.9844
+        width: 45.2344
       name: label_2
     - type: DropDown
       properties:

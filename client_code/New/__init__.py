@@ -13,15 +13,18 @@ class New(NewTemplate):
     # Set Form properties and Data Bindings.
     self.esc_status = esc_status
     self.esc_type = esc_type
+    self.assigned = ""
     #self.merchant_name = ""
     #merchant_name = None
     self.merchant_name = anvil.server.call('get_merchant_list')  
-
+    
     
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-
-
+    users = anvil.server.call('get_user_list')
+    self.assigned = [(x['name'], x) for x in users]
+    self.refresh_data_bindings()
+    
 
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -34,6 +37,7 @@ class New(NewTemplate):
     self.addcomment_input.text = ""    
     self.dd_esc_status.selected_value = ""
     self.dd_esc_type.selected_value = ""
+    self.dd_assign.selected_value = ""
     self.refresh_data_bindings()
 
   def submit_button_click(self, **event_args):
@@ -45,7 +49,8 @@ class New(NewTemplate):
     subbrand = self.subbrand_input.text
     description = self.addcomment_input.text
     esc_status = self.dd_esc_status.selected_value
-    esc_type = self.dd_esc_type.selected_value     
+    esc_type = self.dd_esc_type.selected_value    
+    assign_to = self.dd_assign.selected_value
     date_created = datetime.now()
     last_action_date = date_created
 
@@ -62,10 +67,13 @@ class New(NewTemplate):
     elif description is "":
       alert("Please submit a comment")
     else:
-      anvil.server.call('new',job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date)
+      anvil.server.call('new',job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
       self.refresh_data_bindings()
       self.clear_button_click()
-      Notification("Your comment was submitted").show()
+      Notification("Your escalation was submitted").show()
+
+
+
 
 
 

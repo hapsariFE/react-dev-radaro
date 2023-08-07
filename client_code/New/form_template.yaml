@@ -1,6 +1,8 @@
 container:
   type: ColumnPanel
-  properties: {col_widths: '{"VWZSSL":7}'}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{"VWZSSL":7}',
+    spacing_below: none, background: ''}
 components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
@@ -22,13 +24,14 @@ components:
       name: label_1
       layout_properties: {row: UZVXNL, width_xs: 9, col_xs: 0, width: 140.344}
     - type: TextBox
-      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: job ID,
+      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: job reference,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: job_input
       layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: YNGQHU, width_xs: 12,
         col_xs: 0, width: 163.141}
+      event_bindings: {}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Customer Details :', font_size: 14, font: '', spacing_above: none,
@@ -145,6 +148,30 @@ components:
       layout_properties: {row: HHCITJ, width_xs: 12, col_xs: 0, width: 106.781}
       data_bindings:
       - {property: items, code: self.esc_status}
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: assign to
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: small
+        spacing_below: small
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: dd_assign
+      layout_properties: {row: JNCGGR, width_xs: 12, col_xs: 0, width: 197.141}
+      data_bindings:
+      - {property: items, code: self.assigned}
     - type: TextArea
       properties: {role: outlined, align: left, height: 77, tooltip: '', placeholder: enter comment here,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
