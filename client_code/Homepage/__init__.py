@@ -222,4 +222,7 @@ class Homepage(HomepageTemplate):
      large=False,
      buttons=[("Exit", False)],
    )
-    
+    #self.raise_event("x-close-alert", article=self.item)
+    #self.raise_event("x-edit-article", article=self.item)
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    #self.refresh_data_bindings()

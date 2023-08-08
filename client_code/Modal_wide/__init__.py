@@ -56,7 +56,7 @@ class Modal_wide(Modal_wideTemplate):
       actionData = anvil.server.call('get_action',self.item)
       self.action_panelwide.items = actionData
       #alert("Comment Submitted")
-      self.refresh_data_bindings()
+      #self.refresh_data_bindings()
       self.clear_button_click()
       Notification("Your comment was submitted").show()
 

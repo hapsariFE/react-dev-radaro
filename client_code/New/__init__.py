@@ -30,6 +30,7 @@ class New(NewTemplate):
     """This method is called when the button is clicked"""
         # Clear our input boxes
     self.job_input.text = ""
+    self.job_ref.text = ""
     self.customer_input.text = ""
     self.mobile_input.text = ""
     self.dd_merchant.selected_value = ""
@@ -43,6 +44,7 @@ class New(NewTemplate):
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
     job = self.job_input.text
+    jobref = self.job_ref.text
     customer = self.customer_input.text
     mobile = self.mobile_input.text
     merchant_name = self.dd_merchant.selected_value
@@ -67,8 +69,8 @@ class New(NewTemplate):
     elif description is "":
       alert("Please submit a comment")
     else:
-      anvil.server.call('new',job, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
-      self.refresh_data_bindings()
+      anvil.server.call('new',job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
+      #self.refresh_data_bindings()
       self.clear_button_click()
       n = Notification("Your escalation was submitted")
       n.show()
