@@ -448,6 +448,8 @@ components:
         - {id: LDAFAU, title: '', data_key: watch_list, $$hashKey: 'object:132614'}
         - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393',
           width: '120', expand: false}
+        - {id: RCINSG, title: Sub brand, data_key: sub_brand, $$hashKey: 'object:207639',
+          width: '120'}
         - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395',
           width: '120', expand: false}
         - {id: HIBOCD, title: Job Status, data_key: job_status, $$hashKey: 'object:397',
@@ -474,7 +476,7 @@ components:
         spacing_above: none
         spacing_below: none
         background: ''
-      layout_properties: {width: 970, row: BEEIKG, width_xs: 12, col_xs: 0}
+      layout_properties: {width: 925, row: BEEIKG, width_xs: 12, col_xs: 0}
       name: data_grid_1
       components:
       - type: RepeatingPanel
