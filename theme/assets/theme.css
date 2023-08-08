@@ -1114,7 +1114,7 @@ div.plot-container.plotly svg.main-svg {
 
 #loadingSpinner {
   background-color: %color:Surface Variant%;
-  /*box-shadow: 0px 0px 100px 100px %color:Surface Variant%;*/
+  box-shadow: 0px 0px 100px 100px %color:Surface Variant%;
 }
 
 
