@@ -77,6 +77,7 @@ class Homepage(HomepageTemplate):
     #print(self.start_date_picker.date)
     #print("test2")
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    self.refresh_data_bindings()
 
     #self.refresh_action()
   
@@ -112,8 +113,18 @@ class Homepage(HomepageTemplate):
     
     #print(**event_args)
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    #print(self.repeating_panel_1.items['sub_brand'])
+    subbrands = list()
     for x in self.repeating_panel_1.items:
-      self.subbrand =x['sub_brand'] 
+      subbrands.append(x['sub_brand'])
+    res = []
+    for val in subbrands:
+      if val != None:
+        if val not in res:
+          res.append(val)
+    print(res) 
+    self.subbrand = res
+      
     #self.subbrand = self.repeating_panel_1.items[merchant_name]
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
