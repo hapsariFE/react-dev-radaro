@@ -312,7 +312,8 @@ components:
         width: 160.312
       event_bindings: {change: filter_change}
       name: dd_completion_code
-      data_bindings: []
+      data_bindings:
+      - {property: items, code: self.subbrand}
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Escalation

@@ -42,6 +42,7 @@ class Homepage(HomepageTemplate):
     searchText = None
     resolvedStatus = False
     watch = False
+    self.subbrand = ""
 
 
 
@@ -111,7 +112,9 @@ class Homepage(HomepageTemplate):
     
     #print(**event_args)
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    
+    for x in self.repeating_panel_1.items:
+      self.subbrand =x['sub_brand'] 
+    #self.subbrand = self.repeating_panel_1.items[merchant_name]
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
