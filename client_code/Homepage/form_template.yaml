@@ -37,15 +37,14 @@ components:
       properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
         placeholder: '', border: '', enabled: true, foreground: '', visible: true,
         font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
-        date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
-          %b %Y'}
+        date: '', min_date: '', background: '', bold: false, underline: false, format: ''}
       layout_properties:
         col_widths: {}
         grid_position: RZBXLA,PIZDUB
         row: FSHRWD
         width_xs: 2
         col_xs: 1
-        width: 136.656
+        width: 149.004
       data_bindings:
       - {code: 'self.date_filters[''start'']', writeback: true, property: date}
       event_bindings: {change: filter_change}

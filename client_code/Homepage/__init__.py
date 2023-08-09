@@ -58,8 +58,7 @@ class Homepage(HomepageTemplate):
     #print("test1")
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
-    self.start_date_picker.date = startDate
-    self.end_date_picker.date = endDate
+    
     merchName = anvil.server.call('get_merchant_list')
     #print(merchant_name)
     self.merchant_name = merchName
@@ -88,14 +87,18 @@ class Homepage(HomepageTemplate):
           res.append(val)
     print(res) 
     self.subbrand = res
+    self.start_date_picker.date = startDate
+    self.end_date_picker.date = endDate
+    print(endDate)
+    self.initialise_start_dates()
     self.refresh_data_bindings()
 
     #self.refresh_action()
   
-  #def initialise_start_dates(self):
+  def initialise_start_dates(self):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
-   # self.date_filters['start'] = (date.today() - timedelta(days=6))
-   # self.date_filters['end'] = date.today()
+    self.date_filters['start'] = (date.today() - timedelta(days=60))
+    self.date_filters['end'] = date.today()
     
     
     
