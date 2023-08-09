@@ -74,7 +74,7 @@ class New(NewTemplate):
       self.clear_button_click()
       n = Notification("Your escalation was submitted")
       n.show()
-    self.raise_event('x-close-alert', article=self.item)
+      self.raise_event('x-close-alert', article=self.item)
 
 
 
