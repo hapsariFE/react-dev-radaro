@@ -8,7 +8,7 @@ components:
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '', spacing_below: none,
     background: ''}
   name: filterpanel
-  layout_properties: {slot: filterpanel}
+  layout_properties: {slot: filter-panel}
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: none, background: '', foreground: '',
@@ -310,7 +310,7 @@ components:
         width_xs: 2
         col_xs: 3
         width: 160.312
-      event_bindings: {change: filter_change}
+      event_bindings: {change: filterchange}
       name: dd_completion_code
       data_bindings:
       - {property: items, code: self.subbrand}
