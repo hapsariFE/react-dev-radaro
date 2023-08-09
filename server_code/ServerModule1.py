@@ -93,7 +93,9 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     filter_dict['job_status'] = jobValue
 
   if compCode != None:
-    filter_dict['completion_code_id'] = compCode
+    
+    filter_dict['sub_brand'] = compCode
+    print(filter_dict['sub_brand'])
 
   if escType != None:
     filter_dict['escalation_type'] = escType
