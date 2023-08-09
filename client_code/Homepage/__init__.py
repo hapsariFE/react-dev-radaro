@@ -57,6 +57,7 @@ class Homepage(HomepageTemplate):
     #print("test1")
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
+    
     merchName = anvil.server.call('get_merchant_list')
     #print(merchant_name)
     self.merchant_name = merchName

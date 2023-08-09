@@ -292,7 +292,7 @@ components:
         border: ''
         enabled: true
         foreground: ''
-        items: ['1', '2']
+        items: ['']
         visible: true
         font_size: 12
         font: ''
@@ -309,9 +309,12 @@ components:
         row: PKQKNH
         width_xs: 2
         col_xs: 3
-        width: 66.6562
+        width: 160.312
       event_bindings: {change: filter_change}
-      name: dd_completion_code
+      name: dd_subbrand
+      data_bindings:
+      - {property: selected_value, code: 'self.filters[''subbrand'']', writeback: true}
+      - {property: items, code: self.subbrand}
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Escalation
