@@ -9,6 +9,7 @@ from ...jobreport import jobreport
 from ...Modal_wide import Modal_wide
 #from ...Modal import Modal
 import webbrowser
+import anvil.tz
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
@@ -18,6 +19,7 @@ class RowTemplate1(RowTemplate1Template):
     #assign = None
     #status = None
     #description = ""
+    #self.label_2.text = str(self.item['last_action_date'].astimezone(anvil.tz.tzlocal()))
 
     self.init_components(**properties)
     #print(self.item['latest_status']['name'])
@@ -29,6 +31,7 @@ class RowTemplate1(RowTemplate1Template):
      # self.label_1.background = "Black"
       #self.refresh_data_bindings()
     #  self.label_1.background = "Black"
+    self.label_2.text = self.item['last_action_date'].astimezone(anvil.tz.tzlocal())
     if self.item['watch_list'] == False:
       self.favourite.source = "_/theme/Star%20outline.png"
     else:

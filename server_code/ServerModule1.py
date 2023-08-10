@@ -242,7 +242,8 @@ def get_selectedMerchant(selectedMerchant):
 @anvil.server.callable
 def add_comment(article, article_dict, description, status, created_date, assign_to):
   if app_tables.webhook.has_row(article):
-   article_dict['last_action_date'] = datetime.now(anvil.tz.tzlocal())
+   article_dict['last_action_date'] = created_date
+   #print(article_dict['last_action_date'])
    article_dict['latest_status'] = status
    assignrow = app_tables.users.get(name=assign_to)
    article_dict['latest_assignee'] = assignrow
