@@ -163,8 +163,9 @@ class RowTemplate1(RowTemplate1Template):
     #print(watchlistUsers)
     if watchlistUsers is not None:
       if anvil.users.get_user() in watchlistUsers:
+        self.favourite.source = "_/theme/Star%20outline.png"
         print("Yes")
-      elif watchlistUsers is "":
+      elif anvil.users.get_user() not in watchlistUsers:
         print("No")
         
     if watch_list == False:
