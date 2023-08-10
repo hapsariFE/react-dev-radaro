@@ -158,7 +158,15 @@ class RowTemplate1(RowTemplate1Template):
 
   def update_item2(self, **event_args):
     """This method is called when the link is clicked"""
+    watchlistUsers = self.item['watchlistUsers']
     watch_list = self.item['watch_list']
+    #print(watchlistUsers)
+    if watchlistUsers is not None:
+      if anvil.users.get_user() in watchlistUsers:
+        print("Yes")
+      elif watchlistUsers is "":
+        print("No")
+        
     if watch_list == False:
       watch_list = True
       self.favourite.source= "_/theme/Star%20filled.png"
