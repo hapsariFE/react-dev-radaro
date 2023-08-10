@@ -75,6 +75,7 @@ class New(NewTemplate):
       n = Notification("Your escalation was submitted")
       n.show()
       self.raise_event('x-close-alert', article=self.item)
+      
 
 
 

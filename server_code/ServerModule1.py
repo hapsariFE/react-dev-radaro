@@ -292,15 +292,18 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
      last_action_date = last_action_date,
      latest_assignee=assign_to,
    )
-  jobrow = app_tables.webhook.get(job_reference=job) 
-  row = app_tables.action_log.add_row(
-    job_id = jobrow,
-    user=anvil.users.get_user(),
-    description=description,
-    status=esc_status,
-    created_date = date_created,
-    assign_to=assign_to,
-    escalation_id=jobrow)
+  jobrow = app_tables.webhook.get(id=str(counter)) 
+  jr_dict = dict(jobrow)
+  assignname = assign_to['name']
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  #row = app_tables.action_log.add_row(
+  #  job_id = jobrow,
+  #  user=anvil.users.get_user(),
+  #  description=description,
+  #  status=esc_status,
+  #  created_date = date_created,
+  #  assign_to=assign_to,
+  #  escalation_id=jobrow)
    
    
     

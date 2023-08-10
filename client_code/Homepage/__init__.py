@@ -85,7 +85,7 @@ class Homepage(HomepageTemplate):
       if val != None:
         if val not in res:
           res.append(val)
-    print(res) 
+    #print(res) 
     self.subbrand = res
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
@@ -98,7 +98,7 @@ class Homepage(HomepageTemplate):
   def initialise_start_dates(self):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
     self.date_filters['start'] = (date.today() - timedelta(days=60))
-    self.date_filters['end'] = date.today()
+    self.date_filters['end'] = (date.today() + timedelta(days=1))
     
     
     
@@ -244,4 +244,5 @@ class Homepage(HomepageTemplate):
    )
     #self.raise_event("x-close-alert", article=self.item)
     #self.raise_event("x-edit-article", article=self.item)
-    #self.refresh_data_bindings()
+    self.filter_change()
+    self.refresh_data_bindings()

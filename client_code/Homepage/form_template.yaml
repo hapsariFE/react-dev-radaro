@@ -37,7 +37,8 @@ components:
       properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '',
         placeholder: '', border: '', enabled: true, foreground: '', visible: true,
         font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false,
-        date: '', min_date: '', background: '', bold: false, underline: false, format: ''}
+        date: '', min_date: '', background: '', bold: false, underline: false, format: '%d
+          %b %Y'}
       layout_properties:
         col_widths: {}
         grid_position: RZBXLA,PIZDUB
@@ -309,7 +310,7 @@ components:
         width_xs: 2
         col_xs: 3
         width: 160.312
-      event_bindings: {change: filterchange}
+      event_bindings: {change: filter_change}
       name: dd_completion_code
       data_bindings:
       - {property: items, code: self.subbrand}
