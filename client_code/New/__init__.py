@@ -7,6 +7,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
 from ..Data import *
+import anvil.tz
 
 class New(NewTemplate):
   def __init__(self, **properties):
@@ -53,7 +54,7 @@ class New(NewTemplate):
     esc_status = self.dd_esc_status.selected_value
     esc_type = self.dd_esc_type.selected_value    
     assign_to = self.dd_assign.selected_value
-    date_created = datetime.now()
+    date_created = datetime.now(anvil.tz.tzlocal())
     last_action_date = date_created
 
     if job is "":
