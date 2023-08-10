@@ -42,6 +42,7 @@ class Homepage(HomepageTemplate):
     searchText = None
     resolvedStatus = False
     watch = False
+    self.subbrand = ""
 
 
 
@@ -76,13 +77,28 @@ class Homepage(HomepageTemplate):
     #print(self.start_date_picker.date)
     #print("test2")
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    subbrands = list()
+    for x in self.repeating_panel_1.items:
+      subbrands.append(x['sub_brand'])
+    res = []
+    for val in subbrands:
+      if val != None:
+        if val not in res:
+          res.append(val)
+    #print(res) 
+    self.subbrand = res
+    self.start_date_picker.date = startDate
+    self.end_date_picker.date = endDate
+    print(endDate)
+    self.initialise_start_dates()
+    self.refresh_data_bindings()
 
     #self.refresh_action()
   
-  #def initialise_start_dates(self):
+  def initialise_start_dates(self):
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
-   # self.date_filters['start'] = (date.today() - timedelta(days=6))
-   # self.date_filters['end'] = date.today()
+    self.date_filters['start'] = (date.today() - timedelta(days=60))
+    self.date_filters['end'] = (date.today() + timedelta(days=1))
     
     
     
@@ -111,7 +127,10 @@ class Homepage(HomepageTemplate):
     
     #print(**event_args)
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    
+    #print(self.repeating_panel_1.items['sub_brand'])
+   
+      
+    #self.subbrand = self.repeating_panel_1.items[merchant_name]
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
@@ -225,4 +244,5 @@ class Homepage(HomepageTemplate):
    )
     #self.raise_event("x-close-alert", article=self.item)
     #self.raise_event("x-edit-article", article=self.item)
-    #self.refresh_data_bindings()
+    self.filter_change()
+    self.refresh_data_bindings()

@@ -166,7 +166,7 @@ components:
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 6, width: 115.656}
       data_bindings:
       - {property: text, code: 'self.item[''date_delivered''].strftime("%d %b, %Y
-          %H:%M")'}
+          %H:%M") if self.item[''date_delivered''] else ''---'''}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Sub Brand :', font_size: 14, font: '', spacing_above: none,
