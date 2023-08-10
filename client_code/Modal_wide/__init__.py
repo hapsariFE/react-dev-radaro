@@ -9,6 +9,7 @@ from anvil.tables import app_tables
 from ..Data import *
 from datetime import datetime, timedelta, date
 import webbrowser
+import anvil.tz
 
 class Modal_wide(Modal_wideTemplate):
   def __init__(self, **properties):
@@ -38,7 +39,7 @@ class Modal_wide(Modal_wideTemplate):
     """This method is called when the button is clicked"""
     description = self.addcomment.text
     status = self.dd_status.selected_value
-    created_date = datetime.now()
+    created_date = datetime.now(anvil.tz.tzlocal())
     assign_to = self.dd_assign.selected_value
     record_copy = dict(self.item)
 
