@@ -336,14 +336,24 @@ import_excel_data("anvil_upload.xlsx")
 #  return result
 
 @anvil.server.callable
-def update_item(row_id,watch_list):
-  watch_list = watch_list
-  row_id=row_id
-  row=app_tables.webhook.get(id=row_id)  
+def update_item(article,user):
+  #watch_list = watch_list
+  #row_id=row_id
+  #row=app_tables.webhook.get(id=row_id)  
   #job_id=article
     #if app_tables.webhook.has_row(article):
-  row['watch_list']=watch_list
+  #row['watch_list']=watch_list
   #app_tables.webhook.update(row_id,watch_list)
+  if article['watchlistUsers'] is None:
+    article['watchlistUsers'] = [user]
+  elif anvil.users.get_user() in article['watchlistUsers']:
+    #article['watchlistUsers'] -= [user] 
+    article['watchlistUsers'] = [r for r in article['watchlistUsers'] if r != user]
+  else: 
+    article['watchlistUsers'] += [user] 
+  #inventory = article['watchlistUsers']
+  #inventory['items'].append({'name': name, 'amount': amount})
+  #row['Inventory'] = inventory
 
 @tables.in_transaction
 def get_next_value_in_sequence():

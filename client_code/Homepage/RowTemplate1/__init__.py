@@ -32,10 +32,13 @@ class RowTemplate1(RowTemplate1Template):
       #self.refresh_data_bindings()
     #  self.label_1.background = "Black"
     self.label_2.text = self.item['last_action_date'].astimezone(anvil.tz.tzlocal())
-    if self.item['watch_list'] == False:
-      self.favourite.source = "_/theme/Star%20outline.png"
+    if self.item['watchlistUsers'] is not None:
+      if anvil.users.get_user() in self.item['watchlistUsers']:
+        self.favourite.source= "_/theme/Star%20filled.png"
+      else:
+        self.favourite.source = "_/theme/Star%20outline.png"
     else:
-      self.favourite.source= "_/theme/Star%20filled.png"
+      self.favourite.source = "_/theme/Star%20outline.png"
     self.refresh_data_bindings()
 
     #elif
@@ -166,15 +169,17 @@ class RowTemplate1(RowTemplate1Template):
         self.favourite.source = "_/theme/Star%20outline.png"
         print("Yes")
       elif anvil.users.get_user() not in watchlistUsers:
+        self.favourite.source= "_/theme/Star%20filled.png"
         print("No")
         
-    if watch_list == False:
-      watch_list = True
-      self.favourite.source= "_/theme/Star%20filled.png"
-      self.refresh_data_bindings()
-    else:
-      watch_list = False
-      self.favourite.source = "_/theme/Star%20outline.png"
-    row_id=self.item['id']
-    anvil.server.call('update_item',row_id,watch_list)
+    #if watch_list == False:
+    #  watch_list = True
+    #  self.favourite.source= "_/theme/Star%20filled.png"
+    #  self.refresh_data_bindings()
+   # else:
+    #  watch_list = False
+    #  self.favourite.source = "_/theme/Star%20outline.png"
+    article=self.item
+    user = anvil.users.get_user()
+    anvil.server.call('update_item',article,user)
     self.refresh_data_bindings()
