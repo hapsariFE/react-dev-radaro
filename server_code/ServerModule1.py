@@ -429,7 +429,7 @@ def manual_import(file):
       job_status = app_tables.job_status.get(sysName= d['order_status']),
       job_report = d['full_report_url'],
       customer_rating= str(d['customer_rating']),
-      escalation_type = app_tables.escalation_type.get(name= "Customer Not home"),
+      escalation_type = app_tables.escalation_type.get(name= "Customer Not Home"),
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
       sub_brand=d['subbrand_name'],
@@ -442,7 +442,7 @@ def manual_import(file):
       app_tables.action_log.add_row(
         assign_to=None,
         user=app_tables.users.get(name= "System"),
-        description="Customer Not home",
+        description="Customer Not Home",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
