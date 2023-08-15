@@ -41,7 +41,7 @@ def incoming_msg(**kwargs):
   topic = data.get('topic')
   if 'job.status_changed' in topic and 'updated' in data.get('event_type') :
     #print(json)
-    nv = json.loads(data.get('new_values'))
+    nv = json.dumps(data['new_values']['is_confirmed_by_customer'])
     app_tables.test_table.add_row(object = data,new_values =data.get('new_values'),nv=nv)
   
   
