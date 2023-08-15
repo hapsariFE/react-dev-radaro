@@ -102,7 +102,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     filter_dict['escalation_type'] = escType
 
   if watch is True :
-    filter_dict['watch_list'] = True
+    filter_dict['watchlistUsers'] = [anvil.users.get_user()]
 
   if escStatus != None:
   #  filter_dict['latest_status'] = escStatus

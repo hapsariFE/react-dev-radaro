@@ -28,10 +28,13 @@ class Modal_wide(Modal_wideTemplate):
     actionData = anvil.server.call('get_action',selectedRow)
     self.action_panelwide.items = actionData
     self.assigned = assignList
-    if self.item['watch_list'] == False:
-      self.favourite.source = "_/theme/Star%20outline.png"
+    if self.item['watchlistUsers'] is not None:
+      if anvil.users.get_user() in self.item['watchlistUsers']:
+        self.favourite.source= "_/theme/Star%20filled.png"
+      else:
+        self.favourite.source = "_/theme/Star%20outline.png"
     else:
-      self.favourite.source= "_/theme/Star%20filled.png"
+      self.favourite.source = "_/theme/Star%20outline.png"
     self.refresh_data_bindings()
 
 
@@ -75,17 +78,39 @@ class Modal_wide(Modal_wideTemplate):
     webbrowser.open(self.item['job_report'])
 
   def update_item(self, **event_args):
+    watchlistUsers = self.item['watchlistUsers']
     watch_list = self.item['watch_list']
-    if watch_list == False:
-      watch_list = True
-      self.favourite.source= "_/theme/Star%20filled.png"
-      self.refresh_data_bindings()
-    else:
-      watch_list = False
-      self.favourite.source = "_/theme/Star%20outline.png"
-    row_id=self.item['id']
-    anvil.server.call('update_item',row_id,watch_list)
+    #print(watchlistUsers)
+    if watchlistUsers is not None:
+      if anvil.users.get_user() in watchlistUsers:
+        self.favourite.source = "_/theme/Star%20outline.png"
+        print("Yes")
+      elif anvil.users.get_user() not in watchlistUsers:
+        self.favourite.source= "_/theme/Star%20filled.png"
+        print("No")
+        
+    #if watch_list == False:
+    #  watch_list = True
+    #  self.favourite.source= "_/theme/Star%20filled.png"
+    #  self.refresh_data_bindings()
+   # else:
+    #  watch_list = False
+    #  self.favourite.source = "_/theme/Star%20outline.png"
+    article=self.item
+    user = anvil.users.get_user()
+    anvil.server.call('update_item',article,user)
     self.refresh_data_bindings()
+    #watch_list = self.item['watch_list']
+    #if watch_list == False:
+     # watch_list = True
+     # self.favourite.source= "_/theme/Star%20filled.png"
+     # self.refresh_data_bindings()
+    #else:
+     # watch_list = False
+     # self.favourite.source = "_/theme/Star%20outline.png"
+    #row_id=self.item['id']
+   # anvil.server.call('update_item',row_id,watch_list)
+    #self.refresh_data_bindings()
 
   def next_click(self, **event_args):
     """This method is called when the button is clicked"""
