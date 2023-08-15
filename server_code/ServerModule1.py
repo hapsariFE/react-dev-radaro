@@ -35,8 +35,9 @@ import anvil.server
 @anvil.server.http_endpoint('/incoming_msg')
 def incoming_msg(**kwargs): 
   json = anvil.server.request.body_json
+  #json['topic']
   print(json)
-  app_tables.test_table.add_row(object = json)
+  app_tables.test_table.add_row(object = json,name =json['topic'])
 
 @anvil.server.callable
 def get_merchant_list():
