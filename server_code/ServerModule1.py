@@ -36,10 +36,10 @@ import anvil.server
 def incoming_msg(**kwargs): 
   json = anvil.server.request.body_json
   #json['topic']
-  if json['topic'] in 'job.status_changed':
+  if 'job.status_changed' in json.get('topic'):
     print(json)
     nv = json['new_values']
-    app_tables.test_table.add_row(object = json,name =json['new_values'])
+    app_tables.test_table.add_row(object = json,name =json.get('new_values'))
   
   
 
