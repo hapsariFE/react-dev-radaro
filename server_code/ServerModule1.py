@@ -36,8 +36,12 @@ import anvil.server
 def incoming_msg(**kwargs): 
   json = anvil.server.request.body_json
   #json['topic']
-  print(json)
-  app_tables.test_table.add_row(object = json,name =json['topic'])
+  if json['topic'] in 'job.status_changed':
+    print(json)
+    nv = json['new_values']
+    app_tables.test_table.add_row(object = json,name =json['new_values'])
+  
+  
 
 @anvil.server.callable
 def get_merchant_list():
