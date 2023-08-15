@@ -9,6 +9,8 @@ import anvil.server
 from datetime import datetime, timedelta, date
 import pandas as pd
 import anvil.server
+import json
+
 
 #authenticated_callable = anvil.server.callable(require_user=True)
 
@@ -34,13 +36,13 @@ import anvil.server
 
 @anvil.server.http_endpoint('/incoming_msg')
 def incoming_msg(**kwargs): 
-  json = anvil.server.request.body_json
+  data = anvil.server.request.body_json
   #json['topic']
-  topic = json.get('topic')
-  if 'job.status_changed' in topic:
-    print(json)
-    nv = json['new_values']
-    app_tables.test_table.add_row(object = json,name =json.get('new_values'))
+  topic = data.get('topic')
+  if 'job.status_changed' in topic and 'updated' in data.get('event_type') :
+    #print(json)
+    nv = json.loads(data.get('new_values'))
+    app_tables.test_table.add_row(object = data,new_values =data.get('new_values'),nv=nv)
   
   
 
