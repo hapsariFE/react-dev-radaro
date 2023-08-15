@@ -23,7 +23,8 @@ class Modal_wide(Modal_wideTemplate):
 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    #print(selectedRow)
+    print(selectedRow)
+    print(self.item['watchlistUsers'])
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     actionData = anvil.server.call('get_action',selectedRow)
     self.action_panelwide.items = actionData
