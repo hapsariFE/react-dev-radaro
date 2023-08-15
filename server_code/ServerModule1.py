@@ -42,7 +42,8 @@ def incoming_msg(**kwargs):
   if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] :
     #print(json)
     nv = data['new_values']['is_confirmed_by_customer']
-    app_tables.test_table.add_row(object = data,new_values =data.get('new_values'),nv2=nv)
+    rating = data['order_info']['rating']
+    app_tables.test_table.add_row(object = data,new_values =data.get('new_values'),nv2=nv,ratin = rating)
   else:
     pass
   
