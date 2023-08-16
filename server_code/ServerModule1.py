@@ -50,7 +50,7 @@ def incoming_msg(**kwargs):
         job_id = data['order_info']['order_id'],
         id= str(counter),
         customer_name = data['order_info']['customer']['name'],
-        completion_code_id = data['order_info']['completion_codes']['id'],
+        completion_code_id = data['order_info']['completion_codes'],
         date_created = datetime.now(),
         last_action_date =datetime.now(),
         job_reference = data['order_info']['title'],
@@ -64,8 +64,8 @@ def incoming_msg(**kwargs):
         sub_brand=data['order_info']['sub_branding'],
         mobile_number=data['order_info']['customer']['phone'],
         date_delivered=data['order_info']['completed_at'],
-        job_reference2=data['order_info']['order_title_2'],
-        job_reference3=data['order_info']['order_title_3'],
+        job_reference2=data['order_info']['title_2'],
+        job_reference3=data['order_info']['title_3'],
         address=data['order_info']['deliver_address']['address'],
         watch_list=False)
       else:
