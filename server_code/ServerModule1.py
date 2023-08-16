@@ -47,27 +47,27 @@ def incoming_msg(**kwargs):
         rating = data['order_info']['rating']
         counter = get_next_value_in_sequence()
         app_tables.test_table.add_row(
-        job_id = data['order_info']['order_id'],
-        id= str(counter),
-        customer_name = data['order_info']['customer']['name'],
-        completion_code_id = data['order_info']['completion_codes'],
-        date_created = datetime.now(),
-        last_action_date =datetime.now(),
-        job_reference = data['order_info']['title'],
-        webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
-        job_status = data['order_info']['status'],
-        job_report = data['order_info']['public_report_link'],
-        customer_rating= rating,
-        escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
-        latest_assignee = None,
-        latest_status = app_tables.escalation_status.get(name= "New"),
-        sub_brand=data['order_info']['sub_branding'],
-        mobile_number=data['order_info']['customer']['phone'],
-        date_delivered=data['order_info']['completed_at'],
-        job_reference2=data['order_info']['title_2'],
-        job_reference3=data['order_info']['title_3'],
-        address=data['order_info']['deliver_address']['address'],
-        watch_list=False)
+          job_id = data['order_info']['order_id'],
+          id= str(counter),
+          customer_name = data['order_info']['customer']['name'],
+          completion_code_id = data['order_info']['completion_codes'],
+          date_created = datetime.now(),
+          last_action_date =datetime.now(),
+          job_reference = data['order_info']['title'],
+          webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
+          job_status = data['order_info']['status'],
+          job_report = data['order_info']['public_report_link'],
+          customer_rating= rating,
+          escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
+          latest_assignee = None,
+          latest_status = app_tables.escalation_status.get(name= "New"),
+          sub_brand=data['order_info']['sub_branding'],
+          mobile_number=data['order_info']['customer']['phone'],
+          date_delivered=data['order_info']['completed_at'],
+          job_reference2=data['order_info']['title_2'],
+          job_reference3=data['order_info']['title_3'],
+          address=data['order_info']['deliver_address']['address'],
+          watch_list=False)
       else:
         pass
   
