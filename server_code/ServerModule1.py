@@ -72,12 +72,12 @@ def incoming_msg(**kwargs):
           job_reference3=data['order_info']['title_3'],
           address=data['order_info']['deliver_address']['address'],
           watch_list=False)
-      elif 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
+    elif 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
         codes=data['order_info']['completion_codes']
         id_values = [str(code["code"]) for code in codes]
         id_string = ";".join(id_values)
           
-        nv = data['new_values']['is_confirmed_by_customer']
+        #nv = data['new_values']['is_confirmed_by_customer']
         rating = data['order_info']['rating']
         counter = get_next_value_in_sequence()
         app_tables.test_table.add_row(
@@ -102,7 +102,7 @@ def incoming_msg(**kwargs):
           job_reference3=data['order_info']['title_3'],
           address=data['order_info']['deliver_address']['address'],
           watch_list=False)
-      else:
+    else:
         pass
   
   
