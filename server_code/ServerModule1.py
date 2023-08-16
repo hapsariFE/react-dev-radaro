@@ -45,7 +45,28 @@ def incoming_msg(**kwargs):
         #print(json)
         nv = data['new_values']['is_confirmed_by_customer']
         rating = data['order_info']['rating']
-        app_tables.test_table.add_row(object = data,new_values =data.get('new_values'),nv2=nv,ratin = rating)
+        app_tables.test_table.add_row(
+        job_id = str(d['order_id']),
+        id= str(counter),
+        customer_name = d['customer_name'],
+        completion_code_id =str(d['completion_codes']),
+        date_created = datetime.now(),
+        last_action_date =datetime.now(),
+        job_reference = d['order_title'],
+        webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
+        job_status = app_tables.job_status.get(sysName= d['order_status']),
+        job_report = d['full_report_url'],
+        customer_rating= str(d['customer_rating']),
+        escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
+        latest_assignee = None,
+        latest_status = app_tables.escalation_status.get(name= "New"),
+        sub_brand=d['subbrand_name'],
+        mobile_number=str(d['customer_phone']),
+        date_delivered=d['completed_at'],
+        job_reference2=d['order_title_2'],
+        job_reference3=d['order_title_3'],
+        address=d['deliver_address'],
+        watch_list=False)
       else:
         pass
   
