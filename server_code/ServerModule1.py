@@ -43,6 +43,10 @@ def incoming_msg(**kwargs):
     if 'is_confirmed_by_customer' in data['new_values']:
       if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] :
         #print(json)
+        codes=data['order_info']['completion_codes']
+        id_values = [str(code["code"]) for code in codes]
+        id_string = ",".join(id_values)
+          
         nv = data['new_values']['is_confirmed_by_customer']
         rating = data['order_info']['rating']
         counter = get_next_value_in_sequence()
@@ -50,7 +54,7 @@ def incoming_msg(**kwargs):
           job_id = data['order_info']['order_id'],
           id= str(counter),
           customer_name = data['order_info']['customer']['name'],
-          completion_code_id = data['order_info']['completion_codes'],
+          completion_code_id_str = id_string,
           date_created = datetime.now(),
           last_action_date =datetime.now(),
           job_reference = data['order_info']['title'],
