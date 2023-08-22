@@ -12,6 +12,7 @@ from ..New import *
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    print('initiate start) '+str(datetime.now()))##################
     self.filters = {}
     self.date_filters = {} 
     #users = anvil.server.call('get_user_list')
@@ -43,14 +44,13 @@ class Homepage(HomepageTemplate):
     resolvedStatus = False
     watch = False
     self.subbrand = ""
-
-
-
-
-    
+    print('initiate end) '+str(datetime.now()))##################
+ 
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    print('form start) '+str(datetime.now()))##################
     anvil.users.login_with_form()
+    print('login start) '+str(datetime.now()))##################
     currentUser=anvil.users.get_user()
     my_media = anvil.URLMedia(currentUser['Logo'])
     self.image_2.source = my_media
@@ -89,17 +89,18 @@ class Homepage(HomepageTemplate):
     self.subbrand = res
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
-    print(endDate)
+    #print(endDate)
     self.initialise_start_dates()
     self.refresh_data_bindings()
 
     #self.refresh_action()
-  
+    print('form end) '+str(datetime.now()))##################
   def initialise_start_dates(self):
+    print('dates start) '+str(datetime.now()))##################
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
     self.date_filters['start'] = (date.today() - timedelta(days=60))
     self.date_filters['end'] = (date.today() + timedelta(days=1))
-    
+
     
     
   #def filter_change(self, **event_args):
@@ -120,9 +121,11 @@ class Homepage(HomepageTemplate):
     #self.refresh_data_bindings()
    # self.refresh_list()
     #alert("You changed the date")
+    print('dates end) '+str(datetime.now()))##################
 
   def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
-     #Load existing data from the Data Table, 
+    print('refresh list start) '+str(datetime.now()))##################
+    #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
@@ -135,6 +138,7 @@ class Homepage(HomepageTemplate):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
       #self.action_panel.items = anvil.server.call('get_action',None)
+    print('refresh list end) '+str(datetime.now()))##################
     
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -143,6 +147,7 @@ class Homepage(HomepageTemplate):
     self.refresh_data_bindings()
     open_form('Homepage')
 
+    print('log out end) '+str(datetime.now()))##################
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
     jobValue = self.dd_job_status.selected_value
@@ -169,13 +174,15 @@ class Homepage(HomepageTemplate):
     #print(endDate)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
     #alert("You changed the filter")
-  
+    print('filter change end) '+str(datetime.now()))##################
+
   def handle_custom_event(self,record,assign, **event_args):
    
    self.action_panel.items = record
    self.assigned = assign
    self.refresh_data_bindings()
-
+   print('custom event end) '+str(datetime.now()))##################
+    
   def sorting_function(self, column_name, sorting_way):
     """function used for sorting in combination with headers""" 
     """https://anvil.works/forum/t/how-to-add-sorting-functionality-to-datagrid-with-repeating-panels/17750/6"""
@@ -200,7 +207,8 @@ class Homepage(HomepageTemplate):
     #assigned_to = self.dd_assigned.selected_value
     #self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     self.clear_icon.visible = False
-
+    print('clear search end) '+str(datetime.now()))##################
+    
   def resolved_checkbox_click(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     jobValue = self.dd_job_status.selected_value
@@ -227,12 +235,14 @@ class Homepage(HomepageTemplate):
       self.grid_panel_1.visible = True
       self.button_2.icon = 'fa:angle-up'
 
-    
+    print('filter display end) '+str(datetime.now()))##################
+      
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
     anvil.server.call('manual_import',file)
     self.filter_change()
     self.refresh_data_bindings()    
+    print('file loader 1 end) '+str(datetime.now()))##################
 
   def new_escalation(self, **event_args):
     """This method is called when the button is clicked"""
@@ -242,7 +252,9 @@ class Homepage(HomepageTemplate):
      large=False,
      buttons=[("Exit", False)],
    )
+    print('new escalation end) '+str(datetime.now()))##################
     #self.raise_event("x-close-alert", article=self.item)
     #self.raise_event("x-edit-article", article=self.item)
     self.filter_change()
     self.refresh_data_bindings()
+    
