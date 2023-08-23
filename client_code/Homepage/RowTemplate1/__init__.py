@@ -25,7 +25,7 @@ class RowTemplate1(RowTemplate1Template):
     print('initiate end) '+str(datetime.now()))##################
 
     self.init_components(**properties)
-    print('form start) '+str(datetime.now()))##################
+    print('rowtemplate start) '+str(datetime.now()))##################
     #print(self.item['latest_status']['name'])
     #if self.item['job_status']['name'] == "Failed":
       #self.label_4.bold = True
@@ -49,6 +49,7 @@ class RowTemplate1(RowTemplate1Template):
     self.refresh_data_bindings()
     print('refresh end) '+str(datetime.now()))##################
     #elif
+    print('rowtemplate end) '+str(datetime.now()))##################
 
 
     #self.refresh_data_bindings()

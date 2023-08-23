@@ -48,7 +48,7 @@ class Homepage(HomepageTemplate):
  
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    print('form start) '+str(datetime.now()))##################
+    print('homepage start) '+str(datetime.now()))##################
     print('login start) '+str(datetime.now()))##################
     anvil.users.login_with_form()
     print('login end) '+str(datetime.now()))##################
@@ -116,7 +116,7 @@ class Homepage(HomepageTemplate):
     print('refresh end) '+str(datetime.now()))##################
 
     #self.refresh_action()
-    print('form end) '+str(datetime.now()))##################
+    print('homepage end) '+str(datetime.now()))##################
   def initialise_start_dates(self):
     
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
