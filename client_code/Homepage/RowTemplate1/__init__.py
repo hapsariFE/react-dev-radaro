@@ -173,12 +173,12 @@ class RowTemplate1(RowTemplate1Template):
     self.refresh_data_bindings()
     print('refresh end)'+str(datetime.now()))##################
 
-  #def update_item(self, **event_args):
-  #  print('watchupdate start)'+str(datetime.now()))##################
-  #  watch_list = self.watch.checked
-  #  row_id=self.item['id']
-  #  anvil.server.call('update_item',row_id,watch_list)
-  #  print('watchupdate end)'+str(datetime.now()))##################
+  def update_item(self, **event_args):
+    print('watchupdate start)'+str(datetime.now()))##################
+    watch_list = self.watch.checked
+    row_id=self.item['id']
+    anvil.server.call('update_item',row_id,watch_list)
+    print('watchupdate end)'+str(datetime.now()))##################
 
   def update_item2(self, **event_args):
     """This method is called when the link is clicked"""
