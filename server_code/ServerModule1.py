@@ -192,7 +192,6 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   
  #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
   return custTable
-  
   #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),
     #tables.order_by("last_action_date", ascending=False)
@@ -206,7 +205,6 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
  # print(rowValue)
-  
   if rowValue is None: 
     print("No Escalation Selected")
   else:
@@ -217,7 +215,6 @@ def get_action(rowValue):
     return app_tables.action_log.search(tables.order_by("created_date",ascending=False),escalation_id=q.any_of(rowValue)
     
   )
-
 @anvil.server.callable
 def get_selectedMerchant(selectedMerchant):
   #valuesMerch = [row for row in selectedMerchant]
@@ -237,7 +234,6 @@ def get_selectedMerchant(selectedMerchant):
    # print("xxxxxx")
   #  print(x_list)
     return x_list
-    
 
 @anvil.server.callable
 def add_comment(article, article_dict, description, status, created_date, assign_to):
@@ -272,7 +268,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
   #  created_date = created_date,
   #  assign_to=x_assign
  # )
-
+  
 @anvil.server.callable
 def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to):
   merchant_row = app_tables.merchant.get(name=merchant_name) 

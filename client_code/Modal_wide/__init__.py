@@ -14,21 +14,29 @@ import anvil.tz
 class Modal_wide(Modal_wideTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    print('initiateModal start)'+str(datetime.now()))##################
     self.esc_status = esc_status
     self.assigned = ""
+    print('initiateModal end)'+str(datetime.now()))##################
 
     self.init_components(**properties)
+    print('Modal start)'+str(datetime.now()))##################
     #print("------")
     # Any code you write here will run before the form opens.
 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    print(selectedRow)
-    print(self.item['watchlistUsers'])
+    #print(selectedRow)
+    #print(self.item['watchlistUsers'])
+    print('assignlist start)'+str(datetime.now()))##################
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    print('assignlist end)'+str(datetime.now()))##################
+    print('actiondata start)'+str(datetime.now()))##################
     actionData = anvil.server.call('get_action',selectedRow)
+    print('actiondata end)'+str(datetime.now()))##################
     self.action_panelwide.items = actionData
     self.assigned = assignList
+    print('watch start)'+str(datetime.now()))##################
     if self.item['watchlistUsers'] is not None:
       if anvil.users.get_user() in self.item['watchlistUsers']:
         self.favourite.source= "_/theme/Star%20filled.png"
@@ -36,11 +44,16 @@ class Modal_wide(Modal_wideTemplate):
         self.favourite.source = "_/theme/Star%20outline.png"
     else:
       self.favourite.source = "_/theme/Star%20outline.png"
+    print('watch end)'+str(datetime.now()))##################
+    print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
+    print('refresh end)'+str(datetime.now()))##################
+    print('Modal end)'+str(datetime.now()))##################
 
 
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
+    print('submit start)'+str(datetime.now()))##################
     description = self.addcomment.text
     status = self.dd_status.selected_value
     created_date = datetime.now(anvil.tz.tzlocal())
@@ -63,15 +76,20 @@ class Modal_wide(Modal_wideTemplate):
       #alert("Comment Submitted")
       #self.refresh_data_bindings()
       self.clear_button_click()
+      print('submit end)'+str(datetime.now()))##################
       Notification("Your comment was submitted").show()
 
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
         # Clear our input boxes
+    print('clear start)'+str(datetime.now()))##################
     self.addcomment.text = ""
     self.dd_status.selected_value = ""
     self.dd_assign.selected_value = ""
+    print('clear start)'+str(datetime.now()))##################
+    print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
+    print('refresh end)'+str(datetime.now()))##################
 
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -79,6 +97,8 @@ class Modal_wide(Modal_wideTemplate):
     webbrowser.open(self.item['job_report'])
 
   def update_item(self, **event_args):
+    print('update start)'+str(datetime.now()))##################
+    print('watch start)'+str(datetime.now()))##################
     watchlistUsers = self.item['watchlistUsers']
     watch_list = self.item['watch_list']
     #print(watchlistUsers)
@@ -89,7 +109,7 @@ class Modal_wide(Modal_wideTemplate):
       elif anvil.users.get_user() not in watchlistUsers:
         self.favourite.source= "_/theme/Star%20filled.png"
         print("No")
-        
+    print('watch end)'+str(datetime.now()))##################
     #if watch_list == False:
     #  watch_list = True
     #  self.favourite.source= "_/theme/Star%20filled.png"
@@ -98,9 +118,14 @@ class Modal_wide(Modal_wideTemplate):
     #  watch_list = False
     #  self.favourite.source = "_/theme/Star%20outline.png"
     article=self.item
+    print('getuser start)'+str(datetime.now()))##################
     user = anvil.users.get_user()
+    print('getuser end)'+str(datetime.now()))##################
     anvil.server.call('update_item',article,user)
+    print('update end)'+str(datetime.now()))##################
+    print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
+    print('refresh end)'+str(datetime.now()))##################
     #watch_list = self.item['watch_list']
     #if watch_list == False:
      # watch_list = True
