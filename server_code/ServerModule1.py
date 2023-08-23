@@ -34,16 +34,19 @@ import anvil.tz
 
 @anvil.server.callable
 def get_merchant_list():
+  print('getmerchant start) '+str(datetime.now()))##################
   currentUser=anvil.users.get_user()
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
   x_list =[r['name'] for r in x_rows]
  # print(x_list)
+  print('getmerchant end) '+str(datetime.now()))##################
   return x_list
 
 
 @anvil.server.callable
 def get_user_list():
+  print('userlist start) '+str(datetime.now()))##################
   currentUser=anvil.users.get_user()
   related_rows = currentUser['user_merchant_link']
  # print(related_rows)
@@ -52,6 +55,7 @@ def get_user_list():
   
   #rows = list(dict(r) for r in related_rows)
   #print(rows)
+  print('userlist end) '+str(datetime.now()))##################
   return app_tables.users.search(user_merchant_link=q.any_of(*values))
 
 #@anvil.server.callable
@@ -61,6 +65,7 @@ def get_user_list():
 
 @anvil.server.callable
 def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
+  print('getlist start) '+str(datetime.now()))##################
   currentUser=anvil.users.get_user()
   kwargs={'job_status':jobValue,'completion_code_id':compCode}
   total = []
@@ -192,7 +197,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   
  #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
   return custTable
-  
+  print('getlist end) '+str(datetime.now()))##################
   #.search(**kwargs)
     #tables.order_by("date_created", ascending=False),
     #tables.order_by("last_action_date", ascending=False)
@@ -206,7 +211,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
  # print(rowValue)
-  
+  print('getaction start) '+str(datetime.now()))##################
   if rowValue is None: 
     print("No Escalation Selected")
   else:
@@ -217,9 +222,10 @@ def get_action(rowValue):
     return app_tables.action_log.search(tables.order_by("created_date",ascending=False),escalation_id=q.any_of(rowValue)
     
   )
-
+    print('getaction end) '+str(datetime.now()))##################
 @anvil.server.callable
 def get_selectedMerchant(selectedMerchant):
+  print('getselectedmerchant start) '+str(datetime.now()))##################
   #valuesMerch = [row for row in selectedMerchant]
   related_rows = selectedMerchant
     #print(RelatedJobStatus)
@@ -237,10 +243,11 @@ def get_selectedMerchant(selectedMerchant):
    # print("xxxxxx")
   #  print(x_list)
     return x_list
-    
+    print('getselectedmerchant end) '+str(datetime.now()))##################
 
 @anvil.server.callable
 def add_comment(article, article_dict, description, status, created_date, assign_to):
+  print('addcomment start) '+str(datetime.now()))##################
   if app_tables.webhook.has_row(article):
    article_dict['last_action_date'] = created_date
    #print(article_dict['last_action_date'])
@@ -261,6 +268,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
    article.update(**article_dict)
   else:
    raise Exception("Article does not exist")
+  print('addcomment end) '+str(datetime.now()))##################
  # x_assign = app_tables.users.get(name=assign_x)
 #  print(*x_assign)
  # currentUser = anvil.users.get_user()
@@ -272,9 +280,10 @@ def add_comment(article, article_dict, description, status, created_date, assign
   #  created_date = created_date,
   #  assign_to=x_assign
  # )
-
+  
 @anvil.server.callable
 def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to):
+  print('newcomment start) '+str(datetime.now()))##################
   merchant_row = app_tables.merchant.get(name=merchant_name) 
   status_row = app_tables.job_status.get(name='Failed') 
   #assignrow = app_tables.users.get(name=assign_to)
@@ -298,6 +307,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
   jr_dict = dict(jobrow)
   assignname = assign_to['name']
   add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  print('newcomment end) '+str(datetime.now()))##################
   #row = app_tables.action_log.add_row(
   #  job_id = jobrow,
   #  user=anvil.users.get_user(),
@@ -337,6 +347,7 @@ import_excel_data("anvil_upload.xlsx")
 
 @anvil.server.callable
 def update_item(article,user):
+  print('updateitem start) '+str(datetime.now()))##################
   #watch_list = watch_list
   #row_id=row_id
   #row=app_tables.webhook.get(id=row_id)  
@@ -354,6 +365,7 @@ def update_item(article,user):
   #inventory = article['watchlistUsers']
   #inventory['items'].append({'name': name, 'amount': amount})
   #row['Inventory'] = inventory
+  print('updateitem end) '+str(datetime.now()))##################
 
 @tables.in_transaction
 def get_next_value_in_sequence():

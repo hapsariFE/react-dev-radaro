@@ -60,9 +60,11 @@ class Homepage(HomepageTemplate):
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     
     merchName = anvil.server.call('get_merchant_list')
+    print('getmerchant end) '+str(datetime.now()))##################
     #print(merchant_name)
     self.merchant_name = merchName
     users = anvil.server.call('get_user_list')
+    print('userlist end) '+str(datetime.now()))##################
     #print(merchName)
     #x_rows = users['user_merchant_link']
     #x_list =[r['name'] for r in x_rows]
