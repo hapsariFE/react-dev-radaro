@@ -14,7 +14,7 @@ from datetime import datetime, timedelta, date
 
 class RowTemplate1(RowTemplate1Template):
   def __init__(self, **properties):
-    print('initiate start) '+str(datetime.now()))##################
+    print('initiaterow start) '+str(datetime.now()))##################
     #self.data = data
     #self.orderSelectionRadio.set_event_handler("change", orderSelection_radio_clicked)
     # Set Form properties and Data Bindings.
@@ -22,7 +22,7 @@ class RowTemplate1(RowTemplate1Template):
     #status = None
     #description = ""
     #self.label_2.text = str(self.item['last_action_date'].astimezone(anvil.tz.tzlocal()))
-    print('initiate end) '+str(datetime.now()))##################
+    print('initiaterow end) '+str(datetime.now()))##################
 
     self.init_components(**properties)
     print('rowtemplate start) '+str(datetime.now()))##################
@@ -45,9 +45,9 @@ class RowTemplate1(RowTemplate1Template):
     else:
       self.favourite.source = "_/theme/Star%20outline.png"
     print('watchlist end) '+str(datetime.now()))##################
-    print('refresh start) '+str(datetime.now()))##################
-    self.refresh_data_bindings()
-    print('refresh end) '+str(datetime.now()))##################
+    #print('refresh start) '+str(datetime.now()))##################
+    #self.refresh_data_bindings()
+    #print('refresh end) '+str(datetime.now()))##################
     #elif
     print('rowtemplate end) '+str(datetime.now()))##################
 
@@ -173,12 +173,12 @@ class RowTemplate1(RowTemplate1Template):
     self.refresh_data_bindings()
     print('refresh end) '+str(datetime.now()))##################
 
-  def update_item(self, **event_args):
-    print('watchupdate start) '+str(datetime.now()))##################
-    watch_list = self.watch.checked
-    row_id=self.item['id']
-    anvil.server.call('update_item',row_id,watch_list)
-    print('watchupdate end) '+str(datetime.now()))##################
+  #def update_item(self, **event_args):
+  #  print('watchupdate start) '+str(datetime.now()))##################
+  #  watch_list = self.watch.checked
+  #  row_id=self.item['id']
+  #  anvil.server.call('update_item',row_id,watch_list)
+  #  print('watchupdate end) '+str(datetime.now()))##################
 
   def update_item2(self, **event_args):
     """This method is called when the link is clicked"""
