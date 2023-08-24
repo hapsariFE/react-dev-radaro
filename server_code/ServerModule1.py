@@ -39,9 +39,11 @@ def incoming_msg(**kwargs):
   data = anvil.server.request.body_json
   #json['topic']
   topic = data.get('topic')
+  merctable = app_tables.merchant.get(token=data['token'])
   if 'new_values' in data:
-    if 'is_confirmed_by_customer' in data['new_values']:
-      if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] :
+    if 'is_confirmed_by_customer' in data['new_values'] and merctable is not None:
+      
+      if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
         #print(json)
         codes=data['order_info']['completion_codes']
         id_values = [str(code["code"]) for code in codes]
@@ -50,58 +52,61 @@ def incoming_msg(**kwargs):
         nv = data['new_values']['is_confirmed_by_customer']
         rating = data['order_info']['rating']
         counter = get_next_value_in_sequence()
-        app_tables.test_table.add_row(
-          job_id = data['order_info']['order_id'],
-          id= str(counter),
-          customer_name = data['order_info']['customer']['name'],
-          completion_code_id_str = id_string,
-          date_created = datetime.now(),
-          last_action_date =datetime.now(),
-          job_reference = data['order_info']['title'],
-          webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
-          job_status = data['order_info']['status'],
-          job_report = data['order_info']['public_report_link'],
-          customer_rating= rating,
-          escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
-          latest_assignee = None,
-          latest_status = app_tables.escalation_status.get(name= "New"),
-          sub_brand=data['order_info']['sub_branding'],
-          mobile_number=data['order_info']['customer']['phone'],
-          date_delivered=data['order_info']['completed_at'],
-          job_reference2=data['order_info']['title_2'],
-          job_reference3=data['order_info']['title_3'],
-          address=data['order_info']['deliver_address']['address'],
-          watch_list=False)
-    elif 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
-        codes=data['order_info']['completion_codes']
-        id_values = [str(code["code"]) for code in codes]
-        id_string = ";".join(id_values)
+        try:
+          app_tables.test_table.add_row(
+            job_id = data['order_info']['order_id'],
+            id= str(counter),
+            customer_name = data['order_info']['customer']['name'],
+            completion_code_id_str = id_string,
+            date_created = datetime.now(),
+            last_action_date =datetime.now(),
+            job_reference = data['order_info']['title'],
+            webhook_merchant_link=app_tables.merchant.get(token=data['token']),
+            job_status = data['order_info']['status'],
+            job_report = data['order_info']['public_report_link'],
+            customer_rating= rating,
+            escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
+            latest_assignee = None,
+            latest_status = app_tables.escalation_status.get(name= "New"),
+            sub_brand=data['order_info']['sub_branding'],
+            mobile_number=data['order_info']['customer']['phone'],
+            date_delivered=data['order_info']['completed_at'],
+            job_reference2=data['order_info']['title_2'],
+            job_reference3=data['order_info']['title_3'],
+            address=data['order_info']['deliver_address']['address'],
+            watch_list=False)
+        except:
+            print("falied")
+   ## elif 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
+   ##     codes=data['order_info']['completion_codes']
+   ##     id_values = [str(code["code"]) for code in codes]
+   ##     id_string = ";".join(id_values)
           
         #nv = data['new_values']['is_confirmed_by_customer']
-        rating = data['order_info']['rating']
-        counter = get_next_value_in_sequence()
-        app_tables.test_table.add_row(
-          job_id = data['order_info']['order_id'],
-          id= str(counter),
-          customer_name = data['order_info']['customer']['name'],
-          completion_code_id_str = id_string,
-          date_created = datetime.now(),
-          last_action_date =datetime.now(),
-          job_reference = data['order_info']['title'],
-          webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
-          job_status = data['order_info']['status'],
-          job_report = data['order_info']['public_report_link'],
-          customer_rating= rating,
-          escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
-          latest_assignee = None,
-          latest_status = app_tables.escalation_status.get(name= "New"),
-          sub_brand=data['order_info']['sub_branding'],
-          mobile_number=data['order_info']['customer']['phone'],
-          date_delivered=data['order_info']['completed_at'],
-          job_reference2=data['order_info']['title_2'],
-          job_reference3=data['order_info']['title_3'],
-          address=data['order_info']['deliver_address']['address'],
-          watch_list=False)
+   ##     rating = data['order_info']['rating']
+   ##     counter = get_next_value_in_sequence()
+   ##     app_tables.test_table.add_row(
+   ##      job_id = data['order_info']['order_id'],
+   ##       id= str(counter),
+   ##       customer_name = data['order_info']['customer']['name'],
+   ##       completion_code_id_str = id_string,
+   ##       date_created = datetime.now(),
+   ##       last_action_date =datetime.now(),
+   ##       job_reference = data['order_info']['title'],
+   ##       webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
+   ##       job_status = data['order_info']['status'],
+   ##       job_report = data['order_info']['public_report_link'],
+   ##       customer_rating= rating,
+   ##      escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
+   ##       latest_assignee = None,
+   ##       latest_status = app_tables.escalation_status.get(name= "New"),
+   ##       sub_brand=data['order_info']['sub_branding'],
+   ##       mobile_number=data['order_info']['customer']['phone'],
+   ##       date_delivered=data['order_info']['completed_at'],
+   ##       job_reference2=data['order_info']['title_2'],
+   ##       job_reference3=data['order_info']['title_3'],
+   ##       address=data['order_info']['deliver_address']['address'],
+   ##       watch_list=False)
     else:
         pass
   
