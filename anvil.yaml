@@ -6,14 +6,27 @@ services:
   server_config: {auto_create_missing_columns: true}
 - source: /runtime/services/anvil/users.yml
   client_config: {allow_signup: false, enable_automatically: true, use_email: true,
-    confirm_email: false}
-  server_config: {user_table: users}
+    confirm_email: true, use_google: true, allow_remember_me: true, remember_me_days: 30,
+    require_secure_passwords: true}
+  server_config:
+    user_table: users
+    email_content:
+      confirm_address: {html: '<p>Hi</p><p>Thanks for registering your account with
+          us. Please confirm your email address by clicking the link below:</p><p>{{confirm_link}}</p><p><br></p><p>Thanks,</p><p>The
+          Radaro team</p>'}
+      reset_password: {html: '<p>Hi there,</p><p>You have requested a password reset
+          for your account {{email}}. To reset your password, click the link below:</p><p>{{reset_link}}</p><p>This
+          link will expire in ten minutes.</p><p><br></p><p>Thanks,</p><p>The Radaro
+          team</p>'}
 - source: /runtime/services/anvil/secrets.yml
   client_config: {}
   server_config: {}
 - source: /runtime/services/anvil/files.yml
   client_config: {}
   server_config: {file_table: files}
+- source: /runtime/services/google.yml
+  client_config: {}
+  server_config: {}
 startup: {type: form, module: Homepage}
 package_name: Intraday_Dashboard_v2
 allow_embedding: false
