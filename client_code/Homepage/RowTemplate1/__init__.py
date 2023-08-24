@@ -1,5 +1,6 @@
 from ._anvil_designer import RowTemplate1Template
 from anvil import *
+from ... import Data
 import anvil.server
 import anvil.users
 import anvil.tables as tables
@@ -38,7 +39,7 @@ class RowTemplate1(RowTemplate1Template):
     self.label_2.text = self.item['last_action_date'].astimezone(anvil.tz.tzlocal())
     print('watchlist start)'+str(datetime.now()))##################
     if self.item['watchlistUsers'] is not None:
-      if anvil.users.get_user() in self.item['watchlistUsers']:
+      if Data.currentUser in self.item['watchlistUsers']:
         self.favourite.source= "_/theme/Star%20filled.png"
       else:
         self.favourite.source = "_/theme/Star%20outline.png"
@@ -187,10 +188,10 @@ class RowTemplate1(RowTemplate1Template):
     watch_list = self.item['watch_list']
     #print(watchlistUsers)
     if watchlistUsers is not None:
-      if anvil.users.get_user() in watchlistUsers:
+      if Data.currentUser in watchlistUsers:
         self.favourite.source = "_/theme/Star%20outline.png"
         print("Yes")
-      elif anvil.users.get_user() not in watchlistUsers:
+      elif Data.currentUser not in watchlistUsers:
         self.favourite.source= "_/theme/Star%20filled.png"
         print("No")
         
@@ -202,7 +203,7 @@ class RowTemplate1(RowTemplate1Template):
     #  watch_list = False
     #  self.favourite.source = "_/theme/Star%20outline.png"
     article=self.item
-    user = anvil.users.get_user()
+    user = Data.currentUser
     anvil.server.call('update_item',article,user)
     print('watchupdate end)'+str(datetime.now()))##################
     print('refresh start)'+str(datetime.now()))##################

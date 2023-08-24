@@ -5,7 +5,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
-#from ... import Data
+from .. import Data
 from ..Data import *
 from datetime import datetime, timedelta, date
 import webbrowser
@@ -38,7 +38,7 @@ class Modal_wide(Modal_wideTemplate):
     self.assigned = assignList
     print('watch start)'+str(datetime.now()))##################
     if self.item['watchlistUsers'] is not None:
-      if anvil.users.get_user() in self.item['watchlistUsers']:
+      if Data.currentUser in self.item['watchlistUsers']:
         self.favourite.source= "_/theme/Star%20filled.png"
       else:
         self.favourite.source = "_/theme/Star%20outline.png"
@@ -103,10 +103,10 @@ class Modal_wide(Modal_wideTemplate):
     watch_list = self.item['watch_list']
     #print(watchlistUsers)
     if watchlistUsers is not None:
-      if anvil.users.get_user() in watchlistUsers:
+      if Data.currentUser in watchlistUsers:
         self.favourite.source = "_/theme/Star%20outline.png"
         print("Yes")
-      elif anvil.users.get_user() not in watchlistUsers:
+      elif Data.currentUser not in watchlistUsers:
         self.favourite.source= "_/theme/Star%20filled.png"
         print("No")
     print('watch end)'+str(datetime.now()))##################
@@ -119,7 +119,7 @@ class Modal_wide(Modal_wideTemplate):
     #  self.favourite.source = "_/theme/Star%20outline.png"
     article=self.item
     print('getuser start)'+str(datetime.now()))##################
-    user = anvil.users.get_user()
+    user = Data.currentUser
     print('getuser end)'+str(datetime.now()))##################
     anvil.server.call('update_item',article,user)
     print('update end)'+str(datetime.now()))##################

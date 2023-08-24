@@ -4,6 +4,7 @@ import anvil.server
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
+from .. import Data
 from ..Data import *
 from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
@@ -50,12 +51,12 @@ class Homepage(HomepageTemplate):
     # Any code you write here will run before the form opens.
     print('homepage start)'+str(datetime.now()))##################
     print('login start)'+str(datetime.now()))##################
-    anvil.users.login_with_form()
+    Data.currentUser=anvil.users.login_with_form()
     print('login end)'+str(datetime.now()))##################
     print('getuser start)'+str(datetime.now()))##################
-    currentUser=anvil.users.get_user()
+    #currentUser=anvil.users.get_user()
     print('getuser end)'+str(datetime.now()))##################
-    my_media = anvil.URLMedia(currentUser['Logo'])
+    my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
     print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
