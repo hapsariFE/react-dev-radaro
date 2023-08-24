@@ -553,7 +553,7 @@ components:
     enabled: true
     files: []
     foreground: ''
-    visible: true
+    visible: false
     text: Upload
     font_size: null
     font: ''
