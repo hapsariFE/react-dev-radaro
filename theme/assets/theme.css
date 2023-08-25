@@ -1277,6 +1277,12 @@ div.plot-container.plotly svg.main-svg {
   content: "\2212";
 }
 */
+
+.filterselect {
+  padding: 0 18px;
+}
+
+
 .filterpanel {
   padding: 0 18px;
   max-height: 0;
