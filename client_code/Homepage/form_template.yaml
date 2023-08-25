@@ -416,20 +416,20 @@ components:
       name: label_3_copy
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: new, font_size: null, font: '', spacing_above: none,
-        icon_align: right, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:plus-circle'}
-      name: button_2
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 10, width: 129.156}
-      event_bindings: {click: new_escalation}
-    - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
         foreground: '', visible: false, text: Search, font_size: 12, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: 'fa:search'}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 146.828}
       event_bindings: {click: filter_change}
       name: button_1
+    - type: Button
+      properties: {role: filled-button, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Create new, font_size: 14, font: '',
+        spacing_above: none, icon_align: right, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:plus-circle'}
+      name: button_2
+      layout_properties: {row: JOTUVB, width_xs: 3, col_xs: 0, width: 194.5}
+      event_bindings: {click: new_escalation}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,

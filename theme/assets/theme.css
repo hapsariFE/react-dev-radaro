@@ -1067,7 +1067,7 @@ input[disabled] ~ span {
   border-radius: 24px 24px 0 0;
 }
 .auto-grid-header {
-  font-size: 12px;
+  font-size: 14px;
   font:Lato;
   color: %color:Filter Font%;
 }
@@ -1174,12 +1174,12 @@ div.plot-container.plotly svg.main-svg {
 }
 .anvil-role-switch input:checked + span::before,
 .anvil-role-switch-rounded input:checked + span::before {
- background-color: %color:Primary%;
+ background-color: %color:Toggle%;
 }
 
 .anvil-role-switch input:focus + span::before,
 .anvil-role-switch-rounded input:focus + span::before {
- box-shadow: 0 0 1px %color:Primary%;
+ box-shadow: 0 0 1px %color:Toggle%;
 }
 
 .anvil-role-switch input:checked + span::after,

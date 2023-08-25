@@ -1,12 +1,12 @@
 container:
   type: DataRowPanel
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true,
-    visible: true, font_size: null, font: '', spacing_above: none, spacing_below: none,
+    visible: true, font_size: 14, font: '', spacing_above: none, spacing_below: none,
     italic: false, background: '', bold: false, underline: false}
 components:
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    text: '', font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_2
   layout_properties: {column: VEQFME}
@@ -15,7 +15,7 @@ components:
       else ''---'''}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    text: '', font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_3
   layout_properties: {column: MQEENE}
@@ -23,7 +23,7 @@ components:
   - {property: text, code: 'self.item[''user''][''name'']'}
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
-    text: '', font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: none,
+    text: '', font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: none,
     italic: false, background: '', bold: false, underline: false, icon: ''}
   name: label_4
   layout_properties: {column: ZNGNTV}

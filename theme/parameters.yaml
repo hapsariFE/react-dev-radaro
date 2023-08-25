@@ -42,6 +42,7 @@ roles:
 - name: switch-rounded
   components: [CheckBox]
 - {name: star-button}
+- {name: green-filled-button}
 color_scheme:
   preset_groups:
   - name: Colour Scheme
@@ -328,3 +329,4 @@ color_scheme:
   - {name: Filter Font, color: '#999999'}
   - {name: Font, color: '#262626'}
   - {name: Header, color: '#fafafa'}
+  - {name: Toggle, color: '#20cb45'}

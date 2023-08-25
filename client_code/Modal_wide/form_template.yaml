@@ -23,11 +23,11 @@ components:
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 0, width: 115.656}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_4
-      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 1, width: 115.656}
+      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 1, width: 99.9844}
       data_bindings:
       - {property: text, code: 'self.item[''customer_name'']'}
     - type: Label
@@ -39,11 +39,11 @@ components:
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 3, width: 115.656}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_8
-      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 4, width: 115.656}
+      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 4, width: 99.9844}
       data_bindings:
       - {property: text, code: 'self.item[''escalation_type''][''name'']'}
     - type: Label
@@ -55,11 +55,11 @@ components:
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 6, width: 115.656}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_12
-      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 7, width: 115.656}
+      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 7, width: 99.9844}
       data_bindings:
       - {property: text, code: 'self.item[''latest_assignee''][''name''] if self.item[''latest_assignee'']
           else ''---'''}
@@ -143,11 +143,11 @@ components:
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 0, width: 42.8281}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_9
-      layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 2, width: 188.5}
+      layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 2, width: 99.9844}
       data_bindings:
       - {property: text, code: 'self.item[''mobile_number'']'}
     - type: Label
@@ -159,11 +159,11 @@ components:
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 4, width: 115.656}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_14
-      layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 6, width: 115.656}
+      layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 6, width: 99.9844}
       data_bindings:
       - {property: text, code: 'self.item[''date_delivered''].strftime("%d %b, %Y
           %H:%M") if self.item[''date_delivered''] else ''---'''}
@@ -176,11 +176,11 @@ components:
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 8, width: 115.656}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_16
-      layout_properties: {row: FBQPYV, width_xs: 1, col_xs: 10, width: 42.8281}
+      layout_properties: {row: FBQPYV, width_xs: 1, col_xs: 10, width: 34.9844}
       data_bindings:
       - {property: text, code: 'self.item[''sub_brand'']'}
   - type: Label
@@ -248,7 +248,7 @@ components:
       event_bindings: {}
     - type: Button
       properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Submit, font_size: 12, font: '', spacing_above: small,
+        foreground: '', visible: true, text: Submit, font_size: 14, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: submit_button
@@ -283,7 +283,7 @@ components:
       event_bindings: {}
     - type: Button
       properties: {role: outlined-button, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear, font_size: 12, font: '', spacing_above: small,
+        foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: clear_button
