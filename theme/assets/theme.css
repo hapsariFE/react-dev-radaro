@@ -658,6 +658,7 @@ button.close > span, button.close {
   color: %color:Font%;
   box-shadow:none;
   border: solid 1px %color:Outline%;
+  padding: 3px 16px;
 }
 
 .anvil-role-outlined-button > .btn:hover, .anvil-role-outlined-button.file-loader>label:hover {
@@ -677,6 +678,7 @@ button.close > span, button.close {
   background-color: %color:Font%;
   color: %color:On Primary%;
   box-shadow:none;
+  padding: 3px 16px;
 }
 
 .anvil-role-filled-button > .btn:hover, .btn-primary:hover, .anvil-role-filled-button.file-loader>label:hover {
