@@ -8,7 +8,7 @@ components:
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '', spacing_below: none,
     background: ''}
   name: filterpanel
-  layout_properties: {slot: filterpanel}
+  layout_properties: {slot: filter-panel}
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: none, background: '', foreground: '',
@@ -423,12 +423,12 @@ components:
       event_bindings: {click: filter_change}
       name: button_1
     - type: Button
-      properties: {role: filled-button, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Create new, font_size: 14, font: '',
-        spacing_above: none, icon_align: right, spacing_below: none, italic: false,
+      properties: {role: green-filled-button, align: left, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: Create new, font_size: 14,
+        font: '', spacing_above: none, icon_align: right, spacing_below: none, italic: false,
         background: '', bold: false, underline: false, icon: 'fa:plus-circle'}
       name: button_2
-      layout_properties: {row: JOTUVB, width_xs: 3, col_xs: 0, width: 194.5}
+      layout_properties: {row: JOTUVB, width_xs: 3, col_xs: 0, width: 199.25}
       event_bindings: {click: new_escalation}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
