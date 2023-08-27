@@ -8,7 +8,7 @@ components:
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: filterpanel
-  layout_properties: {slot: filterpanel}
+  layout_properties: {slot: filter-panel}
   components:
   - type: ColumnPanel
     properties: {role: outlined-card, tooltip: '', border: 1px solid, foreground: 'theme:Filter
