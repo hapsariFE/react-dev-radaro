@@ -71,7 +71,7 @@ def incoming_msg(**kwargs):
         escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
         latest_assignee = None,
         latest_status = app_tables.escalation_status.get(name= "New"),
-        sub_brand=data['order_info']['sub_branding'],
+        sub_brand=str(data['order_info']['sub_branding']),
         mobile_number=data['order_info']['customer']['phone'],
         date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
         job_reference2=data['order_info']['title_2'],
