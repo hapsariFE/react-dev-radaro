@@ -558,23 +558,24 @@ components:
     components:
     - type: ColumnPanel
       properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-        wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"FOCTRF":68,"UVKESM":7}',
+        wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"FOCTRF":78,"UVKESM":7}',
         spacing_below: none, background: ''}
       name: column_panel_4
       layout_properties: {grid_position: 'BLESZH,KAZWCC'}
       components:
       - type: TextBox
-        properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Search escalations,
-          border: none, enabled: true, foreground: '', visible: true, text: '', font_size: null,
-          font: '', spacing_above: medium, type: text, spacing_below: none, italic: false,
-          background: '', bold: false, underline: false}
+        properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: 'Search
+            reference, brand or customer', border: none, enabled: true, foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: medium,
+          type: text, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false}
         name: text_box_search
         layout_properties: {grid_position: 'DQVXYD,FOCTRF'}
         event_bindings: {pressed_enter: filter_change}
       - type: Link
         properties: {role: null, url: '', align: left, tooltip: clear search, border: '',
-          foreground: '', visible: false, text: '', font_size: null, wrap_on: never,
-          font: '', col_spacing: none, spacing_above: none, icon_align: right_edge,
+          foreground: 'theme:Error', visible: false, text: '', font_size: null, wrap_on: never,
+          font: '', col_spacing: none, spacing_above: none, icon_align: left_edge,
           col_widths: '', spacing_below: none, italic: false, background: '', bold: false,
           underline: false, icon: 'fa:times-circle'}
         layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 8, width: 148, grid_position: 'DQVXYD,UVKESM'}
