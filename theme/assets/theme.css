@@ -658,6 +658,7 @@ button.close > span, button.close {
   color: %color:Font%;
   box-shadow:none;
   border: solid 1px %color:Outline%;
+  padding: 3px 16px;
 }
 
 .anvil-role-outlined-button > .btn:hover, .anvil-role-outlined-button.file-loader>label:hover {
@@ -677,6 +678,7 @@ button.close > span, button.close {
   background-color: %color:Font%;
   color: %color:On Primary%;
   box-shadow:none;
+  padding: 3px 16px;
 }
 
 .anvil-role-filled-button > .btn:hover, .btn-primary:hover, .anvil-role-filled-button.file-loader>label:hover {
@@ -1275,6 +1277,12 @@ div.plot-container.plotly svg.main-svg {
   content: "\2212";
 }
 */
+
+.filterselect {
+  padding: 0 10px;
+}
+
+
 .filterpanel {
   padding: 0 18px;
   max-height: 0;
@@ -1283,7 +1291,7 @@ div.plot-container.plotly svg.main-svg {
 }
 
 .collapsible: {
-	border-style: solid;
+	/*border-style: solid;
 	border-width: 0.15em 0.15em 0 0;
 	content: '';
 	display: inline-block;
@@ -1316,7 +1324,7 @@ div.plot-container.plotly svg.main-svg {
 .active:after {
 	transform: rotate(-45deg);
   vertical-align: bottom;
-}
+}*/
 
 .anvil-role-star-button {
   --star-color:orange;

@@ -25,6 +25,7 @@
     </div>
 
         <div class="content">
+        <div class="filterselect" anvil-slot="filterselect"></div>
           <span class="collapsible"></span>
           
 
@@ -128,21 +129,37 @@
       }
     }
   }
-  
   addMarginToContent()
-  window.addEventListener('resize', addMarginToContent);
-
+  
+     
+  function filtercollapse() {
   var coll = document.getElementsByClassName("collapsible");
-  var i;
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.maxHeight){
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } 
-    });
+  for (var i = 0; i < coll.length; i++) {
+    toggleCollapsible.call(coll[i]);
   }
+}
+
+function toggleCollapsible() {
+  this.classList.toggle("active");
+  var content = this.nextElementSibling;
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
+  }
+}
+document.addEventListener("DOMContentLoaded", function () {
+  filtercollapse();
+
+  var button = document.getElementById("collapseButton"); // Replace "collapseButton" with your actual button ID
+  button.addEventListener("click", function () {
+    filtercollapse();
+    // Additional code to handle first button click action if needed
+  });
+});
+
+  function showJsAlert(message) {
+    alert(message);
+    return 42;
+}
 </script>

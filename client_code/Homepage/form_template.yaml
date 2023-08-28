@@ -5,7 +5,7 @@ container:
 components:
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '', spacing_below: none,
+    wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: filterpanel
   layout_properties: {slot: filterpanel}
@@ -360,30 +360,14 @@ components:
       - {code: 'self.filters[''esc_type'']', writeback: true, property: selected_value}
       event_bindings: {change: filter_change}
       name: dd_esc_type
-    - type: ColumnPanel
-      properties: {role: outlined-card, tooltip: '', border: 1px solid, foreground: 'theme:Filter
-          Border', visible: true, wrap_on: never, col_spacing: none, spacing_above: none,
-        col_widths: '{"MVKOEY":65,"RDQTJH":15}', spacing_below: none, background: ''}
-      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 182.5}
-      name: searchbox
-      components:
-      - type: TextBox
-        properties: {role: outlined, align: left, hide_text: false, tooltip: enter a search term and hit enter,
-          placeholder: Search, border: none, enabled: true, foreground: '', visible: true,
-          text: '', font_size: null, font: '', spacing_above: none, type: text, spacing_below: none,
-          italic: false, background: '', bold: false, underline: false}
-        layout_properties: {row: HZZHOZ, width_xs: 2, col_xs: 3, width: 116, grid_position: 'TYKSEW,MVKOEY'}
-        event_bindings: {pressed_enter: filter_change}
-        name: text_box_search
-      - type: Link
-        properties: {role: null, url: '', align: left, tooltip: clear search, border: '',
-          foreground: '', visible: false, text: '', font_size: null, wrap_on: never,
-          font: '', col_spacing: none, spacing_above: none, icon_align: right, col_widths: '',
-          spacing_below: none, italic: false, background: '', bold: false, underline: false,
-          icon: 'fa:times-circle'}
-        layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 8, width: 148, grid_position: 'TYKSEW,RDQTJH'}
-        event_bindings: {click: clear_search}
-        name: clear_icon
+    - type: Button
+      properties: {role: green-filled-button, align: left, tooltip: '', border: '',
+        enabled: true, foreground: '', visible: true, text: Create new, font_size: 14,
+        font: '', spacing_above: none, icon_align: right, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: 'fa:plus-circle'}
+      name: button_2
+      layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 199.25}
+      event_bindings: {click: new_escalation}
     - type: CheckBox
       properties: {role: switch-rounded, align: right, tooltip: '', border: '', enabled: true,
         foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true,
@@ -414,22 +398,6 @@ components:
         underline: false, icon: ''}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 7, width: 60.4375}
       name: label_3_copy
-    - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: Search, font_size: 12, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:search'}
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 146.828}
-      event_bindings: {click: filter_change}
-      name: button_1
-    - type: Button
-      properties: {role: green-filled-button, align: left, tooltip: '', border: '',
-        enabled: true, foreground: '', visible: true, text: Create new, font_size: 14,
-        font: '', spacing_above: none, icon_align: right, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: 'fa:plus-circle'}
-      name: button_2
-      layout_properties: {row: JOTUVB, width_xs: 3, col_xs: 0, width: 199.25}
-      event_bindings: {click: new_escalation}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
@@ -568,5 +536,79 @@ components:
     multiple: false
     icon: fa:upload
   name: file_loader_1
-  layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0, width: 1013.98}
+  layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0, width: 1013.98, slot: ''}
   event_bindings: {change: file_loader_1_change}
+- type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: tiny, spacing_above: small, col_widths: '{"AQHZXR":32,"RWYDAC":9,"CFEBSB":9}',
+    spacing_below: none, background: ''}
+  name: selectpanel
+  layout_properties: {grid_position: 'XNUIKQ,YZNJSG', full_width_row: true, slot: filterselect}
+  components:
+  - type: Spacer
+    properties: {height: 32}
+    name: spacer_2
+    layout_properties: {grid_position: 'OWIDMW,RWYDAC'}
+  - type: ColumnPanel
+    properties: {role: outlined-card, tooltip: '', border: 1px solid, foreground: 'theme:Filter
+        Border', visible: true, wrap_on: never, col_spacing: medium, spacing_above: small,
+      col_widths: '{"KAZWCC":30,"VEIXMU":15,"JCYLBV":15}', spacing_below: none, background: ''}
+    name: column_panel_3
+    layout_properties: {grid_position: 'OWIDMW,AQHZXR'}
+    components:
+    - type: ColumnPanel
+      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+        wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{"FOCTRF":68,"UVKESM":7}',
+        spacing_below: none, background: ''}
+      name: column_panel_4
+      layout_properties: {grid_position: 'BLESZH,KAZWCC'}
+      components:
+      - type: TextBox
+        properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: Search escalations,
+          border: none, enabled: true, foreground: '', visible: true, text: '', font_size: null,
+          font: '', spacing_above: medium, type: text, spacing_below: none, italic: false,
+          background: '', bold: false, underline: false}
+        name: text_box_search
+        layout_properties: {grid_position: 'DQVXYD,FOCTRF'}
+        event_bindings: {pressed_enter: filter_change}
+      - type: Link
+        properties: {role: null, url: '', align: left, tooltip: clear search, border: '',
+          foreground: '', visible: false, text: '', font_size: null, wrap_on: never,
+          font: '', col_spacing: none, spacing_above: none, icon_align: right_edge,
+          col_widths: '', spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: 'fa:times-circle'}
+        layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 8, width: 148, grid_position: 'DQVXYD,UVKESM'}
+        event_bindings: {click: clear_search}
+        name: clear_icon
+    - type: Button
+      properties: {role: outlined-button, align: right, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Search, font_size: 14, font: '', spacing_above: medium,
+        icon_align: left, spacing_below: medium, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:search'}
+      name: button_4
+      layout_properties: {grid_position: 'BLESZH,VEIXMU'}
+      event_bindings: {click: filter_change}
+    - type: Button
+      properties: {role: outlined-button, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Filters, font_size: 14, font: '', spacing_above: medium,
+        icon_align: left, spacing_below: medium, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:sliders'}
+      name: filterbutton
+      layout_properties: {grid_position: 'BLESZH,JCYLBV'}
+      event_bindings: {click: show_filter}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Log out, font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: button_1
+    layout_properties: {grid_position: 'OWIDMW,CFEBSB HHKJVS,FMXKZA'}
+    event_bindings: {click: log_out_click}
+  - type: Label
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+        Font', visible: true, text: '', font_size: 10, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: loggedin
+    layout_properties: {grid_position: 'OWIDMW,CFEBSB LOKPMK,MTVGOU'}
+    data_bindings: []
