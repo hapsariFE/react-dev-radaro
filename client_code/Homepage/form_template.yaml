@@ -540,7 +540,7 @@ components:
   event_bindings: {change: file_loader_1_change}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: tiny, spacing_above: small, col_widths: '{"AQHZXR":50,"NEKHRQ":15,"RWYDAC":15}',
+    wrap_on: mobile, col_spacing: tiny, spacing_above: small, col_widths: '{"AQHZXR":32,"RWYDAC":9,"CFEBSB":9}',
     spacing_below: none, background: ''}
   name: selectpanel
   layout_properties: {grid_position: 'XNUIKQ,YZNJSG', full_width_row: true, slot: filterselect}
@@ -596,12 +596,19 @@ components:
       name: filterbutton
       layout_properties: {grid_position: 'BLESZH,JCYLBV'}
       event_bindings: {click: show_filter}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Log out, font_size: null, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: button_1
+    layout_properties: {grid_position: 'OWIDMW,CFEBSB HHKJVS,FMXKZA'}
+    event_bindings: {click: log_out_click}
   - type: Label
-    properties: {}
+    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
+        Font', visible: true, text: '', font_size: 10, font: '', spacing_above: none,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
     name: loggedin
-    layout_properties: {grid_position: 'OWIDMW,NEKHRQ YQSXTT,FJBSJM'}
+    layout_properties: {grid_position: 'OWIDMW,CFEBSB LOKPMK,MTVGOU'}
     data_bindings: []
-  - type: Spacer
-    properties: {height: 32}
-    name: spacer_1
-    layout_properties: {grid_position: 'OWIDMW,NEKHRQ HKVFUC,HVKDCN'}
