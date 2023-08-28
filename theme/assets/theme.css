@@ -1279,7 +1279,7 @@ div.plot-container.plotly svg.main-svg {
 */
 
 .filterselect {
-  padding: 0 18px;
+  padding: 0 10px;
 }
 
 
@@ -1291,7 +1291,7 @@ div.plot-container.plotly svg.main-svg {
 }
 
 .collapsible: {
-	border-style: solid;
+	/*border-style: solid;
 	border-width: 0.15em 0.15em 0 0;
 	content: '';
 	display: inline-block;
@@ -1324,7 +1324,7 @@ div.plot-container.plotly svg.main-svg {
 .active:after {
 	transform: rotate(-45deg);
   vertical-align: bottom;
-}
+}*/
 
 .anvil-role-star-button {
   --star-color:orange;
