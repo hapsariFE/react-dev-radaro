@@ -398,14 +398,6 @@ components:
         underline: false, icon: ''}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 7, width: 60.4375}
       name: label_3_copy
-    - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: Search, font_size: 12, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:search'}
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 146.828}
-      event_bindings: {click: filter_change}
-      name: button_1
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none,
