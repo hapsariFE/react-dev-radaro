@@ -131,21 +131,32 @@
   }
   addMarginToContent()
   
-  function filtercollapse() {   
+     
+  function filtercollapse() {
   var coll = document.getElementsByClassName("collapsible");
-  var i;
-  for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-      this.classList.toggle("active");
-      var content = this.nextElementSibling;
-      if (content.style.maxHeight){
-        content.style.maxHeight = null;
-      } else {
-        content.style.maxHeight = content.scrollHeight + "px";
-      } 
-    });
+  for (var i = 0; i < coll.length; i++) {
+    coll[i].addEventListener("click", toggleCollapsible);
   }
+}
+
+function toggleCollapsible() {
+  this.classList.toggle("active");
+  var content = this.nextElementSibling;
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+  } else {
+    content.style.maxHeight = content.scrollHeight + "px";
   }
+}
+document.addEventListener("DOMContentLoaded", function () {
+  filtercollapse();
+
+  var button = document.getElementById("collapseButton"); // Replace "collapseButton" with your actual button ID
+  button.addEventListener("click", function () {
+    filtercollapse();
+    // Additional code to handle first button click action if needed
+  });
+});
 
   function showJsAlert(message) {
     alert(message);
