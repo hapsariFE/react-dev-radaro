@@ -290,4 +290,5 @@ class Homepage(HomepageTemplate):
   def show_filter(self, **event_args):
     """This method is called when the button is clicked"""
     self.call_js('filtercollapse')
+    #self.call_js('showJsAlert','hello')
     
