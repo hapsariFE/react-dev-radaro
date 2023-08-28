@@ -28,12 +28,12 @@ services:
   client_config: {}
   server_config: {}
 startup: {type: form, module: Homepage}
-package_name: Intraday_Dashboard_v2
+package_name: React
 allow_embedding: false
-name: Intraday Dashboard v2
+name: React
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null,
   server_persist: true}
-metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png'}
+metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: React}
 startup_form: null
 db_schema:
   escalation_status:
