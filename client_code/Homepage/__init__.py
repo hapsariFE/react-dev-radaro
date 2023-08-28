@@ -286,4 +286,8 @@ class Homepage(HomepageTemplate):
     #self.raise_event("x-edit-article", article=self.item)
     self.filter_change()
     self.refresh_data_bindings()
+
+  def show_filter(self, **event_args):
+    """This method is called when the button is clicked"""
+    ColourChanger.set_theme()
     

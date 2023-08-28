@@ -8,7 +8,7 @@ components:
     wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: filterpanel
-  layout_properties: {slot: filter-panel}
+  layout_properties: {slot: filterpanel}
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: none, background: '', foreground: '',
@@ -595,6 +595,7 @@ components:
         underline: false, icon: 'fa:sliders'}
       name: button_3
       layout_properties: {grid_position: 'BLESZH,JCYLBV'}
+      event_bindings: {click: button_3_click}
   - type: Spacer
     properties: {height: 32}
     name: spacer_1
