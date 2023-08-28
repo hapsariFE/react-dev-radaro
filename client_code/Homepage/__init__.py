@@ -289,5 +289,5 @@ class Homepage(HomepageTemplate):
 
   def show_filter(self, **event_args):
     """This method is called when the button is clicked"""
-    ColourChanger.set_theme()
+    self.call_js('filtercollapse')
     

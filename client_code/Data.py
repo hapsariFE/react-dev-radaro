@@ -17,11 +17,9 @@ merchant_name = [(x['name'], x) for x in app_tables.merchant.search()]
 NO_STATUS_SELECTED = 'None'
 currentUser= None
 
-def set_theme(theme_map):
+def set_theme():
   css = themed_css
-  for name, value in theme_map.items():
-    css = css.replace(f"%color:{name}%", value)
-    
+     
   anvil.js.call_js("setThemeCss", css)
 
 themed_css = """

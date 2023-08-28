@@ -593,9 +593,9 @@ components:
         foreground: '', visible: true, text: Filters, font_size: 14, font: '', spacing_above: medium,
         icon_align: left, spacing_below: medium, italic: false, background: '', bold: false,
         underline: false, icon: 'fa:sliders'}
-      name: button_3
+      name: filterbutton
       layout_properties: {grid_position: 'BLESZH,JCYLBV'}
-      event_bindings: {click: button_3_click}
+      event_bindings: {click: show_filter}
   - type: Spacer
     properties: {height: 32}
     name: spacer_1
