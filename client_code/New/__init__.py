@@ -60,17 +60,17 @@ class New(NewTemplate):
     last_action_date = date_created
 
     if job is "":
-      alert("Please enter a job ID")
+      alert("Please enter a Job ID")
     elif customer is "":
-      alert("Please enter a customer name")
+      alert("Please enter a Customer Name")
     elif merchant_name is None:
-      alert("Please select a merchant")
+      alert("Please select a Merchant")
     elif esc_type is None:
-      alert("Please select an escalation type")    
+      alert("Please select an Escalation Type")    
     elif esc_status is None:
-      alert("Please select an escalation status")    
+      alert("Please select an Escalation Status")    
     elif description is "":
-      alert("Please submit a comment")
+      alert("Please submit a Comment")
     else:
       anvil.server.call('new',job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
       #self.refresh_data_bindings()

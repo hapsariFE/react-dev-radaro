@@ -66,11 +66,11 @@ class Modal_wide(Modal_wideTemplate):
     #print(created_date)
     #print(status)
     if assign_to is None:
-      alert("Please select a Assignee")
+      alert("Please select an Assignee")
     elif status is None:
       alert("Please select a Status")
     elif description is "":
-      alert("Please submit a comment")
+      alert("Please submit a Comment")
     else:
       anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to)
       actionData = anvil.server.call('get_action',self.item)
@@ -95,8 +95,11 @@ class Modal_wide(Modal_wideTemplate):
 
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
-
-    webbrowser.open(self.item['job_report'])
+    if self.item['job_report'] is not None:
+      webbrowser.open(self.item['job_report'])
+    else: 
+        alert('Job Report does not exist')
+    
 
   def update_item(self, **event_args):
     print('update start)'+str(datetime.now()))##################

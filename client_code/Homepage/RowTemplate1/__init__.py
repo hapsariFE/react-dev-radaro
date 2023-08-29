@@ -61,9 +61,10 @@ class RowTemplate1(RowTemplate1Template):
 
   def jobreport_click(self, **event_args):
     """This method is called when the button is clicked"""
-
-    webbrowser.open(self.item['job_report'])
-
+    if self.item['job_report'] is not None:
+      webbrowser.open(self.item['job_report'])
+    else: 
+        alert('Job Report does not exist')
 
 
 
