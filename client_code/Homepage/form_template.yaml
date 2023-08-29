@@ -573,11 +573,11 @@ components:
         - type: TextBox
           properties: {role: outlined, align: left, hide_text: false, tooltip: '',
             placeholder: 'Search reference, brand or customer', border: none, enabled: true,
-            foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: medium,
+            foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: medium,
             type: text, spacing_below: medium, italic: false, background: '', bold: false,
             underline: false}
           name: text_box_search
-          layout_properties: {grid_position: 'HCNRPB,MYRKTJ', x: 0, y: 9, width: 246.29700000000003}
+          layout_properties: {grid_position: 'HCNRPB,MYRKTJ', x: 0, y: 9, width: 318.297}
           event_bindings: {pressed_enter: filter_change}
         - type: Button
           properties: {role: filled-button, align: left, tooltip: '', border: '',

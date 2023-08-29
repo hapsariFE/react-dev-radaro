@@ -188,15 +188,15 @@ components:
       layout_properties: {row: XIOFIZ, width_xs: 12, col_xs: 0, width: 163.141}
     - type: Button
       properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Submit, font_size: 12, font: '', spacing_above: none,
+        foreground: '', visible: true, text: Submit, font_size: 14, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: button_1
-      layout_properties: {row: NUKJET, width_xs: 6, col_xs: 0, width: 85.9531}
+      layout_properties: {row: NUKJET, width_xs: 6, col_xs: 0, width: 75}
       event_bindings: {click: submit_button_click}
     - type: Button
       properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear, font_size: 12, font: '', spacing_above: none,
+        foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: button_2

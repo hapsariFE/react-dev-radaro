@@ -638,7 +638,7 @@ button.close > span, button.close {
   background-color: %color:Black%;
   background-image: none;
   /*border: solid 1px */
-  border-color: %color:White%;
+  border-color: %color:Black%;
   box-shadow:none;
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 }
@@ -648,7 +648,7 @@ button.close > span, button.close {
   background-color: %color:Black%;
   background-image: none;
   /*border: solid 1px;*/
-  border-color: %color:White%;
+  border-color: %color:Black%;
   box-shadow:none;
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
   Outline:none;
@@ -680,12 +680,13 @@ button.close > span, button.close {
   color: %color:Black%;
   box-shadow:none;
   border: solid 1px ;
-  border-color: %color:Outline%;
+  border-color: %color:Black%;
   }
 
 .anvil-role-outlined-button > .btn:hover, .anvil-role-outlined-button.file-loader>label:hover {
-  background-color: %color:White%;
-  
+  background-color: %color:Black%;
+  color: %color:White%;
+  border-color: %color:Black%;
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 }
 
@@ -695,7 +696,7 @@ button.close > span, button.close {
   color: %color:White%;
   box-shadow:none;
   border: solid 1px 
-  border-color: %color:White%;
+  border-color: %color:Black%;
 }
 
 .anvil-role-filled-button > .btn, .btn-primary, .anvil-role-filled-button.file-loader>label {
@@ -703,14 +704,16 @@ button.close > span, button.close {
   color: %color:White%;
   box-shadow:none;
   border: solid 1px ;
-  border-color: %color:White%;
+  border-color: %color:Black%;
 }
 
 .anvil-role-filled-button > .btn:hover, .btn-primary:hover, .anvil-role-filled-button.file-loader>label:hover {
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
   /*background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Font%;*/
-  background-color: %color:Black%;
-  color: %color:White%;
+  background-color: %color:White%;
+  color: %color:Black%;
+  border: solid 1px ;
+  border-color: %color:Black%;
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 }
 
@@ -781,7 +784,7 @@ button.close > span, button.close {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
   color: %color:On Secondary Container%;
 }
-/*
+
 .btn-default[disabled], .btn-default[disabled]:hover, .file-loader.anvil-disabled>label, .file-loader.anvil-disabled>label:hover {
   background: transparent;
   color: %color:On Disabled%;
@@ -802,7 +805,7 @@ button.close > span, button.close {
   border-color: %color:On Disabled%;
   background-color: transparent;
 }
-*/
+
 
 /* Component: Card */
 
