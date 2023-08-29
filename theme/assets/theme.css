@@ -618,74 +618,82 @@ button.close > span, button.close {
 
   font-size: 14px;
   font-weight: 500;
-  padding: 3px 24px;
+  padding: 3px 16px;
   min-height: 30px;
-  color:%color:On Primary Container%;
+  color:%color:Black%;
   letter-spacing: 0.1px;
   background-image: none;
   border-radius: 25px;
-  background-color: %color:On Primary%;
-  border: solid 1px %color:Outline%;
-
-  /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
-
+  background-color: %color:White%;
+  border: solid 1px %color:Black%;
   text-shadow: none;
-  /*-webkit-box-shadow: none;*/
-  
   position: relative;
 }
 
 .btn:hover,.file-loader>label:hover {
-  color:%color:On Primary%;
-  background-color: %color:On Primary Container%;
+  color:%color:White%;
+  background-color: %color:Black%;
   background-image: none;
   border: solid 1px %color:Outline%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .btn:active, .btn:focus, .btn:active:focus, .file-loader>label:active, .file-loader>label:focus, .file-loader>label:active:focus {
-  color:%color:On Primary%;
-  background-color: %color:On Primary Container%;
+  color:%color:White%;
+  background-color: %color:Black%;
   background-image: none;
-  border: %color:On Primary%;
+  border: solid 1px %color:Outline%;
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
 
 }
 
 
-.anvil-role-outlined-button > .btn, .anvil-role-outlined-button.file-loader>label {
-  background-color: %color:On Primary%;
-  color: %color:Font%;
+.anvil-role-filter-button > .btn, .anvil-role-filter-button > .btn:active, .anvil-role-filter-button > .btn:focus {
+  background-color: %color:Black%;
+  color: %color:White%;
   box-shadow:none;
   border: solid 1px %color:Outline%;
-  padding: 3px 16px;
+  
+}
+
+.anvil-role-filter-button > .btn:hover {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  }
+
+.anvil-role-outlined-button > .btn, .anvil-role-outlined-button.file-loader>label {
+  background-color: %color:White%;
+  color: %color:Black%;
+  box-shadow:none;
+  border: solid 1px %color:Outline%;
+  
 }
 
 .anvil-role-outlined-button > .btn:hover, .anvil-role-outlined-button.file-loader>label:hover {
-  background-color: %color:On Primary%;
+  background-color: %color:White%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
 .anvil-role-outlined-button > .btn:focus, .anvil-role-outlined-button > .btn:active, 
 .anvil-role-outlined-button.file-loader>label:focus, .anvil-role-outlined-button.file-loader>label:active{
-  background-color: %color:Font%;
-  color: %color:On Primary%;
+  background-color: %color:Black%;
+  color: %color:White%;
   box-shadow:none;
-  border: %color:On Primary%;
+  border: solid 1px %color:Outline%;
 }
 
 .anvil-role-filled-button > .btn, .btn-primary, .anvil-role-filled-button.file-loader>label {
-  background-color: %color:Font%;
-  color: %color:On Primary%;
+  background-color: %color:Black%;
+  color: %color:White%;
   box-shadow:none;
-  padding: 3px 16px;
+  border: solid 1px %color:Outline%;
+  
 }
 
 .anvil-role-filled-button > .btn:hover, .btn-primary:hover, .anvil-role-filled-button.file-loader>label:hover {
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
   /*background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Font%;*/
-  background-color: %color:Font%;
-  color: %color:On Primary%;
+  background-color: %color:Black%;
+  color: %color:White%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
 }
 
@@ -695,38 +703,28 @@ button.close > span, button.close {
 .anvil-role-filled-button.file-loader>label:active:focus
 {
   /*background: linear-gradient(0deg, %color:Light Overlay 2%, %color:Light Overlay 2%), %color:Primary%;*/
-  background-color: %color:On Primary%;
-  color: %color:Font%;
+  background-color: %color:White%;
+  color: %color:Black%;
   box-shadow:none;
-  border: %color:On Primary%;
+  border: solid 1px %color:Outline%;
 }
 
-.anvil-role-green-filled-button > .btn, .btn-primary, .anvil-role-green-filled-button.file-loader>label {
+.anvil-role-green-filled-button > .btn, .btn:active, .btn:active:focus, .btn:focus {
   background-color: %color:Toggle%;
-  color: %color:On Primary%;
+  color: %color:White%;
   box-shadow:none;
+  border: solid 1px %color:Toggle%;
 }
 
-.anvil-role-green-filled-button > .btn:hover, .btn-primary:hover, .anvil-role-green-filled-button.file-loader>label:hover {
+.anvil-role-green-filled-button > .btn:hover {
   /*box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);*/
   /*background: linear-gradient(0deg, %color:Light Overlay 1%, %color:Light Overlay 1%), %color:Font%;*/
   background-color: %color:Toggle%;
-  color: %color:On Primary%;
+  color: %color:White%;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 1px 3px 1px rgba(0, 0, 0, 0.15);
+  border: solid 1px %color:Toggle%;
 }
 
-.anvil-role-green-filled-button > .btn:focus, .btn-primary:focus, .anvil-role-green-filled-button > .btn:active, 
-.btn-primary:active, .anvil-role-green-filled-button > .btn:active:hover, .btn-primary:active:hover,
-.anvil-role-green-filled-button.file-loader>label:focus, .anvil-role-green-filled-button.file-loader>label:active, 
-.anvil-role-green-filled-button.file-loader>label:active:focus
-{
-  /*background: linear-gradient(0deg, %color:Light Overlay 2%, %color:Light Overlay 2%), %color:Primary%;*/
-  background-color: %color:On Primary%;
-  color: %color:Font%;
-  box-shadow:none;
-  border: %color:On Primary%;
-}
-  
 .anvil-role-elevated-button > .btn, .anvil-role-elevated-button.file-loader>label {
   color: %color:Primary%;
   background-color: %color:Background%;border-radius: 7px;

@@ -203,12 +203,9 @@ class Homepage(HomepageTemplate):
     watch = self.watch_list.checked
     if searchText is not "":
       #print(searchText == "")
-      self.clear_icon.visible = True
-      self.searchbutton.visible = True
-      self.searchbutton.text = searchText
-      self.searchbutton.icon = "fa:times"
-      self.searchbutton.icon = icon_align="left"
-      self.token_box_1.add(self.text_box_search.text)
+      self.clearbutton.visible = True
+      self.text_box_search.visible = False
+      self.clearbutton.text = searchText
       
     #print(jobValue)
     #print(startDate)
@@ -248,7 +245,8 @@ class Homepage(HomepageTemplate):
     #endDate = self.end_date_picker.date
     #assigned_to = self.dd_assigned.selected_value
     #self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
-    self.clear_icon.visible = False
+    self.clearbutton.visible = False
+    self.text_box_search.visible = True
     print('clearsearch end)'+str(datetime.now()))##################
     
   def resolved_checkbox_click(self, **event_args):
