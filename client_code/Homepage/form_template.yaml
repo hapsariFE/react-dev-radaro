@@ -589,7 +589,7 @@ components:
           data_bindings: []
           event_bindings: {click: clear_search}
     - type: Button
-      properties: {role: outlined-button, align: right, tooltip: '', border: '', enabled: true,
+      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Search, font_size: 14, font: '', spacing_above: medium,
         icon_align: left, spacing_below: medium, italic: false, background: '', bold: false,
         underline: false, icon: 'fa:search'}

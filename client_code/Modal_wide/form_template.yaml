@@ -282,7 +282,7 @@ components:
       - {property: items, code: self.assigned}
       event_bindings: {}
     - type: Button
-      properties: {role: outlined-button, align: full, tooltip: '', border: '', enabled: true,
+      properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}

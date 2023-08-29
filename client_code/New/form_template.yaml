@@ -195,7 +195,7 @@ components:
       layout_properties: {row: NUKJET, width_xs: 6, col_xs: 0, width: 85.9531}
       event_bindings: {click: submit_button_click}
     - type: Button
-      properties: {role: outlined-button, align: full, tooltip: '', border: '', enabled: true,
+      properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Clear, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
