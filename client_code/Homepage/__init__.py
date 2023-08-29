@@ -12,6 +12,7 @@ from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
 from ..New import *
 
+
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -203,6 +204,11 @@ class Homepage(HomepageTemplate):
     if searchText is not "":
       #print(searchText == "")
       self.clear_icon.visible = True
+      self.searchbutton.visible = True
+      self.searchbutton.text = searchText
+      self.searchbutton.icon = "fa:times"
+      self.searchbutton.icon = icon_align="left"
+      self.token_box_1.add(self.text_box_search.text)
       
     #print(jobValue)
     #print(startDate)
@@ -298,7 +304,6 @@ class Homepage(HomepageTemplate):
   def show_filter(self, **event_args):
     """This method is called when the button is clicked"""
     self.call_js('filtercollapse')
-    
     
     
     

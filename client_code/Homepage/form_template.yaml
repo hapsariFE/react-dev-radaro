@@ -563,6 +563,15 @@ components:
       name: column_panel_4
       layout_properties: {grid_position: 'BLESZH,KAZWCC'}
       components:
+      - type: Button
+        properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+          foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: searchbutton
+        layout_properties: {grid_position: 'DQVXYD,VFEDGI'}
+        data_bindings: []
+        event_bindings: {click: clear_search}
       - type: TextBox
         properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: 'Search
             reference, brand or customer', border: none, enabled: true, foreground: '',
@@ -613,3 +622,7 @@ components:
     name: loggedin
     layout_properties: {grid_position: 'OWIDMW,CFEBSB LOKPMK,MTVGOU'}
     data_bindings: []
+  - type: form:TokenBox
+    properties: {}
+    name: token_box_1
+    layout_properties: {grid_position: 'HCNRPB,JSOKTC'}
