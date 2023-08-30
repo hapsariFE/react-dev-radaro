@@ -12,6 +12,7 @@ from ..Data import *
 from datetime import datetime, timedelta, date
 import webbrowser
 import anvil.tz
+from form_checker import validation
 
 class Modal_wide(Modal_wideTemplate):
   def __init__(self, **properties):
@@ -51,7 +52,17 @@ class Modal_wide(Modal_wideTemplate):
     self.refresh_data_bindings()
     print('refresh end)'+str(datetime.now()))##################
     print('Modal end)'+str(datetime.now()))##################
-
+    self.validator = validation.Validator()
+    self.validator.require_text_field(self.addcomment, self.e_comment)
+    self.validator.require(self.dd_status, ['change'],
+                          lambda DropDown: DropDown.selected_value is not None,
+                          self.e_status)
+    self.validator.require(self.dd_assign, ['change'],
+                          lambda DropDown: DropDown.selected_value is not None,
+                          self.e_assign)    
+          
+    # Uncomment the line below to disable the button until the form is complete:
+    self.validator.enable_when_valid(self.submit_button)
 
   def submit_button_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -65,24 +76,15 @@ class Modal_wide(Modal_wideTemplate):
     #print(assign_to)
     #print(created_date)
     #print(status)
-    if description is "":
-      self.e_comment.visible = True
-      #alert("Please submit a Comment")
-    elif status is None:
-      self.e_status.visible = True
-      #alert("Please select a Status")
-    elif assign_to is None:
-      self.e_assign.visible = True
-      #alert("Please select an Assignee")
+       
 
-    else:
-      anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to)
-      actionData = anvil.server.call('get_action',self.item)
-      self.action_panelwide.items = actionData
-      #alert("Comment Submitted")
-      #self.refresh_data_bindings()
-      self.clear_button_click()
-      print('submit end)'+str(datetime.now()))##################
+
+
+    anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to)
+    actionData = anvil.server.call('get_action',self.item)
+    self.action_panelwide.items = actionData
+    self.clear_button_click()
+    print('submit end)'+str(datetime.now()))##################
       
 
   def clear_button_click(self, **event_args):

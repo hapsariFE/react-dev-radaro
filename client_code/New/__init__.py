@@ -10,6 +10,7 @@ from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
 from ..Data import *
 import anvil.tz
+from form_checker import validation
 
 class New(NewTemplate):
   def __init__(self, **properties):
@@ -27,8 +28,24 @@ class New(NewTemplate):
     users = anvil.server.call('get_user_list')
     self.assigned = [(x['name'], x) for x in users]
     self.refresh_data_bindings()
+    self.validator = validation.Validator()
+    self.validator.require_text_field(self.job_input, self.e_job)
+    self.validator.require_text_field(self.customer_input, self.e_customer)
+    self.validator.require_text_field(self.addcomment_input, self.e_comment)
+    self.validator.require(self.dd_merchant, ['change'],
+                          lambda DropDown: DropDown.selected_value is not None,
+                          self.e_merchant)
+    self.validator.require(self.dd_esc_type, ['change'],
+                          lambda DropDown: DropDown.selected_value is not None,
+                          self.e_type)    
+    self.validator.require(self.dd_esc_status, ['change'],
+                          lambda DropDown: DropDown.selected_value is not None,
+                          self.e_status)             
+    # Uncomment the line below to disable the button until the form is complete:
+    self.validator.enable_when_valid(self.button_1)
+    self.compulsory.icon = 'fa:star'
+    self.compulsory.seticonsize = 8
     
-
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
         # Clear our input boxes

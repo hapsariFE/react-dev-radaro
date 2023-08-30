@@ -14,7 +14,7 @@ components:
   - type: GridPanel
     properties: {}
     name: grid_panel_1
-    layout_properties: {grid_position: 'COHRHH,SXZGQJ', full_width_row: true}
+    layout_properties: {grid_position: 'QRCWNC,LRFPDC', full_width_row: true}
     components:
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -23,22 +23,58 @@ components:
         underline: false, icon: ''}
       name: label_1
       layout_properties: {row: UZVXNL, width_xs: 9, col_xs: 0, width: 140.344}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Compulsary Fields, font_size: 12, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: compulsory
+      layout_properties: {row: UMQEZK, width_xs: 6, col_xs: 0, width: 149.844}
+      data_bindings: []
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_14
+      layout_properties: {row: UMQEZK, width_xs: 1, col_xs: 6, width: 149.844}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: job ID,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: job_input
-      layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: YNGQHU, width_xs: 12,
+      layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: YNGQHU, width_xs: 10,
         col_xs: 0, width: 163.141}
       event_bindings: {}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_4
+      layout_properties: {row: YNGQHU, width_xs: 1, col_xs: 10, width: 0}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please enter a Job ID, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_job
+      layout_properties: {row: WVZTKI, width_xs: 9, col_xs: 0, width: 149.844}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: job reference,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: job_ref
-      layout_properties: {row: CGTMXX, width_xs: 12, col_xs: 0, width: 163.141}
+      layout_properties: {row: CGTMXX, width_xs: 10, col_xs: 0, width: 163.141}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_5
+      layout_properties: {row: CGTMXX, width_xs: 1, col_xs: 10, width: 0}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Customer Details :', font_size: 14, font: '', spacing_above: none,
@@ -52,14 +88,28 @@ components:
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: customer_input
-      layout_properties: {row: REDCSS, width_xs: 12, col_xs: 0, width: 163.141}
+      layout_properties: {row: REDCSS, width_xs: 10, col_xs: 0, width: 163.141}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_7
+      layout_properties: {row: REDCSS, width_xs: 1, col_xs: 10, width: 0}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please enter a Customer Name, font_size: 10, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: true, underline: false, icon: ''}
+      name: e_customer
+      layout_properties: {row: MOBOCM, width_xs: 9, col_xs: 0, width: 149.844}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: mobile,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: mobile_input
-      layout_properties: {row: UUCJNM, width_xs: 12, col_xs: 0, width: 163.141}
+      layout_properties: {row: UUCJNM, width_xs: 10, col_xs: 0, width: 163.141}
       event_bindings: {}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -89,17 +139,31 @@ components:
         underline: false
         include_placeholder: true
       name: dd_merchant
-      layout_properties: {row: SUBZPA, width_xs: 12, col_xs: 0, width: 108.922}
+      layout_properties: {row: SUBZPA, width_xs: 10, col_xs: 0, width: 108.922}
       event_bindings: {}
       data_bindings:
       - {property: items, code: self.merchant_name}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_8
+      layout_properties: {row: SUBZPA, width_xs: 1, col_xs: 10, width: 149.844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please select a Merchant, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_merchant
+      layout_properties: {row: PSWQKO, width_xs: 9, col_xs: 0, width: 149.844}
     - type: TextBox
       properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: sub brand,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
         background: '', bold: false, underline: false}
       name: subbrand_input
-      layout_properties: {row: QXSIDJ, width_xs: 12, col_xs: 0, width: 163.141}
+      layout_properties: {row: QXSIDJ, width_xs: 10, col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Escalation :', font_size: 14, font: '', spacing_above: none,
@@ -128,9 +192,23 @@ components:
         underline: false
         include_placeholder: true
       name: dd_esc_type
-      layout_properties: {row: XJZLRE, width_xs: 12, col_xs: 0, width: 106.781}
+      layout_properties: {row: XJZLRE, width_xs: 10, col_xs: 0, width: 106.781}
       data_bindings:
       - {property: items, code: self.esc_type}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_9
+      layout_properties: {row: XJZLRE, width_xs: 1, col_xs: 10, width: 149.844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please select an escalation type, font_size: 10, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: true, underline: false, icon: ''}
+      name: e_type
+      layout_properties: {row: LTHJOZ, width_xs: 9, col_xs: 0, width: 149.844}
     - type: DropDown
       properties:
         role: outlined
@@ -152,9 +230,23 @@ components:
         underline: false
         include_placeholder: true
       name: dd_esc_status
-      layout_properties: {row: HHCITJ, width_xs: 12, col_xs: 0, width: 106.781}
+      layout_properties: {row: HHCITJ, width_xs: 10, col_xs: 0, width: 106.781}
       data_bindings:
       - {property: items, code: self.esc_status}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_10
+      layout_properties: {row: HHCITJ, width_xs: 1, col_xs: 10, width: 149.844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please select a status, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_status
+      layout_properties: {row: AQYZRH, width_xs: 9, col_xs: 0, width: 149.844}
     - type: DropDown
       properties:
         role: outlined
@@ -176,16 +268,37 @@ components:
         underline: false
         include_placeholder: true
       name: dd_assign
-      layout_properties: {row: JNCGGR, width_xs: 12, col_xs: 0, width: 197.141}
+      layout_properties: {row: JNCGGR, width_xs: 10, col_xs: 0, width: 197.141}
       data_bindings:
       - {property: items, code: self.assigned}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_11
+      layout_properties: {row: JNCGGR, width_xs: 1, col_xs: 10, width: 149.844}
     - type: TextArea
       properties: {role: outlined, align: left, height: 77, tooltip: '', placeholder: enter comment here,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         auto_expand: false, font: '', spacing_above: none, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: addcomment_input
-      layout_properties: {row: XIOFIZ, width_xs: 12, col_xs: 0, width: 163.141}
+      layout_properties: {row: XIOFIZ, width_xs: 10, col_xs: 0, width: 163.141}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_12
+      layout_properties: {row: XIOFIZ, width_xs: 1, col_xs: 10, width: 149.844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please submit a comment, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_comment
+      layout_properties: {row: WVWIQV, width_xs: 9, col_xs: 0, width: 149.844}
     - type: Button
       properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Submit, font_size: 14, font: '', spacing_above: none,

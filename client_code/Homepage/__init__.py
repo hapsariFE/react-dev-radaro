@@ -32,9 +32,6 @@ class Homepage(HomepageTemplate):
     assigned_to = None
     #self.loggedin.text = anvil.users.get_user()['name']
     
-    
-    
-    
     compCode = None
     escStatus = None
     merchName = None

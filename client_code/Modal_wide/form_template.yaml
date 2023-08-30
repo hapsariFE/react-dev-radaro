@@ -1,8 +1,12 @@
-container: {type: ColumnPanel}
+container:
+  type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '', spacing_below: small,
+    background: ''}
 components:
 - type: ColumnPanel
   properties: {role: border-bottom, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: small, spacing_above: small, col_widths: '{"QFIVOG":20,"YWNEHA":16,"WIVQCM":19,"YQSTKN":23}',
+    wrap_on: never, col_spacing: small, spacing_above: small, col_widths: '{"QFIVOG":20,"YWNEHA":10,"PHTORU":3,"ZQIEIF":47}',
     spacing_below: small, background: ''}
   name: column_panel_1
   layout_properties:
@@ -190,26 +194,23 @@ components:
       underline: false, icon: ''}
     name: label_1
     layout_properties: {grid_position: 'KTJXJG,YWNEHA'}
-  - type: Button
-    properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: 'fa:chevron-right'}
-    name: button_1
-    layout_properties: {grid_position: 'KTJXJG,WIVQCM AQATXG,YGKLBS', x: 298.25, y: -6,
-      width: 73.3594}
-    event_bindings: {click: next_click}
-  - type: Button
-    properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: 'fa:chevron-left'}
-    name: button_2
-    layout_properties: {grid_position: 'KTJXJG,WIVQCM AQATXG,PCRSIW', x: 185.3125,
-      y: -6, width: 64.625}
+  - type: Label
+    properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Error',
+      visible: true, text: '', font_size: 8, font: '', spacing_above: small, icon_align: left,
+      spacing_below: small, italic: false, background: '', bold: false, underline: false,
+      icon: 'fa:star'}
+    name: label_21
+    layout_properties: {grid_position: 'KTJXJG,PHTORU'}
+  - type: Label
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+      visible: true, text: Compulsary Fields, font_size: 12, font: '', spacing_above: small,
+      icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: label_20
+    layout_properties: {grid_position: 'KTJXJG,ZQIEIF'}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"RDQOEF":55,"SSSIQM":25}',
+      wrap_on: mobile, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":65,"SSSIQM":30,"ZVVCQF":46,"CUEEYM":14,"KVHWEH":46,"OJQEBA":14,"GJKPQZ":5,"IBZDCH":30,"KHYYGI":30,"VUBYAT":45,"VJMZCN":15,"VNJRDH":45,"VNBPXM":15,"VIGTRO":30,"WCZJHM":20,"YIUPIM":10}',
       spacing_below: small, background: ''}
     name: column_panel_2
     layout_properties: {grid_position: 'PCBSQW,FKYJQQ'}
@@ -222,6 +223,13 @@ components:
       name: addcomment
       layout_properties: {grid_position: 'SGYDHC,RDQOEF'}
       event_bindings: {}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: small, icon_align: left,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_19
+      layout_properties: {grid_position: 'SGYDHC,GJKPQZ'}
     - type: DropDown
       properties:
         role: outlined
@@ -248,6 +256,14 @@ components:
       data_bindings:
       - {property: items, code: self.esc_status}
       event_bindings: {}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: small, icon_align: left,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_17
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH EPAEXM,CUEEYM',
+        full_width_row: false}
     - type: Button
       properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Submit, font_size: 14, font: '', spacing_above: small,
@@ -257,6 +273,19 @@ components:
       layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH YOKDDG,VUBYAT',
         full_width_row: false}
       event_bindings: {click: submit_button_click}
+    - type: Spacer
+      properties: {height: 32}
+      name: spacer_1
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH YOKDDG,VJMZCN',
+        full_width_row: false}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: false, text: Please select a status, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_status
+      layout_properties: {x: 202.515625, y: 1.859375, width: 161.719, grid_position: 'SGYDHC,SSSIQM
+          YMXSCI,IBZDCH WZISEM,QXLIMF'}
     - type: DropDown
       properties:
         role: outlined
@@ -278,11 +307,19 @@ components:
         underline: false
         include_placeholder: true
       name: dd_assign
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI WEGICO,LACTFJ',
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI WEGICO,KVHWEH',
         full_width_row: false}
       data_bindings:
       - {property: items, code: self.assigned}
       event_bindings: {}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: '', font_size: 8, font: '', spacing_above: small, icon_align: left,
+        spacing_below: small, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_18
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI WEGICO,OJQEBA',
+        full_width_row: false}
     - type: Button
       properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: small,
@@ -292,6 +329,41 @@ components:
       layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,VNJRDH',
         full_width_row: false}
       event_bindings: {click: clear_button_click}
+    - type: Spacer
+      properties: {height: 32}
+      name: spacer_2
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,VNBPXM',
+        full_width_row: false}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: false, text: Please assign, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_assign
+      layout_properties: {x: 202.515625, y: 17.859399999999994, width: 222.516, grid_position: 'SGYDHC,SSSIQM
+          YMXSCI,KHYYGI RKPBMZ,FIWGHJ'}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: false, text: Please add a comment, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_comment
+      layout_properties: {x: 202.515625, y: 0, width: 248.438, grid_position: 'NZYTEE,VIGTRO'}
+    - type: Button
+      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:chevron-left'}
+      name: button_2
+      layout_properties: {grid_position: 'NZYTEE,WCZJHM', x: 185.3125, y: -6, width: 64.625}
+    - type: Button
+      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: 'fa:chevron-right'}
+      name: button_1
+      layout_properties: {grid_position: 'NZYTEE,YIUPIM', x: 298.25, y: -6, width: 73.3594}
+      event_bindings: {click: next_click}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Comment History, font_size: 14, font: '', spacing_above: small,
@@ -301,34 +373,6 @@ components:
     layout_properties: {grid_position: 'RYDJVG,QFIVOG'}
     data_bindings:
     - {property: text, code: '"Comment History"'}
-  - type: FlowPanel
-    properties: {}
-    name: flow_panel_1
-    layout_properties: {grid_position: 'RYDJVG,YQSTKN'}
-    components:
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: false, text: Please add a comment, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: e_comment
-      layout_properties: {x: 202.515625, y: 0, width: 248.438, grid_position: 'RYDJVG,BMQSIH'}
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: false, text: You must assign this comment, font_size: 12, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
-      name: e_assign
-      layout_properties: {x: 202.515625, y: 17.859399999999994, width: 222.516, grid_position: 'KTJXJG,WIVQCM
-          AQATXG,RGRDNE'}
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: false, text: Please select a status, font_size: 12, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      name: e_status
-      layout_properties: {x: 202.515625, y: 1.859375, width: 161.719, grid_position: 'KTJXJG,WIVQCM
-          LZYGQP,UDZGSE'}
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
       border: '', visible: true, role: border_bottom, tooltip: ''}
