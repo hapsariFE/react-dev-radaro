@@ -43,8 +43,7 @@ class New(NewTemplate):
                           self.e_status)             
     # Uncomment the line below to disable the button until the form is complete:
     self.validator.enable_when_valid(self.button_1)
-    self.compulsory.icon = 'fa:star'
-    self.compulsory.seticonsize = 8
+    
     
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
