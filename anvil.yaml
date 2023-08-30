@@ -173,6 +173,9 @@ db_schema:
     - name: Logo
       admin_ui: {order: 8, width: 200}
       type: string
+    - name: remembered_logins
+      admin_ui: {width: 200}
+      type: simpleObject
   action_log:
     client: search
     server: full
@@ -213,6 +216,15 @@ db_schema:
       admin_ui: {width: 200}
       type: string
     - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: rating_threshold
+      admin_ui: {width: 200}
+      type: number
+    - name: server
+      admin_ui: {width: 200}
+      type: string
+    - name: token
       admin_ui: {width: 200}
       type: string
   webhook:
@@ -288,5 +300,9 @@ db_schema:
     - name: address
       admin_ui: {order: 20, width: 200}
       type: string
+    - name: watchlistUsers
+      admin_ui: {width: 200}
+      type: link_multiple
+      target: users
 uplink_visible: true
 renamed: true
