@@ -65,12 +65,16 @@ class Modal_wide(Modal_wideTemplate):
     #print(assign_to)
     #print(created_date)
     #print(status)
-    if assign_to is None:
-      alert("Please select an Assignee")
+    if description is "":
+      self.e_comment.visible = True
+      #alert("Please submit a Comment")
     elif status is None:
-      alert("Please select a Status")
-    elif description is "":
-      alert("Please submit a Comment")
+      self.e_status.visible = True
+      #alert("Please select a Status")
+    elif assign_to is None:
+      self.e_assign.visible = True
+      #alert("Please select an Assignee")
+
     else:
       anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to)
       actionData = anvil.server.call('get_action',self.item)
@@ -79,7 +83,7 @@ class Modal_wide(Modal_wideTemplate):
       #self.refresh_data_bindings()
       self.clear_button_click()
       print('submit end)'+str(datetime.now()))##################
-      Notification("Your comment was submitted").show()
+      
 
   def clear_button_click(self, **event_args):
     """This method is called when the button is clicked"""
