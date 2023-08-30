@@ -1,5 +1,8 @@
 scheduled_tasks: []
-dependencies: []
+dependencies:
+- dep_id: dep_khuebfifc49mb
+  version: {dev: false}
+  resolution_hints: {app_id: R4ETTK3T65LN6CCI, name: Clone of Form Validation, package_name: form_checker}
 services:
 - source: /runtime/services/tables.yml
   client_config: {enable_v2: true}
