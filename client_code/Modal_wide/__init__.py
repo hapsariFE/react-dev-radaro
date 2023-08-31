@@ -17,6 +17,7 @@ from form_checker import validation
 class Modal_wide(Modal_wideTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    
     print('initiateModal start)'+str(datetime.now()))##################
     self.esc_status = esc_status
     self.assigned = ""
@@ -29,7 +30,15 @@ class Modal_wide(Modal_wideTemplate):
 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    #print(selectedRow)
+    counter = get_next_value_in_sequence()
+    jobrow = app_tables.webhook.get(id=str(counter)) 
+    print(selectedRow)
+    print(self.item)
+    print(SelectedMerchant)
+    print(counter)
+    print(jobrow)
+    #Next = Row(selectedRow) + 1
+    #print(Next)
     #print(self.item['watchlistUsers'])
     print('assignlist start)'+str(datetime.now()))##################
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
@@ -179,4 +188,8 @@ class Modal_wide(Modal_wideTemplate):
    )
 
 
-
+def get_next_value_in_sequence():
+  row = int(app_tables.webhook.search(tables.order_by("id", ascending=False))[0]['id'])
+  
+  #row += 1
+  return row
