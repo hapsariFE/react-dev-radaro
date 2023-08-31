@@ -13,7 +13,7 @@ components:
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
-      border: '', visible: true, role: null, tooltip: ''}
+      border: '', visible: true, role: narrow, tooltip: ''}
     name: grid_panel_1
     layout_properties: {grid_position: 'QRCWNC,LRFPDC', full_width_row: true}
     components:
@@ -45,7 +45,7 @@ components:
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: job_input
-      layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: YNGQHU, width_xs: 10,
+      layout_properties: {grid_position: 'QHRNJM,DSNXWM', row: ALHNSB, width_xs: 11,
         col_xs: 0, width: 163.141}
       event_bindings: {}
     - type: Label
@@ -54,7 +54,7 @@ components:
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_4
-      layout_properties: {row: YNGQHU, width_xs: 1, col_xs: 10, width: 0}
+      layout_properties: {row: ALHNSB, width_xs: 1, col_xs: 11, width: 0}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: Please enter a Job ID, font_size: 10, font: '', spacing_above: none,
@@ -68,14 +68,14 @@ components:
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: job_ref
-      layout_properties: {row: CGTMXX, width_xs: 10, col_xs: 0, width: 163.141}
+      layout_properties: {row: CGTMXX, width_xs: 11, col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_5
-      layout_properties: {row: CGTMXX, width_xs: 1, col_xs: 10, width: 0}
+      layout_properties: {row: CGTMXX, width_xs: 1, col_xs: 11, width: 0}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Customer Details :', font_size: 14, font: '', spacing_above: none,
@@ -89,14 +89,14 @@ components:
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: customer_input
-      layout_properties: {row: REDCSS, width_xs: 10, col_xs: 0, width: 163.141}
+      layout_properties: {row: REDCSS, width_xs: 11, col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_7
-      layout_properties: {row: REDCSS, width_xs: 1, col_xs: 10, width: 0}
+      layout_properties: {row: REDCSS, width_xs: 1, col_xs: 11, width: 0}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: Please enter a Customer Name, font_size: 10, font: '',
@@ -110,7 +110,7 @@ components:
         font: '', spacing_above: none, type: text, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: mobile_input
-      layout_properties: {row: UUCJNM, width_xs: 10, col_xs: 0, width: 163.141}
+      layout_properties: {row: UUCJNM, width_xs: 11, col_xs: 0, width: 163.141}
       event_bindings: {}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
@@ -140,7 +140,7 @@ components:
         underline: false
         include_placeholder: true
       name: dd_merchant
-      layout_properties: {row: SUBZPA, width_xs: 10, col_xs: 0, width: 108.922}
+      layout_properties: {row: SUBZPA, width_xs: 11, col_xs: 0, width: 108.922}
       event_bindings: {}
       data_bindings:
       - {property: items, code: self.merchant_name}
@@ -150,7 +150,7 @@ components:
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_8
-      layout_properties: {row: SUBZPA, width_xs: 1, col_xs: 10, width: 149.844}
+      layout_properties: {row: SUBZPA, width_xs: 1, col_xs: 11, width: 149.844}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: Please select a Merchant, font_size: 10, font: '', spacing_above: none,
@@ -164,7 +164,7 @@ components:
         font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
         background: '', bold: false, underline: false}
       name: subbrand_input
-      layout_properties: {row: QXSIDJ, width_xs: 10, col_xs: 0, width: 163.141}
+      layout_properties: {row: QXSIDJ, width_xs: 11, col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Escalation :', font_size: 14, font: '', spacing_above: none,
@@ -193,7 +193,7 @@ components:
         underline: false
         include_placeholder: true
       name: dd_esc_type
-      layout_properties: {row: XJZLRE, width_xs: 10, col_xs: 0, width: 106.781}
+      layout_properties: {row: XJZLRE, width_xs: 11, col_xs: 0, width: 106.781}
       data_bindings:
       - {property: items, code: self.esc_type}
     - type: Label
@@ -202,7 +202,7 @@ components:
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_9
-      layout_properties: {row: XJZLRE, width_xs: 1, col_xs: 10, width: 149.844}
+      layout_properties: {row: XJZLRE, width_xs: 1, col_xs: 11, width: 149.844}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: Please select an escalation type, font_size: 10, font: '',
@@ -231,7 +231,7 @@ components:
         underline: false
         include_placeholder: true
       name: dd_esc_status
-      layout_properties: {row: HHCITJ, width_xs: 10, col_xs: 0, width: 106.781}
+      layout_properties: {row: HHCITJ, width_xs: 11, col_xs: 0, width: 106.781}
       data_bindings:
       - {property: items, code: self.esc_status}
     - type: Label
@@ -240,7 +240,7 @@ components:
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_10
-      layout_properties: {row: HHCITJ, width_xs: 1, col_xs: 10, width: 149.844}
+      layout_properties: {row: HHCITJ, width_xs: 1, col_xs: 11, width: 149.844}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: Please select a status, font_size: 10, font: '', spacing_above: none,
@@ -269,7 +269,7 @@ components:
         underline: false
         include_placeholder: true
       name: dd_assign
-      layout_properties: {row: JNCGGR, width_xs: 10, col_xs: 0, width: 197.141}
+      layout_properties: {row: JNCGGR, width_xs: 11, col_xs: 0, width: 197.141}
       data_bindings:
       - {property: items, code: self.assigned}
     - type: Label
@@ -278,14 +278,14 @@ components:
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_11
-      layout_properties: {row: JNCGGR, width_xs: 1, col_xs: 10, width: 149.844}
+      layout_properties: {row: JNCGGR, width_xs: 1, col_xs: 11, width: 149.844}
     - type: TextArea
       properties: {role: outlined, align: left, height: 77, tooltip: '', placeholder: enter comment here,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
         auto_expand: false, font: '', spacing_above: none, spacing_below: none, italic: true,
         background: '', bold: false, underline: false}
       name: addcomment_input
-      layout_properties: {row: XIOFIZ, width_xs: 10, col_xs: 0, width: 163.141}
+      layout_properties: {row: XIOFIZ, width_xs: 11, col_xs: 0, width: 163.141}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
