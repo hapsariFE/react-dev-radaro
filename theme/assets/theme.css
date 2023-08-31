@@ -103,12 +103,13 @@ a>.anvil-component-icon.right_edge-icon,
   margin-right: 20px;
 }
 
-.anvil-role-narrow .grid-panel .row {
+/*.anvil-role-narrow > .grid-panel .row {*/
+.grid-panel .row {  
     margin-left: 0;
   	margin-right: 0;
 }
-
-.anvil-role-narrow .grid-panel .row > div {
+.anvil-role-narrow > .grid-panel > .row > div {
+/*.grid-panel .row > div {*/
     padding-right: 1px;
     padding-left: 1px;
 }

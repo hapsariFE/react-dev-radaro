@@ -44,8 +44,7 @@ roles:
 - {name: star-button}
 - {name: green-filled-button}
 - {name: filter-button}
-- name: narrow
-  components: [gridpanel]
+- {name: narrow}
 color_scheme:
   preset_groups:
   - name: Colour Scheme
