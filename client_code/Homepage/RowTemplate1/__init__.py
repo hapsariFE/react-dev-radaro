@@ -38,7 +38,7 @@ class RowTemplate1(RowTemplate1Template):
      # self.label_1.background = "Black"
       #self.refresh_data_bindings()
     #  self.label_1.background = "Black"
-    self.label_2.text = self.item['last_action_date'].astimezone(anvil.tz.tzlocal())
+    #self.label_2.text = self.item['last_action_date'].astimezone(anvil.tz.tzlocal())
     print('watchlist start)'+str(datetime.now()))##################
     if self.item['watchlistUsers'] is not None:
       if Data.currentUser in self.item['watchlistUsers']:

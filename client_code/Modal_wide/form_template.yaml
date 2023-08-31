@@ -106,11 +106,11 @@ components:
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 6, width: 115.656}
     - type: Link
       properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: null, wrap_on: mobile, font: '', col_spacing: medium,
+        visible: true, text: '', font_size: null, wrap_on: never, font: '', col_spacing: medium,
         spacing_above: none, icon_align: left, col_widths: '{}', spacing_below: none,
         italic: false, background: '', bold: false, underline: false, icon: ''}
       name: link_2
-      layout_properties: {row: JKJKTK, width_xs: 1, col_xs: 10, width: 42.8281}
+      layout_properties: {row: JKJKTK, width_xs: 1, col_xs: 10, width: 34.9844}
       components:
       - type: Image
         properties: {role: null, vertical_align: top, height: 27, tooltip: click to see job report,
@@ -210,7 +210,7 @@ components:
     layout_properties: {grid_position: 'KTJXJG,ZQIEIF'}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":65,"SSSIQM":30,"ZVVCQF":46,"CUEEYM":14,"KVHWEH":46,"OJQEBA":14,"GJKPQZ":5,"IBZDCH":30,"KHYYGI":30,"VUBYAT":45,"VJMZCN":15,"VNJRDH":45,"VNBPXM":15,"VIGTRO":30,"WCZJHM":20,"YIUPIM":10}',
+      wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":65,"SSSIQM":30,"ZVVCQF":46,"CUEEYM":14,"KVHWEH":46,"OJQEBA":14,"GJKPQZ":5,"IBZDCH":30,"KHYYGI":30,"VUBYAT":45,"VJMZCN":15,"VNJRDH":45,"VNBPXM":15,"VIGTRO":30,"WCZJHM":20,"YIUPIM":10}',
       spacing_below: small, background: ''}
     name: column_panel_2
     layout_properties: {grid_position: 'PCBSQW,FKYJQQ'}
