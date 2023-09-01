@@ -488,7 +488,7 @@ components:
           full_width_row: false
         name: image_1
     - type: Image
-      properties: {role: null, vertical_align: top, height: '90', tooltip: '', border: '',
+      properties: {role: null, vertical_align: top, height: 74, tooltip: '', border: '',
         foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: none,
         source: _/theme/React.png, spacing_below: none, background: '', horizontal_align: center}
       name: image_3
