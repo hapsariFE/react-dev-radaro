@@ -456,14 +456,14 @@ components:
         layout_properties: {}
         name: repeating_panel_1
 - type: FlowPanel
-  properties: {role: null, spacing: huge, align: center, tooltip: '', border: '',
+  properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}
   name: flow_panel_1
   layout_properties: {slot: title}
   components:
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{"VYNMKS":15,"GSLOXW":15}',
+      wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{"VYNMKS":14,"GSLOXW":11,"UGWODW":34}',
       spacing_below: none, background: ''}
     name: column_panel_1
     layout_properties: {width: null, expand: true}
@@ -488,7 +488,7 @@ components:
           full_width_row: false
         name: image_1
     - type: Image
-      properties: {role: null, vertical_align: center, height: 64, tooltip: '', border: '',
+      properties: {role: null, vertical_align: top, height: '90', tooltip: '', border: '',
         foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: none,
         source: _/theme/React.png, spacing_below: none, background: '', horizontal_align: center}
       name: image_3

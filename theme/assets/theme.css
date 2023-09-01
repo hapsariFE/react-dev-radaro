@@ -202,6 +202,8 @@ color: %color:On Primary Container%;
   top: %anvil-banner-height%;
   right: 0;
   left: 0;
+  background-image: url('_/theme/map-header-background-1920x250%202x.png');
+  background-position: center top;
 /*   flex: 0 0;
   flex-basis: auto;
   flex-basis: content; */
