@@ -489,7 +489,7 @@ components:
         name: image_1
     - type: Label
       properties: {role: headline, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: React, font_size: 32, font: '', spacing_above: small,
+        visible: true, text: REACT, font_size: 32, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       layout_properties: {grid_position: 'MPINBT,IFEVYM', row: BTNFSF, width_xs: 4,
