@@ -397,15 +397,15 @@ components:
         tooltip: ''
         border: ''
         foreground: ''
-        rows_per_page: 20
+        rows_per_page: 30
         visible: true
         wrap_on: never
-        show_page_controls: true
+        show_page_controls: false
         spacing_above: small
         spacing_below: small
         background: ''
       name: data_grid_1
-      layout_properties: {row: GWVHLC, width_xs: 12, col_xs: 0, width: 610.729}
+      layout_properties: {row: GWVHLC, width_xs: 12, col_xs: 0, width: 750}
       components:
       - type: RepeatingPanel
         properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
