@@ -46,6 +46,7 @@ class Homepage(HomepageTemplate):
     resolvedStatus = False
     watch = False
     self.subbrand = ""
+    self.etype = ""
     print('initiate end)'+str(datetime.now()))##################
  
     self.init_components(**properties)
