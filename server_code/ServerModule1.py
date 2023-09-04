@@ -93,30 +93,38 @@ def incoming_msg(**kwargs):
    ##     id_string = ";".join(id_values)
           
         #nv = data['new_values']['is_confirmed_by_customer']
-   ##     rating = data['order_info']['rating']
-   ##     counter = get_next_value_in_sequence()
-   ##     app_tables.test_table.add_row(
-   ##      job_id = data['order_info']['order_id'],
-   ##       id= str(counter),
-   ##       customer_name = data['order_info']['customer']['name'],
-   ##       completion_code_id_str = id_string,
-   ##       date_created = datetime.now(),
-   ##       last_action_date =datetime.now(),
-   ##       job_reference = data['order_info']['title'],
-   ##       webhook_merchant_link=app_tables.merchant.get(merchant_id= "124"),
-   ##       job_status = data['order_info']['status'],
-   ##       job_report = data['order_info']['public_report_link'],
-   ##       customer_rating= rating,
-   ##      escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
-   ##       latest_assignee = None,
-   ##       latest_status = app_tables.escalation_status.get(name= "New"),
-   ##       sub_brand=data['order_info']['sub_branding'],
-   ##       mobile_number=data['order_info']['customer']['phone'],
-   ##       date_delivered=data['order_info']['completed_at'],
-   ##       job_reference2=data['order_info']['title_2'],
-   ##       job_reference3=data['order_info']['title_3'],
-   ##       address=data['order_info']['deliver_address']['address'],
-   ##       watch_list=False)
+        rating = data['order_info']['rating']
+        codes=data['order_info']['completion_codes']
+        id_values = [str(code["code"]) for code in codes]
+        id_string = ";".join(id_values)
+        comp_names = [str(code["name"]) for code in codes]
+        comp_string = ";".join(comp_names)
+        counter = get_next_value_in_sequence()
+        #try:
+        app_tables.webhook.add_row(
+        job_id = str(data['order_info']['order_id']),
+        id= str(counter),
+        customer_name = data['order_info']['customer']['name'],
+        completion_code_id = id_string,
+        completion_code_description = comp_string, 
+        date_created = datetime.now(),
+        last_action_date =datetime.now(),
+        job_reference = data['order_info']['title'],
+        webhook_merchant_link=app_tables.merchant.get(token=data['token']),
+        job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
+        job_report = data['order_info']['public_report_link'],
+        customer_rating= str(rating),
+        #escalation_type = "Low Rating",
+        latest_assignee = None,
+        latest_status = app_tables.escalation_status.get(name= "New"),
+        sub_brand=str(data['order_info']['sub_branding']),
+        mobile_number=data['order_info']['customer']['phone'],
+        date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
+        job_reference2=data['order_info']['title_2'],
+        job_reference3=data['order_info']['title_3'],
+        address=data['order_info']['deliver_address']['address'],
+        watch_list=False,
+        watchlistUsers=[])
     else:
         pass
   
