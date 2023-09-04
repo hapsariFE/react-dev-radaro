@@ -51,6 +51,11 @@ def incoming_msg(**kwargs):
         codes=data['order_info']['completion_codes']
         id_values = [str(code["code"]) for code in codes]
         id_string = ";".join(id_values)
+        comp_names = [str(code["name"]) for code in codes]
+        comp_string = ";".join(comp_names)
+        #if not comp_string:
+        #  print(comp_string)
+         # comp_string = None
           
         nv = data['new_values']['is_confirmed_by_customer']
         rating = data['order_info']['rating']
@@ -61,6 +66,7 @@ def incoming_msg(**kwargs):
         id= str(counter),
         customer_name = data['order_info']['customer']['name'],
         completion_code_id = id_string,
+        completion_code_description = "Low Rating", 
         date_created = datetime.now(),
         last_action_date =datetime.now(),
         job_reference = data['order_info']['title'],
@@ -68,7 +74,7 @@ def incoming_msg(**kwargs):
         job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
         job_report = data['order_info']['public_report_link'],
         customer_rating= str(rating),
-        escalation_type = "Low Rating",
+        #escalation_type = "Low Rating",
         latest_assignee = None,
         latest_status = app_tables.escalation_status.get(name= "New"),
         sub_brand=str(data['order_info']['sub_branding']),
