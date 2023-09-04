@@ -8,7 +8,7 @@ components:
     wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none,
     background: ''}
   name: filterpanel
-  layout_properties: {slot: filterpanel}
+  layout_properties: {slot: filter-panel}
   components:
   - type: GridPanel
     properties: {spacing_above: small, spacing_below: none, background: '', foreground: '',
