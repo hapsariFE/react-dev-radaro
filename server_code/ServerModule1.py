@@ -87,7 +87,7 @@ def incoming_msg(**kwargs):
         watchlistUsers=[])
         #except:
            # print("falied")
-   ## elif 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
+    if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
    ##     codes=data['order_info']['completion_codes']
    ##     id_values = [str(code["code"]) for code in codes]
    ##     id_string = ";".join(id_values)
