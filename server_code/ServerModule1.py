@@ -68,7 +68,7 @@ def incoming_msg(**kwargs):
         job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
         job_report = data['order_info']['public_report_link'],
         customer_rating= str(rating),
-        escalation_type = app_tables.escalation_type.get(name= "Low Rating"),
+        escalation_type = "Low Rating",
         latest_assignee = None,
         latest_status = app_tables.escalation_status.get(name= "New"),
         sub_brand=str(data['order_info']['sub_branding']),
