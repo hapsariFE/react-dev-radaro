@@ -43,7 +43,7 @@ components:
     italic: false, background: '', bold: false, underline: false, icon: ''}
   layout_properties: {column: FREDFV}
   data_bindings:
-  - {code: 'self.item[''escalation_type''][''name'']', property: text}
+  - {code: 'self.item[''completion_code_description'']', property: text}
   name: label_3
 - type: Label
   properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true,
