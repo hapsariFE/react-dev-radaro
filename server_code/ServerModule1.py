@@ -183,7 +183,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     print(filter_dict['sub_brand'])
 
   if escType != None:
-    filter_dict['escalation_type'] = escType
+    filter_dict['completion_code_description'] = escType
 
   if watch is True :
     filter_dict['watchlistUsers'] = [anvil.users.get_user()]

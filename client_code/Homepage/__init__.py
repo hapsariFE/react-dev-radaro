@@ -46,6 +46,7 @@ class Homepage(HomepageTemplate):
     resolvedStatus = False
     watch = False
     self.subbrand = ""
+    self.etype = ""
     print('initiate end)'+str(datetime.now()))##################
  
     self.init_components(**properties)
@@ -108,6 +109,18 @@ class Homepage(HomepageTemplate):
     #print(res) 
     self.subbrand = res
     print('subbrand end)'+str(datetime.now()))##################
+    print('etype start)'+str(datetime.now()))##################
+    etypes = list()
+    for x in self.repeating_panel_1.items:
+      etypes.append(x['completion_code_description'])
+    res = []
+    for val in etypes:
+      if val != None:
+        if val not in res:
+          res.append(val)
+    #print(res) 
+    self.etype = res
+    print('etype end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     #print(endDate)
