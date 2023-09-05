@@ -48,6 +48,7 @@ def incoming_msg(**kwargs):
       
       if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
         #print(json)
+        submit_low_rating(data)
         codes=data['order_info']['completion_codes']
         id_values = [str(code["code"]) for code in codes]
         id_string = ";".join(id_values)
@@ -127,7 +128,46 @@ def incoming_msg(**kwargs):
         watchlistUsers=[])
     else:
         pass
-  
+
+@anvil.server.callable
+def submit_low_rating(data):
+        codes=data['order_info']['completion_codes']
+        id_values = [str(code["code"]) for code in codes]
+        id_string = ";".join(id_values)
+        comp_names = [str(code["name"]) for code in codes]
+        comp_string = ";".join(comp_names)
+        #if not comp_string:
+        #  print(comp_string)
+         # comp_string = None
+          
+        nv = data['new_values']['is_confirmed_by_customer']
+        rating = data['order_info']['rating']
+        counter = get_next_value_in_sequence()
+        #try:
+        app_tables.webhook.add_row(
+        job_id = str(data['order_info']['order_id']),
+        id= str(counter),
+        customer_name = data['order_info']['customer']['name'],
+        completion_code_id = id_string,
+        completion_code_description = "Low Rating", 
+        date_created = datetime.now(),
+        last_action_date =datetime.now(),
+        job_reference = data['order_info']['title'],
+        webhook_merchant_link=app_tables.merchant.get(token=data['token']),
+        job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
+        job_report = data['order_info']['public_report_link'],
+        customer_rating= str(rating),
+        #escalation_type = "Low Rating",
+        latest_assignee = None,
+        latest_status = app_tables.escalation_status.get(name= "New"),
+        sub_brand=str(data['order_info']['sub_branding']),
+        mobile_number=data['order_info']['customer']['phone'],
+        date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
+        job_reference2=data['order_info']['title_2'],
+        job_reference3=data['order_info']['title_3'],
+        address=data['order_info']['deliver_address']['address'],
+        watch_list=False,
+        watchlistUsers=[])
   
 
 @anvil.server.callable
