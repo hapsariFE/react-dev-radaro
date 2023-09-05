@@ -195,7 +195,7 @@ components:
       name: dd_esc_type
       layout_properties: {row: XJZLRE, width_xs: 11, col_xs: 0, width: 106.781}
       data_bindings:
-      - {property: items, code: self.esc_type}
+      - {property: items, code: self.etype}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
