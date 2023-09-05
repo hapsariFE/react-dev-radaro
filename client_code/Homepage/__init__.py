@@ -113,13 +113,13 @@ class Homepage(HomepageTemplate):
     etypes = list()
     for x in self.repeating_panel_1.items:
       etypes.append(x['completion_code_description'])
-    res = []
+    eres = []
     for val in etypes:
       if val != None:
-        if val not in res:
-          res.append(val)
-    res.sort()
-    self.etype = res
+        if val not in eres:
+          eres.append(val)
+    eres.sort()
+    self.etype = eres
     print('etype end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
@@ -296,9 +296,10 @@ class Homepage(HomepageTemplate):
     
   def new_escalation(self, **event_args):
     """This method is called when the button is clicked"""
+    eres = self.etype
     print('newescalation start)'+str(datetime.now()))##################
     save_clicked = alert(
-     content=New(),
+     content=New(eres),
      title="Create a new escalation",
      large=False,
      buttons=[("Exit", False)],

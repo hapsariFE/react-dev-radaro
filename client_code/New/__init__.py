@@ -9,13 +9,11 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from datetime import datetime, timedelta, date
 from ..Data import *
-
-
 import anvil.tz
 from form_checker import validation
 
 class New(NewTemplate):
-  def __init__(self, **properties):
+  def __init__(self, eres, **properties):
     # Set Form properties and Data Bindings.
     self.esc_status = esc_status
     self.esc_type = esc_type
@@ -24,16 +22,7 @@ class New(NewTemplate):
     #self.merchant_name = ""
     #merchant_name = None
     
-    etypes = list()
-    for x in Homepage.repeating_panel_1.items:
-      etypes.append(x['completion_code_description'])
-    res = []
-    for val in etypes:
-      if val != None:
-        if val not in res:
-          res.append(val)
-    res.sort()
-    self.etype = res
+    self.etype = eres
     self.merchant_name = anvil.server.call('get_merchant_list')  
         
     self.init_components(**properties)
