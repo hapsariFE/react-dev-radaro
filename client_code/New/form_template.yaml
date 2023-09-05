@@ -70,13 +70,6 @@ components:
       name: job_ref
       layout_properties: {row: CGTMXX, width_xs: 11, col_xs: 0, width: 163.141}
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: 'fa:star'}
-      name: label_5
-      layout_properties: {row: CGTMXX, width_xs: 1, col_xs: 11, width: 0}
-    - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Customer Details :', font_size: 14, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
