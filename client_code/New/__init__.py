@@ -24,16 +24,16 @@ class New(NewTemplate):
     #self.merchant_name = ""
     #merchant_name = None
     
-    #etypes = list()
-    #for x in Homepage.repeating_panel_1.items:
-    #  etypes.append(x['completion_code_description'])
-    #res = []
-    #for val in etypes:
-    #  if val != None:
-    #    if val not in res:
-    #      res.append(val)
-    #res.sort()
-    #self.etype = res
+    etypes = list()
+    for x in Homepage.repeating_panel_1.items:
+      etypes.append(x['completion_code_description'])
+    res = []
+    for val in etypes:
+      if val != None:
+        if val not in res:
+          res.append(val)
+    res.sort()
+    self.etype = res
     self.merchant_name = anvil.server.call('get_merchant_list')  
         
     self.init_components(**properties)

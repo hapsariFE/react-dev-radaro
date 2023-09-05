@@ -43,6 +43,8 @@ def incoming_msg(**kwargs):
   #json['topic']
   topic = data.get('topic')
   merctable = app_tables.merchant.get(token=data['token'])
+  lowrate_enable = merctable['low_rating_enabled']
+  compcode_enable = merctable['completion_code_enabled']
   if 'new_values' in data:
     if 'is_confirmed_by_customer' in data['new_values'] and merctable is not None:
       
