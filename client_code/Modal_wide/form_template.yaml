@@ -49,7 +49,7 @@ components:
       name: label_8
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 4, width: 99.9844}
       data_bindings:
-      - {property: text, code: 'self.item[''escalation_type''][''name'']'}
+      - {property: text, code: 'self.item[''completion_code_description'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Assigned to :', font_size: 14, font: '', spacing_above: none,
