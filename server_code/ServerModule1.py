@@ -123,6 +123,7 @@ def get_merchant_list():
   x_rows = currentUser['user_merchant_link']
   x_list =[r['name'] for r in x_rows]
  # print(x_list)
+  x_list.sort()
   return x_list
 
 
@@ -136,8 +137,9 @@ def get_user_list():
   
   #rows = list(dict(r) for r in related_rows)
   #print(rows)
-  return app_tables.users.search(user_merchant_link=q.any_of(*values))
-
+  #return app_tables.users.search(user_merchant_link=q.any_of(*values))
+  return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
+  
 #@anvil.server.callable
 #def get_active_user():
 #  active_user = anvil.users.get_user('name')
@@ -317,6 +319,7 @@ def get_selectedMerchant(selectedMerchant):
     x_list =[r['name'] for r in xMerch]
    # print("xxxxxx")
   #  print(x_list)
+    x_list.sort()
     return x_list
 
 @anvil.server.callable

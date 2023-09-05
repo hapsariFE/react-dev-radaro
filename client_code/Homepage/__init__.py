@@ -106,7 +106,7 @@ class Homepage(HomepageTemplate):
       if val != None:
         if val not in res:
           res.append(val)
-    #print(res) 
+    res.sort()
     self.subbrand = res
     print('subbrand end)'+str(datetime.now()))##################
     print('etype start)'+str(datetime.now()))##################
@@ -118,7 +118,7 @@ class Homepage(HomepageTemplate):
       if val != None:
         if val not in res:
           res.append(val)
-    #print(res) 
+    res.sort()
     self.etype = res
     print('etype end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
