@@ -19,6 +19,7 @@ class Modal_wide(Modal_wideTemplate):
     # Set Form properties and Data Bindings.
     
     print('initiateModal start)'+str(datetime.now()))##################
+    
     self.esc_status = esc_status
     self.assigned = ""
     print('initiateModal end)'+str(datetime.now()))##################

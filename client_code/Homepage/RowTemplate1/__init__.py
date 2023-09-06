@@ -10,7 +10,7 @@ import anvil.tables.query as q
 from anvil.tables import app_tables
 from ...jobreport import jobreport
 from ...Modal_wide import Modal_wide
-#from ...Modal import Modal
+from ...Homepage import Homepage
 import webbrowser
 import anvil.tz
 from datetime import datetime, timedelta, date
@@ -25,6 +25,7 @@ class RowTemplate1(RowTemplate1Template):
     #status = None
     #description = ""
     #self.label_2.text = str(self.item['last_action_date'].astimezone(anvil.tz.tzlocal()))
+    
     print('initiaterow end)'+str(datetime.now()))##################
 
     self.init_components(**properties)
@@ -66,42 +67,6 @@ class RowTemplate1(RowTemplate1Template):
     else: 
         alert('Job Report does not exist')
 
-
-
-  """
-  def orderSelection_radio_clicked(self, **event_args):
-    #This method is called when this radio button is selected
-    selectedRow = self.item
-    SelectedMerchant = self.item['webhook_merchant_link']
-    #print(*SelectedMerchant)
-    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
-    actionData = anvil.server.call('get_action',selectedRow)
-    #print("------")
-    #print(list(assignList))
-    #atest = assignList['name']
-    #print(atest)
-    #print(*assignList)
-    self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
-
-    #print(*actionData)
-    #values = [row for row in actionData]
-    #print(*values)
-
-  def comment_button_click(self, **event_args):
-   #This method is called when the button is clicked
-   # print(*self.item)
-   # selectedRow = self.item
-    record_copy = dict(self.item)
-   # SelectedMerchant = self.item['webhook_merchant_link']
-   # print(record_copy)
-    #assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
-    #actionData = anvil.server.call('get_action',selectedRow)
-    alert(
-      content=ActionPage(item=record_copy),
-      title="Action Log",
-      large=True,
-   )
-"""
   def comment_click(self, **event_args):
     """This method is called when the button is clicked"""
     print('comment start)'+str(datetime.now()))##################
@@ -155,13 +120,14 @@ class RowTemplate1(RowTemplate1Template):
     record_copy = dict(self.item)
     #print(*self.item)
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
-
+    
+    
+    #self.ires = self.parent.parent.parent.parent.parent.ires()
+    
     save_clicked = alert(
      content=Modal_wide(item = self.item),
      title="Job ID : " + self.item["job_reference"],
      large=True,
-
-
      buttons=[("Exit", False)],
    )
     print('comment end)'+str(datetime.now()))##################
@@ -198,13 +164,6 @@ class RowTemplate1(RowTemplate1Template):
         self.favourite.source= "_/theme/Star%20filled.png"
         print("No")
         
-    #if watch_list == False:
-    #  watch_list = True
-    #  self.favourite.source= "_/theme/Star%20filled.png"
-    #  self.refresh_data_bindings()
-   # else:
-    #  watch_list = False
-    #  self.favourite.source = "_/theme/Star%20outline.png"
     article=self.item
     user = Data.currentUser
     anvil.server.call('update_item',article,user)

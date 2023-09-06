@@ -121,6 +121,18 @@ class Homepage(HomepageTemplate):
     eres.sort()
     self.etype = eres
     print('etype end)'+str(datetime.now()))##################  
+    print('itemlist start)'+str(datetime.now()))##################
+    itemlist = list()
+    for x in self.repeating_panel_1.items:
+      itemlist.append(x['id'])
+    ires = []
+    for val in itemlist:
+      if val != None:
+        if val not in ires:
+          ires.append(val)
+    self.itemlist = ires
+    print(ires)
+    print('itemlist end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     #print(endDate)
@@ -175,6 +187,18 @@ class Homepage(HomepageTemplate):
     #print(**event_args)
     print('repeatingpanel start)'+str(datetime.now()))##################
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    print('itemlist start)'+str(datetime.now()))##################
+    itemlist = list()
+    for x in self.repeating_panel_1.items:
+      itemlist.append(x['id'])
+    ires = []
+    for val in itemlist:
+      if val != None:
+        if val not in ires:
+          ires.append(val)
+    self.itemlist = ires
+    print(ires)
+    print('itemlist end)'+str(datetime.now()))##################  
     #print(self.repeating_panel_1.items['sub_brand'])
     print('repeatingpanel end)'+str(datetime.now()))##################
       
