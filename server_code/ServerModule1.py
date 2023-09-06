@@ -45,7 +45,7 @@ def incoming_msg(**kwargs):
   merctable = app_tables.merchant.get(token=data['token'])
   lowrate_enable = merctable['low_rating_enabled']
   compcode_enable = merctable['completion_code_enabled']
-  if 'new_values' in data:
+  if 'new_values' in data and lowrate_enable == True:
     if 'is_confirmed_by_customer' in data['new_values'] and merctable is not None:
       
       if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
