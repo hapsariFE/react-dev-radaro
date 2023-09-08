@@ -1,0 +1,72 @@
+is_package: true
+container:
+  type: HtmlTemplate
+  properties: {html: '@theme:standard-page.html'}
+components:
+- type: ColumnPanel
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
+    wrap_on: never, col_spacing: tiny, spacing_above: none, col_widths: '{}', spacing_below: none,
+    background: ''}
+  name: content_panel
+  layout_properties: {slot: default}
+  components:
+  - type: ColumnPanel
+    properties: {col_widths: '{}'}
+    name: column_panel_1
+    layout_properties: {grid_position: 'EJCGIQ,WYODWH'}
+    components:
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Dashboard, font_size: null, font: '',
+        spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: Dashboard
+      layout_properties: {grid_position: 'HNIQTX,LXRVGT'}
+      event_bindings: {click: Dashboard_click}
+  - type: GridPanel
+    properties: {spacing_above: none, spacing_below: none, background: '', foreground: '',
+      border: '', visible: true, role: null, tooltip: ''}
+    name: grid_panel_1
+    layout_properties: {grid_position: 'BTMFSC,TLHRIM', full_width_row: true}
+    components:
+    - type: DataGrid
+      properties:
+        role: null
+        columns:
+        - {id: ECSLIN, title: Merchant name, data_key: name, $$hashKey: 'object:6799',
+          width: '140', expand: false}
+        - {id: MPJISQ, title: Token, data_key: token, $$hashKey: 'object:6800', width: 202,
+          expand: false}
+        - {id: FSNUKJ, title: Server, data_key: server, $$hashKey: 'object:6801',
+          width: 85, expand: false}
+        - {id: PDPAQZ, title: Portal, data_key: merchant_id, $$hashKey: 'object:6869',
+          width: 73, expand: false}
+        - {id: MBQKBP, title: Completion Codes, data_key: completion_code_enabled,
+          $$hashKey: 'object:6871', width: 93, expand: false}
+        - {id: VHZCVW, title: Low Rating, data_key: low_rating_enabled, $$hashKey: 'object:6873',
+          width: 90, expand: false}
+        - {id: DNDWUT, title: Low Rating Threshold, data_key: rating_threshold, $$hashKey: 'object:6875',
+          width: 88, expand: false}
+        auto_header: true
+        tooltip: ''
+        border: ''
+        foreground: ''
+        rows_per_page: 20
+        visible: true
+        wrap_on: never
+        show_page_controls: true
+        spacing_above: none
+        spacing_below: none
+        background: ''
+      name: data_grid_1
+      layout_properties: {grid_position: 'UZACMG,ZBGFGT', row: DIWYFL, width_xs: 12,
+        col_xs: 0, width: 714}
+      components:
+      - type: RepeatingPanel
+        properties: {spacing_above: none, spacing_below: none, item_template: CMS.RowTemplate4}
+        name: repeating_panel_1
+        layout_properties: {}
+- type: FlowPanel
+  properties: {}
+  name: navbar_links
+  layout_properties: {slot: nav-right}
