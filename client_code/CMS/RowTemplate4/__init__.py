@@ -24,8 +24,8 @@ class RowTemplate4(RowTemplate4Template):
     token = self.text_box_1.text,
     server = self.text_box_3.text,
     merchant_id = self.text_box_4.text,
-    #completion_code_enabled = self.check_box_1.text,
-    #low_rating_enabled = self.check_box_2.text,
+    completion_code_enabled = self.check_box_1.checked,
+    low_rating_enabled = self.check_box_2.checked,
     rating_threshold = self.text_box_7.text
     )
 

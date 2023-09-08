@@ -30,7 +30,7 @@ services:
 - source: /runtime/services/google.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: CMS}
+startup: {type: form, module: Homepage}
 package_name: React
 allow_embedding: false
 name: React

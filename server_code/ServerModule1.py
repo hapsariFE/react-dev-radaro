@@ -243,8 +243,7 @@ def get_cms(merchant_name,token,server,portal,completion_codes,low_rating,low_ra
   return app_tables.merchant.search(tables.order_by("name", ascending=True))
 
 @anvil.server.callable
-def update_cms(rowid,name,token,server,merchant_id,rating_threshold):
-#def update_cms(rowid,name,token,server,merchant_id,completion_code_enabled,low_rating_enabled,rating_threshold):
+def update_cms(rowid,name,token,server,merchant_id,completion_code_enabled,low_rating_enabled,rating_threshold):
   
     rowid = app_tables.merchant.get(name=name)
     rowid.update(
@@ -252,8 +251,8 @@ def update_cms(rowid,name,token,server,merchant_id,rating_threshold):
     token=token,
     server=server,
     merchant_id=merchant_id,
-    #completion_code_enabled=completion_code_enabled,
-    #low_rating_enabled=low_rating_enabled,
+    completion_code_enabled=completion_code_enabled,
+    low_rating_enabled=low_rating_enabled,
     rating_threshold=rating_threshold
     )
 
