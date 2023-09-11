@@ -218,6 +218,12 @@ def get_merchant_list():
   x_list.sort()
   return x_list
 
+@anvil.server.callable
+def get_role():
+  user = anvil.users.get_user()
+  if user['role'] == 'super_user':
+    return 'yes'
+
 
 @anvil.server.callable
 def get_user_list():

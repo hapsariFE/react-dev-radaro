@@ -399,11 +399,11 @@ components:
       name: label_3_copy
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: cms, font_size: null, font: '', spacing_above: small,
+        foreground: '', visible: false, text: cms, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: cms
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 125.656}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 119.656}
       event_bindings: {click: cms_click}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,

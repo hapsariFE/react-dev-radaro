@@ -338,6 +338,15 @@ class Homepage(HomepageTemplate):
     """This method is called when the button is clicked"""
     self.call_js('filtercollapse')
 
+  def show_CMS(self, **event_args):
+    self.get_role()
+      if 
+    
+    if user['role'] == 'super_user':
+      self.cms.visibile = True
+    else:
+      self.cms.visibile = False
+  
   def cms_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('CMS')
