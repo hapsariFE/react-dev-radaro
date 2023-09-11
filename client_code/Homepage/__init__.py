@@ -54,7 +54,13 @@ class Homepage(HomepageTemplate):
     print('homepage start)'+str(datetime.now()))##################
     print('login start)'+str(datetime.now()))##################
     Data.currentUser=anvil.users.login_with_form()
-    self.loggedin.text = 'logged in as '+Data.currentUser['name']    
+    self.loggedin.text = 'logged in as '+Data.currentUser['name']
+    if Data.currentUser['is_super_user'] == True:
+      print('true')
+      self.cms.visible = True
+    else:
+      print('false')
+      self.cms.visible = False
     print('login end)'+str(datetime.now()))##################
     print('getuser start)'+str(datetime.now()))##################
     #currentUser=anvil.users.get_user()
@@ -337,10 +343,14 @@ class Homepage(HomepageTemplate):
   def show_filter(self, **event_args):
     """This method is called when the button is clicked"""
     self.call_js('filtercollapse')
-
+  
   def cms_click(self, **event_args):
     """This method is called when the button is clicked"""
-    open_form('CMS')
+    if Data.currentUser['is_super_user'] == True:
+      print('true')
+      open_form('CMS')
+    else:
+      alert("you do not have authorisation")
 
     
     

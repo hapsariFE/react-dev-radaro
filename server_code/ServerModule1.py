@@ -218,7 +218,6 @@ def get_merchant_list():
   x_list.sort()
   return x_list
 
-
 @anvil.server.callable
 def get_user_list():
   currentUser=anvil.users.get_user()
