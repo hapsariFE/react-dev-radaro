@@ -25,6 +25,13 @@ class RowTemplate1(RowTemplate1Template):
     #status = None
     #description = ""
     #self.label_2.text = str(self.item['last_action_date'].astimezone(anvil.tz.tzlocal()))
+    self.label_2.text = str(self.item['last_action_date'].strftime("%d %b, %Y %H:%M"))
+    #self.label_2.text = str(self.item['last_action_date'](anvil.tz.tzlocal()))
+
+    #self._date = self.item.astimezone(anvil.tz.tzlocal())
+    #self.label_2.text = self._date.strftime(self._format)
+
+
     
     print('initiaterow end)'+str(datetime.now()))##################
 
