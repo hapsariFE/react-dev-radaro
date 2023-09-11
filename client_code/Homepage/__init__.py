@@ -55,7 +55,7 @@ class Homepage(HomepageTemplate):
     print('login start)'+str(datetime.now()))##################
     Data.currentUser=anvil.users.login_with_form()
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
-    if Data.currentUser['role'] == 'super_user':
+    if Data.currentUser['is_super_user'] == True:
       print('true')
       self.cms.visible = True
     else:
@@ -346,7 +346,7 @@ class Homepage(HomepageTemplate):
   
   def cms_click(self, **event_args):
     """This method is called when the button is clicked"""
-    if Data.currentUser['role'] == 'super_user':
+    if Data.currentUser['is_super_user'] == True:
       print('true')
       open_form('CMS')
     else:
