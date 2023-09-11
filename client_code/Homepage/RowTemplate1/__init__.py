@@ -26,6 +26,7 @@ class RowTemplate1(RowTemplate1Template):
     #description = ""
     #self.label_2.text = str(self.item['last_action_date'].astimezone(anvil.tz.tzlocal()))
     
+    
     print('initiaterow end)'+str(datetime.now()))##################
 
     self.init_components(**properties)
