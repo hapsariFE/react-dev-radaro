@@ -31,7 +31,6 @@ class Modal_wide(Modal_wideTemplate):
 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    counter = get_next_value_in_sequence()
     jobrow = app_tables.webhook.get(id=str(counter)) 
     print(selectedRow)
     print(self.item)
@@ -188,9 +187,3 @@ class Modal_wide(Modal_wideTemplate):
      buttons=[("Exit", False)],
    )
 
-
-def get_next_value_in_sequence():
-  row = int(app_tables.webhook.search(tables.order_by("id", ascending=False))[0]['id'])
-  
-  #row += 1
-  return row
