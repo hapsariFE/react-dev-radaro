@@ -172,16 +172,15 @@ def submit_low_rating(data):
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
-  try:
-    jobrow = app_tables.webhook.get(id=str(counter)) 
-    jr_dict = dict(jobrow)
-    assignname = None
-    esc_statuss = app_tables.escalation_status.get(name= "New")
-    description = "Created from webhook"
-    date_created = datetime.now()
-    add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
-  except:
-    "failed"
+
+  jobrow = app_tables.webhook.get(id=str(counter)) 
+  jr_dict = dict(jobrow)
+  assignname = None
+  esc_status = app_tables.escalation_status.get(name= "New")
+  description = "Created from webhook"
+  date_created = datetime.now()
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+
 
 @anvil.server.callable
 def submit_completion_codes(data):
@@ -217,16 +216,15 @@ def submit_completion_codes(data):
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
-  try:
-    jobrow = app_tables.webhook.get(id=str(counter)) 
-    jr_dict = dict(jobrow)
-    assignname = None
-    esc_statuss = app_tables.escalation_status.get(name= "New")
-    description = "Created from webhook"
-    date_created = datetime.now()
-    add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
-  except:
-    "failed"
+  
+  jobrow = app_tables.webhook.get(id=str(counter)) 
+  jr_dict = dict(jobrow)
+  assignname = None
+  esc_status = app_tables.escalation_status.get(name= "New")
+  description = "Created from webhook"
+  date_created = datetime.now()
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  
 
 @anvil.server.callable
 def get_merchant_list():
@@ -467,7 +465,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
    #print(assignrow)
    row = app_tables.action_log.add_row(
     job_id=article,
-    user=anvil.users.get_user(),
+    user= app_tables.users.get(email='system') ,
     description=description,
     status=status,
     created_date = created_date,
@@ -624,7 +622,7 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
+        user=anvil.users.get_user(),
         description="Low Rating",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
@@ -667,7 +665,7 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
+        user=anvil.users.get_user(),
         description="Customer Not Home",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
@@ -709,7 +707,7 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
+        user=anvil.users.get_user(),
         description="Customer Rejected Goods",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
@@ -750,7 +748,7 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
+        user=anvil.users.get_user(),
         description="Up-Sell Service Opportunity",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
