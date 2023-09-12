@@ -45,6 +45,8 @@ roles:
 - {name: green-filled-button}
 - {name: filter-button}
 - {name: narrow}
+- name: cms
+  components: [TextBox]
 color_scheme:
   preset_groups:
   - name: Colour Scheme

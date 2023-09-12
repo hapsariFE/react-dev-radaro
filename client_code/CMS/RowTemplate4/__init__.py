@@ -14,7 +14,7 @@ class RowTemplate4(RowTemplate4Template):
     self.init_components(**properties)
 
     # Any code you write here will run before the form opens.
-    self.text_box_2.align = 'left'
+    
 
   def update_cms(self, **event_args):
     

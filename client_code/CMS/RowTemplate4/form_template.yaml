@@ -1,9 +1,9 @@
 container: {type: DataRowPanel}
 components:
 - type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
-    font_size: null, font: '', spacing_above: small, type: text, spacing_below: small,
+    font_size: 13, font: '', spacing_above: small, type: text, spacing_below: small,
     italic: false, background: '', bold: false, underline: false}
   name: text_box_1
   layout_properties: {column: MPJISQ}
@@ -11,7 +11,7 @@ components:
   - {property: text, code: 'self.item[''token'']', writeback: false}
   event_bindings: {pressed_enter: update_cms, change: update_cms}
 - type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
     font_size: 13, font: '', spacing_above: small, type: text, spacing_below: small,
     italic: false, background: '', bold: false, underline: false}
@@ -21,7 +21,7 @@ components:
   - {property: text, code: 'self.item[''name'']', writeback: false}
   event_bindings: {pressed_enter: update_cms, change: update_cms}
 - type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
     font_size: 13, font: '', spacing_above: small, type: text, spacing_below: small,
     italic: false, background: '', bold: false, underline: false}
@@ -31,7 +31,7 @@ components:
   - {property: text, code: 'self.item[''server'']', writeback: false}
   event_bindings: {pressed_enter: update_cms, change: update_cms}
 - type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
     font_size: 13, font: '', spacing_above: small, type: text, spacing_below: small,
     italic: false, background: '', bold: false, underline: false}
@@ -41,9 +41,9 @@ components:
   - {property: text, code: 'self.item[''merchant_id'']', writeback: false}
   event_bindings: {pressed_enter: update_cms, lost_focus: update_cms, change: update_cms}
 - type: TextBox
-  properties: {role: null, align: left, hide_text: false, tooltip: '', placeholder: '',
+  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '',
     border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '',
-    font_size: null, font: '', spacing_above: small, type: number, spacing_below: small,
+    font_size: 13, font: '', spacing_above: small, type: number, spacing_below: small,
     italic: false, background: '', bold: false, underline: false}
   name: text_box_7
   layout_properties: {column: DNDWUT}

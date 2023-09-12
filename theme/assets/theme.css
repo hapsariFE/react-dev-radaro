@@ -886,13 +886,13 @@ button.close > span, button.close {
 
 
 /*this affects dropdowns, text boxes and text areas:*/
+
 input.anvil-component, textarea.anvil-component, .anvil-component select, .anvil-datepicker input {
   font-size: 16px;
   color:%color:Filter Font%;
   line-height: 1.5;
   border-radius: 4px 4px 0 0;
   background-color: %color:Surface Variant%;
-  
   box-shadow: none;
 }
 
@@ -911,6 +911,10 @@ input.anvil-component, .anvil-component select, .anvil-datepicker input, textare
   padding: 4px 16px;
   border: 0;
   border-bottom: 1px solid %color:Outline%;
+}
+
+input.anvil-component.anvil-role-cms, .anvil-component.anvil-role-cms select, textarea.anvil-component.anvil-role-cms {
+  padding: 4px 3px;
 }
 
 .anvil-dropdown select.form-control {
@@ -1183,6 +1187,10 @@ div.plot-container.plotly svg.main-svg {
   box-shadow: 0px 0px 100px 100px %color:Surface Variant%;
 }
 
+.anvil-role-cms-textbox {
+  color: #ff0000;
+  background-color: %color:Background%;
+}
 
 
 /*Toggles*/
