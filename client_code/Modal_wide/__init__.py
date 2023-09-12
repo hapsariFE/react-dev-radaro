@@ -31,12 +31,12 @@ class Modal_wide(Modal_wideTemplate):
 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
-    jobrow = app_tables.webhook.get(id=str(counter)) 
+    #jobrow = app_tables.webhook.get(id=str(counter)) 
     print(selectedRow)
     print(self.item)
     print(SelectedMerchant)
-    print(counter)
-    print(jobrow)
+    #print(counter)
+    #print(jobrow)
     #Next = Row(selectedRow) + 1
     #print(Next)
     #print(self.item['watchlistUsers'])
