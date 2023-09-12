@@ -244,7 +244,7 @@ def get_cms(merchant_name,token,server,portal,completion_codes,low_rating,low_ra
 @anvil.server.callable
 def update_cms(rowid,name,token,server,merchant_id,completion_code_enabled,low_rating_enabled,rating_threshold):
   
-    rowid = app_tables.merchant.get(name=name)
+    #rowid = app_tables.merchant.get(name=name)
     rowid.update(
     name=name,
     token=token,
