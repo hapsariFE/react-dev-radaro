@@ -172,13 +172,16 @@ def submit_low_rating(data):
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
-  jobrow = app_tables.webhook.get(id=str(counter)) 
-  jr_dict = dict(jobrow)
-  assignname = None
-  esc_statuss = app_tables.escalation_status.get(name= "New")
-  description = "Created from webhook"
-  date_created = datetime.now()
-  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  try:
+    jobrow = app_tables.webhook.get(id=str(counter)) 
+    jr_dict = dict(jobrow)
+    assignname = None
+    esc_statuss = app_tables.escalation_status.get(name= "New")
+    description = "Created from webhook"
+    date_created = datetime.now()
+    add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  except:
+    "failed"
 
 @anvil.server.callable
 def submit_completion_codes(data):
@@ -214,6 +217,16 @@ def submit_completion_codes(data):
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
+  try:
+    jobrow = app_tables.webhook.get(id=str(counter)) 
+    jr_dict = dict(jobrow)
+    assignname = None
+    esc_statuss = app_tables.escalation_status.get(name= "New")
+    description = "Created from webhook"
+    date_created = datetime.now()
+    add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  except:
+    "failed"
 
 @anvil.server.callable
 def get_merchant_list():
