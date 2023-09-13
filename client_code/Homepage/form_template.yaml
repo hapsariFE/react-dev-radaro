@@ -425,23 +425,23 @@ components:
         - {id: LDAFAU, title: '', data_key: watch_list, $$hashKey: 'object:132614'}
         - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393',
           width: '120', expand: false}
+        - {id: HIBOCD, title: Merchant Portal, data_key: merchant_portal, $$hashKey: 'object:397',
+          width: '120'}
         - {id: RCINSG, title: Sub Brand, data_key: sub_brand, $$hashKey: 'object:207639',
           width: '120'}
         - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395',
           width: '120', expand: false}
-        - {id: HIBOCD, title: Job Status, data_key: job_status, $$hashKey: 'object:397',
-          width: '120'}
         - {id: FREDFV, title: Escalation Type, data_key: escalation_type, $$hashKey: 'object:399',
           width: '160'}
         - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401',
           width: '120'}
-        - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403',
-          width: '160'}
         - {id: DCIFYE, title: Assigned To, data_key: assigned_to, $$hashKey: 'object:33580',
           width: '120', expand: false}
+        - {id: JVSRGA, title: Time Since Last Action, data_key: last_action_date,
+          $$hashKey: 'object:403', width: '150'}
+        - {id: FUNZSD, title: Time Since Creation, data_key: elapsed, $$hashKey: 'object:18690',
+          width: '150'}
         - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405', width: '40'}
-        - {id: FUNZSD, title: '', data_key: comment_history, $$hashKey: 'object:18690',
-          width: '40'}
         auto_header: true
         tooltip: ''
         border: ''
@@ -453,7 +453,7 @@ components:
         spacing_above: none
         spacing_below: none
         background: ''
-      layout_properties: {width: 925, row: BEEIKG, width_xs: 12, col_xs: 0}
+      layout_properties: {width: 904, row: BEEIKG, width_xs: 12, col_xs: 0}
       name: data_grid_1
       components:
       - type: RepeatingPanel

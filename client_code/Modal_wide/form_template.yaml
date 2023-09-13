@@ -57,13 +57,13 @@ components:
         underline: false, icon: ''}
       name: label_11
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 6, width: 115.656}
-    - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
-      name: label_12
-      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 7, width: 99.9844}
+    - type: Button
+      properties: {role: elevated-button, align: center, tooltip: '', border: '',
+        enabled: false, foreground: 'theme:On Primary', visible: true, text: '', font_size: null,
+        font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: 'theme:Error', bold: true, underline: false, icon: ''}
+      name: button_3
+      layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 10, width: 99.9844}
       data_bindings:
       - {property: text, code: 'self.item[''latest_assignee''][''name''] if self.item[''latest_assignee'']
           else ''---'''}
@@ -74,14 +74,15 @@ components:
         underline: false, icon: ''}
       name: label_5
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 0, width: 115.656}
-    - type: Image
-      properties: {role: null, vertical_align: center, height: '25', tooltip: '',
-        border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: none,
-        source: '', spacing_below: none, background: '', horizontal_align: left}
-      name: image_3
-      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2, width: 115.656}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: label_22
+      layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2, width: 99.9844}
       data_bindings:
-      - {property: source, code: 'self.item[''job_status''][''icon'']'}
+      - {property: text, code: 'self.item[''job_status''][''name'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Escalation Status :', font_size: 14, font: '',
@@ -156,7 +157,7 @@ components:
       - {property: text, code: 'self.item[''mobile_number'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Date Completed :', font_size: 14, font: '',
+          Font', visible: true, text: 'Job Completed :', font_size: 14, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_10
@@ -187,6 +188,51 @@ components:
       layout_properties: {row: FBQPYV, width_xs: 1, col_xs: 10, width: 34.9844}
       data_bindings:
       - {property: text, code: 'self.item[''sub_brand'']'}
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Time Since Creation :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_12
+      layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 0, width: 99.9844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: label_26
+      layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 2, width: 34.9844}
+      data_bindings: []
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Time Since Last Action :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_23
+      layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 4, width: 99.9844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: label_27
+      layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 6, width: 99.9844}
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: 'Merchant Portal :', font_size: 14, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_24
+      layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 8, width: 99.9844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: ''}
+      name: label_25
+      layout_properties: {row: BOSGPA, width_xs: 1, col_xs: 10, width: 34.9844}
+      data_bindings:
+      - {property: text, code: 'self.item[''webhook_merchant_link''][''name'']'}
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Add Comment, font_size: 14, font: '', spacing_above: small,
