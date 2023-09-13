@@ -201,7 +201,7 @@ components:
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: ''}
       name: label_26
-      layout_properties: {row: BOSGPA, width_xs: 1, col_xs: 2, width: 34.9844}
+      layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 2, width: 34.9844}
       data_bindings: []
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter

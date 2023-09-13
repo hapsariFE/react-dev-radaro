@@ -31,9 +31,21 @@ class Modal_wide(Modal_wideTemplate):
     #print("------")
     # Any code you write here will run before the form opens.
     createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
+    if createdif.seconds < 3600:
+      createdif = str((createdif.seconds//60)%60) + " minutes"
+    elif createdif.days < 1:
+      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes,"
+    else:
+      createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
     self.label_26.text = createdif
     actiondif = datetime.now(anvil.tz.tzlocal()) - self.item['last_action_date']
-    self.label_27.text = str(actiondif.days) + " d," + str(actiondif.seconds//3600) + " h," + str((actiondif.seconds//60)%60) + " m," 
+    if actiondif.seconds < 3600:
+      actiondif = str((actiondif.seconds//60)%60) + " minutes"
+    elif actiondif.days < 1:
+      actiondif = str(actiondif.seconds//3600) + " hours, " + str((actiondif.seconds//60)%60) + " minutes,"
+    else:
+      actiondif = str(actiondif.days) + " days, " + str(actiondif.seconds//3600) + " hours"
+    self.label_27.text = actiondif
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
     #jobrow = app_tables.webhook.get(id=str(counter)) 
