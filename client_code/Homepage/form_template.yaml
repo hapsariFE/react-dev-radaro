@@ -435,12 +435,12 @@ components:
           width: '160'}
         - {id: MVQPXP, title: Escalation Status, data_key: escalation_status, $$hashKey: 'object:401',
           width: '120'}
-        - {id: JVSRGA, title: Last Action Date, data_key: last_action_date, $$hashKey: 'object:403',
-          width: '160'}
         - {id: DCIFYE, title: Assigned To, data_key: assigned_to, $$hashKey: 'object:33580',
           width: '120', expand: false}
+        - {id: JVSRGA, title: Time Since Last Action, data_key: last_action_date,
+          $$hashKey: 'object:403', width: '150'}
         - {id: FUNZSD, title: Time Since Creation, data_key: elapsed, $$hashKey: 'object:18690',
-          width: '120'}
+          width: '150'}
         - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405', width: '40'}
         auto_header: true
         tooltip: ''

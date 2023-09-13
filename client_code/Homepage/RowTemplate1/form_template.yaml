@@ -36,9 +36,7 @@ components:
       icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     layout_properties: {column: JVSRGA, grid_position: 'YSBXYW,KNRDKC'}
-    data_bindings:
-    - {property: text, code: 'self.item[''last_action_date''].strftime("%d %b, %Y
-        %H:%M")'}
+    data_bindings: []
     name: label_2
 - type: Link
   properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',

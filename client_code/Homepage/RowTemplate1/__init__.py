@@ -35,10 +35,18 @@ class RowTemplate1(RowTemplate1Template):
     if createdif.seconds < 3600:
       createdif = str((createdif.seconds//60)%60) + " minutes"
     elif createdif.days < 1:
-      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes,"
+      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes"
     else:
       createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
     self.label_8.text = createdif
+    actiondif = datetime.now(anvil.tz.tzlocal()) - self.item['last_action_date']
+    if actiondif.seconds < 3600:
+      actiondif = str((actiondif.seconds//60)%60) + " minutes"
+    elif actiondif.days < 1:
+      actiondif = str(actiondif.seconds//3600) + " hours, " + str((actiondif.seconds//60)%60) + " minutes"
+    else:
+      actiondif = str(actiondif.days) + " days, " + str(actiondif.seconds//3600) + " hours"
+    self.label_2.text = actiondif
     #print(self.item['latest_status']['name'])
     #if self.item['job_status']['name'] == "Failed":
       #self.label_4.bold = True

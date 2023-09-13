@@ -157,7 +157,7 @@ components:
       - {property: text, code: 'self.item[''mobile_number'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Date Completed :', font_size: 14, font: '',
+          Font', visible: true, text: 'Job Completed :', font_size: 14, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_10
@@ -190,7 +190,7 @@ components:
       - {property: text, code: 'self.item[''sub_brand'']'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Time since creation :', font_size: 14, font: '',
+          Font', visible: true, text: 'Time Since Creation :', font_size: 14, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_12
@@ -205,7 +205,7 @@ components:
       data_bindings: []
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Time since last action :', font_size: 14, font: '',
+          Font', visible: true, text: 'Time Since Last Action :', font_size: 14, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: false, underline: false, icon: ''}
       name: label_23

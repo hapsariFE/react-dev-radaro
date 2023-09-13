@@ -34,7 +34,7 @@ class Modal_wide(Modal_wideTemplate):
     if createdif.seconds < 3600:
       createdif = str((createdif.seconds//60)%60) + " minutes"
     elif createdif.days < 1:
-      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes,"
+      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes"
     else:
       createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
     self.label_26.text = createdif
@@ -42,7 +42,7 @@ class Modal_wide(Modal_wideTemplate):
     if actiondif.seconds < 3600:
       actiondif = str((actiondif.seconds//60)%60) + " minutes"
     elif actiondif.days < 1:
-      actiondif = str(actiondif.seconds//3600) + " hours, " + str((actiondif.seconds//60)%60) + " minutes,"
+      actiondif = str(actiondif.seconds//3600) + " hours, " + str((actiondif.seconds//60)%60) + " minutes"
     else:
       actiondif = str(actiondif.days) + " days, " + str(actiondif.seconds//3600) + " hours"
     self.label_27.text = actiondif
