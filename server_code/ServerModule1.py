@@ -491,7 +491,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
 def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to):
   merchant_row = app_tables.merchant.get(name=merchant_name) 
   status_row = app_tables.job_status.get(name='Failed') 
-  esc_type = app_tables.escalation_type.get(name=esc_type)
+  
   print(esc_type)
   #assignrow = app_tables.users.get(name=assign_to)
   counter = get_next_value_in_sequence()
@@ -505,7 +505,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
      id = str(counter),
      latest_status = esc_status,
      job_status = status_row,
-     escalation_type = esc_type,
+     completion_code_description = esc_type,
      date_created = date_created,
      last_action_date = last_action_date,
      latest_assignee=assign_to,
