@@ -173,6 +173,15 @@ def submit_low_rating(data):
   watch_list=False,
   watchlistUsers=[])
 
+  jobrow = app_tables.webhook.get(id=str(counter)) 
+  jr_dict = dict(jobrow)
+  assignname = None
+  esc_status = app_tables.escalation_status.get(name= "New")
+  description = "Created from webhook"
+  date_created = datetime.now()
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+
+
 @anvil.server.callable
 def submit_completion_codes(data):
   rating = data['order_info']['rating']
@@ -207,6 +216,15 @@ def submit_completion_codes(data):
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
+  
+  jobrow = app_tables.webhook.get(id=str(counter)) 
+  jr_dict = dict(jobrow)
+  assignname = None
+  esc_status = app_tables.escalation_status.get(name= "New")
+  description = "Created from webhook"
+  date_created = datetime.now()
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  
 
 @anvil.server.callable
 def get_merchant_list():
@@ -447,7 +465,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
    #print(assignrow)
    row = app_tables.action_log.add_row(
     job_id=article,
-    user=anvil.users.get_user(),
+    user= app_tables.users.get(email='system') ,
     description=description,
     status=status,
     created_date = created_date,
@@ -473,6 +491,8 @@ def add_comment(article, article_dict, description, status, created_date, assign
 def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to):
   merchant_row = app_tables.merchant.get(name=merchant_name) 
   status_row = app_tables.job_status.get(name='Failed') 
+  
+  print(esc_type)
   #assignrow = app_tables.users.get(name=assign_to)
   counter = get_next_value_in_sequence()
   row = app_tables.webhook.add_row(
@@ -485,7 +505,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
      id = str(counter),
      latest_status = esc_status,
      job_status = status_row,
-     escalation_type = esc_type,
+     completion_code_description = esc_type,
      date_created = date_created,
      last_action_date = last_action_date,
      latest_assignee=assign_to,
@@ -493,7 +513,15 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
   jobrow = app_tables.webhook.get(id=str(counter)) 
   jr_dict = dict(jobrow)
   assignname = assign_to['name']
-  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  app_tables.action_log.add_row(
+        assign_to=None,
+        user=anvil.users.get_user(),
+        description="created manually",
+        escalation_id=app_tables.webhook.get(id= str(counter)),
+        job_id=app_tables.webhook.get(id= str(counter)),
+        status = app_tables.escalation_status.get(name= "New"),
+        created_date=datetime.now())
+  #add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
   #row = app_tables.action_log.add_row(
   #  job_id = jobrow,
   #  user=anvil.users.get_user(),
@@ -604,8 +632,8 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
-        description="Low Rating",
+        user=anvil.users.get_user(),
+        description="created manually",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
@@ -647,8 +675,8 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
-        description="Customer Not Home",
+        user=anvil.users.get_user(),
+        description="created manually",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
@@ -689,8 +717,8 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
-        description="Customer Rejected Goods",
+        user=anvil.users.get_user(),
+        description="created manually",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
@@ -730,8 +758,8 @@ def manual_import(file):
       watch_list=False)
       app_tables.action_log.add_row(
         assign_to=None,
-        user=app_tables.users.get(name= "System"),
-        description="Up-Sell Service Opportunity",
+        user=anvil.users.get_user(),
+        description="created manually",
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
