@@ -31,6 +31,14 @@ class RowTemplate1(RowTemplate1Template):
 
     self.init_components(**properties)
     print('rowtemplate start)'+str(datetime.now()))##################
+    createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
+    if createdif.seconds < 3600:
+      createdif = str((createdif.seconds//60)%60) + " minutes"
+    elif createdif.days < 1:
+      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes,"
+    else:
+      createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
+    self.label_8.text = createdif
     #print(self.item['latest_status']['name'])
     #if self.item['job_status']['name'] == "Failed":
       #self.label_4.bold = True

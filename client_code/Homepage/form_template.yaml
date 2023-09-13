@@ -439,9 +439,9 @@ components:
           width: '160'}
         - {id: DCIFYE, title: Assigned To, data_key: assigned_to, $$hashKey: 'object:33580',
           width: '120', expand: false}
+        - {id: FUNZSD, title: Time Since Creation, data_key: elapsed, $$hashKey: 'object:18690',
+          width: '120'}
         - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405', width: '40'}
-        - {id: FUNZSD, title: '', data_key: comment_history, $$hashKey: 'object:18690',
-          width: '40'}
         auto_header: true
         tooltip: ''
         border: ''
