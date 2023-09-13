@@ -22,13 +22,18 @@ class Modal_wide(Modal_wideTemplate):
     
     self.esc_status = esc_status
     self.assigned = ""
+    createdif = ""
+    actiondif = ""
     print('initiateModal end)'+str(datetime.now()))##################
 
     self.init_components(**properties)
     print('Modal start)'+str(datetime.now()))##################
     #print("------")
     # Any code you write here will run before the form opens.
-
+    createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
+    self.label_26.text = createdif
+    actiondif = datetime.now(anvil.tz.tzlocal()) - self.item['last_action_date']
+    self.label_27.text = str(actiondif.days) + " d," + str(actiondif.seconds//3600) + " h," + str((actiondif.seconds//60)%60) + " m," 
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
     #jobrow = app_tables.webhook.get(id=str(counter)) 
@@ -40,6 +45,7 @@ class Modal_wide(Modal_wideTemplate):
     #Next = Row(selectedRow) + 1
     #print(Next)
     #print(self.item['watchlistUsers'])
+
     print('assignlist start)'+str(datetime.now()))##################
     assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     print('assignlist end)'+str(datetime.now()))##################
