@@ -155,8 +155,8 @@ def submit_low_rating(data):
   customer_name = data['order_info']['customer']['name'],
   completion_code_id = id_string,
   completion_code_description = "Low Rating", 
-  date_created = updated_at,
-  last_action_date =updated_at,
+  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
+  last_action_date =datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
   job_reference = data['order_info']['title'],
   webhook_merchant_link=app_tables.merchant.get(token=data['token']),
   job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
@@ -200,8 +200,8 @@ def submit_completion_codes(data):
   customer_name = data['order_info']['customer']['name'],
   completion_code_id = id_string,
   completion_code_description = comp_string, 
-  date_created = updated_at,
-  last_action_date =updated_at,
+  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
+  last_action_date =datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
   job_reference = data['order_info']['title'],
   webhook_merchant_link=app_tables.merchant.get(token=data['token']),
   job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
