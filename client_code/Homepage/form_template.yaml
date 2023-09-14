@@ -426,7 +426,7 @@ components:
         - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393',
           width: '120', expand: false}
         - {id: HIBOCD, title: Merchant Portal, data_key: merchant_portal, $$hashKey: 'object:397',
-          width: '120'}
+          width: '110'}
         - {id: RCINSG, title: Sub Brand, data_key: sub_brand, $$hashKey: 'object:207639',
           width: '120'}
         - {id: XLQKDN, title: Customer Name, data_key: customer_name, $$hashKey: 'object:395',
