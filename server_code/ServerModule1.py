@@ -179,7 +179,7 @@ def submit_low_rating(data):
   assignname = None
   esc_status = app_tables.escalation_status.get(name= "New")
   description = "Created from webhook"
-  date_created = datetime.now()
+  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
   add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
 
 
@@ -224,7 +224,7 @@ def submit_completion_codes(data):
   assignname = None
   esc_status = app_tables.escalation_status.get(name= "New")
   description = "Created from webhook"
-  date_created = datetime.now()
+  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
   add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
   
 
