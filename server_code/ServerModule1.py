@@ -140,6 +140,7 @@ def submit_low_rating(data):
   id_string = ";".join(id_values)
   comp_names = [str(code["name"]) for code in codes]
   comp_string = ";".join(comp_names)
+  updated_at = data.get('updated_at')
   #if not comp_string:
   #  print(comp_string)
     # comp_string = None
@@ -154,8 +155,8 @@ def submit_low_rating(data):
   customer_name = data['order_info']['customer']['name'],
   completion_code_id = id_string,
   completion_code_description = "Low Rating", 
-  date_created = datetime.now(anvil.tz.tzlocal()),
-  last_action_date =datetime.now(anvil.tz.tzlocal()),
+  date_created = updated_at,
+  last_action_date =updated_at,
   job_reference = data['order_info']['title'],
   webhook_merchant_link=app_tables.merchant.get(token=data['token']),
   job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
@@ -190,6 +191,7 @@ def submit_completion_codes(data):
   id_string = ";".join(id_values)
   comp_names = [str(code["name"]) for code in codes]
   comp_string = ";".join(comp_names)
+  updated_at = data.get('updated_at')
   counter = get_next_value_in_sequence()
   #try:
   app_tables.webhook.add_row(
@@ -198,8 +200,8 @@ def submit_completion_codes(data):
   customer_name = data['order_info']['customer']['name'],
   completion_code_id = id_string,
   completion_code_description = comp_string, 
-  date_created = datetime.now(),
-  last_action_date =datetime.now(),
+  date_created = updated_at,
+  last_action_date =updated_at,
   job_reference = data['order_info']['title'],
   webhook_merchant_link=app_tables.merchant.get(token=data['token']),
   job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
