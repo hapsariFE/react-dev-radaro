@@ -179,6 +179,7 @@ class Modal_wide(Modal_wideTemplate):
 
   def next_click(self, **event_args):
     """This method is called when the button is clicked"""
+    get_open_form()
     #selectedRow = self.item
     #SelectedMerchant = self.item['webhook_merchant_link']
     #print(*SelectedMerchant)
