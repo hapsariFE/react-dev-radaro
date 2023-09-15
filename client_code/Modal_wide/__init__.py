@@ -15,7 +15,7 @@ import anvil.tz
 from form_checker import validation
 
 class Modal_wide(Modal_wideTemplate):
-  def __init__(self, **properties):
+  def __init__(self,ires, **properties):
     # Set Form properties and Data Bindings.
     
    # print('initiateModal start)'+str(datetime.now()))##################
@@ -24,6 +24,7 @@ class Modal_wide(Modal_wideTemplate):
     self.assigned = ""
     createdif = ""
     actiondif = ""
+    self.ires = ires
    # print('initiateModal end)'+str(datetime.now()))##################
 
     self.init_components(**properties)
@@ -48,6 +49,15 @@ class Modal_wide(Modal_wideTemplate):
     self.label_27.text = actiondif
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
+    
+    #print(selectedrow)
+    print("--")
+    my_iterator = iter(ires)
+    for value in my_iterator:
+      if value == selectedRow['id']:
+          next_element = next(my_iterator)
+          print(next_element)
+          self.next_record = next_element
     #jobrow = app_tables.webhook.get(id=str(counter)) 
     #print(selectedRow)
     #print(self.item)
@@ -76,6 +86,10 @@ class Modal_wide(Modal_wideTemplate):
       self.favourite.source = "_/theme/Star%20outline.png"
   #  print('watch end)'+str(datetime.now()))##################
    # print('refresh start)'+str(datetime.now()))##################
+    #print(selectedRow['id'])
+   # print(ires)
+   # ires = ires
+
     self.refresh_data_bindings()
   #  print('refresh end)'+str(datetime.now()))##################
    # print('Modal end)'+str(datetime.now()))##################
@@ -180,6 +194,7 @@ class Modal_wide(Modal_wideTemplate):
   def next_click(self, **event_args):
     """This method is called when the button is clicked"""
     get_open_form()
+    
     #selectedRow = self.item
     #SelectedMerchant = self.item['webhook_merchant_link']
     #print(*SelectedMerchant)
@@ -192,8 +207,14 @@ class Modal_wide(Modal_wideTemplate):
     #print(*assignList)
     #job_status = [(x['name'], x) for x in app_tables.job_status.search()]
     #[(x['name'], x) for x in users]
+    #my_iterator = iter(ires)
+    #for value in my_iterator:
+     # if value == self.item['id']:
+     #     next_element = next(my_iterator)
+      #    print(next_element)
+    next_item = anvil.server.call('get_record',self.next_record)   
     record_copy = dict(self.item)
-    
+    print(next_item)
     #print(*self.item)
     #print(record_copy)
     
@@ -201,7 +222,7 @@ class Modal_wide(Modal_wideTemplate):
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
     save_clicked = alert(
-     content=Modal_wide(item = self.item),
+     content=Modal_wide(item = next_item,ires = self.ires),
      title="Job ID : " + self.item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
