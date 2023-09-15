@@ -61,7 +61,7 @@ class Modal_wide(Modal_wideTemplate):
             self.next_record = next_element
 
     except StopIteration as e:
-      self.button_1.visible = False
+      self.button_1.enabled = False
 
     #print(ires)
 
@@ -82,7 +82,7 @@ class Modal_wide(Modal_wideTemplate):
             self.prev_record = prev_element
 
     except StopIteration as e:
-      self.button_2.visible = False
+      self.button_2.enabled = False
       #elif value != selectedRow['id']:
       #    self.button_1.visible = False
     #print(self.next_record)
