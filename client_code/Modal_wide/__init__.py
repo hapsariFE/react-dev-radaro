@@ -15,7 +15,7 @@ import anvil.tz
 from form_checker import validation
 
 class Modal_wide(Modal_wideTemplate):
-  def __init__(self, **properties):
+  def __init__(self,ires, **properties):
     # Set Form properties and Data Bindings.
     
    # print('initiateModal start)'+str(datetime.now()))##################
@@ -24,6 +24,7 @@ class Modal_wide(Modal_wideTemplate):
     self.assigned = ""
     createdif = ""
     actiondif = ""
+    self.ires = ires
    # print('initiateModal end)'+str(datetime.now()))##################
 
     self.init_components(**properties)
@@ -48,6 +49,46 @@ class Modal_wide(Modal_wideTemplate):
     self.label_27.text = actiondif
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
+    self.next_record = None
+    #print(selectedrow)
+    #print("--")
+    my_iterator = iter(ires)
+    try: 
+      for value in my_iterator:
+        if value == selectedRow['id']:
+            next_element = next(my_iterator)
+            #print("Next Ele:" +next_element)
+            self.next_record = next_element
+
+    except StopIteration as e:
+      self.button_1.visible = False
+
+    #print(ires)
+
+    reverseires = list(reversed(ires))
+    #print(reverseires)
+
+    reversemy_iterator = iter(reverseires)
+    try: 
+      for value in reversemy_iterator:
+        #print(value)
+        #print(selectedRow['id'])
+        if value == selectedRow['id']:
+            #print(value)
+            #print(selectedRow['id'])
+            #print(next(reversemy_iterator))
+            prev_element = next(reversemy_iterator)
+           #print("test:" + prev_element)
+            self.prev_record = prev_element
+
+    except StopIteration as e:
+      self.button_2.visible = False
+      #elif value != selectedRow['id']:
+      #    self.button_1.visible = False
+    #print(self.next_record)
+   # if self.next_record is None:
+   #   self.button_1.visible = False
+      
     #jobrow = app_tables.webhook.get(id=str(counter)) 
     #print(selectedRow)
     #print(self.item)
@@ -76,6 +117,10 @@ class Modal_wide(Modal_wideTemplate):
       self.favourite.source = "_/theme/Star%20outline.png"
   #  print('watch end)'+str(datetime.now()))##################
    # print('refresh start)'+str(datetime.now()))##################
+    #print(selectedRow['id'])
+   # print(ires)
+   # ires = ires
+
     self.refresh_data_bindings()
   #  print('refresh end)'+str(datetime.now()))##################
    # print('Modal end)'+str(datetime.now()))##################
@@ -99,7 +144,7 @@ class Modal_wide(Modal_wideTemplate):
     created_date = datetime.now(anvil.tz.tzlocal())
     assign_to = self.dd_assign.selected_value
     record_copy = dict(self.item)
-    submitter = anvil.users.get_user()
+    submitter = Data.currentUser
 
     #print(assign_to)
     #print(created_date)
@@ -179,6 +224,8 @@ class Modal_wide(Modal_wideTemplate):
 
   def next_click(self, **event_args):
     """This method is called when the button is clicked"""
+    get_open_form()
+    
     #selectedRow = self.item
     #SelectedMerchant = self.item['webhook_merchant_link']
     #print(*SelectedMerchant)
@@ -191,18 +238,69 @@ class Modal_wide(Modal_wideTemplate):
     #print(*assignList)
     #job_status = [(x['name'], x) for x in app_tables.job_status.search()]
     #[(x['name'], x) for x in users]
+    #my_iterator = iter(ires)
+    #for value in my_iterator:
+     # if value == self.item['id']:
+     #     next_element = next(my_iterator)
+      #    print(next_element)
+    next_item = anvil.server.call('get_record',self.next_record)   
     record_copy = dict(self.item)
-    
+    #print("aaaaaaaa")
+    #print(*next_item)
     #print(*self.item)
     #print(record_copy)
-    
+    #n_i = next_item
+    #print("llllll")
+    #print(n_i)
     
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
+    self.raise_event("x-close-alert", value=42)
     save_clicked = alert(
-     content=Modal_wide(item = self.item),
-     title="Job ID : " + self.item["job_reference"],
+     content=Modal_wide(item = next_item,ires = self.ires),
+     title="Job ID : " + next_item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )
+    
+  def prev_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    get_open_form()
+    
+    #selectedRow = self.item
+    #SelectedMerchant = self.item['webhook_merchant_link']
+    #print(*SelectedMerchant)
+    #assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    #actionData = anvil.server.call('get_action',selectedRow)
+    #print("------")
+    #print(list(assignList))
+    #atest = assignList['name']
+    #print(atest)
+    #print(*assignList)
+    #job_status = [(x['name'], x) for x in app_tables.job_status.search()]
+    #[(x['name'], x) for x in users]
+    #my_iterator = iter(ires)
+    #for value in my_iterator:
+     # if value == self.item['id']:
+     #     next_element = next(my_iterator)
+      #    print(next_element)
+    prev_item = anvil.server.call('get_record',self.prev_record)   
+    record_copy = dict(self.item)
+    #print("aaaaaaaa")
+    #print(*next_item)
+    #print(*self.item)
+    #print(record_copy)
+    #n_i = next_item
+    #print("llllll")
+    #print(n_i)
+    
+    #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
+    self.raise_event("x-close-alert", value=42)
+    save_clicked = alert(
+     content=Modal_wide(item = prev_item,ires = self.ires),
+     title="Job ID : " + prev_item["job_reference"],
+     large=True,
+     buttons=[("Exit", False)],
+   )
+    

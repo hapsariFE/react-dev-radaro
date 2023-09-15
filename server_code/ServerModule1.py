@@ -436,6 +436,9 @@ def get_action(rowValue):
     return app_tables.action_log.search(tables.order_by("created_date",ascending=False),escalation_id=q.any_of(rowValue)
     
   )
+    
+
+  
 @anvil.server.callable
 def get_selectedMerchant(selectedMerchant):
   #valuesMerch = [row for row in selectedMerchant]
@@ -770,4 +773,13 @@ def manual_import(file):
         created_date=datetime.now())
       counter += 1
 
-
+@anvil.server.callable
+def get_record(id):
+  if id is None: 
+    print("No Record")
+  else:
+    #print("-----aa")
+    #print(rowValue)
+    #print("-----bb")
+    #print(rowValue['job_status'])
+    return app_tables.webhook.get(id=q.any_of(id))

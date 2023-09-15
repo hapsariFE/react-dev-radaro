@@ -134,15 +134,17 @@ class RowTemplate1(RowTemplate1Template):
     #atest = assignList['name']
     #print(atest)
     #print(*assignList)
+    iresvalue = get_open_form().itemlist
+    #print(testvalue)
     record_copy = dict(self.item)
     #print(*self.item)
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
     
     
     #self.ires = self.parent.parent.parent.parent.parent.ires()
-    
+    #print(self.item)
     save_clicked = alert(
-     content=Modal_wide(item = self.item),
+     content=Modal_wide(item=self.item,ires=iresvalue),
      title="Job ID : " + self.item["job_reference"],
      large=True,
      buttons=[("Exit", False)],

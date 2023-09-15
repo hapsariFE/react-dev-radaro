@@ -203,7 +203,7 @@ class Homepage(HomepageTemplate):
         if val not in ires:
           ires.append(val)
     self.itemlist = ires
-   # print(ires)
+    #print(ires)
     #print('itemlist end)'+str(datetime.now()))##################  
     #print(self.repeating_panel_1.items['sub_brand'])
    # print('repeatingpanel end)'+str(datetime.now()))##################
