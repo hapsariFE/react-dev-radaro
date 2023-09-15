@@ -33,7 +33,7 @@ components:
       name: label_4
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 1, width: 99.9844}
       data_bindings:
-      - {property: text, code: 'self.item[''customer_name'']'}
+      - {property: text, code: 'self.item[''customer_name''].capitalize()'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Escalation Type :', font_size: 14, font: '',
@@ -49,7 +49,7 @@ components:
       name: label_8
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 4, width: 99.9844}
       data_bindings:
-      - {property: text, code: 'self.item[''completion_code_description'']'}
+      - {property: text, code: 'self.item[''completion_code_description''].capitalize()'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Assigned to :', font_size: 14, font: '', spacing_above: none,
@@ -187,7 +187,7 @@ components:
       name: label_16
       layout_properties: {row: FBQPYV, width_xs: 1, col_xs: 10, width: 34.9844}
       data_bindings:
-      - {property: text, code: 'self.item[''sub_brand'']'}
+      - {property: text, code: 'self.item[''sub_brand''].capitalize()'}
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
           Font', visible: true, text: 'Time Since Creation :', font_size: 14, font: '',

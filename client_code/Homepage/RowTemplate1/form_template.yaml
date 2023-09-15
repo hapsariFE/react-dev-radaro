@@ -54,7 +54,7 @@ components:
       underline: false, icon: ''}
     layout_properties: {column: FREDFV, grid_position: 'HKMJLM,AWPQRE'}
     data_bindings:
-    - {code: 'self.item[''completion_code_description'']', property: text}
+    - {code: 'self.item[''completion_code_description''].capitalize()', property: text}
     name: label_3
 - type: Link
   properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
@@ -196,7 +196,7 @@ components:
     name: label_4
     layout_properties: {grid_position: 'TAFSDH,KJKFNC'}
     data_bindings:
-    - {property: text, code: 'self.item[''sub_brand'']'}
+    - {property: text, code: 'self.item[''sub_brand''].capitalize()'}
 - type: Link
   properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: null, wrap_on: never, font: '', col_spacing: none,
@@ -214,4 +214,4 @@ components:
     name: label_6
     layout_properties: {grid_position: 'SAOQST,YHZPVW'}
     data_bindings:
-    - {property: text, code: 'self.item[''customer_name'']'}
+    - {property: text, code: 'self.item[''customer_name''].capitalize()'}
