@@ -782,4 +782,4 @@ def get_record(id):
     #print(rowValue)
     #print("-----bb")
     #print(rowValue['job_status'])
-    return app_tables.webhook.search(id=q.any_of(id))
+    return app_tables.webhook.get(id=q.any_of(id))

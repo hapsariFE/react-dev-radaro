@@ -142,7 +142,7 @@ class RowTemplate1(RowTemplate1Template):
     
     
     #self.ires = self.parent.parent.parent.parent.parent.ires()
-    print(self.item)
+    #print(self.item)
     save_clicked = alert(
      content=Modal_wide(item=self.item,ires=iresvalue),
      title="Job ID : " + self.item["job_reference"],

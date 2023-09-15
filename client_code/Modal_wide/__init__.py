@@ -214,17 +214,22 @@ class Modal_wide(Modal_wideTemplate):
       #    print(next_element)
     next_item = anvil.server.call('get_record',self.next_record)   
     record_copy = dict(self.item)
-    print(next_item)
+    #print("aaaaaaaa")
+    #print(*next_item)
     #print(*self.item)
     #print(record_copy)
-    
+    #n_i = next_item
+    #print("llllll")
+    #print(n_i)
     
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
+    self.raise_event("x-close-alert", value=42)
     save_clicked = alert(
      content=Modal_wide(item = next_item,ires = self.ires),
      title="Job ID : " + self.item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )
+    
 
