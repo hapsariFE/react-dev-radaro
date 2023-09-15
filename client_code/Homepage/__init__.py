@@ -16,7 +16,7 @@ from ..New import *
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    print('initiate start)'+str(datetime.now()))##################
+    #print('initiate start)'+str(datetime.now()))##################
     self.filters = {}
     self.date_filters = {} 
     #users = anvil.server.call('get_user_list')
@@ -47,12 +47,12 @@ class Homepage(HomepageTemplate):
     watch = False
     self.subbrand = ""
     self.etype = ""
-    print('initiate end)'+str(datetime.now()))##################
+    #print('initiate end)'+str(datetime.now()))##################
  
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    print('homepage start)'+str(datetime.now()))##################
-    print('login start)'+str(datetime.now()))##################
+    #print('homepage start)'+str(datetime.now()))##################
+    #print('login start)'+str(datetime.now()))##################
     Data.currentUser=anvil.users.login_with_form()
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
     if Data.currentUser['is_super_user'] == True:
@@ -61,30 +61,30 @@ class Homepage(HomepageTemplate):
     else:
       print('false')
       self.cms.visible = False
-    print('login end)'+str(datetime.now()))##################
-    print('getuser start)'+str(datetime.now()))##################
+   # print('login end)'+str(datetime.now()))##################
+    #print('getuser start)'+str(datetime.now()))##################
     #currentUser=anvil.users.get_user()
-    print('getuser end)'+str(datetime.now()))##################
+    #print('getuser end)'+str(datetime.now()))##################
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
-    print('refresh start)'+str(datetime.now()))##################
+    #print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
-    print('refresh end)'+str(datetime.now()))##################
+    #print('refresh end)'+str(datetime.now()))##################
     #print("test1")
-    print('repeatingcustomevent start)'+str(datetime.now()))##################
+    #print('repeatingcustomevent start)'+str(datetime.now()))##################
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
-    print('repeatingcustomevent end)'+str(datetime.now()))##################
-    print('repeatingfilterchange start)'+str(datetime.now()))##################
+    #print('repeatingcustomevent end)'+str(datetime.now()))##################
+    #print('repeatingfilterchange start)'+str(datetime.now()))##################
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
-    print('repeatingfilterchange end)'+str(datetime.now()))##################
-    print('getmerchant start)'+str(datetime.now()))##################
+   # print('repeatingfilterchange end)'+str(datetime.now()))##################
+    #print('getmerchant start)'+str(datetime.now()))##################
     merchName = anvil.server.call('get_merchant_list')
-    print('getmerchant end)'+str(datetime.now()))##################
+   # print('getmerchant end)'+str(datetime.now()))##################
     #print(merchant_name)
     self.merchant_name = merchName
-    print('userlist start)'+str(datetime.now()))##################
+   # print('userlist start)'+str(datetime.now()))##################
     users = anvil.server.call('get_user_list')
-    print('userlist end)'+str(datetime.now()))##################
+   # print('userlist end)'+str(datetime.now()))##################
     #print(merchName)
     #x_rows = users['user_merchant_link']
     #x_list =[r['name'] for r in x_rows]
@@ -92,18 +92,18 @@ class Homepage(HomepageTemplate):
     #print(users)
     
     self.users = [(x['name'], x) for x in users]
-    print('refresh start)'+str(datetime.now()))##################
+   # print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
-    print('refresh end)'+str(datetime.now()))##################
+   # print('refresh end)'+str(datetime.now()))##################
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
     #print(self.start_date_picker.date)
     #print("test2")
-    print('refreshlist start)'+str(datetime.now()))##################
+   # print('refreshlist start)'+str(datetime.now()))##################
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    print('refreshlist end)'+str(datetime.now()))##################
-    print('subbrand start)'+str(datetime.now()))##################
+   # print('refreshlist end)'+str(datetime.now()))##################
+   # print('subbrand start)'+str(datetime.now()))##################
     subbrands = list()
     for x in self.repeating_panel_1.items:
       subbrands.append(x['sub_brand'])
@@ -114,8 +114,8 @@ class Homepage(HomepageTemplate):
           res.append(val)
     res.sort()
     self.subbrand = res
-    print('subbrand end)'+str(datetime.now()))##################
-    print('etype start)'+str(datetime.now()))##################
+   # print('subbrand end)'+str(datetime.now()))##################
+   # print('etype start)'+str(datetime.now()))##################
     etypes = list()
     for x in self.repeating_panel_1.items:
       etypes.append(x['completion_code_description'])
@@ -126,8 +126,8 @@ class Homepage(HomepageTemplate):
           eres.append(val)
     eres.sort()
     self.etype = eres
-    print('etype end)'+str(datetime.now()))##################  
-    print('itemlist start)'+str(datetime.now()))##################
+   # print('etype end)'+str(datetime.now()))##################  
+   # print('itemlist start)'+str(datetime.now()))##################
     itemlist = list()
     for x in self.repeating_panel_1.items:
       itemlist.append(x['id'])
@@ -137,17 +137,17 @@ class Homepage(HomepageTemplate):
         if val not in ires:
           ires.append(val)
     self.itemlist = ires
-    print(ires)
-    print('itemlist end)'+str(datetime.now()))##################  
+    #print(ires)
+   # print('itemlist end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     #print(endDate)
-    print('dates start)'+str(datetime.now()))##################
+   # print('dates start)'+str(datetime.now()))##################
     self.initialise_start_dates()
-    print('dates end)'+str(datetime.now()))##################
-    print('refresh start)'+str(datetime.now()))##################
+   # print('dates end)'+str(datetime.now()))##################
+   # print('refresh start)'+str(datetime.now()))##################
     self.refresh_data_bindings()
-    print('refresh end)'+str(datetime.now()))##################
+   # print('refresh end)'+str(datetime.now()))##################
     #if self.filterpanel.visible == True:
       #self.filterbutton.role = '.anvil-role-outlined-button > .btn:focus'
       #self.filterbutton.icon = 'fa:angle-up'
@@ -156,7 +156,7 @@ class Homepage(HomepageTemplate):
       #self.filterbutton.role = '.anvil-role-outlined-button > .btn:focus'
       
     #self.refresh_action()
-    print('homepage end)'+str(datetime.now()))##################
+  #  print('homepage end)'+str(datetime.now()))##################
   def initialise_start_dates(self):
     
     """Initialise the DatePickers so that the filter auto-displays data for the previous week"""
@@ -186,14 +186,14 @@ class Homepage(HomepageTemplate):
     
 
   def refresh_list(self,jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
-    print('refresh list start)'+str(datetime.now()))##################
+    #print('refresh list start)'+str(datetime.now()))##################
     #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     
     #print(**event_args)
-    print('repeatingpanel start)'+str(datetime.now()))##################
+    #print('repeatingpanel start)'+str(datetime.now()))##################
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    print('itemlist start)'+str(datetime.now()))##################
+   # print('itemlist start)'+str(datetime.now()))##################
     itemlist = list()
     for x in self.repeating_panel_1.items:
       itemlist.append(x['id'])
@@ -203,17 +203,17 @@ class Homepage(HomepageTemplate):
         if val not in ires:
           ires.append(val)
     self.itemlist = ires
-    print(ires)
-    print('itemlist end)'+str(datetime.now()))##################  
+   # print(ires)
+    #print('itemlist end)'+str(datetime.now()))##################  
     #print(self.repeating_panel_1.items['sub_brand'])
-    print('repeatingpanel end)'+str(datetime.now()))##################
+   # print('repeatingpanel end)'+str(datetime.now()))##################
       
     #self.subbrand = self.repeating_panel_1.items[merchant_name]
   #def refresh_action(self):
       # Load existing actions from the Data Table, 
       # and display them in the RepeatingPanel
       #self.action_panel.items = anvil.server.call('get_action',None)
-    print('refresh list end)'+str(datetime.now()))##################
+    #print('refresh list end)'+str(datetime.now()))##################
     
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -225,7 +225,7 @@ class Homepage(HomepageTemplate):
     
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
-    print('filterchange start)'+str(datetime.now()))##################
+    #print('filterchange start)'+str(datetime.now()))##################
     jobValue = self.dd_job_status.selected_value
     compCode = self.dd_completion_code.selected_value
     escType = self.dd_esc_type.selected_value
@@ -252,14 +252,14 @@ class Homepage(HomepageTemplate):
     #print(endDate)
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
     #alert("You changed the filter")
-    print('filterchange end)'+str(datetime.now()))##################
+    #print('filterchange end)'+str(datetime.now()))##################
 
   def handle_custom_event(self,record,assign, **event_args):
-   print('customevent start)'+str(datetime.now()))##################
+   #print('customevent start)'+str(datetime.now()))##################
    self.action_panel.items = record
    self.assigned = assign
    self.refresh_data_bindings()
-   print('customevent end)'+str(datetime.now()))##################
+   #print('customevent end)'+str(datetime.now()))##################
     
   def sorting_function(self, column_name, sorting_way):
     """function used for sorting in combination with headers""" 
@@ -273,7 +273,7 @@ class Homepage(HomepageTemplate):
    # self.clear_icon.visible = True
 
   def clear_search(self, **event_args):
-    print('clearsearch start)'+str(datetime.now()))##################
+    #print('clearsearch start)'+str(datetime.now()))##################
     self.text_box_search.text = None
     self.filter_change()
     #jobValue = self.dd_job_status.selected_value
@@ -287,7 +287,7 @@ class Homepage(HomepageTemplate):
     #self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to)
     self.clearbutton.visible = False
     self.text_box_search.visible = True
-    print('clearsearch end)'+str(datetime.now()))##################
+    #print('clearsearch end)'+str(datetime.now()))##################
     
   def resolved_checkbox_click(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
@@ -308,7 +308,7 @@ class Homepage(HomepageTemplate):
 
 
   def filter_display(self, **event_args):
-    print('filterdisplay start)'+str(datetime.now()))##################
+    #print('filterdisplay start)'+str(datetime.now()))##################
     if self.grid_panel_1.visible:
       self.grid_panel_1.visible = False
       self.button_2.icon = 'fa:angle-down'
@@ -316,7 +316,7 @@ class Homepage(HomepageTemplate):
       self.grid_panel_1.visible = True
       self.button_2.icon = 'fa:angle-up'
 
-    print('filterdisplay end)'+str(datetime.now()))##################
+    #print('filterdisplay end)'+str(datetime.now()))##################
       
   def file_loader_1_change(self, file, **event_args):
     """This method is called when a new file is loaded into this FileLoader"""
@@ -327,14 +327,14 @@ class Homepage(HomepageTemplate):
   def new_escalation(self, **event_args):
     """This method is called when the button is clicked"""
     eres = self.etype
-    print('newescalation start)'+str(datetime.now()))##################
+    #print('newescalation start)'+str(datetime.now()))##################
     save_clicked = alert(
      content=New(eres),
      title="Create a new escalation",
      large=False,
      buttons=[("Exit", False)],
    )
-    print('newescalation end)'+str(datetime.now()))##################
+   # print('newescalation end)'+str(datetime.now()))##################
     #self.raise_event("x-close-alert", article=self.item)
     #self.raise_event("x-edit-article", article=self.item)
     self.filter_change()
@@ -347,7 +347,7 @@ class Homepage(HomepageTemplate):
   def cms_click(self, **event_args):
     """This method is called when the button is clicked"""
     if Data.currentUser['is_super_user'] == True:
-      print('true')
+      #print('true')
       open_form('CMS')
     else:
       alert("you do not have authorisation")
