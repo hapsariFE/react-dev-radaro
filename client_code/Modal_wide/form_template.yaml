@@ -397,11 +397,12 @@ components:
       layout_properties: {x: 202.515625, y: 0, width: 248.438, grid_position: 'NZYTEE,VIGTRO'}
     - type: Button
       properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: '', font_size: null, font: '', spacing_above: none,
+        foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: 'fa:chevron-left'}
       name: button_2
       layout_properties: {grid_position: 'NZYTEE,WCZJHM', x: 185.3125, y: -6, width: 64.625}
+      event_bindings: {click: prev_click}
     - type: Button
       properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
         foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none,
