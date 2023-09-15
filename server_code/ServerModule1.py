@@ -141,6 +141,13 @@ def submit_low_rating(data):
   comp_names = [str(code["name"]) for code in codes]
   comp_string = ";".join(comp_names)
   updated_at = data.get('updated_at')
+
+  if data['order_info']['sub_branding'] is not None:
+    subbrandval = str(data['order_info']['sub_branding'])
+  else:
+    subbrandval = "---"
+
+  
   #if not comp_string:
   #  print(comp_string)
     # comp_string = None
@@ -165,7 +172,7 @@ def submit_low_rating(data):
   #escalation_type = "Low Rating",
   latest_assignee = None,
   latest_status = app_tables.escalation_status.get(name= "New"),
-  sub_brand=str(data['order_info']['sub_branding']),
+  sub_brand=subbrandval,
   mobile_number=data['order_info']['customer']['phone'],
   date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
   job_reference2=data['order_info']['title_2'],
@@ -194,6 +201,10 @@ def submit_completion_codes(data):
   comp_string = ";".join(comp_names)
   updated_at = data.get('updated_at')
   counter = get_next_value_in_sequence()
+  if data['order_info']['sub_branding'] is not None:
+    subbrandval = str(data['order_info']['sub_branding'])
+  else:
+    subbrandval = "---"
   #try:
   app_tables.webhook.add_row(
   job_id = str(data['order_info']['order_id']),
@@ -211,7 +222,7 @@ def submit_completion_codes(data):
   #escalation_type = "Low Rating",
   latest_assignee = None,
   latest_status = app_tables.escalation_status.get(name= "New"),
-  sub_brand=str(data['order_info']['sub_branding']),
+  sub_brand=subbrandval,
   mobile_number=data['order_info']['customer']['phone'],
   date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
   job_reference2=data['order_info']['title_2'],

@@ -157,6 +157,7 @@ class Modal_wide(Modal_wideTemplate):
     actionData = anvil.server.call('get_action',self.item)
     self.action_panelwide.items = actionData
     self.clear_button_click()
+    
     #print('submit end)'+str(datetime.now()))##################
       
 
@@ -255,13 +256,15 @@ class Modal_wide(Modal_wideTemplate):
     
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
-    self.raise_event("x-close-alert", value=42)
+    
     save_clicked = alert(
      content=Modal_wide(item = next_item,ires = self.ires),
      title="Job ID : " + next_item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )
+   
+    self.raise_event("x-close-alert", value=42)
     
   def prev_click(self, **event_args):
     """This method is called when the button is clicked"""
@@ -296,11 +299,13 @@ class Modal_wide(Modal_wideTemplate):
     
     #self.parent.raise_event("x-custom_event", record=actionData, assign=assignList)
 
-    self.raise_event("x-close-alert", value=42)
+    
     save_clicked = alert(
      content=Modal_wide(item = prev_item,ires = self.ires),
      title="Job ID : " + prev_item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )
+    
+    self.raise_event("x-close-alert", value=42)
     
