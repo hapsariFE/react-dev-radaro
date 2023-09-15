@@ -180,7 +180,8 @@ def submit_low_rating(data):
   esc_status = app_tables.escalation_status.get(name= "New")
   description = "Created from webhook"
   date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
-  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  submitter = app_tables.users.get(email='system')
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)
 
 
 @anvil.server.callable
@@ -225,7 +226,8 @@ def submit_completion_codes(data):
   esc_status = app_tables.escalation_status.get(name= "New")
   description = "Created from webhook"
   date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
-  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
+  submitter = app_tables.users.get(email='system')
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)
   
 
 @anvil.server.callable
@@ -456,7 +458,7 @@ def get_selectedMerchant(selectedMerchant):
     return x_list
 
 @anvil.server.callable
-def add_comment(article, article_dict, description, status, created_date, assign_to):
+def add_comment(article, article_dict, description, status, created_date, assign_to,submitter):
   if app_tables.webhook.has_row(article):
    article_dict['last_action_date'] = created_date
    #print(article_dict['last_action_date'])
@@ -467,7 +469,7 @@ def add_comment(article, article_dict, description, status, created_date, assign
    #print(assignrow)
    row = app_tables.action_log.add_row(
     job_id=article,
-    user= app_tables.users.get(email='system') ,
+    user= submitter ,
     description=description,
     status=status,
     created_date = created_date,

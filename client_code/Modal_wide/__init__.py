@@ -99,6 +99,7 @@ class Modal_wide(Modal_wideTemplate):
     created_date = datetime.now(anvil.tz.tzlocal())
     assign_to = self.dd_assign.selected_value
     record_copy = dict(self.item)
+    submitter = anvil.users.get_user()
 
     #print(assign_to)
     #print(created_date)
@@ -107,7 +108,7 @@ class Modal_wide(Modal_wideTemplate):
 
 
 
-    anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to)
+    anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to,submitter)
     actionData = anvil.server.call('get_action',self.item)
     self.action_panelwide.items = actionData
     self.clear_button_click()
