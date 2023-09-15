@@ -356,7 +356,7 @@ components:
         col_xs: 1
         width: 66.6562
       data_bindings:
-      - {code: self.etype.capitalize(), property: items}
+      - {code: self.etype, property: items}
       event_bindings: {change: filter_change}
       name: dd_esc_type
     - type: Button
