@@ -438,9 +438,9 @@ components:
         - {id: DCIFYE, title: Assigned To, data_key: assigned_to, $$hashKey: 'object:33580',
           width: '120', expand: false}
         - {id: JVSRGA, title: Time Since Last Action, data_key: last_action_date,
-          $$hashKey: 'object:403', width: '150'}
+          $$hashKey: 'object:403', width: '140'}
         - {id: FUNZSD, title: Time Since Creation, data_key: elapsed, $$hashKey: 'object:18690',
-          width: '150'}
+          width: '140'}
         - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405', width: '40'}
         auto_header: true
         tooltip: ''
@@ -453,7 +453,7 @@ components:
         spacing_above: none
         spacing_below: none
         background: ''
-      layout_properties: {width: 904, row: BEEIKG, width_xs: 12, col_xs: 0}
+      layout_properties: {width: 1004, row: BEEIKG, width_xs: 12, col_xs: 0}
       name: data_grid_1
       components:
       - type: RepeatingPanel
