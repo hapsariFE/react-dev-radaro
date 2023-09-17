@@ -137,7 +137,8 @@ class Homepage(HomepageTemplate):
         if val not in ires:
           ires.append(val)
     self.itemlist = ires
-    #print(ires)
+    icount = len(ires)
+    print(ires, icount)
    # print('itemlist end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
@@ -203,6 +204,8 @@ class Homepage(HomepageTemplate):
         if val not in ires:
           ires.append(val)
     self.itemlist = ires
+    icount = len(ires)
+    print(ires, icount)
     #print(ires)
     #print('itemlist end)'+str(datetime.now()))##################  
     #print(self.repeating_panel_1.items['sub_brand'])
