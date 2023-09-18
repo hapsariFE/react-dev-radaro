@@ -56,10 +56,10 @@ class Homepage(HomepageTemplate):
     Data.currentUser=anvil.users.login_with_form()
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
     if Data.currentUser['is_super_user'] == True:
-      print('true')
+      #print('true')
       self.cms.visible = True
     else:
-      print('false')
+      #print('false')
       self.cms.visible = False
    # print('login end)'+str(datetime.now()))##################
     #print('getuser start)'+str(datetime.now()))##################
@@ -138,7 +138,10 @@ class Homepage(HomepageTemplate):
           ires.append(val)
     self.itemlist = ires
     icount = len(ires)
-    print(ires, icount)
+    if icount < 10:
+        self.label_1.text = str(icount) +" of " + str(icount) +" items"
+    else:
+        self.label_1.text = "10 of " + str(icount) +" items"
    # print('itemlist end)'+str(datetime.now()))##################  
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
@@ -205,8 +208,11 @@ class Homepage(HomepageTemplate):
           ires.append(val)
     self.itemlist = ires
     icount = len(ires)
-    print(ires, icount)
-    #print(ires)
+    if icount < 10:
+        self.label_1.text = str(icount) +" of " + str(icount) +" items"
+    else:
+        self.label_1.text = "10 of " + str(icount) +" items"
+
     #print('itemlist end)'+str(datetime.now()))##################  
     #print(self.repeating_panel_1.items['sub_brand'])
    # print('repeatingpanel end)'+str(datetime.now()))##################
