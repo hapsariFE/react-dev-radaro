@@ -250,7 +250,7 @@ components:
     name: label_21
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-      visible: true, text: Compulsary Fields, font_size: 12, font: '', spacing_above: small,
+      visible: true, text: Compulsory Fields, font_size: 12, font: '', spacing_above: small,
       icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
       underline: false, icon: ''}
     layout_properties: {grid_position: 'KTJXJG,ZQIEIF'}

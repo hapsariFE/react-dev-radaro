@@ -26,11 +26,11 @@ components:
       layout_properties: {row: UZVXNL, width_xs: 9, col_xs: 0, width: 140.344}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: true, text: Compulsary Fields, font_size: 12, font: '', spacing_above: none,
+        visible: true, text: Compulsory Fields, font_size: 12, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: compulsory
-      layout_properties: {row: UMQEZK, width_xs: 6, col_xs: 0, width: 149.844}
+      layout_properties: {row: UMQEZK, width_xs: 6, col_xs: 0, width: 90.9375}
       data_bindings: []
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
