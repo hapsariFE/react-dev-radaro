@@ -275,19 +275,17 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_cms(merchant_name,token,server,portal,completion_codes,low_rating,low_rating_threshold):
+def get_cms():
  
   return app_tables.merchant.search(tables.order_by("name", ascending=True))
 
 @anvil.server.callable
-def update_cms(rowid,name,token,server,merchant_id,completion_code_enabled,low_rating_enabled,rating_threshold):
+def update_cms(rowid,name,fail_code_enabled,completion_code_enabled,low_rating_enabled,rating_threshold):
   
     #rowid = app_tables.merchant.get(name=name)
     rowid.update(
     name=name,
-    token=token,
-    server=server,
-    merchant_id=merchant_id,
+    fail_code_enabled=fail_code_enabled,
     completion_code_enabled=completion_code_enabled,
     low_rating_enabled=low_rating_enabled,
     rating_threshold=rating_threshold

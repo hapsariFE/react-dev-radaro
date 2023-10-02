@@ -44,15 +44,11 @@ components:
         role: null
         columns:
         - {id: ECSLIN, title: Merchant name, data_key: name, $$hashKey: 'object:6799',
-          width: '140', expand: false}
-        - {id: MPJISQ, title: Token, data_key: token, $$hashKey: 'object:6800', width: 217,
-          expand: false}
-        - {id: FSNUKJ, title: Server, data_key: server, $$hashKey: 'object:6801',
-          width: 85, expand: false}
-        - {id: PDPAQZ, title: Portal, data_key: merchant_id, $$hashKey: 'object:6869',
-          width: 73, expand: false}
+          width: '200', expand: false}
         - {id: MBQKBP, title: Completion Codes, data_key: completion_code_enabled,
           $$hashKey: 'object:6871', width: 93, expand: false}
+        - {id: YZDWXM, title: Fail Codes, data_key: fail_code_enabled, $$hashKey: 'object:288',
+          width: '90'}
         - {id: VHZCVW, title: Low Rating, data_key: low_rating_enabled, $$hashKey: 'object:6873',
           width: 90, expand: false}
         - {id: DNDWUT, title: Low Rating Threshold, data_key: rating_threshold, $$hashKey: 'object:6875',
@@ -70,7 +66,7 @@ components:
         background: ''
       name: data_grid_1
       layout_properties: {grid_position: 'UZACMG,ZBGFGT', row: DIWYFL, width_xs: 12,
-        col_xs: 0, width: 714}
+        col_xs: 0, width: 1097.2}
       components:
       - type: RepeatingPanel
         properties: {spacing_above: none, spacing_below: none, item_template: CMS.RowTemplate4}
