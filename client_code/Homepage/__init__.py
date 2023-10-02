@@ -139,6 +139,8 @@ class Homepage(HomepageTemplate):
           ires.append(val)
     self.itemlist = ires
     icount = len(ires)
+    page = self.data_grid.data_grid_1.get_page() 
+    self.label_1.text = str(page)
     if icount < 10:
         self.label_1.text = str(icount) +" of " + str(icount) +" items"
     else:
