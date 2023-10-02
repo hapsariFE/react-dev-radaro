@@ -1,3 +1,4 @@
+import anvil.microsoft.auth
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
 """This module collects global variables to be used throughout the app"""

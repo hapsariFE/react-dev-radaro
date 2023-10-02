@@ -1,3 +1,4 @@
+import anvil.microsoft.auth
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
 from anvil.google.drive import app_files
 #import anvil.files
@@ -45,6 +46,7 @@ def incoming_msg(**kwargs):
   merctable = app_tables.merchant.get(token=data['token'])
   lowrate_enable = merctable['low_rating_enabled']
   compcode_enable = merctable['completion_code_enabled']
+  failcode_enable = merctable['fail_code_enabled']
   if 'new_values' in data and lowrate_enable == True:
     if 'is_confirmed_by_customer' in data['new_values'] and data['new_values'] is not None:
       if merctable is not None:
@@ -92,11 +94,14 @@ def incoming_msg(**kwargs):
         #except:
            # print("falied")
     if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
-      if compcode_enable == True:
-   ##     codes=data['order_info']['completion_codes']
-   ##     id_values = [str(code["code"]) for code in codes]
-   ##     id_string = ";".join(id_values)
-        submit_completion_codes(data)  
+      if 'delivered'==data['order_info']['status']:
+        if compcode_enable == True:
+    ##     codes=data['order_info']['completion_codes']
+    ##     id_values = [str(code["code"]) for code in codes]
+    ##     id_string = ";".join(id_values)
+          submit_completion_codes(data) 
+        elif failcode_enable == True & 'failed'==data['order_info']['status']:
+          submit_completion_codes(data) 
         #nv = data['new_values']['is_confirmed_by_customer']
        # rating = data['order_info']['rating']
        # codes=data['order_info']['completion_codes']
@@ -270,19 +275,17 @@ def get_user_list():
 #  return active_user
 
 @anvil.server.callable
-def get_cms(merchant_name,token,server,portal,completion_codes,low_rating,low_rating_threshold):
+def get_cms():
  
   return app_tables.merchant.search(tables.order_by("name", ascending=True))
 
 @anvil.server.callable
-def update_cms(rowid,name,token,server,merchant_id,completion_code_enabled,low_rating_enabled,rating_threshold):
+def update_cms(rowid,name,fail_code_enabled,completion_code_enabled,low_rating_enabled,rating_threshold):
   
     #rowid = app_tables.merchant.get(name=name)
     rowid.update(
     name=name,
-    token=token,
-    server=server,
-    merchant_id=merchant_id,
+    fail_code_enabled=fail_code_enabled,
     completion_code_enabled=completion_code_enabled,
     low_rating_enabled=low_rating_enabled,
     rating_threshold=rating_threshold

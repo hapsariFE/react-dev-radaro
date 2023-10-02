@@ -8,9 +8,9 @@ services:
   client_config: {enable_v2: true}
   server_config: {auto_create_missing_columns: true}
 - source: /runtime/services/anvil/users.yml
-  client_config: {allow_signup: false, enable_automatically: true, use_email: true,
-    confirm_email: true, use_google: true, allow_remember_me: true, remember_me_days: 30,
-    require_secure_passwords: true}
+  client_config: {use_microsoft: false, require_secure_passwords: true, use_saml: false,
+    use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
+    confirm_email: true, remember_me_days: 30, use_google: true}
   server_config:
     user_table: users
     email_content:
@@ -28,6 +28,9 @@ services:
   client_config: {}
   server_config: {file_table: files}
 - source: /runtime/services/google.yml
+  client_config: {}
+  server_config: {}
+- source: /runtime/services/anvil/microsoft.yml
   client_config: {}
   server_config: {}
 startup: {type: form, module: Homepage}

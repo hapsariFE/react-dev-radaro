@@ -1,5 +1,6 @@
 from ._anvil_designer import RowTemplate1Template
 from anvil import *
+import anvil.microsoft.auth
 import anvil.google.auth, anvil.google.drive
 from anvil.google.drive import app_files
 from ... import Data
