@@ -139,8 +139,9 @@ class Homepage(HomepageTemplate):
           ires.append(val)
     self.itemlist = ires
     icount = len(ires)
-    page = self.data_grid.data_grid_1.get_page() 
-    self.label_1.text = str(page)
+    ipage = self.data_grid_1.get_page()
+    print(str(ipage))
+    self.label_4.text = str(ipage)
     if icount < 10:
         self.label_1.text = str(icount) +" of " + str(icount) +" items"
     else:
@@ -215,7 +216,9 @@ class Homepage(HomepageTemplate):
         self.label_1.text = str(icount) +" of " + str(icount) +" items"
     else:
         self.label_1.text = "10 of " + str(icount) +" items"
-
+    ipage = self.data_grid_1.get_page()
+    print(str(ipage))
+    self.label_4.text = str(ipage)
     #print('itemlist end)'+str(datetime.now()))##################  
     #print(self.repeating_panel_1.items['sub_brand'])
    # print('repeatingpanel end)'+str(datetime.now()))##################

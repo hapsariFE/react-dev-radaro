@@ -66,6 +66,7 @@ class RowTemplate1(RowTemplate1Template):
         self.favourite.source = "_/theme/Star%20outline.png"
     else:
       self.favourite.source = "_/theme/Star%20outline.png"
+    
    # print('watchlist end)'+str(datetime.now()))##################
     #print('refresh start)'+str(datetime.now()))##################
     #self.refresh_data_bindings()
