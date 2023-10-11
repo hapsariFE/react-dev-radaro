@@ -16,9 +16,9 @@ components:
     layout_properties: {grid_position: 'IIAVUP,ZEFVUU'}
   - type: Label
     properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-      visible: true, text: Tickets Closed Over Time, font_size: null, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-      underline: false, icon: ''}
+      visible: true, text: Tickets by Escalation Type, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
     name: label_1
     layout_properties: {grid_position: 'ACOOIT,ITNQQZ', full_width_row: true}
   - type: Plot

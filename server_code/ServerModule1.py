@@ -830,13 +830,12 @@ def graph1_data():
 
 @anvil.server.callable
 def create_fig():
-    data = app_tables.webhook.search()
-    dicts = [{'completion_code_description': r['completion_code_description']}
-         for r in data]
-    df = pd.DataFrame(dicts)
-    count = df.groupby('completion_code_description').count
-    fig = print(count)
-    #fig = px.bar(data, x="completion_code_description", y="1", color="2")
+    #data = app_tables.webhook.search(completion_code_description,id)
+    data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
+    df = pd.DataFrame(data)
+    count_df = df['completion_code_description'].value_counts().reset_index()
+    count_df.columns = ['completion_code_description','count']
+    fig = px.bar(count_df, x="completion_code_description", y="count")
     return fig
 
 #@anvil.server.callable
