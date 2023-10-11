@@ -602,7 +602,7 @@ def update_item(article,user):
 
 @tables.in_transaction
 def get_next_value_in_sequence():
-  row = int(app_tables.webhook.search(tables.order_by("id", ascending=False))[0]['id'])
+  row = int(app_tables.webhook.search(tables.order_by("date_created", ascending=False))[0]['id'])
   
   row += 1
   return row
