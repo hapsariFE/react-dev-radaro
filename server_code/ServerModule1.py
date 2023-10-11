@@ -830,6 +830,19 @@ def graph1_data():
 
 @anvil.server.callable
 def create_fig():
-    data = px.data.iris()
-    fig = px.scatter(data, x="sepal_width", y="sepal_length", color="species", trendline="ols")
+    data = app_tables.webhook.search()
+    dicts = [{'completion_code_description': r['completion_code_description']}
+         for r in data]
+    df = pd.DataFrame(dicts)
+    count = df.groupby('completion_code_description').count
+    fig = print(count)
+    #fig = px.bar(data, x="completion_code_description", y="1", color="2")
     return fig
+
+#@anvil.server.callable
+#def create_fig():
+    #data = px.data.iris()
+    #columns = [desc[0] for desc in cursor.description]
+    #df = pd.DataFrame(rows, columns=columns)  
+    #fig = px.bar(data, x="sepal_width", y="sepal_length", color="species")
+    #return fig
