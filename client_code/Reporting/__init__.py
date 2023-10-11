@@ -22,7 +22,13 @@ class Reporting(ReportingTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     
-    fig = anvil.server.call('create_fig') 
-    self.plot_1.figure = fig
+    create_chart1 = anvil.server.call('create_chart1') 
+    self.plot_1.figure = create_chart1
+
+    create_chart2 = anvil.server.call('create_chart2') 
+    self.plot_2.figure = create_chart2
+
+    #create_chart2 = anvil.server.call('create_chart2') 
+    #self.plot_2.figure = create_chart2
     
 

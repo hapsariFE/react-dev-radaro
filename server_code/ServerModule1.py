@@ -800,42 +800,38 @@ def get_record(id):
     return app_tables.webhook.get(id=q.any_of(id))
 
 @anvil.server.callable
-def return_data(year):
-  #Your code to process and return data goes here
-  if year == "2023":
-    return [
-      [11342, 11673, 12684, 12933, 13782, 13001, 13532, 13776, 14609, 15076, 15663, 15989], 
-      [14331, 14887, 13520, 13021, 11000, 12956, 13451, 14805, 16004, 16599, 17885, 19053]
-    ]
-  elif year == "2022":
-    return [
-      [8695, 8704, 9201, 9554, 9760, 9963, 10003, 10889, 11073, 11992, 12743, 11221], 
-      [12332, 12633, 13000, 13843, 12849, 12675, 13742, 14009, 14376, 14587, 15002, 14556]
-    ]
-  elif year == "2021":
-    return [
-      [5680, 5743, 5802, 6003, 6212, 7004, 6854, 6013, 6599, 7032, 7453, 7960, 8734], 
-      [7832, 7945, 8432, 8049, 8775, 9321, 9674, 9900, 10342, 11483, 11954, 12511, 12030]
-    ]
+def create_chart1():
 
-
-
-
-
-@anvil.server.callable
-def create_fig():
-    #data = app_tables.webhook.search(completion_code_description,id)
     data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']
-    fig = px.bar(count_df, x="completion_code_description", y="count")
-    return fig
+    count_df = count_df.sort_values(by="count")  
+    chart = px.bar(count_df, x="count", y="completion_code_description", orientation='h')
+                
+    return chart
 
-#@anvil.server.callable
-#def create_fig():
-    #data = px.data.iris()
-    #columns = [desc[0] for desc in cursor.description]
-    #df = pd.DataFrame(rows, columns=columns)  
-    #fig = px.bar(data, x="sepal_width", y="sepal_length", color="species")
-    #return fig
+@anvil.server.callable
+def create_chart2():
+
+    data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
+    df = pd.DataFrame(data)
+    count_df = df['completion_code_description'].value_counts().reset_index()
+    count_df.columns = ['completion_code_description','count']
+    count_df = count_df.sort_values(by="count")
+    chart = px.line(count_df, x="count", y="completion_code_description", orientation='h')
+                
+    return chart
+
+@anvil.server.callable
+def create_chart3():
+
+    data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
+    df = pd.DataFrame(data)
+    count_df = df['completion_code_description'].value_counts().reset_index()
+    count_df.columns = ['completion_code_description','count']
+    count_df = count_df.sort_values(by="count")
+    chart = px.scatter(count_df, x="count", y="completion_code_description", orientation='h')
+                
+    return chart
+
