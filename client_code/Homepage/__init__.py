@@ -361,6 +361,12 @@ class Homepage(HomepageTemplate):
     else:
       alert("you do not have authorisation")
 
-    
+  def reporting_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    if Data.currentUser['is_super_user'] == True:
+      #print('true')
+      open_form('Reporting')
+    else:
+      alert("you do not have authorisation")    
     
     

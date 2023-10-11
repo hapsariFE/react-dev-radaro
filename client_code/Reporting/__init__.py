@@ -32,3 +32,6 @@ class Reporting(ReportingTemplate):
     self.plot_3.figure = create_chart3
     
 
+  def Dashboard_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    open_form('Homepage')

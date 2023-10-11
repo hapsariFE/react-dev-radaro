@@ -807,7 +807,7 @@ def create_chart1():
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']
     count_df = count_df.sort_values(by="count")  
-    chart = px.bar(count_df, x="count", y="completion_code_description", orientation='h')
+    chart = px.bar(count_df, x="count", y="completion_code_description", orientation='h', title="Tickets by Escalation Type")
                 
     return chart
 
@@ -819,7 +819,7 @@ def create_chart2():
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']
     count_df = count_df.sort_values(by="count")
-    chart = px.line(count_df, x="count", y="completion_code_description", orientation='h')
+    chart = px.line(count_df, x="count", y="completion_code_description", orientation='h', title="Tickets by Escalation Type")
                 
     return chart
 
@@ -831,7 +831,7 @@ def create_chart3():
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']
     count_df = count_df.sort_values(by="count")
-    chart = px.scatter(count_df, x="count", y="completion_code_description", orientation='h')
+    chart = px.scatter(count_df, x="count", y="completion_code_description", orientation='h', title="Tickets by Escalation Type")
                 
     return chart
 

@@ -399,11 +399,11 @@ components:
       name: label_3_copy
     - type: Button
       properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: false, text: cms, font_size: null, font: '', spacing_above: small,
+        foreground: '', visible: false, text: admin, font_size: null, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
       name: cms
-      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 119.656}
+      layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 119.484}
       event_bindings: {click: cms_click}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
@@ -553,7 +553,7 @@ components:
   event_bindings: {change: file_loader_1_change}
 - type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"AQHZXR":32,"RWYDAC":9,"CFEBSB":9}',
+    wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"AQHZXR":42,"RWYDAC":5,"CFEBSB":9,"LEZBWD":9}',
     spacing_below: none, background: ''}
   name: selectpanel
   layout_properties: {grid_position: 'XNUIKQ,YZNJSG', full_width_row: true, slot: filterselect}
@@ -562,6 +562,14 @@ components:
     properties: {height: 32}
     name: spacer_2
     layout_properties: {grid_position: 'OWIDMW,RWYDAC'}
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: Reporting, font_size: null, font: '', spacing_above: small,
+      icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+      underline: false, icon: ''}
+    name: reporting
+    layout_properties: {grid_position: 'OWIDMW,LEZBWD'}
+    event_bindings: {click: reporting_click}
   - type: ColumnPanel
     properties: {role: outlined-card, tooltip: '', border: 1px solid, foreground: 'theme:Filter
         Border', visible: true, wrap_on: never, col_spacing: medium, spacing_above: small,
