@@ -1,5 +1,6 @@
 import anvil.microsoft.auth
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
+import plotly.express as px
 from anvil.google.drive import app_files
 #import anvil.files
 #from anvil.files import data_files
@@ -817,16 +818,18 @@ def return_data(year):
       [7832, 7945, 8432, 8049, 8775, 9321, 9674, 9900, 10342, 11483, 11954, 12511, 12030]
     ]
 
-@anvil.server.callable
-def get_graph1_data(**filter_dict):
-  resolved_tickets = app_tables.webhook.search(
-#    last_action_date=q.between(min=startDate,max=endDate, max_inclusive=True),
-    latest_status='Resolved'
-#    **filter_dict
-  )
-  new_tickets = app_tables.webhook.search(
-#    date_created=q.between(min=startDate,max=endDate, max_inclusive=True), 
-#    **filter_dict
-  )
-  return resolved_tickets, new_tickets
 
+
+@anvil.server.callable
+def graph1_data():
+  data1 = app_tables.webhook.search(completion_code_description='Low_Rating')
+  data2 = count(data1)
+  return data1,data2
+
+
+
+@anvil.server.callable
+def create_fig():
+    data = px.data.iris()
+    fig = px.scatter(data, x="sepal_width", y="sepal_length", color="species", trendline="ols")
+    return fig

@@ -21,14 +21,8 @@ class Reporting(ReportingTemplate):
 
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    self.x_months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"]
-    self.y_values = anvil.server.call('return_data', "2023")
-    self.create_bar_graph()
+    
+    fig = anvil.server.call('create_fig') 
+    self.plot_1.figure = fig
+    
 
-  def create_bar_graph(self):
-    self.plot_1.data = go.Bar(
-        x=self.x_months,
-        y=self.y_values[0]
-        )
-    data = anvil.server.call('get_graph1_data')
-    print(resolved_tickets)
