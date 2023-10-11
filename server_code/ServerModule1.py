@@ -820,12 +820,6 @@ def return_data(year):
 
 
 
-@anvil.server.callable
-def graph1_data():
-  data1 = app_tables.webhook.search(completion_code_description='Low_Rating')
-  data2 = count(data1)
-  return data1,data2
-
 
 
 @anvil.server.callable
