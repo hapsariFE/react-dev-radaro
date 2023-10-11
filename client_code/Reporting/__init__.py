@@ -28,7 +28,7 @@ class Reporting(ReportingTemplate):
     create_chart2 = anvil.server.call('create_chart2') 
     self.plot_2.figure = create_chart2
 
-    #create_chart2 = anvil.server.call('create_chart2') 
-    #self.plot_2.figure = create_chart2
+    create_chart3 = anvil.server.call('create_chart3') 
+    self.plot_3.figure = create_chart3
     
 

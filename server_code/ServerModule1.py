@@ -802,7 +802,7 @@ def get_record(id):
 @anvil.server.callable
 def create_chart1():
 
-    data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"completion_code_description": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']
@@ -814,7 +814,7 @@ def create_chart1():
 @anvil.server.callable
 def create_chart2():
 
-    data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"completion_code_description": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']
@@ -826,7 +826,7 @@ def create_chart2():
 @anvil.server.callable
 def create_chart3():
 
-    data = [{"completion_code_description": r["completion_code_description"], "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"completion_code_description": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     count_df = df['completion_code_description'].value_counts().reset_index()
     count_df.columns = ['completion_code_description','count']

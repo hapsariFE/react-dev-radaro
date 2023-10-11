@@ -33,7 +33,7 @@ services:
 - source: /runtime/services/anvil/microsoft.yml
   client_config: {}
   server_config: {}
-startup: {type: form, module: Reporting}
+startup: {type: form, module: Homepage}
 package_name: React_DEV
 allow_embedding: false
 name: React DEV
