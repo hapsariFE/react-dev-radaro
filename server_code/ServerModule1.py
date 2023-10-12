@@ -803,13 +803,13 @@ def get_record(id):
 @anvil.server.callable
 def create_chart1():
 
-    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
-    df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
-    count_df = df['Escalation Type'].value_counts().reset_index()
-    count_df.columns = ['Escalation Type','count']
-    count_df = count_df.sort_values(by="count")  
-    chart = px.bar(count_df, x="count", y="Escalation Type", orientation='h', title="Tickets by Escalation Type")
+    count_df = df['User'].value_counts().reset_index()
+    print(df.head(10))
+    count_df.columns = ['User', 'count']
+    count_df = count_df.sort_values(by="count")
+    chart = px.bar(count_df, x="count", y="User", orientation='h', title="Responses by User")
                 
     return chart
 
@@ -832,11 +832,11 @@ def create_chart2():
     fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count', marker_color='blue'))
     
     # Add a line chart for the average delta
-    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Delta', line=dict(color='red')))
+    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average response time', line=dict(color='red')))
     
     # Update the layout
-    fig.update_layout(title='Count and Average Delta by Escalation Type', xaxis_title='Count / Average Delta', yaxis_title='Escalation Type')
-    fig.update_layout(legend=dict(yanchor="top", y=0.01,xanchor="right", x=0.99))
+    fig.update_layout(title='Escalation Type', xaxis_title='', yaxis_title='Escalation Type')
+    fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
 # Show the figure
     return fig
 
