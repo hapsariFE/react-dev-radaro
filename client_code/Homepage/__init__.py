@@ -107,7 +107,7 @@ class Homepage(HomepageTemplate):
    # print('subbrand start)'+str(datetime.now()))##################
     subbrands = list()
     for x in self.repeating_panel_1.items:
-      subbrands.append(x['sub_brand'].capitalize())
+      subbrands.append(x['sub_brand'])
     res = []
     for val in subbrands:
       if val != None:
@@ -119,7 +119,7 @@ class Homepage(HomepageTemplate):
    # print('etype start)'+str(datetime.now()))##################
     etypes = list()
     for x in self.repeating_panel_1.items:
-      etypes.append(x['completion_code_description'].capitalize())
+      etypes.append(x['completion_code_description'])
     eres = []
     for val in etypes:
       if val != None:
