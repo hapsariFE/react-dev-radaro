@@ -1,9 +1,9 @@
 import anvil.microsoft.auth
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
 import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
 from anvil.google.drive import app_files
-#import anvil.files
-#from anvil.files import data_files
 import anvil.secrets
 import anvil.users
 import anvil.tables as tables
@@ -12,6 +12,7 @@ from anvil.tables import app_tables
 import anvil.server
 from datetime import datetime, timedelta, date
 import pandas as pd
+import numpy as np
 import anvil.server
 import anvil.tz
 import json
@@ -802,36 +803,57 @@ def get_record(id):
 @anvil.server.callable
 def create_chart1():
 
-    data = [{"completion_code_description": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    count_df = df['completion_code_description'].value_counts().reset_index()
-    count_df.columns = ['completion_code_description','count']
+    df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
+    count_df = df['Escalation Type'].value_counts().reset_index()
+    count_df.columns = ['Escalation Type','count']
     count_df = count_df.sort_values(by="count")  
-    chart = px.bar(count_df, x="count", y="completion_code_description", orientation='h', title="Tickets by Escalation Type")
+    chart = px.bar(count_df, x="count", y="Escalation Type", orientation='h', title="Tickets by Escalation Type")
                 
     return chart
 
 @anvil.server.callable
 def create_chart2():
-
-    data = [{"completion_code_description": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
+    
+    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"], "date_created": r["date_created"], "last_action_date": r["last_action_date"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    count_df = df['completion_code_description'].value_counts().reset_index()
-    count_df.columns = ['completion_code_description','count']
-    count_df = count_df.sort_values(by="count")
-    chart = px.line(count_df, x="count", y="completion_code_description", orientation='h', title="Tickets by Escalation Type")
+    df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
+    df['delta'] = (df['last_action_date'] - df['date_created']) / pd.to_timedelta(1, unit='D')
+    grouped_df = df.groupby('Escalation Type').agg({'Escalation Type': 'count', 'delta': 'mean'})
+    grouped_df.columns = ['count', 'average delta']
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    
+    # Create a figure
+    fig = go.Figure()
+    
+    # Add a bar chart for the count
+    fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count', marker_color='blue'))
+    
+    # Add a line chart for the average delta
+    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Delta', line=dict(color='red')))
+    
+    # Update the layout
+    fig.update_layout(title='Count and Average Delta by Escalation Type', xaxis_title='Count / Average Delta', yaxis_title='Escalation Type')
+    fig.update_layout(legend=dict(yanchor="top", y=0.01,xanchor="right", x=0.99))
+# Show the figure
+    return fig
+
+
+
+
                 
-    return chart
 
 @anvil.server.callable
 def create_chart3():
 
-    data = [{"completion_code_description": r["completion_code_description"].capitalize(), "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"Date Created": r["date_created"].date(), "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    count_df = df['completion_code_description'].value_counts().reset_index()
-    count_df.columns = ['completion_code_description','count']
+    count_df = df['Date Created'].value_counts().reset_index()
+    count_df.columns = ['Date Created','count']
     count_df = count_df.sort_values(by="count")
-    chart = px.scatter(count_df, x="count", y="completion_code_description", orientation='h', title="Tickets by Escalation Type")
+    chart = px.bar(count_df, x="Date Created", y="count", title="Tickets by Creation Date")
                 
     return chart
 
