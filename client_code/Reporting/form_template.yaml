@@ -39,6 +39,10 @@ components:
       tooltip: '', interactive: true}
     name: plot_3
     layout_properties: {grid_position: 'WSYCPI,ACITTJ'}
+  - type: Plot
+    properties: {}
+    name: plot_4
+    layout_properties: {grid_position: 'POKHJZ,UJYXJE'}
 - type: FlowPanel
   properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}

@@ -30,8 +30,14 @@ class Reporting(ReportingTemplate):
 
     create_chart3 = anvil.server.call('create_chart3') 
     self.plot_3.figure = create_chart3
+
+    create_chart4 = anvil.server.call('create_chart4') 
+    self.plot_4.figure = create_chart4
+  
+
+
     
 
   def Dashboard_click(self, **event_args):
-    """This method is called when the button is clicked"""
+
     open_form('Homepage')

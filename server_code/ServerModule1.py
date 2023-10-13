@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from anvil.google.drive import app_files
 import anvil.secrets
+import anvil.mpl_util
 import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
@@ -13,6 +14,8 @@ import anvil.server
 from datetime import datetime, timedelta, date
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import anvil.server
 import anvil.tz
 import json
@@ -806,11 +809,10 @@ def create_chart1():
     data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
     count_df = df['User'].value_counts().reset_index()
-    print(df.head(10))
     count_df.columns = ['User', 'count']
     count_df = count_df.sort_values(by="count")
     chart = px.bar(count_df, x="count", y="User", orientation='h', title="Responses by User")
-                
+         
     return chart
 
 @anvil.server.callable
@@ -838,12 +840,7 @@ def create_chart2():
     fig.update_layout(title='Escalation Type', xaxis_title='', yaxis_title='Escalation Type')
     fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
 # Show the figure
-    return fig
-
-
-
-
-                
+    return fig             
 
 @anvil.server.callable
 def create_chart3():
@@ -856,4 +853,35 @@ def create_chart3():
     chart = px.bar(count_df, x="Date Created", y="count", title="Tickets by Creation Date")
                 
     return chart
+
+
+@anvil.server.callable
+def create_chart4():
+    # Assuming you have a DataFrame `count_df` containing the data
+    # that you want to plot in your animated bar chart.
+    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
+    df = pd.DataFrame(data)
+    count_df = df['User'].value_counts().reset_index()
+    count_df.columns = ['User', 'count']
+    count_df = count_df.sort_values(by="count")
+    #print(count_df.head(20))
+    # Create the initial bar chart
+    fig, ax = plt.subplots()
+    y = count_df['count']
+    x = count_df['User']
+    bars = plt.barh(y, x, color='blue')
+    ani = animation.FuncAnimation(fig, animate(len(count_df),bars,x,ax), interval=100)
+    return anvil.mpl_util.plot_image()
+
+
+def animate(i,b,x,ax):
+    # Update the bar heights at each frame
+
+    for bar, height in zip(b, x[:i]):
+        bar.set_width(height)   
+    ax.relim()
+    ax.autoscale_view()
+    return b
+
+# Display the animated chart (you may need to save it or display it in a Jupyter Notebook)
 
