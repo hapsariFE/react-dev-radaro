@@ -864,24 +864,23 @@ def create_chart4():
     count_df = df['User'].value_counts().reset_index()
     count_df.columns = ['User', 'count']
     count_df = count_df.sort_values(by="count")
-    #print(count_df.head(20))
     # Create the initial bar chart
     fig, ax = plt.subplots()
-    y = count_df['count']
-    x = count_df['User']
-    bars = plt.barh(y, x, color='blue')
-    ani = animation.FuncAnimation(fig, animate(len(count_df),bars,x,ax), interval=100)
+    x = count_df['count']
+    y = count_df['User']
+    bars = plt.barh(x, y, color='blue')
+#bars = animate()
+    ani = animation.FuncAnimation(fig, animate, fargs=(bars, x, ax), interval=100)
+
     return anvil.mpl_util.plot_image()
 
-
-def animate(i,b,x,ax):
-    # Update the bar heights at each frame
-
+def animate(i, b, x, ax):
     for bar, height in zip(b, x[:i]):
-        bar.set_width(height)   
+        bar.set_width(height)
     ax.relim()
     ax.autoscale_view()
     return b
+
 
 # Display the animated chart (you may need to save it or display it in a Jupyter Notebook)
 
