@@ -884,3 +884,20 @@ def animate(i, b, x, ax):
 
 # Display the animated chart (you may need to save it or display it in a Jupyter Notebook)
 
+@anvil.server.callable
+def create_chart5():
+
+    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
+    df = pd.DataFrame(data)
+    grouped_df = df.groupby('User').agg(
+    Count=pd.NamedAgg(column='Created Date', aggfunc='count'),
+    Min_Created_Date=pd.NamedAgg(column='Created Date', aggfunc='min'),
+    Max_Created_Date=pd.NamedAgg(column='Created Date', aggfunc='max')
+    ).reset_index()
+    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
+    grouped_df.columns = ['User', 'count', 'min', 'max']
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    chart = px.bar(sorted_df, x="count", y="User", orientation='h', title="ave Responses by User")
+         
+    return chart

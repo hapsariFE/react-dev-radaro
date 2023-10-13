@@ -22,19 +22,20 @@ class Reporting(ReportingTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     
-    #create_chart1 = anvil.server.call('create_chart1') 
-    #self.plot_1.figure = create_chart1
+    create_chart1 = anvil.server.call('create_chart1') 
+    self.plot_1.figure = create_chart1
 
-    #create_chart2 = anvil.server.call('create_chart2') 
-    #self.plot_2.figure = create_chart2
+    create_chart2 = anvil.server.call('create_chart2') 
+    self.plot_2.figure = create_chart2
 
     create_chart3 = anvil.server.call('create_chart3') 
     self.plot_3.figure = create_chart3
         
-    #create_chart4 = anvil.server.call('create_chart4') 
-    #self.plot_4.figure = create_chart4
+    create_chart4 = anvil.server.call('create_chart4') 
+    self.plot_4.figure = create_chart4
   
-
+    create_chart5 = anvil.server.call('create_chart5') 
+    self.plot_5.figure = create_chart5
 
     
 
@@ -42,7 +43,7 @@ class Reporting(ReportingTemplate):
 
     open_form('Homepage')
 
-  def call_js(self, **event_args):
+  #def call_js(self, **event_args):
     """This method is called when the Plot is shown on the screen"""
-    self.call_js('buildChart')
-    pass
+   # self.call_js('buildChart')
+   # pass
