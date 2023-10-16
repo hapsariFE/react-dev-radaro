@@ -805,6 +805,7 @@ def get_record(id):
 
 @anvil.server.callable
 def create_chart1():
+  #https://plotly.com/python/reference/layout/#layout-paper_bgcolor
 
     data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
@@ -815,8 +816,13 @@ def create_chart1():
     grouped_df.columns = ['User', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x='count', y='User', orientation='h', title='Responses by User')
-         
+    chart = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
+    chart.update_layout(font=dict(family="Arial",color="black"),
+                        title={'text':'Responses by User','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        plot_bgcolor="white",
+                        xaxis_title='', yaxis_title='User'
+                        )
+    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)
     return chart
 
 @anvil.server.callable
@@ -835,14 +841,18 @@ def create_chart2():
     fig = go.Figure()
     
     # Add a bar chart for the count
-    fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count'))
+    fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count',marker_color='rgb(18,35,158)'))
     
     # Add a line chart for the average delta
-    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='red')))
+    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))
     
     # Update the layout
-    fig.update_layout(title='Escalation Type', xaxis_title='', yaxis_title='Tickets by Escalation Type')
-    fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
+    fig.update_layout(xaxis_title='', yaxis_title='Escalation Type')
+    #fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
+    fig.update_layout(font=dict(family="Arial",color="black"),
+                        title={'text':'Tickets by Escalation Type','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        plot_bgcolor="white"
+                        )
 # Show the figure
     return fig             
 
@@ -858,10 +868,15 @@ def create_chart3():
     grouped_df.columns = ['Date Created', 'Status', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', title="Tickets by Creation Date")
-                
+    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count')
+    chart.update_layout(font=dict(family="Arial",color="black"),
+                        title={'text':'Tickets by Creation Date','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        plot_bgcolor="white",
+                        xaxis_title='', yaxis_title='Date Created'
+                        )
+    chart.update_traces(color_discrete_sequence =['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'], opacity=0.9)            
     return chart
-
+    #['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)']
 
 @anvil.server.callable
 def create_chart4():
@@ -904,6 +919,11 @@ def create_chart5():
     grouped_df.columns = ['Status', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="count", y="Status", orientation='h', title="Tickets by Current Status")
-         
+    chart = px.bar(sorted_df, x="count", y="Status", orientation='h', text ='count')
+    chart.update_layout(font=dict(family="Arial",color="black"),
+                        title={'text':'Tickets by Current Status','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        plot_bgcolor="white",
+                        xaxis_title='', yaxis_title='Date Created'
+                        )
+    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)    
     return chart

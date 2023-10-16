@@ -23,32 +23,62 @@ components:
       name: Dashboard
       layout_properties: {grid_position: 'HNIQTX,LXRVGT', x: 0, y: -10, width: 96}
       event_bindings: {click: Dashboard_click}
-  - type: Plot
-    properties: {spacing_above: small, spacing_below: small, height: '600', visible: true,
-      tooltip: '', interactive: true}
-    name: plot_1
-    layout_properties: {grid_position: 'LSDZFT,UVTSCZ'}
-    event_bindings: {}
-  - type: Plot
-    properties: {spacing_above: small, spacing_below: small, height: '600', visible: true,
-      tooltip: '', interactive: true}
-    name: plot_2
-    layout_properties: {grid_position: 'DNSKBA,YZESWF'}
-  - type: Plot
-    properties: {spacing_above: small, spacing_below: small, height: '600', visible: true,
-      tooltip: '', interactive: true}
-    name: plot_3
-    layout_properties: {grid_position: 'WSYCPI,ACITTJ'}
-    event_bindings: {}
-  - type: Plot
-    properties: {spacing_above: small, spacing_below: small, height: 450, visible: false,
-      tooltip: '', interactive: true}
-    name: plot_4
-    layout_properties: {grid_position: 'POKHJZ,UJYXJE'}
-  - type: Plot
-    properties: {}
-    name: plot_5
-    layout_properties: {grid_position: 'AFHQVE,AVEMUC'}
+  - type: Spacer
+    properties: {height: 19}
+    name: spacer_1
+    layout_properties: {grid_position: 'FGMKFE,PDEBYO'}
+  - type: ColumnPanel
+    properties: {role: outlined-card, col_widths: '{}'}
+    name: outlined_card_3
+    layout_properties: {grid_position: 'GKHMKJ,HTZRYS'}
+    components:
+    - type: Plot
+      properties: {spacing_above: small, spacing_below: small, height: '600', visible: true,
+        tooltip: '', interactive: false}
+      name: plot_1
+      layout_properties: {grid_position: 'TVXWGP,UOLCYQ'}
+      event_bindings: {}
+  - type: ColumnPanel
+    properties: {role: outlined-card, col_widths: '{}'}
+    name: outlined_card_4
+    layout_properties: {grid_position: 'RJBAIX,BCQRXH'}
+    components:
+    - type: Plot
+      properties: {spacing_above: small, spacing_below: small, height: '600', visible: true,
+        tooltip: '', interactive: false}
+      name: plot_2
+      layout_properties: {grid_position: 'SERRWL,SCAPHT'}
+  - type: ColumnPanel
+    properties: {role: outlined-card, col_widths: '{}'}
+    name: outlined_card_5
+    layout_properties: {grid_position: 'BUWDLH,MHUOWA'}
+    components:
+    - type: Plot
+      properties: {spacing_above: small, spacing_below: small, height: '600', visible: true,
+        tooltip: '', interactive: true}
+      name: plot_3
+      layout_properties: {grid_position: 'XSTRYG,UZSSGN'}
+      event_bindings: {}
+  - type: ColumnPanel
+    properties: {role: outlined-card, col_widths: '{}'}
+    name: outlined_card_6
+    layout_properties: {grid_position: 'XXBVKQ,BZYWDO'}
+    components:
+    - type: Plot
+      properties: {spacing_above: small, spacing_below: small, height: 450, visible: false,
+        tooltip: '', interactive: false}
+      name: plot_4
+      layout_properties: {grid_position: 'HNSWSI,JRXDXA'}
+  - type: ColumnPanel
+    properties: {role: outlined-card, col_widths: '{}'}
+    name: outlined_card_7
+    layout_properties: {grid_position: 'ZEKOPO,SHISOL'}
+    components:
+    - type: Plot
+      properties: {spacing_above: small, spacing_below: small, height: 450, visible: true,
+        tooltip: '', interactive: false}
+      name: plot_5
+      layout_properties: {grid_position: 'FCPCNZ,PAZWRW'}
 - type: FlowPanel
   properties: {role: null, spacing: none, align: center, tooltip: '', border: '',
     foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}
