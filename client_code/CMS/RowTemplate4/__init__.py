@@ -28,4 +28,12 @@ class RowTemplate4(RowTemplate4Template):
     rating_threshold = self.text_box_7.text
     )
 
+  
+
+  def syncSBbutton_click(self, **event_args):
+    anvil.server.call('sync_subbrand',self.item)
+   
+
+
+
                       

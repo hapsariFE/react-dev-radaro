@@ -53,6 +53,8 @@ components:
           width: 90, expand: false}
         - {id: DNDWUT, title: Low Rating Threshold, data_key: rating_threshold, $$hashKey: 'object:6875',
           width: 97, expand: false}
+        - {id: GVFPOJ, title: Subbrand Retrieve, data_key: '', $$hashKey: 'object:2660',
+          width: '90'}
         auto_header: true
         tooltip: ''
         border: ''
