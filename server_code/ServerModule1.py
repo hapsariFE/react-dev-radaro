@@ -152,7 +152,8 @@ def submit_low_rating(data):
     subbrandval = str(data['order_info']['sub_branding'])
     merctable = app_tables.merchant.get(token=data['token'])
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'])
-    subbrandval = existing_record['Name']
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
   else:
     subbrandval = "---"
 
@@ -212,6 +213,10 @@ def submit_completion_codes(data):
   counter = get_next_value_in_sequence()
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
+    merctable = app_tables.merchant.get(token=data['token'])
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'])
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
   else:
     subbrandval = "---"
   #try:
