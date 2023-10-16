@@ -806,12 +806,16 @@ def get_record(id):
 @anvil.server.callable
 def create_chart1():
 
-    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
+    data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
-    count_df = df['User'].value_counts().reset_index()
-    count_df.columns = ['User', 'count']
-    count_df = count_df.sort_values(by="count")
-    chart = px.bar(count_df, x="count", y="User", orientation='h', title="Responses by User")
+    #https://sparkbyexamples.com/pandas/pandas-groupby-multiple-columns/
+    grouped_df = df.groupby(['User']).agg(
+    Count=pd.NamedAgg(column='User', aggfunc='count')
+    ).reset_index()
+    grouped_df.columns = ['User', 'count']
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    chart = px.bar(sorted_df, x='count', y='User', orientation='h', title='Responses by User')
          
     return chart
 
@@ -831,13 +835,13 @@ def create_chart2():
     fig = go.Figure()
     
     # Add a bar chart for the count
-    fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count', marker_color='blue'))
+    fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count'))
     
     # Add a line chart for the average delta
-    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average response time', line=dict(color='red')))
+    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='red')))
     
     # Update the layout
-    fig.update_layout(title='Escalation Type', xaxis_title='', yaxis_title='Escalation Type')
+    fig.update_layout(title='Escalation Type', xaxis_title='', yaxis_title='Tickets by Escalation Type')
     fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
 # Show the figure
     return fig             
@@ -845,12 +849,16 @@ def create_chart2():
 @anvil.server.callable
 def create_chart3():
 
-    data = [{"Date Created": r["date_created"].date(), "id": r["id"]} for r in app_tables.webhook.search()]
+    data = [{"Date Created": r["date_created"].date(), "Status": r["latest_status"]["name"], "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    count_df = df['Date Created'].value_counts().reset_index()
-    count_df.columns = ['Date Created','count']
-    count_df = count_df.sort_values(by="count")
-    chart = px.bar(count_df, x="Date Created", y="count", title="Tickets by Creation Date")
+    grouped_df = df.groupby(['Date Created','Status']).agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
+    ).reset_index()
+    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
+    grouped_df.columns = ['Date Created', 'Status', 'count']
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', title="Tickets by Creation Date")
                 
     return chart
 
@@ -887,17 +895,15 @@ def animate(i, b, x, ax):
 @anvil.server.callable
 def create_chart5():
 
-    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    grouped_df = df.groupby('User').agg(
-    Count=pd.NamedAgg(column='Created Date', aggfunc='count'),
-    Min_Created_Date=pd.NamedAgg(column='Created Date', aggfunc='min'),
-    Max_Created_Date=pd.NamedAgg(column='Created Date', aggfunc='max')
+    grouped_df = df.groupby('Status').agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
     #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
-    grouped_df.columns = ['User', 'count', 'min', 'max']
+    grouped_df.columns = ['Status', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="count", y="User", orientation='h', title="ave Responses by User")
+    chart = px.bar(sorted_df, x="count", y="Status", orientation='h', title="Tickets by Current Status")
          
     return chart
