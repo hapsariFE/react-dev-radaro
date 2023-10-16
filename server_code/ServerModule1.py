@@ -801,17 +801,22 @@ def get_record(id):
 
 @anvil.server.callable
 def sync_subbrand(record):
-  print(record['token'])
-  response = requests.get('https://api-2.radaro.com.au/api/webhooks/sub-brands/?key=a68b204e-c2b8-4f68-b670-229d7bfe38fd')
-  data = response.json()
-
-  for result in data['results']:
-        # Check if a record with the same MerchantID and ID exists
-      existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
-        
-      if existing_record:
-            # Update existing record
-          existing_record.update(Logo=result['logo'], Name=result['name'])
-      else:
-            # Insert new record
-          app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Logo=result['logo'], Name=result['name'],Server=record['server'])
+  #print(record['APIToken'])
+  if record['APIToken'] is not None:
+    response = requests.get('https://api-2.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
+    data = response.json()
+    try:
+      for result in data['results']:
+            # Check if a record with the same MerchantID and ID exists
+          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
+            
+          if existing_record:
+                # Update existing record
+              existing_record.update(Logo=result['logo'], Name=result['name'],LastUpdated=datetime.now())
+          else:
+                # Insert new record
+              app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Logo=result['logo'], Name=result['name'],Server=record['server'],LastUpdated=datetime.now())
+    except:
+      print("API Request Failed")
+  else:
+    print("No API Token on record")
