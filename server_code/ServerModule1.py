@@ -150,8 +150,9 @@ def submit_low_rating(data):
 
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval))
-    
+    merctable = app_tables.merchant.get(token=data['token'])
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'])
+    subbrandval = existing_record['Name']
   else:
     subbrandval = "---"
 
