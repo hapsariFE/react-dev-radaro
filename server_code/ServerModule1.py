@@ -818,7 +818,8 @@ def create_chart1():
     sorted_df.reset_index(inplace=True)
     chart = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        title={'text':'Responses by User','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        title={'text':'Responses by User','x':0.5,'xanchor': 'center'},
+                        margin=dict(l=20, r=20, t=40, b=20),
                         plot_bgcolor="white",
                         xaxis_title='', yaxis_title='User'
                         )
@@ -850,7 +851,8 @@ def create_chart2():
     fig.update_layout(xaxis_title='', yaxis_title='Escalation Type')
     #fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
     fig.update_layout(font=dict(family="Arial",color="black"),
-                        title={'text':'Tickets by Escalation Type','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        margin=dict(l=20, r=20, t=40, b=20),
+                        title={'text':'Tickets by Escalation Type','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white"
                         )
 # Show the figure
@@ -868,13 +870,14 @@ def create_chart3():
     grouped_df.columns = ['Date Created', 'Status', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count')
+    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',color_discrete_sequence=['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'])
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        title={'text':'Tickets by Creation Date','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        title={'text':'Tickets by Creation Date','x':0.5,'xanchor': 'center'},
+                        margin=dict(l=20, r=20, t=40, b=20),
                         plot_bgcolor="white",
-                        xaxis_title='', yaxis_title='Date Created'
+                        xaxis_title='Date Created', yaxis_title=''
                         )
-    chart.update_traces(color_discrete_sequence =['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'], opacity=0.9)            
+    #chart.update_traces(color_discrete_sequence=['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'], opacity=0.9)            
     return chart
     #['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)']
 
@@ -921,9 +924,10 @@ def create_chart5():
     sorted_df.reset_index(inplace=True)
     chart = px.bar(sorted_df, x="count", y="Status", orientation='h', text ='count')
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        title={'text':'Tickets by Current Status','y':0.9,'x':0.5,'xanchor': 'center','yanchor': 'top'},
+                        margin=dict(l=20, r=20, t=40, b=20),
+                        title={'text':'Tickets by Current Status','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
-                        xaxis_title='', yaxis_title='Date Created'
+                        xaxis_title='', yaxis_title='Status'
                         )
     chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)    
     return chart
