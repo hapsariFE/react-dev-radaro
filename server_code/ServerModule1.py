@@ -328,13 +328,11 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   if assigned_to != None:
     defaultassign = app_tables.users.get(name=assigned_to['name'])
     filter_dict['latest_assignee'] = defaultassign
-    
 
   if jobValue != None:
     filter_dict['job_status'] = jobValue
 
   if compCode != None:
-    
     filter_dict['sub_brand'] = compCode
     print(filter_dict['sub_brand'])
 
@@ -345,37 +343,19 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     filter_dict['watchlistUsers'] = [anvil.users.get_user()]
 
   if escStatus != None:
-  #  filter_dict['latest_status'] = escStatus
-    
     if resolvedStatus is False:
       print(escStatus['name'])
-      escStatus = app_tables.escalation_status.search(name=q.all_of(q.none_of("Resolved"),q.any_of(escStatus['name']))) 
-      #print("----")
-      #print(*escStatus)
-      
-
+      escStatus = app_tables.escalation_status.search(name=q.all_of(q.none_of("Resolved"),q.any_of(escStatus['name'])))    
     if resolvedStatus is True:
       escStatus = app_tables.escalation_status.search(name=q.any_of(q.any_of("Resolved"),q.any_of(escStatus['name']),))
 
-  
   if escStatus == None:
     if resolvedStatus is False:
       escStatus = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
-      #print("1")
     if resolvedStatus is True:
-      #print("2")
       escStatus = app_tables.escalation_status.search() 
 
-  #print("-----")
-  #print(*jjv)
-  #selected_status_rows = [status_row for status_row in app_tables.webhook.search(job_status=q.any_of(*selected_statuses))]
-  #print(selected_status_rows)
-  
-  #print(values)
-  #print(jobValue)
   related_rows = currentUser['user_merchant_link']
-    #print(RelatedJobStatus)
-    #print(related_rows)
   values = [row for row in related_rows]
   if merchant_name is None and assigned_to is None :
     custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
@@ -385,19 +365,15 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 
   elif merchant_name is not None and assigned_to is None :
     merchant_row = app_tables.merchant.search(name=merchant_name)
-    #print(merchant_row)
     custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
 
   else:
-    #filter_dict['webhook_merchant_link'] = merchant_name
     merchant_row = app_tables.merchant.search(name=merchant_name)
-    #print(merchant_row)
     custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
 
   if searchText:
     custTable = [
       x for x in custTable
-
         if searchText.lower() in x['job_id'].lower()
         or searchText.lower() in x['job_reference'].lower()
         or searchText.lower() in x['customer_name'].lower()
@@ -405,25 +381,8 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
         or x['sub_brand'] is not None and searchText.lower() in x['sub_brand'].lower() 
         or x['job_reference2'] is not None and searchText.lower() in x['job_reference2'].lower() 
         or x['job_reference3'] is not None and searchText.lower() in x['job_reference3'].lower()
-    
     ]
     
-  #custTable = custTable
-  #status_row = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
-  #print(*status_row)
-  #if resolvedStatus:
-  #  custTable = [
-  #    x for x in custTable
-  #    if statusRow in x['esc_status']]
-
- #   if resolvedStatus:
- #    custTable = [
-#       x for x in custTable
-#       if  in x['job_status']
-
- 
-  
-
 #  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
   #print(*currentUser['user_merchant_link'])
   #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
@@ -432,50 +391,26 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
   
  #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
   return custTable
-  #.search(**kwargs)
-    #tables.order_by("date_created", ascending=False),
-    #tables.order_by("last_action_date", ascending=False)
-    #,job_status=jstatus
-      
-
-#return app_tables.articles.search(ArticleLink=q.any_of(*x['userMerchLink']))
-
 
 @anvil.server.callable
 def get_action(rowValue):
   # Get a list of articles from the Data Table, sorted by 'created' column, in descending order
- # print(rowValue)
   if rowValue is None: 
     print("No Escalation Selected")
   else:
-    #print("-----aa")
-    #print(rowValue)
-    #print("-----bb")
-    #print(rowValue['job_status'])
     return app_tables.action_log.search(tables.order_by("created_date",ascending=False),escalation_id=q.any_of(rowValue)
-    
   )
-    
 
-  
 @anvil.server.callable
 def get_selectedMerchant(selectedMerchant):
-  #valuesMerch = [row for row in selectedMerchant]
   related_rows = selectedMerchant
-    #print(RelatedJobStatus)
-    #print(related_rows)
-  values = [row for row in related_rows]
-  #print(related_rows)
- # print(values)
-  
+  values = [row for row in related_rows] 
   if selectedMerchant is None:
     print("No Escalation Selected")
   else:
     xMerch = app_tables.users.search(user_merchant_link=[related_rows])
     values = [[row] for row in xMerch]
     x_list =[r['name'] for r in xMerch]
-   # print("xxxxxx")
-  #  print(x_list)
     x_list.sort()
     return x_list
 
@@ -483,12 +418,10 @@ def get_selectedMerchant(selectedMerchant):
 def add_comment(article, article_dict, description, status, created_date, assign_to,submitter):
   if app_tables.webhook.has_row(article):
    article_dict['last_action_date'] = created_date
-   #print(article_dict['last_action_date'])
    article_dict['latest_status'] = status
    assignrow = app_tables.users.get(name=assign_to)
    article_dict['latest_assignee'] = assignrow
    tx = article['job_id']
-   #print(assignrow)
    row = app_tables.action_log.add_row(
     job_id=article,
     user= submitter ,
@@ -497,29 +430,14 @@ def add_comment(article, article_dict, description, status, created_date, assign
     created_date = created_date,
     assign_to=assignrow,
     escalation_id=article)
-   #print(*row)
    article.update(**article_dict)
   else:
    raise Exception("Article does not exist")
- # x_assign = app_tables.users.get(name=assign_x)
-#  print(*x_assign)
- # currentUser = anvil.users.get_user()
- # app_tables.action_log.add_row(
-    #job_id=job_id,
- #   user=currentUser,
- #   description=description,
-  #  status=status,
-  #  created_date = created_date,
-  #  assign_to=x_assign
- # )
-  
+
 @anvil.server.callable
 def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to):
   merchant_row = app_tables.merchant.get(name=merchant_name) 
   status_row = app_tables.job_status.get(name='Failed') 
-  
-  print(esc_type)
-  #assignrow = app_tables.users.get(name=assign_to)
   counter = get_next_value_in_sequence()
   row = app_tables.webhook.add_row(
      job_id = job,
@@ -546,19 +464,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
         escalation_id=app_tables.webhook.get(id= str(counter)),
         job_id=app_tables.webhook.get(id= str(counter)),
         status = app_tables.escalation_status.get(name= "New"),
-        created_date=datetime.now())
-  #add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname)
-  #row = app_tables.action_log.add_row(
-  #  job_id = jobrow,
-  #  user=anvil.users.get_user(),
-  #  description=description,
-  #  status=esc_status,
-  #  created_date = date_created,
-  #  assign_to=assign_to,
-  #  escalation_id=jobrow)
-   
-   
-    
+        created_date=datetime.now())  
 
 """
 @anvil.server.callable
@@ -573,42 +479,19 @@ def import_excel_data(file):
 
 import_excel_data("anvil_upload.xlsx")
 """
-#@anvil.server.callable
-#def search_webhook(query):
-#  result = app_tables.webhook.search()
-#  if query:
-#    result = [
-#      x for x in result
-#      if query in x['job_id'].lower()
-#      or query in x['job_reference'].lower()
-#     or query in x['customer_name'].lower() 
- #   ]
-#  return result
 
 @anvil.server.callable
 def update_item(article,user):
-  #watch_list = watch_list
-  #row_id=row_id
-  #row=app_tables.webhook.get(id=row_id)  
-  #job_id=article
-    #if app_tables.webhook.has_row(article):
-  #row['watch_list']=watch_list
-  #app_tables.webhook.update(row_id,watch_list)
   if article['watchlistUsers'] is None:
     article['watchlistUsers'] = [user]
   elif anvil.users.get_user() in article['watchlistUsers']:
-    #article['watchlistUsers'] -= [user] 
     article['watchlistUsers'] = [r for r in article['watchlistUsers'] if r != user]
   else: 
     article['watchlistUsers'] += [user] 
-  #inventory = article['watchlistUsers']
-  #inventory['items'].append({'name': name, 'amount': amount})
-  #row['Inventory'] = inventory
 
 @tables.in_transaction
 def get_next_value_in_sequence():
   row = int(app_tables.webhook.search(tables.order_by("date_created", ascending=False))[0]['id'])
-  
   row += 1
   return row
 
@@ -623,17 +506,11 @@ def manual_import(file):
     app_tables.import_test.delete_all_rows()
     df = df.replace({pd.np.nan: None})
     df = df.drop(['external_job_id', 'manager_name', 'manager_email', 'manager_phone','driver_phone','total_job_time', 'time_at_job', 'time_inside_geofence', 'geofence_entered_at','pickup_address', 'pickup_address_2', 'pickup_name', 'pickup_email', 'pickup_phone', 'pickup_before_date', 'pickup_geofence_entered_at', 'time_at_pickup', 'pickup_after_date'], axis=1)
-    #print(df['customer_rating'])
     compdf =df
     counter = get_next_value_in_sequence()
     df= df.loc[df['customer_rating'].isin([1,2,3])]
     df['completed_at'] = pd.to_datetime(df['completed_at'])
     for d in df.to_dict(orient="records"):
-      # d is now a dict of {columnname -> value} for this row
-      # We use Python's **kwargs syntax to pass the whole dict as
-      # keyword arguments
-     # print(d['order_status'])
-     # print(*d)
       app_tables.webhook.add_row(
         job_id = str(d['order_id']),
       id= str(counter),
@@ -672,11 +549,6 @@ def manual_import(file):
     compdf= compdf.loc[compdf['completion_codes'].str.contains("501",na=False)]
     compdf['completed_at'] = pd.to_datetime(compdf['completed_at'])
     for d in compdf.to_dict(orient="records"):
-      # d is now a dict of {columnname -> value} for this row
-      # We use Python's **kwargs syntax to pass the whole dict as
-      # keyword arguments
-     # print(d['order_status'])
-     # print(*d)
       app_tables.webhook.add_row(
         job_id = str(d['order_id']),
       id= str(counter),
@@ -714,11 +586,6 @@ def manual_import(file):
     compdf2= compdf2.loc[compdf2['completion_codes'].str.contains("502",na=False)]
     compdf2['completed_at'] = pd.to_datetime(compdf2['completed_at'])
     for d in compdf2.to_dict(orient="records"):
-      # d is now a dict of {columnname -> value} for this row
-      # We use Python's **kwargs syntax to pass the whole dict as
-      # keyword arguments
-     # print(d['order_status'])
-     # print(*d)
       app_tables.webhook.add_row(
         job_id = str(d['order_id']),
       id= str(counter),
@@ -755,11 +622,6 @@ def manual_import(file):
     compdf3= compdf3.loc[compdf3['completion_codes'].str.contains("202",na=False)]
     compdf3['completed_at'] = pd.to_datetime(compdf3['completed_at'])
     for d in compdf3.to_dict(orient="records"):
-      # d is now a dict of {columnname -> value} for this row
-      # We use Python's **kwargs syntax to pass the whole dict as
-      # keyword arguments
-     # print(d['order_status'])
-     # print(*d)
       app_tables.webhook.add_row(
         job_id = str(d['order_id']),
       id= str(counter),
@@ -797,10 +659,6 @@ def get_record(id):
   if id is None: 
     print("No Record")
   else:
-    #print("-----aa")
-    #print(rowValue)
-    #print("-----bb")
-    #print(rowValue['job_status'])
     return app_tables.webhook.get(id=q.any_of(id))
 
 @anvil.server.callable
@@ -819,7 +677,6 @@ def create_chart1():
     sorted_df.reset_index(inplace=True)
     chart = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        #title={'text':'Responses by User','x':0.5,'xanchor': 'center'},
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
@@ -839,22 +696,15 @@ def create_chart2():
     grouped_df = df.groupby('Escalation Type').agg({'Escalation Type': 'count', 'delta': 'mean'})
     grouped_df.columns = ['count', 'average delta']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
-    sorted_df.reset_index(inplace=True)
-    
-    # Create a figure
+    sorted_df.reset_index(inplace=True)    
     chart = go.Figure()
-    
     # Add a bar chart for the count
-    chart.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count',marker_color='rgb(18,35,158)'))
-    
+    chart.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count',marker_color='rgb(18,35,158)'))   
     # Add a line chart for the average delta
-    chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))
-    
+    chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))    
     # Update the layout
-    #fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
     chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=10, b=20),
-                        #title={'text':'Tickets by Escalation Type','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
                         )   
@@ -878,16 +728,13 @@ def create_chart3():
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        #title={'text':'Tickets by Creation Date','x':0.5,'xanchor': 'center'},
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
-                        )
-    #chart.update_traces(color_discrete_sequence=['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'], opacity=0.9)            
+                        )         
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
     return chart
-    #['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)']
 
 @anvil.server.callable
 def create_chart4():
@@ -915,7 +762,6 @@ def animate(i, b, x, ax):
     ax.autoscale_view()
     return b
 
-
 # Display the animated chart (you may need to save it or display it in a Jupyter Notebook)
 
 @anvil.server.callable
@@ -926,7 +772,6 @@ def create_chart5():
     grouped_df = df.groupby('Status').agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
-    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
     grouped_df.columns = ['Status', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
@@ -936,11 +781,9 @@ def create_chart5():
     chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=10, b=20),
                         showlegend=False,
-                        #title={'text':'Tickets by Current Status','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
-                        )
-    #chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)   
+                        ) 
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
     return chart
@@ -958,7 +801,6 @@ def create_stat1():
     grouped_df = filtered_df.groupby('Status').agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
-    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
     grouped_df.columns = ['Status', 'count']
     sorted_df = grouped_df.sort_values(by='Status', ascending=True)
     sorted_df.reset_index(inplace=True)
@@ -986,7 +828,6 @@ def create_stat2():
     grouped_df = filtered_df.groupby('Date Created').agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
-    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
     grouped_df.columns = ['Date Created', 'count']
     sorted_df = grouped_df.sort_values(by='Date Created', ascending=True)
     sorted_df.reset_index(inplace=True)
