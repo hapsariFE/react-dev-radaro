@@ -809,8 +809,9 @@ def create_chart1():
 
     data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
+    df1 = df.loc[df["User"] !='System' ]
     #https://sparkbyexamples.com/pandas/pandas-groupby-multiple-columns/
-    grouped_df = df.groupby(['User']).agg(
+    grouped_df = df1.groupby(['User']).agg(
     Count=pd.NamedAgg(column='User', aggfunc='count')
     ).reset_index()
     grouped_df.columns = ['User', 'count']
