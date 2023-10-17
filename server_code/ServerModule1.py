@@ -935,6 +935,7 @@ def create_chart5():
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
     chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=10, b=20),
+                        showlegend=False,
                         #title={'text':'Tickets by Current Status','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
                         xaxis_title='', yaxis_title='Status'
