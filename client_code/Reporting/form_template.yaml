@@ -36,9 +36,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Tickets Created Last Week, font_size: null, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: true, underline: false, icon: ''}
+        visible: true, text: Created Last Week, font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
       name: label_1
       layout_properties: {grid_position: 'EVBYSG,WKMMOA'}
     - type: Plot
@@ -55,9 +55,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Tickets Created Last Week, font_size: null, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: true, underline: false, icon: ''}
+        visible: true, text: Created Last Week, font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
       name: label_6
       layout_properties: {grid_position: 'WYWYVL,SAVTWL'}
     - type: Plot
@@ -74,9 +74,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Tickets by Current Status, font_size: null, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: true, underline: false, icon: ''}
+        visible: true, text: Current Status, font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
       name: label_5
       layout_properties: {grid_position: 'OLTLJV,VAOVPD'}
     - type: Plot
