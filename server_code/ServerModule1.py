@@ -965,7 +965,7 @@ def create_stat1():
     chart = px.pie(sorted_df,values ='count', names ='Status', hole = 0.55,color='Status',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    chart.update_traces(textinfo='label+value', pull=0.00,hoverinfo='label+value+percent')
+    chart.update_traces(textinfo='label+value', insidetextorientation='horizontal', pull=0.00,hoverinfo='label+value+percent')
     chart.update_layout(font=dict(family="Arial",color="black"),
                         showlegend=False,
                         margin=dict(l=10, r=10, t=10, b=10),
