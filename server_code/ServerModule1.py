@@ -822,7 +822,7 @@ def create_chart1():
                         #title={'text':'Responses by User','x':0.5,'xanchor': 'center'},
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
-                        xaxis_title='', yaxis_title=''
+                        xaxis_title=None, yaxis_title=None
                         )
     chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
@@ -856,7 +856,7 @@ def create_chart2():
                         margin=dict(l=20, r=20, t=10, b=20),
                         #title={'text':'Tickets by Escalation Type','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
-                        xaxis_title='', yaxis_title=''
+                        xaxis_title=None, yaxis_title=None
                         )   
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
@@ -881,7 +881,7 @@ def create_chart3():
                         #title={'text':'Tickets by Creation Date','x':0.5,'xanchor': 'center'},
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
-                        xaxis_title='', yaxis_title=''
+                        xaxis_title=None, yaxis_title=None
                         )
     #chart.update_traces(color_discrete_sequence=['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'], opacity=0.9)            
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
@@ -938,7 +938,7 @@ def create_chart5():
                         showlegend=False,
                         #title={'text':'Tickets by Current Status','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
-                        xaxis_title='', yaxis_title=''
+                        xaxis_title=None, yaxis_title=None
                         )
     #chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)   
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
@@ -994,7 +994,7 @@ def create_stat2():
     chart.update_traces(marker_color='rgb(11,180,87)', opacity=0.9) 
     chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=10, r=10, t=10, b=10),
-                        xaxis_title='', yaxis_title='',
+                        xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
     chart.update_yaxes(showticklabels=False)
     return chart
