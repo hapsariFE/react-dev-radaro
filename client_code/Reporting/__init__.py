@@ -21,6 +21,12 @@ class Reporting(ReportingTemplate):
 
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+
+    create_stat1 = anvil.server.call('create_stat1') 
+    self.plot_6.figure = create_stat1
+
+    #create_stat2 = anvil.server.call('create_stat2') 
+    #self.plot_7.figure = create_stat2
     
     create_chart1 = anvil.server.call('create_chart1') 
     self.plot_1.figure = create_chart1

@@ -824,6 +824,8 @@ def create_chart1():
                         xaxis_title='', yaxis_title='User'
                         )
     chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
     return chart
 
 @anvil.server.callable
@@ -839,24 +841,25 @@ def create_chart2():
     sorted_df.reset_index(inplace=True)
     
     # Create a figure
-    fig = go.Figure()
+    chart = go.Figure()
     
     # Add a bar chart for the count
-    fig.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count',marker_color='rgb(18,35,158)'))
+    chart.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count',marker_color='rgb(18,35,158)'))
     
     # Add a line chart for the average delta
-    fig.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))
+    chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))
     
     # Update the layout
-    fig.update_layout(xaxis_title='', yaxis_title='Escalation Type')
+    chart.update_layout(xaxis_title='', yaxis_title='Escalation Type')
     #fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
-    fig.update_layout(font=dict(family="Arial",color="black"),
+    chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=40, b=20),
                         title={'text':'Tickets by Escalation Type','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white"
-                        )
-# Show the figure
-    return fig             
+                        )   
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
+    return chart             
 
 @anvil.server.callable
 def create_chart3():
@@ -878,6 +881,8 @@ def create_chart3():
                         xaxis_title='Date Created', yaxis_title=''
                         )
     #chart.update_traces(color_discrete_sequence=['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'], opacity=0.9)            
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
     return chart
     #['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)']
 
@@ -929,5 +934,23 @@ def create_chart5():
                         plot_bgcolor="white",
                         xaxis_title='', yaxis_title='Status'
                         )
-    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)    
+    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)   
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
+    return chart
+
+@anvil.server.callable
+def create_stat1():
+
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
+    df = pd.DataFrame(data)
+    grouped_df = df.groupby('Status').agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
+    ).reset_index()
+    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
+    grouped_df.columns = ['Status', 'count']
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    chart = px.pie(sorted_df,values ='count', names ='Status', title = 'Tickets Created Last Week')
+    
     return chart
