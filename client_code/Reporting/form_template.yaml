@@ -34,8 +34,15 @@ components:
     name: outlined_card_8
     layout_properties: {grid_position: 'EOBNLM,WXAABP'}
     components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Tickets Created Last Week, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_1
+      layout_properties: {grid_position: 'EVBYSG,WKMMOA'}
     - type: Plot
-      properties: {spacing_above: small, spacing_below: small, height: '450', visible: true,
+      properties: {spacing_above: small, spacing_below: small, height: '200', visible: true,
         tooltip: '', interactive: true}
       name: plot_6
       layout_properties: {grid_position: 'VKTOCK,GBJLHW'}
@@ -46,8 +53,15 @@ components:
     name: outlined_card_9
     layout_properties: {grid_position: 'EOBNLM,FSKFFN'}
     components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Tickets Created Last Week, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_6
+      layout_properties: {grid_position: 'WYWYVL,SAVTWL'}
     - type: Plot
-      properties: {spacing_above: small, spacing_below: small, height: '100', visible: true,
+      properties: {spacing_above: small, spacing_below: small, height: '200', visible: true,
         tooltip: '', interactive: true}
       name: plot_7
       layout_properties: {grid_position: 'KVUBRJ,DGPJOR'}
@@ -58,9 +72,16 @@ components:
     name: outlined_card_3
     layout_properties: {grid_position: 'GKHMKJ,HTZRYS'}
     components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Responses by User, font_size: null, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_2
+      layout_properties: {grid_position: 'FRTTWS,VWIJMX'}
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '400', visible: true,
-        tooltip: '', interactive: false}
+        tooltip: '', interactive: true}
       name: plot_1
       layout_properties: {grid_position: 'TVXWGP,UOLCYQ'}
       event_bindings: {}
@@ -71,9 +92,16 @@ components:
     name: outlined_card_4
     layout_properties: {grid_position: 'RJBAIX,BCQRXH'}
     components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Tickets by Escalation Type, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_3
+      layout_properties: {grid_position: 'DIXPZN,WHOLWG'}
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '400', visible: true,
-        tooltip: '', interactive: false}
+        tooltip: '', interactive: true}
       name: plot_2
       layout_properties: {grid_position: 'SERRWL,SCAPHT'}
   - type: ColumnPanel
@@ -83,6 +111,13 @@ components:
     name: outlined_card_5
     layout_properties: {grid_position: 'BUWDLH,MHUOWA'}
     components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Tickets by Creation Date, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_4
+      layout_properties: {grid_position: 'WSRDFL,QPMUXE'}
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '400', visible: true,
         tooltip: '', interactive: true}
@@ -98,7 +133,7 @@ components:
     components:
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '400', visible: false,
-        tooltip: '', interactive: false}
+        tooltip: '', interactive: true}
       name: plot_4
       layout_properties: {grid_position: 'HNSWSI,JRXDXA'}
   - type: ColumnPanel
@@ -108,9 +143,16 @@ components:
     name: outlined_card_7
     layout_properties: {grid_position: 'ZEKOPO,SHISOL'}
     components:
+    - type: Label
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+        visible: true, text: Tickets by Current Status, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: label_5
+      layout_properties: {grid_position: 'OLTLJV,VAOVPD'}
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '400', visible: true,
-        tooltip: '', interactive: false}
+        tooltip: '', interactive: true}
       name: plot_5
       layout_properties: {grid_position: 'FCPCNZ,PAZWRW'}
 - type: FlowPanel

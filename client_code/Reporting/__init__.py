@@ -25,8 +25,8 @@ class Reporting(ReportingTemplate):
     create_stat1 = anvil.server.call('create_stat1') 
     self.plot_6.figure = create_stat1
 
-    #create_stat2 = anvil.server.call('create_stat2') 
-    #self.plot_7.figure = create_stat2
+    create_stat2 = anvil.server.call('create_stat2') 
+    self.plot_7.figure = create_stat2
     
     create_chart1 = anvil.server.call('create_chart1') 
     self.plot_1.figure = create_chart1
@@ -37,8 +37,8 @@ class Reporting(ReportingTemplate):
     create_chart3 = anvil.server.call('create_chart3') 
     self.plot_3.figure = create_chart3
         
-    #create_chart4 = anvil.server.call('create_chart4') 
-    #self.plot_4.figure = create_chart4
+    create_chart4 = anvil.server.call('create_chart4') 
+    self.plot_4.figure = create_chart4
   
     create_chart5 = anvil.server.call('create_chart5') 
     self.plot_5.figure = create_chart5

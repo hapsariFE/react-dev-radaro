@@ -818,8 +818,8 @@ def create_chart1():
     sorted_df.reset_index(inplace=True)
     chart = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        title={'text':'Responses by User','x':0.5,'xanchor': 'center'},
-                        margin=dict(l=20, r=20, t=40, b=20),
+                        #title={'text':'Responses by User','x':0.5,'xanchor': 'center'},
+                        margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
                         xaxis_title='', yaxis_title='User'
                         )
@@ -850,12 +850,12 @@ def create_chart2():
     chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))
     
     # Update the layout
-    chart.update_layout(xaxis_title='', yaxis_title='Escalation Type')
     #fig.update_layout(legend=dict(yanchor="top", y=0.10,xanchor="right", x=0.99))
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        margin=dict(l=20, r=20, t=40, b=20),
-                        title={'text':'Tickets by Escalation Type','x':0.5,'xanchor': 'center'},
-                        plot_bgcolor="white"
+                        margin=dict(l=20, r=20, t=10, b=20),
+                        #title={'text':'Tickets by Escalation Type','x':0.5,'xanchor': 'center'},
+                        plot_bgcolor="white",
+                        xaxis_title='', yaxis_title='Escalation Type'
                         )   
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
@@ -871,12 +871,14 @@ def create_chart3():
     ).reset_index()
     #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
     grouped_df.columns = ['Date Created', 'Status', 'count']
-    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df = grouped_df.sort_values(by='Status', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',color_discrete_sequence=['rgb(18,35,158)','rgb(161,52,60)','rgb(11,180,87)','rgb(153,153,153)','rgb(153,153,0)'])
+    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',
+                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        title={'text':'Tickets by Creation Date','x':0.5,'xanchor': 'center'},
-                        margin=dict(l=20, r=20, t=40, b=20),
+                        #title={'text':'Tickets by Creation Date','x':0.5,'xanchor': 'center'},
+                        margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
                         xaxis_title='Date Created', yaxis_title=''
                         )
@@ -927,14 +929,16 @@ def create_chart5():
     grouped_df.columns = ['Status', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="count", y="Status", orientation='h', text ='count')
+    chart = px.bar(sorted_df, x="count", y="Status", orientation='h', color='Status', text ='count',
+                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        margin=dict(l=20, r=20, t=40, b=20),
-                        title={'text':'Tickets by Current Status','x':0.5,'xanchor': 'center'},
+                        margin=dict(l=20, r=20, t=10, b=20),
+                        #title={'text':'Tickets by Current Status','x':0.5,'xanchor': 'center'},
                         plot_bgcolor="white",
                         xaxis_title='', yaxis_title='Status'
                         )
-    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)   
+    #chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)   
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
     return chart
@@ -942,15 +946,52 @@ def create_chart5():
 @anvil.server.callable
 def create_stat1():
 
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    grouped_df = df.groupby('Status').agg(
+    today = datetime.now().date()
+    days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
+    end_date = today - timedelta(days=days_until_sunday)
+    start_date = end_date - timedelta(days=6)
+    filtered_df = df[(df['Date Created'] >= start_date) & (df['Date Created'] <= end_date)]
+    grouped_df = filtered_df.groupby('Status').agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
     #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
     grouped_df.columns = ['Status', 'count']
-    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df = grouped_df.sort_values(by='Status', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.pie(sorted_df,values ='count', names ='Status', title = 'Tickets Created Last Week')
+    chart = px.pie(sorted_df,values ='count', names ='Status', hole = 0.55,color='Status',
+                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
+    chart.update_traces(textinfo='value',hoverinfo='label+value+percent')
+    chart.update_layout(font=dict(family="Arial",color="black"),
+                        margin=dict(l=10, r=10, t=10, b=10),
+                        plot_bgcolor="white")
+    
+    return chart
+
+@anvil.server.callable
+def create_stat2():
+
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
+    df = pd.DataFrame(data)
+    today = datetime.now().date()
+    days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
+    end_date = today - timedelta(days=days_until_sunday)
+    start_date = end_date - timedelta(days=6)
+    filtered_df = df[(df['Date Created'] >= start_date) & (df['Date Created'] <= end_date)]
+    grouped_df = filtered_df.groupby('Date Created').agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
+    ).reset_index()
+    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
+    grouped_df.columns = ['Date Created', 'count']
+    sorted_df = grouped_df.sort_values(by='Date Created', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    chart = px.bar(sorted_df, y='count', x ='Date Created')
+    chart.update_traces(marker_color='rgb(11,180,87)', opacity=0.9) 
+    chart.update_layout(font=dict(family="Arial",color="black"),
+                        margin=dict(l=10, r=10, t=10, b=10),
+                        xaxis_title='', yaxis_title='',
+                        plot_bgcolor="white")
     
     return chart
