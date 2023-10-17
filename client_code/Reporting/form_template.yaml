@@ -29,7 +29,7 @@ components:
     layout_properties: {grid_position: 'AFDJCH,TYTKYH'}
   - type: ColumnPanel
     properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
+      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"YUSZEX":25,"YYDDFA":25}',
       spacing_below: small, background: ''}
     name: outlined_card_8
     layout_properties: {grid_position: 'EOBNLM,WXAABP'}
@@ -40,31 +40,43 @@ components:
         icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: label_1
-      layout_properties: {grid_position: 'EVBYSG,WKMMOA'}
+      layout_properties: {grid_position: 'BNUWCT,IFYYFP'}
+    - type: GridPanel
+      properties: {}
+      name: grid_panel_1
+      layout_properties: {grid_position: 'WGIQAX,EPZUUK'}
+      components:
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: New, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_6
+        layout_properties: {row: UYMWCY, width_xs: 1, col_xs: 0, width: 37.8594}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: Resolved, font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_7
+        layout_properties: {row: UYMWCY, width_xs: 1, col_xs: 3, width: 37.8594}
+      - type: Label
+        properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
+          visible: true, text: '% Resolved', font_size: null, font: '', spacing_above: small,
+          icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_8
+        layout_properties: {row: UYMWCY, width_xs: 2, col_xs: 6, width: 173.609}
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '200', visible: true,
         tooltip: '', interactive: true}
       name: plot_6
-      layout_properties: {grid_position: 'VKTOCK,GBJLHW'}
-  - type: ColumnPanel
-    properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
-      spacing_below: small, background: ''}
-    name: outlined_card_9
-    layout_properties: {grid_position: 'EOBNLM,FSKFFN'}
-    components:
-    - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Created Last Week, font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
-      name: label_6
-      layout_properties: {grid_position: 'WYWYVL,SAVTWL'}
+      layout_properties: {grid_position: 'WWHFKC,YUSZEX'}
     - type: Plot
       properties: {spacing_above: small, spacing_below: small, height: '200', visible: true,
         tooltip: '', interactive: true}
       name: plot_7
-      layout_properties: {grid_position: 'KVUBRJ,DGPJOR'}
+      layout_properties: {grid_position: 'WWHFKC,YYDDFA'}
   - type: ColumnPanel
     properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{}',
