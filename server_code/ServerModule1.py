@@ -993,5 +993,5 @@ def create_stat2():
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title='', yaxis_title='',
                         plot_bgcolor="white")
-    
+    chart.update_yaxes(showticklabels=False)
     return chart
