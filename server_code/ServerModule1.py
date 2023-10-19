@@ -55,6 +55,18 @@ def incoming_msg(**kwargs):
         if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
         #print(json)
           submit_low_rating(data)
+
+    if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
+       if 'delivered'==data['order_info']['status'] and compcode_enable == True:
+          submit_completion_codes(data) 
+       elif failcode_enable == True and 'failed'==data['order_info']['status']:
+          print("fail code testing")
+          submit_completion_codes(data) 
+    else:
+        pass 
+       ##     codes=data['order_info']['completion_codes']
+    ##     id_values = [str(code["code"]) for code in codes]
+    ##     id_string = ";".join(id_values)
         #codes=data['order_info']['completion_codes']
         #id_values = [str(code["code"]) for code in codes]
         #id_string = ";".join(id_values)
@@ -94,16 +106,7 @@ def incoming_msg(**kwargs):
       # watchlistUsers=[])
         #except:
            # print("falied")
-    if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
-      if 'delivered'==data['order_info']['status']:
-        if compcode_enable == True:
-    ##     codes=data['order_info']['completion_codes']
-    ##     id_values = [str(code["code"]) for code in codes]
-    ##     id_string = ";".join(id_values)
-          submit_completion_codes(data) 
-        elif failcode_enable == True and 'failed'==data['order_info']['status']:
-          print("fail code testing")
-          submit_completion_codes(data)  
+      
         #nv = data['new_values']['is_confirmed_by_customer']
        # rating = data['order_info']['rating']
        # codes=data['order_info']['completion_codes']
@@ -137,8 +140,7 @@ def incoming_msg(**kwargs):
       #  address=data['order_info']['deliver_address']['address'],
       #  watch_list=False,
       #  watchlistUsers=[])
-    else:
-        pass
+    
 
 @anvil.server.callable
 def submit_low_rating(data):
