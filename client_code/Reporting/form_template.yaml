@@ -32,7 +32,7 @@ components:
       wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{}',
       spacing_below: large, background: ''}
     name: outlined_card_9
-    layout_properties: {grid_position: 'EOKNQD,TMUWHU'}
+    layout_properties: {grid_position: 'EOKNQD,TMUWHU', full_width_row: false}
     components:
     - type: GridPanel
       properties: {spacing_above: none, spacing_below: none, background: '', foreground: '',
@@ -104,6 +104,11 @@ components:
           underline: false, icon: ''}
         name: label_13
         layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 9, width: 173.609}
+      - type: Spacer
+        properties: {visible: true, spacing_above: none, spacing_below: none, height: '5',
+          tooltip: ''}
+        name: spacer_2
+        layout_properties: {row: DKHURO, width_xs: 3, col_xs: 4, width: 173.609}
   - type: ColumnPanel
     properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"YUSZEX":25}',
