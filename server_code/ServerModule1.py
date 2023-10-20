@@ -818,6 +818,7 @@ def create_stat1():
 @anvil.server.callable
 def create_stat2():
     #bar chart last week vs this week
+    #https://plotly.com/python/time-series/
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     #df['Date Created'] = pd.to_datetime(df['Date Created'])
@@ -827,26 +828,34 @@ def create_stat2():
     start_date_last_week = end_date_last_week - timedelta(days=6)
     end_date_this_week = today
     start_date_this_week = end_date_this_week - timedelta(days=days_until_sunday + 6)
-    filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]  
+    filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]
+    filtered_df_last_week['Week'] = 'Last Week'
     filtered_df_this_week = df[(df['Date Created'] >= start_date_this_week) & (df['Date Created'] <= end_date_this_week)]
+    filtered_df_this_week['Week'] = 'This Week'  
     filtered_df_last_week.reset_index(drop=True, inplace=True)
     filtered_df_this_week.reset_index(drop=True, inplace=True)  
-    grouped_df_last_week = filtered_df_last_week.groupby('Date Created').agg(
+    concatenated_df = pd.concat([filtered_df_last_week, filtered_df_this_week])
+    grouped_df = concatenated_df.groupby(['Week', 'Date Created']).agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
-    grouped_df_last_week.columns = ['Date Created', 'count']
-    grouped_df_this_week = filtered_df_this_week.groupby('Date Created').agg(
-    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
-    ).reset_index()
-    grouped_df_this_week.columns = ['Date Created', 'count']
-    concatenated_df = pd.concat([grouped_df_last_week, grouped_df_this_week])
-    
-    chart = px.bar(concatenated_df, y='count', x ='Date Created',text ='count')
-    chart.update_traces(marker=dict(opacity=0.9),
-                        selector=dict(type='bar'),
-                        texttemplate='%{y}', textposition='outside') 
+    trace_this_week = go.Bar(
+    x=grouped_df[grouped_df['Week'] == 'This Week']['Date Created'],
+    y=grouped_df[grouped_df['Week'] == 'This Week']['Count'],
+    name='This Week'
+    )
+    trace_last_week = go.Bar(
+    x=grouped_df[grouped_df['Week'] == 'Last Week'],
+    y=grouped_df[grouped_df['Week'] == 'Last Week']['Count'],
+    name='Last Week'
+    )
+    chart = go.Figure(data=[trace_this_week, trace_last_week])
+    #chart.add_trace(go.Bar(x=grouped_df['count'], y=['Count'], name = 'Last Week', marker_color='rgb(135,135,158)'))
+    #chart = px.histogram(grouped_df, y='Count', x ='This Week', color='Week', barmode='group')
+    #chart.update_traces(marker=dict(opacity=0.9),
+    #                    selector=dict(type='bar'),
+    #                    texttemplate='%{y}') 
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        showlegend=False,
+                        showlegend=True,
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
