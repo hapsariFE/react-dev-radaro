@@ -819,10 +819,13 @@ def create_stat1():
 def create_stat2():
     #bar chart last week vs this week
     #https://plotly.com/python/time-series/
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     today = datetime.now().date()
-    df['Day'] = df['Date Created'].Dayofweek()
+    df['Date Created2'] = pd.to_datetime(df['Date Created'], utc=True)
+    df['Day'] = df['Date Created2'].dt.day_name()
+    custom_sort_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    df['Day'] = pd.Categorical(df['Day'], categories=custom_sort_order, ordered=True)
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
     end_date_last_week = today - timedelta(days=days_until_sunday)
     start_date_last_week = end_date_last_week - timedelta(days=6)
@@ -835,7 +838,9 @@ def create_stat2():
     filtered_df_last_week.reset_index(drop=True, inplace=True)
     filtered_df_this_week.reset_index(drop=True, inplace=True)  
     concatenated_df = pd.concat([filtered_df_last_week, filtered_df_this_week])
-    grouped_df = concatenated_df.groupby(['Week', 'Date Created']).agg(
+
+
+    grouped_df = concatenated_df.groupby(['Week', 'Day']).agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
     trace_this_week = go.Bar(
