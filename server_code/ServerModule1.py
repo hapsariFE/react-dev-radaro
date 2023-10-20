@@ -819,10 +819,10 @@ def create_stat1():
 def create_stat2():
     #bar chart last week vs this week
     #https://plotly.com/python/time-series/
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    #df['Date Created'] = pd.to_datetime(df['Date Created'])
     today = datetime.now().date()
+    df['Day'] = df['Date Created'].Dayofweek()
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
     end_date_last_week = today - timedelta(days=days_until_sunday)
     start_date_last_week = end_date_last_week - timedelta(days=6)
@@ -839,12 +839,12 @@ def create_stat2():
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
     trace_this_week = go.Bar(
-    x=grouped_df[grouped_df['Week'] == 'This Week']['Date Created'],
+    x=grouped_df[grouped_df['Week'] == 'This Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'This Week']['Count'],
     name='This Week'
     )
     trace_last_week = go.Bar(
-    x=grouped_df[grouped_df['Week'] == 'Last Week'],
+    x=grouped_df[grouped_df['Week'] == 'Last Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'Last Week']['Count'],
     name='Last Week'
     )
