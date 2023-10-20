@@ -45,7 +45,7 @@ class Reporting(ReportingTemplate):
     #create_chart4 = anvil.server.call('create_chart4') 
     #self.plot_4.figure = create_chart4
 
-    #tickets by creation date
+    #tickets by current status
     create_chart5 = anvil.server.call('create_chart5') 
     self.plot_5.figure = create_chart5
 

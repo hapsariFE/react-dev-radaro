@@ -137,9 +137,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Created Last Week, font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
+        visible: true, text: Created This Week v Last Week, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: true, underline: false, icon: ''}
       name: label_15
       layout_properties: {grid_position: 'ELZRWM,XZJEFI'}
     - type: Plot

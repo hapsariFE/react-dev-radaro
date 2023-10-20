@@ -663,8 +663,9 @@ def get_record(id):
 
 @anvil.server.callable
 def create_chart1():
-  #https://plotly.com/python/reference/layout/#layout-paper_bgcolor
-
+    #response by user
+    #https://plotly.com/python/reference/layout/#layout-paper_bgcolor
+    
     data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
     df1 = df.loc[df["User"] !='System' ]
@@ -688,7 +689,7 @@ def create_chart1():
 
 @anvil.server.callable
 def create_chart2():
-    
+    #tickets by escalation type
     data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"], "date_created": r["date_created"], "last_action_date": r["last_action_date"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
@@ -714,7 +715,7 @@ def create_chart2():
 
 @anvil.server.callable
 def create_chart3():
-
+    #tickets by creation date
     data = [{"Date Created": r["date_created"].date(), "Status": r["latest_status"]["name"], "id": r["id"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     grouped_df = df.groupby(['Date Created','Status']).agg(
@@ -738,8 +739,7 @@ def create_chart3():
 
 @anvil.server.callable
 def create_chart4():
-    # Assuming you have a DataFrame `count_df` containing the data
-    # that you want to plot in your animated bar chart.
+    #testing animation
     data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
     df = pd.DataFrame(data)
     count_df = df['User'].value_counts().reset_index()
@@ -766,7 +766,7 @@ def animate(i, b, x, ax):
 
 @anvil.server.callable
 def create_chart5():
-
+    #tickets by current status
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     grouped_df = df.groupby('Status').agg(
@@ -790,7 +790,7 @@ def create_chart5():
 
 @anvil.server.callable
 def create_stat1():
-
+    #pie chart last week
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
     today = datetime.now().date()
@@ -817,23 +817,36 @@ def create_stat1():
 
 @anvil.server.callable
 def create_stat2():
-
+    #bar chart last week vs this week
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
+    #df['Date Created'] = pd.to_datetime(df['Date Created'])
     today = datetime.now().date()
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
-    end_date = today - timedelta(days=days_until_sunday)
-    start_date = end_date - timedelta(days=6)
-    filtered_df = df[(df['Date Created'] >= start_date) & (df['Date Created'] <= end_date)]
-    grouped_df = filtered_df.groupby('Date Created').agg(
+    end_date_last_week = today - timedelta(days=days_until_sunday)
+    start_date_last_week = end_date_last_week - timedelta(days=6)
+    end_date_this_week = today
+    start_date_this_week = end_date_this_week - timedelta(days=days_until_sunday + 6)
+    filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]  
+    filtered_df_this_week = df[(df['Date Created'] >= start_date_this_week) & (df['Date Created'] <= end_date_this_week)]
+    filtered_df_last_week.reset_index(drop=True, inplace=True)
+    filtered_df_this_week.reset_index(drop=True, inplace=True)  
+    grouped_df_last_week = filtered_df_last_week.groupby('Date Created').agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
-    grouped_df.columns = ['Date Created', 'count']
-    sorted_df = grouped_df.sort_values(by='Date Created', ascending=True)
-    sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, y='count', x ='Date Created')
-    chart.update_traces(marker_color='rgb(11,180,87)', opacity=0.9) 
+    grouped_df_last_week.columns = ['Date Created', 'count']
+    grouped_df_this_week = filtered_df_this_week.groupby('Date Created').agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
+    ).reset_index()
+    grouped_df_this_week.columns = ['Date Created', 'count']
+    concatenated_df = pd.concat([grouped_df_last_week, grouped_df_this_week])
+    
+    chart = px.bar(concatenated_df, y='count', x ='Date Created',text ='count')
+    chart.update_traces(marker=dict(opacity=0.9),
+                        selector=dict(type='bar'),
+                        texttemplate='%{y}', textposition='outside') 
     chart.update_layout(font=dict(family="Arial",color="black"),
+                        showlegend=False,
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
