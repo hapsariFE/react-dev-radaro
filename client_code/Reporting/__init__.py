@@ -21,12 +21,13 @@ class Reporting(ReportingTemplate):
 
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    today = datetime.now().astimezone().date()- timedelta(days=5)
     #pie chart last week
-    #create_stat1 = anvil.server.call('create_stat1') 
-    #self.plot_6.figure = create_stat1
+    create_stat1 = anvil.server.call('create_stat1',today) 
+    self.plot_6.figure = create_stat1
 
     #bar chart last week vs this week
-    create_stat2 = anvil.server.call('create_stat2') 
+    create_stat2 = anvil.server.call('create_stat2',today) 
     self.plot_7.figure = create_stat2
 
     #response by user

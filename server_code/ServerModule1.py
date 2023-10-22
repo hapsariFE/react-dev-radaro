@@ -789,11 +789,11 @@ def create_chart5():
     return chart
 
 @anvil.server.callable
-def create_stat1():
+def create_stat1(today):
     #pie chart last week
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    today = datetime.now().date()
+    today = today
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
     end_date = today - timedelta(days=days_until_sunday)
     start_date = end_date - timedelta(days=6)
@@ -816,12 +816,12 @@ def create_stat1():
     return chart
 
 @anvil.server.callable
-def create_stat2():
+def create_stat2(today):
     #bar chart last week vs this week
     #https://plotly.com/python/time-series/
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
     df = pd.DataFrame(data)
-    today = datetime.now().date()
+    today = today
     df['Date Created2'] = pd.to_datetime(df['Date Created'], utc=True)
     df['Day'] = df['Date Created2'].dt.day_name()
     custom_sort_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
@@ -829,8 +829,8 @@ def create_stat2():
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
     end_date_last_week = today - timedelta(days=days_until_sunday)
     start_date_last_week = end_date_last_week - timedelta(days=6)
-    end_date_this_week = today
-    start_date_this_week = end_date_this_week - timedelta(days=days_until_sunday + 6)
+    end_date_this_week = end_date_last_week + timedelta(days=7)
+    start_date_this_week = start_date_last_week + timedelta(days=7)
     filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]
     filtered_df_last_week['Week'] = 'Last Week'
     filtered_df_this_week = df[(df['Date Created'] >= start_date_this_week) & (df['Date Created'] <= end_date_this_week)]
@@ -838,20 +838,18 @@ def create_stat2():
     filtered_df_last_week.reset_index(drop=True, inplace=True)
     filtered_df_this_week.reset_index(drop=True, inplace=True)  
     concatenated_df = pd.concat([filtered_df_last_week, filtered_df_this_week])
-
-
     grouped_df = concatenated_df.groupby(['Week', 'Day']).agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
     ).reset_index()
     trace_this_week = go.Bar(
     x=grouped_df[grouped_df['Week'] == 'This Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'This Week']['Count'],
-    name='This Week'
+    name='This Week', marker_color='rgb(11,180,87)'
     )
     trace_last_week = go.Bar(
     x=grouped_df[grouped_df['Week'] == 'Last Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'Last Week']['Count'],
-    name='Last Week'
+    name='Last Week', marker_color='rgb(161,52,60)'
     )
     chart = go.Figure(data=[trace_this_week, trace_last_week])
     #chart.add_trace(go.Bar(x=grouped_df['count'], y=['Count'], name = 'Last Week', marker_color='rgb(135,135,158)'))
@@ -860,9 +858,10 @@ def create_stat2():
     #                    selector=dict(type='bar'),
     #                    texttemplate='%{y}') 
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        showlegend=True,
+                        showlegend=True, 
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
     chart.update_yaxes(showticklabels=False)
+    chart.update_xaxes(showticklabels=True)
     return chart
