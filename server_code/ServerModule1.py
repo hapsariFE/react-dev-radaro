@@ -816,7 +816,10 @@ def create_chart5():
 @anvil.server.callable
 def create_stat1(today):
     #pie chart last week
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
+    currentUser=anvil.users.get_user()
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     today = today
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
@@ -848,7 +851,10 @@ def create_stat1(today):
 def create_stat2(today):
     #bar chart last week vs this week
     #https://plotly.com/python/time-series/
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search()]
+    currentUser=anvil.users.get_user()
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     today = today
     df['Date Created2'] = pd.to_datetime(df['Date Created'], utc=True)
