@@ -137,7 +137,6 @@ class Homepage(HomepageTemplate):
     """This method is called when the button is clicked"""
     anvil.users.logout()
     self.repeating_panel_1.items = None
-    self.refresh_data_bindings()
     open_form('Homepage')
 
     
