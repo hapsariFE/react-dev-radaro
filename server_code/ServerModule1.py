@@ -682,7 +682,11 @@ def create_chart1():
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
                         )
-    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9, textangle=0)
+    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9, textangle=0,
+                        hovertemplate=
+                        "<b>%{y}</b><br>" +
+                        "Responses : %{x}<br>" +
+                        "<extra></extra>")
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
                       showticklabels=True,ticks="outside",tickson="boundaries",
@@ -702,13 +706,17 @@ def create_chart2():
     sorted_df.reset_index(inplace=True)    
     chart = go.Figure()
     # Add a bar chart for the count
-    chart.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', name='Count',marker_color='rgb(18,35,158)'))   
+    chart.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', 
+                           name='Count',marker_color='rgb(18,35,158)'))
     # Add a line chart for the average delta
-    chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], mode='lines+markers', name='Average Resolution time', line=dict(color='rgb(161,52,60)')))    
+    chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], 
+                               mode='lines+markers', name='Average Resolution time', 
+                               line=dict(color='rgb(161,52,60)')
+                               ))
     # Update the layout
     chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=10, b=20),
-                        plot_bgcolor="white",
+                        plot_bgcolor="white",hovermode='y unified',
                         xaxis_title=None, yaxis_title=None
                         )   
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
@@ -735,7 +743,7 @@ def create_chart3():
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
     chart.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=10, b=20),
-                        plot_bgcolor="white",
+                        plot_bgcolor="white",hovermode='x',
                         xaxis_title=None, yaxis_title=None
                         )         
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
@@ -743,6 +751,10 @@ def create_chart3():
                       minor=dict(ticklen=3, tickcolor="black", showgrid=False),
                       ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_traces(hovertemplate=
+                        "<b>%{color}</b><br>" +
+                        "Tickets : %{y}<br>" +
+                        "<extra></extra>")               
     return chart
 
 @anvil.server.callable
@@ -791,7 +803,11 @@ def create_chart5():
                         showlegend=False,
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
-                        ) 
+                        )
+    chart.update_traces(hovertemplate=
+                        "<b>%{y}</b><br>" +
+                        "Tickets : %{x}<br>" +
+                        "<extra></extra>")
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
                       showticklabels=True,ticks="outside",tickson="boundaries",
@@ -817,7 +833,11 @@ def create_stat1(today):
     chart = px.pie(sorted_df,values ='count', names ='Status', hole = 0.55,color='Status',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    chart.update_traces(textinfo='label+value', insidetextorientation='horizontal', pull=0.00,hoverinfo='label+value+percent')
+    chart.update_traces(textinfo='label+value', insidetextorientation='horizontal', pull=0.00,hoverinfo='label+value+percent',
+                        hovertemplate=
+                        "<b>%{label}</b><br>" +
+                        "Tickets : %{value}<br>" +
+                        "<extra></extra>")
     chart.update_layout(font=dict(family="Arial",color="black"),
                         showlegend=False,
                         margin=dict(l=10, r=10, t=10, b=10),
@@ -863,11 +883,15 @@ def create_stat2(today):
     )
     chart = go.Figure(data=[trace_this_week, trace_last_week])
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        showlegend=True, 
+                        showlegend=True, hovermode='x',
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
     chart.update_yaxes(showticklabels=False)
+    #chart.update_traces(hovertemplate=
+    #                    "%{Week}<br>" +
+    #                    "Tickets : %{x}<br>" +
+    #                    "<extra></extra>")
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black',tickcolor='black',
                        showticklabels=True,ticks="outside",tickson="boundaries",
                        ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
