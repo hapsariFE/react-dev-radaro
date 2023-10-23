@@ -51,8 +51,10 @@ class Homepage(HomepageTemplate):
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
     if Data.currentUser['is_super_user'] == True:
       self.cms.visible = True
+      self.reporting.visible = True
     else:
       self.cms.visible = False
+      self.reporting.visible = False
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
 
