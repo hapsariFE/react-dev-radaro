@@ -43,9 +43,6 @@ class Homepage(HomepageTemplate):
     watch = False
     self.subbrand = ""
     self.etype = ""
-
-    if not anvil.users.get_user():
-      open_form('LoginForm')
     
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
@@ -140,7 +137,8 @@ class Homepage(HomepageTemplate):
     """This method is called when the button is clicked"""
     anvil.users.logout()
     self.repeating_panel_1.items = None
-    open_form('LoginForm')
+    self.refresh_data_bindings()
+    open_form('Homepage')
 
     
   def filter_change(self, **event_args):
