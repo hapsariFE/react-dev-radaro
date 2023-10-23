@@ -662,11 +662,14 @@ def get_record(id):
     return app_tables.webhook.get(id=q.any_of(id))
 
 @anvil.server.callable
-def create_chart1():
+def create_chart1(currentUser):
     #response by user
     #https://plotly.com/python/reference/layout/#layout-paper_bgcolor
-    
-    data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    escalations = app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))
+    print(escalations)
+    data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search(escalation_id=q.any_of(*escalations))]
     df = pd.DataFrame(data)
     df1 = df.loc[df["User"] !='System' ]
     #https://sparkbyexamples.com/pandas/pandas-groupby-multiple-columns/
@@ -694,9 +697,11 @@ def create_chart1():
     return chart
 
 @anvil.server.callable
-def create_chart2():
+def create_chart2(currentUser):
     #tickets by escalation type
-    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"], "date_created": r["date_created"], "last_action_date": r["last_action_date"]} for r in app_tables.webhook.search()]
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"], "date_created": r["date_created"], "last_action_date": r["last_action_date"]} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
     df['delta'] = (df['last_action_date'] - df['date_created']) / pd.to_timedelta(1, unit='D')
@@ -729,9 +734,11 @@ def create_chart2():
     return chart             
 
 @anvil.server.callable
-def create_chart3():
+def create_chart3(currentUser):
     #tickets by creation date
-    data = [{"Date Created": r["date_created"].date(), "Status": r["latest_status"]["name"], "id": r["id"]} for r in app_tables.webhook.search()]
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Date Created": r["date_created"].date(), "Status": r["latest_status"]["name"], "id": r["id"]} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     grouped_df = df.groupby(['Date Created','Status']).agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
@@ -753,13 +760,15 @@ def create_chart3():
                       minor=dict(ticklen=3, tickcolor="black", showgrid=False),
                       ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_traces(hoverinfo = 'y',hovertemplate=None)             
+              
     return chart
 
 @anvil.server.callable
-def create_chart4():
+def create_chart4(currentUser):
     #testing animation
-    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search()]
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"User": r["user"]["name"], "status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     count_df = df['User'].value_counts().reset_index()
     count_df.columns = ['User', 'count']
@@ -784,9 +793,11 @@ def animate(i, b, x, ax):
 # Display the animated chart (you may need to save it or display it in a Jupyter Notebook)
 
 @anvil.server.callable
-def create_chart5():
+def create_chart5(currentUser):
     #tickets by current status
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search()]
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     grouped_df = df.groupby('Status').agg(
     Count=pd.NamedAgg(column='Date Created', aggfunc='count')
@@ -814,9 +825,8 @@ def create_chart5():
     return chart
 
 @anvil.server.callable
-def create_stat1(today):
+def create_stat1(today,currentUser):
     #pie chart last week
-    currentUser=anvil.users.get_user()
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
@@ -848,10 +858,9 @@ def create_stat1(today):
     return chart
 
 @anvil.server.callable
-def create_stat2(today):
+def create_stat2(today,currentUser):
     #bar chart last week vs this week
     #https://plotly.com/python/time-series/
-    currentUser=anvil.users.get_user()
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
     data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
