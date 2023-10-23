@@ -702,6 +702,7 @@ def create_chart2():
     df['delta'] = (df['last_action_date'] - df['date_created']) / pd.to_timedelta(1, unit='D')
     grouped_df = df.groupby('Escalation Type').agg({'Escalation Type': 'count', 'delta': 'mean'})
     grouped_df.columns = ['count', 'average delta']
+    grouped_df['average delta'] = grouped_df['average delta'].round(1)
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)    
     chart = go.Figure()
@@ -719,7 +720,7 @@ def create_chart2():
                         plot_bgcolor="white",hovermode='y unified',
                         xaxis_title=None, yaxis_title=None
                         )
-    chart.update_traces(hoverinfo = 'y+x', hovertemplate =None)
+    chart.update_traces(hoverinfo = 'y+x')
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
                       rangemode="tozero")
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
@@ -752,10 +753,7 @@ def create_chart3():
                       minor=dict(ticklen=3, tickcolor="black", showgrid=False),
                       ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_traces(hovertemplate=
-                        "<b>%{color}</b><br>" +
-                        "Tickets : %{y}<br>" +
-                        "<extra></extra>")               
+    chart.update_traces(hoverinfo = 'y',hovertemplate=None)             
     return chart
 
 @anvil.server.callable
