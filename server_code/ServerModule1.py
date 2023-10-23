@@ -682,9 +682,11 @@ def create_chart1():
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
                         )
-    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9)
+    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9, textangle=0)
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     return chart
 
 @anvil.server.callable
@@ -709,8 +711,11 @@ def create_chart2():
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
                         )   
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
+                      rangemode="tozero")
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",rangemode="tozero",
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     return chart             
 
 @anvil.server.callable
@@ -733,7 +738,10 @@ def create_chart3():
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
                         )         
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",
+                      minor=dict(ticklen=3, tickcolor="black", showgrid=False),
+                      ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
     return chart
 
@@ -785,7 +793,9 @@ def create_chart5():
                         xaxis_title=None, yaxis_title=None
                         ) 
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
+    chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     return chart
 
 @anvil.server.callable
@@ -823,8 +833,8 @@ def create_stat2(today):
     df = pd.DataFrame(data)
     today = today
     df['Date Created2'] = pd.to_datetime(df['Date Created'], utc=True)
-    df['Day'] = df['Date Created2'].dt.day_name()
-    custom_sort_order = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+    df['Day'] = df['Date Created2'].dt.day_name().str[:3]
+    custom_sort_order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
     df['Day'] = pd.Categorical(df['Day'], categories=custom_sort_order, ordered=True)
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
     end_date_last_week = today - timedelta(days=days_until_sunday)
@@ -844,24 +854,21 @@ def create_stat2(today):
     trace_this_week = go.Bar(
     x=grouped_df[grouped_df['Week'] == 'This Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'This Week']['Count'],
-    name='This Week', marker_color='rgb(11,180,87)'
+    name='This Week', marker_color='rgb(11,180,87)',texttemplate='%{y}'
     )
     trace_last_week = go.Bar(
     x=grouped_df[grouped_df['Week'] == 'Last Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'Last Week']['Count'],
-    name='Last Week', marker_color='rgb(161,52,60)'
+    name='Last Week', marker_color='rgb(161,52,60)',texttemplate='%{y}'
     )
     chart = go.Figure(data=[trace_this_week, trace_last_week])
-    #chart.add_trace(go.Bar(x=grouped_df['count'], y=['Count'], name = 'Last Week', marker_color='rgb(135,135,158)'))
-    #chart = px.histogram(grouped_df, y='Count', x ='This Week', color='Week', barmode='group')
-    #chart.update_traces(marker=dict(opacity=0.9),
-    #                    selector=dict(type='bar'),
-    #                    texttemplate='%{y}') 
     chart.update_layout(font=dict(family="Arial",color="black"),
                         showlegend=True, 
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
     chart.update_yaxes(showticklabels=False)
-    chart.update_xaxes(showticklabels=True)
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='black',tickcolor='black',
+                       showticklabels=True,ticks="outside",tickson="boundaries",
+                       ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     return chart
