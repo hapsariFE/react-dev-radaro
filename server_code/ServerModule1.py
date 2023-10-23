@@ -194,7 +194,7 @@ def submit_low_rating(data):
   jr_dict = dict(jobrow)
   assignname = None
   esc_status = app_tables.escalation_status.get(name= "New")
-  description = "Created from webhook"
+  description = "Created from Radaro"
   date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
   submitter = app_tables.users.get(email='system')
   add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)
@@ -244,7 +244,7 @@ def submit_completion_codes(data):
   jr_dict = dict(jobrow)
   assignname = None
   esc_status = app_tables.escalation_status.get(name= "New")
-  description = "Created from webhook"
+  description = "Created from Radaro"
   date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
   submitter = app_tables.users.get(email='system')
   add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)
