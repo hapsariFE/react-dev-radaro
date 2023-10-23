@@ -718,7 +718,8 @@ def create_chart2():
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",hovermode='y unified',
                         xaxis_title=None, yaxis_title=None
-                        )   
+                        )
+    chart.update_traces(hoverinfo = 'y+x', hovertemplate =None)
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
                       rangemode="tozero")
     chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
@@ -883,7 +884,7 @@ def create_stat2(today):
     )
     chart = go.Figure(data=[trace_this_week, trace_last_week])
     chart.update_layout(font=dict(family="Arial",color="black"),
-                        showlegend=True, hovermode='x',
+                        showlegend=True, hovermode='closest',
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
                         plot_bgcolor="white")
