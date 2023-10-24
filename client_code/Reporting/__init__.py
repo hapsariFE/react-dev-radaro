@@ -22,7 +22,23 @@ class Reporting(ReportingTemplate):
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     today = datetime.now().astimezone().date()- timedelta(days=5)
-    currentUser= Data.currentUser
+    currentUser= anvil.users.login_with_form()
+    
+    #New tickets last 7 days with delta and % Resolved
+    last_week,prior_week,delta,last_week_resolved = anvil.server.call('new_tickets',today,currentUser) 
+    delta = +delta if delta > 0 else -delta
+    self.label_9.text = last_week   
+    self.label_16.text = "%s vs prior week" % (delta)
+    self.label_16.icon = "fa:arrow-up" if delta > 0 else "fa:arrow-down"
+    self.label_11.text = last_week_resolved
+
+    
+    #Resolved tickets last 7 days with delta
+    
+    
+    
+    
+    
     #pie chart last week
     create_stat1 = anvil.server.call('create_stat1',today,currentUser) 
     self.plot_6.figure = create_stat1
@@ -32,24 +48,24 @@ class Reporting(ReportingTemplate):
     self.plot_7.figure = create_stat2
 
     #response by user
-    create_chart1 = anvil.server.call('create_chart1',currentUser)
-    self.plot_1.figure = create_chart1
+    #create_chart1 = anvil.server.call('create_chart1',currentUser)
+    #self.plot_1.figure = create_chart1
 
     #tickets by escalation type
-    create_chart2 = anvil.server.call('create_chart2',currentUser)
-    self.plot_2.figure = create_chart2
+    #create_chart2 = anvil.server.call('create_chart2',currentUser)
+    #self.plot_2.figure = create_chart2
 
     #tickets by creation date
-    create_chart3 = anvil.server.call('create_chart3',currentUser)
-    self.plot_3.figure = create_chart3
+    #create_chart3 = anvil.server.call('create_chart3',currentUser)
+    #self.plot_3.figure = create_chart3
     
     #        
     #create_chart4 = anvil.server.call('create_chart4',currentUser)
     #self.plot_4.figure = create_chart4
 
     #tickets by current status
-    create_chart5 = anvil.server.call('create_chart5',currentUser)
-    self.plot_5.figure = create_chart5
+    #create_chart5 = anvil.server.call('create_chart5',currentUser)
+    #self.plot_5.figure = create_chart5
 
     
 

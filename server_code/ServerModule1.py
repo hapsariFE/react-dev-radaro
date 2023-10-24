@@ -910,3 +910,29 @@ def create_stat2(today,currentUser):
                        showticklabels=True,ticks="outside",tickson="boundaries",
                        ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
     return chart
+
+
+@anvil.server.callable
+def new_tickets(today,currentUser):
+    #New tickets last 7 days with delta and % Resolved
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+    df = pd.DataFrame(data)
+    today = today
+    Resolved = 'Resolved'
+    days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
+    end_date_last_week = today - timedelta(days=days_until_sunday)
+    start_date_last_week = end_date_last_week - timedelta(days=6)
+    end_date_prior_week = end_date_last_week - timedelta(days=7)
+    start_date_prior_week = start_date_last_week - timedelta(days=7)
+    filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]
+    last_week = len(filtered_df_last_week)
+    filtered_df_prior_week = df[(df['Date Created'] >= start_date_prior_week) & (df['Date Created'] <= end_date_prior_week)]
+    prior_week = len(filtered_df_prior_week)  
+    delta = last_week - prior_week
+    last_week_df_resolved = filtered_df_prior_week[filtered_df_prior_week['Status'] == 'Resolved']    
+    
+    last_week_resolved = len(last_week_df_resolved)
+    print(last_week_resolved)  
+    return last_week, prior_week,delta,last_week_resolved

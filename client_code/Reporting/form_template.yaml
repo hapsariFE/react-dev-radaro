@@ -51,38 +51,38 @@ components:
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: New, font_size: null, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_6
         layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 0, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: Resolved, font_size: null, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_7
-        layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 3, width: 105.734}
+        layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 3, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '% Resolved', font_size: null, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_8
-        layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 6, width: 105.734}
+        layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 6, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: SLA met, font_size: null, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_12
         layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 9, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: '80', font_size: 40, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-          underline: false, icon: ''}
+          visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: right,
+          spacing_below: none, italic: false, background: '', bold: true, underline: false,
+          icon: ''}
         name: label_9
-        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 0, width: 169.359}
+        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 0, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '100', font_size: 40, font: '', spacing_above: none,
@@ -104,6 +104,13 @@ components:
           underline: false, icon: ''}
         name: label_13
         layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 9, width: 173.609}
+      - type: Label
+        properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: none,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_16
+        layout_properties: {row: LRCNZQ, width_xs: 3, col_xs: 0, width: 173.609}
       - type: Spacer
         properties: {visible: true, spacing_above: none, spacing_below: none, height: '5',
           tooltip: ''}
