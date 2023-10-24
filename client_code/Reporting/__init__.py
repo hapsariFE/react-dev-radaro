@@ -40,7 +40,7 @@ class Reporting(ReportingTemplate):
     self.label_10.text = resolved
     self.label_19.text = "%s vs prior week" % (delta3)
     if delta3 > 0: self.label_19.icon = "fa:caret-up"
-    elif delta3 == 0 : self.label_19.icon.visible = False
+    #elif delta3 == 0 : self.label_19.icon.visible = False
     else: self.label_19.icon = "fa:caret-down"
   
     start_date = start_date_last_week.strftime("%b %d %Y")
