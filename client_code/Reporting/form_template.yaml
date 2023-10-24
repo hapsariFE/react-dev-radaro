@@ -41,13 +41,20 @@ components:
       layout_properties: {grid_position: 'KPVYIG,QZBCMC'}
       components:
       - type: Label
-        properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: Highlights, font_size: null, font: '', spacing_above: none,
+        properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+          visible: true, text: Highlights Last Week, font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_14
         layout_properties: {row: FLHQLM, width_xs: 12, col_xs: 0, grid_position: 'GWTAOX,SPUNQP',
-          width: 767.469}
+          width: 784.469}
+      - type: Label
+        properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: 12, font: '', spacing_above: none, icon_align: left,
+          spacing_below: none, italic: true, background: '', bold: false, underline: false,
+          icon: ''}
+        name: label_20
+        layout_properties: {row: PPSETO, width_xs: 12, col_xs: 0, width: 784.469}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: New, font_size: null, font: '', spacing_above: none,
@@ -57,25 +64,25 @@ components:
         layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 0, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: Resolved, font_size: null, font: '', spacing_above: none,
+          visible: true, text: '% Resolved', font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_7
         layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 3, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: '% Resolved', font_size: null, font: '', spacing_above: none,
+          visible: true, text: Resolved, font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_8
         layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 6, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: SLA met, font_size: null, font: '', spacing_above: none,
+          visible: true, text: Ave Resolution, font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_12
-        layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 9, width: 173.609}
+        layout_properties: {row: UYMWCY, width_xs: 3, col_xs: 9, width: 160}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: right,
@@ -85,25 +92,25 @@ components:
         layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 0, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: '100', font_size: 40, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-          underline: false, icon: ''}
-        name: label_10
-        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 3, width: 169.359}
+          visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
+          spacing_below: none, italic: false, background: '', bold: true, underline: false,
+          icon: ''}
+        name: label_11
+        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 3, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
           spacing_below: none, italic: false, background: '', bold: true, underline: false,
           icon: ''}
-        name: label_11
+        name: label_10
         layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 6, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: 75%, font_size: 40, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-          underline: false, icon: ''}
+          visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
+          spacing_below: none, italic: false, background: '', bold: true, underline: false,
+          icon: ''}
         name: label_13
-        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 9, width: 173.609}
+        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 9, width: 160}
       - type: Label
         properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: null, font: '', spacing_above: none,
@@ -122,6 +129,20 @@ components:
           icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
           underline: false, icon: ''}
         name: label_17
+        layout_properties: {row: LRCNZQ, width_xs: 3, col_xs: 3, width: 173.609}
+      - type: Label
+        properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: none,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_19
+        layout_properties: {row: LRCNZQ, width_xs: 3, col_xs: 6, width: 173.609}
+      - type: Label
+        properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: none,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_18
         layout_properties: {row: LRCNZQ, width_xs: 3, col_xs: 6, width: 173.609}
   - type: ColumnPanel
     properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,

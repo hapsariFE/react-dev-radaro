@@ -662,7 +662,7 @@ def get_record(id):
     return app_tables.webhook.get(id=q.any_of(id))
 
 @anvil.server.callable
-def create_chart1(currentUser):
+def chart_user(currentUser):
     #response by user
     #https://plotly.com/python/reference/layout/#layout-paper_bgcolor
     related_rows = currentUser['user_merchant_link']
@@ -679,89 +679,22 @@ def create_chart1(currentUser):
     grouped_df.columns = ['User', 'count']
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
-    chart.update_layout(font=dict(family="Arial",color="black"),
+    ch_user = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
+    ch_user.update_layout(font=dict(family="Arial",color="black"),
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
                         )
-    chart.update_traces(marker_color='rgb(18,35,158)', opacity=0.9, textangle=0,
+    ch_user.update_traces(marker_color='rgb(18,35,158)', opacity=0.9, textangle=0,
                         hovertemplate=
                         "<b>%{y}</b><br>" +
                         "Responses : %{x}<br>" +
                         "<extra></extra>")
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
+    ch_user.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    ch_user.update_yaxes(showline=True, linewidth=1, linecolor='black',
                       showticklabels=True,ticks="outside",tickson="boundaries",
                       ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
-    return chart
-
-@anvil.server.callable
-def create_chart2(currentUser):
-    #tickets by escalation type
-    related_rows = currentUser['user_merchant_link']
-    values = [row for row in related_rows]
-    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "id": r["id"], "date_created": r["date_created"], "last_action_date": r["last_action_date"]} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
-    df = pd.DataFrame(data)
-    df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
-    df['delta'] = (df['last_action_date'] - df['date_created']) / pd.to_timedelta(1, unit='D')
-    grouped_df = df.groupby('Escalation Type').agg({'Escalation Type': 'count', 'delta': 'mean'})
-    grouped_df.columns = ['count', 'average delta']
-    grouped_df['average delta'] = grouped_df['average delta'].round(1)
-    sorted_df = grouped_df.sort_values(by='count', ascending=True)
-    sorted_df.reset_index(inplace=True)    
-    chart = go.Figure()
-    # Add a bar chart for the count
-    chart.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', 
-                           name='Count',marker_color='rgb(18,35,158)'))
-    # Add a line chart for the average delta
-    chart.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], 
-                               mode='lines+markers', name='Average Resolution time', 
-                               line=dict(color='rgb(161,52,60)')
-                               ))
-    # Update the layout
-    chart.update_layout(font=dict(family="Arial",color="black"),
-                        margin=dict(l=20, r=20, t=10, b=20),
-                        plot_bgcolor="white",hovermode='y unified',
-                        xaxis_title=None, yaxis_title=None
-                        )
-    chart.update_traces(hoverinfo = 'y+x')
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
-                      rangemode="tozero")
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
-                      showticklabels=True,ticks="outside",tickson="boundaries",rangemode="tozero",
-                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
-    return chart             
-
-@anvil.server.callable
-def create_chart3(currentUser):
-    #tickets by creation date
-    related_rows = currentUser['user_merchant_link']
-    values = [row for row in related_rows]
-    data = [{"Date Created": r["date_created"].date(), "Status": r["latest_status"]["name"], "id": r["id"]} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
-    df = pd.DataFrame(data)
-    grouped_df = df.groupby(['Date Created','Status']).agg(
-    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
-    ).reset_index()
-    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
-    grouped_df.columns = ['Date Created', 'Status', 'count']
-    sorted_df = grouped_df.sort_values(by='Status', ascending=True)
-    sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',
-                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
-                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    chart.update_layout(font=dict(family="Arial",color="black"),
-                        margin=dict(l=20, r=20, t=10, b=20),
-                        plot_bgcolor="white",hovermode='x',
-                        xaxis_title=None, yaxis_title=None
-                        )         
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black',
-                      showticklabels=True,ticks="outside",tickson="boundaries",
-                      minor=dict(ticklen=3, tickcolor="black", showgrid=False),
-                      ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black')
-              
-    return chart
+    return ch_user
 
 @anvil.server.callable
 def create_chart4(currentUser):
@@ -792,44 +725,52 @@ def animate(i, b, x, ax):
 
 # Display the animated chart (you may need to save it or display it in a Jupyter Notebook)
 
-@anvil.server.callable
-def create_chart5(currentUser):
-    #tickets by current status
-    related_rows = currentUser['user_merchant_link']
-    values = [row for row in related_rows]
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"]} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
-    df = pd.DataFrame(data)
-    grouped_df = df.groupby('Status').agg(
-    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
-    ).reset_index()
-    grouped_df.columns = ['Status', 'count']
-    sorted_df = grouped_df.sort_values(by='count', ascending=True)
-    sorted_df.reset_index(inplace=True)
-    chart = px.bar(sorted_df, x="count", y="Status", orientation='h', color='Status', text ='count',
-                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
-                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    chart.update_layout(font=dict(family="Arial",color="black"),
-                        margin=dict(l=20, r=20, t=10, b=20),
-                        showlegend=False,
-                        plot_bgcolor="white",
-                        xaxis_title=None, yaxis_title=None
-                        )
-    chart.update_traces(hovertemplate=
-                        "<b>%{y}</b><br>" +
-                        "Tickets : %{x}<br>" +
-                        "<extra></extra>")
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    chart.update_yaxes(showline=True, linewidth=1, linecolor='black',
-                      showticklabels=True,ticks="outside",tickson="boundaries",
-                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
-    return chart
 
 @anvil.server.callable
-def create_stat1(today,currentUser):
-    #pie chart last week
+def highlights(today,currentUser):
+    #New tickets last 7 days with delta and % Resolved
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date(),"last_action_date": r["last_action_date"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+    df = pd.DataFrame(data)
+    today = today
+    Resolved = 'Resolved'
+    days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
+    end_date_last_week = today - timedelta(days=days_until_sunday)
+    start_date_last_week = end_date_last_week - timedelta(days=6)
+    end_date_prior_week = end_date_last_week - timedelta(days=7)
+    start_date_prior_week = start_date_last_week - timedelta(days=7)
+    filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]
+    last_week = len(filtered_df_last_week)
+    filtered_df_prior_week = df[(df['Date Created'] >= start_date_prior_week) & (df['Date Created'] <= end_date_prior_week)]
+    prior_week = len(filtered_df_prior_week)  
+    delta = last_week - prior_week
+  
+    last_week_df_resolved = filtered_df_last_week[filtered_df_last_week['Status'] == 'Resolved']
+    last_week_resolved = len(last_week_df_resolved)
+    last_week_per = round(last_week_resolved / last_week *100 ,1)
+    prior_week_df_resolved = filtered_df_prior_week[filtered_df_prior_week['Status'] == 'Resolved']
+    prior_week_resolved = len(prior_week_df_resolved)
+    prior_week_per = round(prior_week_resolved / prior_week *100 ,1)
+    delta2 = round(last_week_per - prior_week_per,1)
+
+    resolved_df_last_week = df[(df['last_action_date'] >= start_date_last_week) & (df['last_action_date'] <= end_date_last_week) & (df['Status'] == 'Resolved')]
+    resolved = len(resolved_df_last_week)
+    resolved_df_prior_week = df[(df['last_action_date'] >= start_date_prior_week) & (df['last_action_date'] <= end_date_prior_week) & (df['Status'] == 'Resolved')]
+    prior_resolved = len(resolved_df_prior_week)  
+    delta3 = resolved - prior_resolved
+  
+    return last_week, delta, last_week_per, delta2, resolved, delta3, start_date_last_week, end_date_last_week
+
+
+@anvil.server.callable
+def all_charts(today,currentUser):
+    #pie chart last week and bar chart last week vs this week
+    related_rows = currentUser['user_merchant_link']
+    values = [row for row in related_rows]
+    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "last_action_date": r["last_action_date"],
+             "Status": r["latest_status"]["name"], "Date Created": r["date_created"].date(),"Datetime Created": r["date_created"],
+            } for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     today = today
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
@@ -842,30 +783,19 @@ def create_stat1(today,currentUser):
     grouped_df.columns = ['Status', 'count']
     sorted_df = grouped_df.sort_values(by='Status', ascending=True)
     sorted_df.reset_index(inplace=True)
-    chart = px.pie(sorted_df,values ='count', names ='Status', hole = 0.55,color='Status',
+    pie = px.pie(sorted_df,values ='count', names ='Status', hole = 0.55,color='Status',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    chart.update_traces(textinfo='label+value', insidetextorientation='horizontal', pull=0.00,hoverinfo='label+value+percent',
+    pie.update_traces(textinfo='label+value', insidetextorientation='horizontal', pull=0.00,hoverinfo='label+value+percent',
                         hovertemplate=
                         "<b>%{label}</b><br>" +
                         "Tickets : %{value}<br>" +
                         "<extra></extra>")
-    chart.update_layout(font=dict(family="Arial",color="black"),
+    pie.update_layout(font=dict(family="Arial",color="black"),
                         showlegend=False,
                         margin=dict(l=10, r=10, t=10, b=10),
                         plot_bgcolor="white")
-    
-    return chart
-
-@anvil.server.callable
-def create_stat2(today,currentUser):
     #bar chart last week vs this week
-    #https://plotly.com/python/time-series/
-    related_rows = currentUser['user_merchant_link']
-    values = [row for row in related_rows]
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
-    df = pd.DataFrame(data)
-    today = today
     df['Date Created2'] = pd.to_datetime(df['Date Created'], utc=True)
     df['Day'] = df['Date Created2'].dt.day_name().str[:3]
     custom_sort_order = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
@@ -909,35 +839,82 @@ def create_stat2(today,currentUser):
     chart.update_xaxes(showline=True, linewidth=1, linecolor='black',tickcolor='black',
                        showticklabels=True,ticks="outside",tickson="boundaries",
                        ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
-    return chart
 
+    #tickets by current status
+    grouped_df = df.groupby('Status').agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
+    ).reset_index()
+    grouped_df.columns = ['Status', 'count']
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    ch_status = px.bar(sorted_df, x="count", y="Status", orientation='h', color='Status', text ='count',
+                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
+    ch_status.update_layout(font=dict(family="Arial",color="black"),
+                        margin=dict(l=20, r=20, t=10, b=20),
+                        showlegend=False,
+                        plot_bgcolor="white",
+                        xaxis_title=None, yaxis_title=None
+                        )
+    ch_status.update_traces(hovertemplate=
+                        "<b>%{y}</b><br>" +
+                        "Tickets : %{x}<br>" +
+                        "<extra></extra>")
+    ch_status.update_xaxes(showline=True, linewidth=1, linecolor='black')
+    ch_status.update_yaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
 
-@anvil.server.callable
-def new_tickets(today,currentUser):
-    #New tickets last 7 days with delta and % Resolved
-    related_rows = currentUser['user_merchant_link']
-    values = [row for row in related_rows]
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
-    df = pd.DataFrame(data)
-    today = today
-    Resolved = 'Resolved'
-    days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
-    end_date_last_week = today - timedelta(days=days_until_sunday)
-    start_date_last_week = end_date_last_week - timedelta(days=6)
-    end_date_prior_week = end_date_last_week - timedelta(days=7)
-    start_date_prior_week = start_date_last_week - timedelta(days=7)
-    filtered_df_last_week = df[(df['Date Created'] >= start_date_last_week) & (df['Date Created'] <= end_date_last_week)]
-    last_week = len(filtered_df_last_week)
-    filtered_df_prior_week = df[(df['Date Created'] >= start_date_prior_week) & (df['Date Created'] <= end_date_prior_week)]
-    prior_week = len(filtered_df_prior_week)  
-    delta = last_week - prior_week
+  #tickets by creation date
+    grouped_df = df.groupby(['Date Created','Status']).agg(
+    Count=pd.NamedAgg(column='Date Created', aggfunc='count')
+    ).reset_index()
+    #df['delta'] = ('Max_Created_Date' - 'Min_Created_Date') / pd.to_timedelta(1, unit='D') 
+    grouped_df.columns = ['Date Created', 'Status', 'count']
+    sorted_df = grouped_df.sort_values(by='Status', ascending=True)
+    sorted_df.reset_index(inplace=True)
+    ch_date = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',
+                   category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
+    ch_date.update_layout(font=dict(family="Arial",color="black"),
+                        margin=dict(l=20, r=20, t=10, b=20),
+                        plot_bgcolor="white",hovermode='x',
+                        xaxis_title=None, yaxis_title=None
+                        )         
+    ch_date.update_xaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",
+                      minor=dict(ticklen=3, tickcolor="black", showgrid=False),
+                      ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
+    ch_date.update_yaxes(showline=True, linewidth=1, linecolor='black')
   
-    last_week_df_resolved = filtered_df_last_week[filtered_df_last_week['Status'] == 'Resolved']
-    last_week_resolved = len(last_week_df_resolved)
-    last_week_per = round(last_week_resolved / last_week *100 ,1)
-    prior_week_df_resolved = filtered_df_prior_week[filtered_df_prior_week['Status'] == 'Resolved']
-    prior_week_resolved = len(prior_week_df_resolved)
-    prior_week_per = round(prior_week_resolved / prior_week *100 ,1)
-    delta2 = round(last_week_per - prior_week_per,1)
-    print(last_week_per,prior_week_per, delta2)  
-    return last_week, prior_week,delta,last_week_per,delta2
+    #tickets by escalation type
+    df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
+    df['delta'] = (df['last_action_date'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
+    grouped_df = df.groupby('Escalation Type').agg({'Escalation Type': 'count', 'delta': 'mean'})
+    grouped_df.columns = ['count', 'average delta']
+    grouped_df['average delta'] = grouped_df['average delta'].round(1)
+    sorted_df = grouped_df.sort_values(by='count', ascending=True)
+    sorted_df.reset_index(inplace=True)    
+    ch_type = go.Figure()
+    # Add a bar chart for the count
+    ch_type.add_trace(go.Bar(x=sorted_df['count'], y=sorted_df['Escalation Type'], orientation='h', 
+                           name='Count',marker_color='rgb(18,35,158)'))
+    # Add a line chart for the average delta
+    ch_type.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], 
+                               mode='lines+markers', name='Average Resolution time', 
+                               line=dict(color='rgb(161,52,60)')
+                               ))
+    # Update the layout
+    ch_type.update_layout(font=dict(family="Arial",color="black"),
+                        margin=dict(l=20, r=20, t=10, b=20),
+                        plot_bgcolor="white",hovermode='y unified',
+                        xaxis_title=None, yaxis_title=None
+                        )
+    ch_type.update_traces(hoverinfo = 'y+x')
+    ch_type.update_xaxes(showline=True, linewidth=1, linecolor='black',
+                      rangemode="tozero")
+    ch_type.update_yaxes(showline=True, linewidth=1, linecolor='black',
+                      showticklabels=True,ticks="outside",tickson="boundaries",rangemode="tozero",
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
+
+    return pie,chart,ch_status,ch_date,ch_type
