@@ -34,12 +34,12 @@ services:
   client_config: {}
   server_config: {}
 startup: {type: form, module: Homepage}
-package_name: React_DEV
+package_name: React_DEV___TEST
 allow_embedding: false
-name: React DEV
+name: React DEV - TEST
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null,
   server_persist: true}
-metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: React DEV}
+metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: React DEV - TEST}
 startup_form: null
 db_schema:
   escalation_status:
@@ -204,10 +204,6 @@ db_schema:
     - name: description
       admin_ui: {order: 5, width: 200}
       type: string
-    - name: assign_to
-      admin_ui: {order: 6, width: 200}
-      type: link_single
-      target: users
     - name: status
       admin_ui: {order: 7, width: 200}
       type: link_single
@@ -273,10 +269,6 @@ db_schema:
       admin_ui: {order: 13, width: 200}
       type: link_single
       target: merchant
-    - name: escalation_type
-      admin_ui: {order: 13, width: 200}
-      type: link_single
-      target: escalation_type
     - name: latest_status
       admin_ui: {order: 14, width: 200}
       type: link_single
