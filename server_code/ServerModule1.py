@@ -756,15 +756,17 @@ def highlights(today,currentUser):
     prior_week_per = round(prior_week_resolved / prior_week *100 ,1)
     delta2 = round(last_week_per - prior_week_per,1)
 
+    df['resolve_time'] = (df['last_action_datetime'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
     resolved_df_last_week = df[(df['last_action_date'] >= start_date_last_week) & (df['last_action_date'] <= end_date_last_week) & (df['Status'] == 'Resolved')]
     resolved = len(resolved_df_last_week)
-    resolve_time_lw = (df['last_action_datetime'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
     resolved_df_prior_week = df[(df['last_action_date'] >= start_date_prior_week) & (df['last_action_date'] <= end_date_prior_week) & (df['Status'] == 'Resolved')]
     prior_resolved = len(resolved_df_prior_week)
-    resolve_time_pw = (df['last_action_datetime'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
     delta3 = resolved - prior_resolved
-    print(resolve_time_lw,resolve_time_pw)
-    return last_week, delta, last_week_per, delta2, resolved, delta3, start_date_last_week, end_date_last_week
+    ave_resolve_time_lw = round(resolved_df_last_week['resolve_time'].mean(),1)
+    ave_resolve_time_pw = round(resolved_df_prior_week['resolve_time'].mean(),1)
+    delta4 = round(ave_resolve_time_lw - ave_resolve_time_pw,1)
+
+    return last_week, delta, last_week_per, delta2, resolved, delta3, start_date_last_week, end_date_last_week, ave_resolve_time_lw, delta4
 
 
 @anvil.server.callable

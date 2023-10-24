@@ -26,7 +26,8 @@ class Reporting(ReportingTemplate):
     currentUser= anvil.users.login_with_form()
     
     #New tickets last 7 days with delta and % Resolved
-    last_week,delta,last_week_per,delta2,resolved,delta3,start_date_last_week,end_date_last_week = anvil.server.call('highlights',today,currentUser) 
+    last_week,delta,last_week_per,delta2,resolved,delta3,start_date_last_week,end_date_last_week,ave_resolve_time_lw, delta4 = anvil.server.call('highlights',today,currentUser)
+    
     self.label_9.text = last_week   
     self.label_16.text = "%s vs prior week" % (delta)
     if delta > 0: self.label_16.icon = "fa:arrow-up"
@@ -42,7 +43,12 @@ class Reporting(ReportingTemplate):
     if delta3 > 0: self.label_19.icon = "fa:arrow-up"
     elif delta3 < 0: self.label_19.icon = "fa:arrow-down"
     else: self.label_19.icon = False
-    print(delta3)
+    self.label_13.text = ave_resolve_time_lw
+    self.label_18.text = "%s vs prior week" % (delta4)
+    if delta4 > 0: self.label_18.icon = "fa:arrow-up"
+    elif delta4 < 0: self.label_18.icon = "fa:arrow-down"
+    else: self.label_18.icon = False
+    
     start_date = start_date_last_week.strftime("%b %d %Y")
     end_date = end_date_last_week.strftime("%b %d %Y")    
     self.label_20.text = "(%s to %s)" % (start_date,end_date)
