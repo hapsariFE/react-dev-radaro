@@ -11,6 +11,9 @@ import pandas as pd
 import anvil.server
 import anvil.tz
 import json
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 
 
 #authenticated_callable = anvil.server.callable(require_user=True)

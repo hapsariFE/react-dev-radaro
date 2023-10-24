@@ -7,6 +7,9 @@ import anvil.server
 import anvil.users
 from anvil.js.window import jQuery
 from anvil.js import get_dom_node
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 
 class jobreport(jobreportTemplate):
   def __init__(self, **properties):

@@ -11,6 +11,9 @@ from datetime import datetime, timedelta, date
 import webbrowser
 import anvil.tz
 from form_checker import validation
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 
 class Modal_wide(Modal_wideTemplate):
   def __init__(self,ires, **properties):

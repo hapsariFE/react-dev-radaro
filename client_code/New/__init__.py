@@ -9,6 +9,9 @@ from datetime import datetime, timedelta, date
 from ..Data import *
 import anvil.tz
 from form_checker import validation
+import anvil.tables as tables
+import anvil.tables.query as q
+from anvil.tables import app_tables
 
 class New(NewTemplate):
   def __init__(self, eres, **properties):
