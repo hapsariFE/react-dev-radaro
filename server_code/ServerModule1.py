@@ -931,8 +931,13 @@ def new_tickets(today,currentUser):
     filtered_df_prior_week = df[(df['Date Created'] >= start_date_prior_week) & (df['Date Created'] <= end_date_prior_week)]
     prior_week = len(filtered_df_prior_week)  
     delta = last_week - prior_week
-    last_week_df_resolved = filtered_df_prior_week[filtered_df_prior_week['Status'] == 'Resolved']    
-    
+  
+    last_week_df_resolved = filtered_df_last_week[filtered_df_last_week['Status'] == 'Resolved']
     last_week_resolved = len(last_week_df_resolved)
-    print(last_week_resolved)  
-    return last_week, prior_week,delta,last_week_resolved
+    last_week_per = round(last_week_resolved / last_week *100 ,1)
+    prior_week_df_resolved = filtered_df_prior_week[filtered_df_prior_week['Status'] == 'Resolved']
+    prior_week_resolved = len(prior_week_df_resolved)
+    prior_week_per = round(prior_week_resolved / prior_week *100 ,1)
+    delta2 = round(last_week_per - prior_week_per,1)
+    print(last_week_per,prior_week_per, delta2)  
+    return last_week, prior_week,delta,last_week_per,delta2

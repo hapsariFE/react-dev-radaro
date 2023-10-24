@@ -25,13 +25,14 @@ class Reporting(ReportingTemplate):
     currentUser= anvil.users.login_with_form()
     
     #New tickets last 7 days with delta and % Resolved
-    last_week,prior_week,delta,last_week_resolved = anvil.server.call('new_tickets',today,currentUser) 
+    last_week,prior_week,delta,last_week_per,delta2 = anvil.server.call('new_tickets',today,currentUser) 
     delta = +delta if delta > 0 else -delta
     self.label_9.text = last_week   
     self.label_16.text = "%s vs prior week" % (delta)
     self.label_16.icon = "fa:arrow-up" if delta > 0 else "fa:arrow-down"
-    self.label_11.text = last_week_resolved
-
+    self.label_11.text = last_week_per
+    self.label_17.text = "%s vs prior week" % (delta2)
+    self.label_17.icon = "fa:arrow-up" if delta2 > 0 else "fa:arrow-down"
     
     #Resolved tickets last 7 days with delta
     
@@ -56,8 +57,8 @@ class Reporting(ReportingTemplate):
     #self.plot_2.figure = create_chart2
 
     #tickets by creation date
-    #create_chart3 = anvil.server.call('create_chart3',currentUser)
-    #self.plot_3.figure = create_chart3
+    create_chart3 = anvil.server.call('create_chart3',currentUser)
+    self.plot_3.figure = create_chart3
     
     #        
     #create_chart4 = anvil.server.call('create_chart4',currentUser)

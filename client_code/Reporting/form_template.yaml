@@ -92,11 +92,11 @@ components:
         layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 3, width: 169.359}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
-          visible: true, text: 89%, font_size: 40, font: '', spacing_above: none,
-          icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-          underline: false, icon: ''}
+          visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
+          spacing_below: none, italic: false, background: '', bold: true, underline: false,
+          icon: ''}
         name: label_11
-        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 6, width: 169.359}
+        layout_properties: {row: ACGVAD, width_xs: 3, col_xs: 6, width: 173.609}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: 75%, font_size: 40, font: '', spacing_above: none,
@@ -116,6 +116,13 @@ components:
           tooltip: ''}
         name: spacer_2
         layout_properties: {row: DKHURO, width_xs: 3, col_xs: 4, width: 173.609}
+      - type: Label
+        properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+          visible: true, text: '', font_size: null, font: '', spacing_above: none,
+          icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+          underline: false, icon: ''}
+        name: label_17
+        layout_properties: {row: LRCNZQ, width_xs: 3, col_xs: 6, width: 173.609}
   - type: ColumnPanel
     properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '{"YUSZEX":25}',
