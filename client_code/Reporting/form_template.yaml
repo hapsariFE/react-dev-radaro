@@ -153,9 +153,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Created Last Week, font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
+        visible: true, text: Current Status of Last Week, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: true, underline: false, icon: ''}
       name: label_1
       layout_properties: {grid_position: 'BNUWCT,IFYYFP'}
     - type: Plot
@@ -191,7 +191,7 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Current Status, font_size: null, font: '', spacing_above: none,
+        visible: true, text: Current Status all time, font_size: null, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: label_5
@@ -210,9 +210,9 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Responses by User, font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
+        visible: true, text: Responses by User all time, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: true, underline: false, icon: ''}
       name: label_2
       layout_properties: {grid_position: 'FRTTWS,VWIJMX'}
     - type: Plot
@@ -230,8 +230,8 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Tickets by Escalation Type, font_size: null, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        visible: true, text: Tickets by Escalation Type all time, font_size: null,
+        font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
       name: label_3
       layout_properties: {grid_position: 'DIXPZN,WHOLWG'}
@@ -249,7 +249,7 @@ components:
     components:
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
-        visible: true, text: Tickets by Creation Date, font_size: null, font: '',
+        visible: true, text: Tickets by Creation Date all time, font_size: null, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
       name: label_4

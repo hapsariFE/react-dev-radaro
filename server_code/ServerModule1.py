@@ -731,7 +731,9 @@ def highlights(today,currentUser):
     #New tickets last 7 days with delta and % Resolved
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
-    data = [{"Status": r["latest_status"]["name"], "Date Created": r["date_created"].date(),"last_action_date": r["last_action_date"].date()} for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+    data = [{"Status": r["latest_status"]["name"], "Datetime Created": r["date_created"], "Date Created": r["date_created"].date(),
+             "last_action_date": r["last_action_date"].date(),"last_action_datetime": r["last_action_date"]}
+             for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
     df = pd.DataFrame(data)
     today = today
     Resolved = 'Resolved'
@@ -756,10 +758,12 @@ def highlights(today,currentUser):
 
     resolved_df_last_week = df[(df['last_action_date'] >= start_date_last_week) & (df['last_action_date'] <= end_date_last_week) & (df['Status'] == 'Resolved')]
     resolved = len(resolved_df_last_week)
+    resolve_time_lw = (df['last_action_datetime'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
     resolved_df_prior_week = df[(df['last_action_date'] >= start_date_prior_week) & (df['last_action_date'] <= end_date_prior_week) & (df['Status'] == 'Resolved')]
-    prior_resolved = len(resolved_df_prior_week)  
+    prior_resolved = len(resolved_df_prior_week)
+    resolve_time_pw = (df['last_action_datetime'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
     delta3 = resolved - prior_resolved
-  
+    print(resolve_time_lw,resolve_time_pw)
     return last_week, delta, last_week_per, delta2, resolved, delta3, start_date_last_week, end_date_last_week
 
 

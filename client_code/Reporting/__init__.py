@@ -29,20 +29,20 @@ class Reporting(ReportingTemplate):
     last_week,delta,last_week_per,delta2,resolved,delta3,start_date_last_week,end_date_last_week = anvil.server.call('highlights',today,currentUser) 
     self.label_9.text = last_week   
     self.label_16.text = "%s vs prior week" % (delta)
-    if delta > 0: self.label_16.icon = "fa:caret-up"
-    elif delta == 0 : self.label_16.icon.visible = False
-    else: self.label_16.icon = "fa:caret-down"
+    if delta > 0: self.label_16.icon = "fa:arrow-up"
+    elif delta < 0 : self.label_16.icon = "fa:arrow-down"
+    else: self.label_16.icon = False
     self.label_11.text = last_week_per
     self.label_17.text = "%s vs prior week" % (delta2)
-    if delta2 > 0: self.label_17.icon = "fa:caret-up"
-    elif delta2 == 0 : self.label_17.icon.visible = False
-    else: self.label_17.icon = "fa:caret-down"
+    if delta2 > 0: self.label_17.icon = "fa:arrow-up"
+    elif delta2 < 0 : self.label_17.icon = "fa:arrow-down"
+    else: self.label_17.icon = False
     self.label_10.text = resolved
     self.label_19.text = "%s vs prior week" % (delta3)
-    if delta3 > 0: self.label_19.icon = "fa:caret-up"
-    #elif delta3 == 0 : self.label_19.icon.visible = False
-    else: self.label_19.icon = "fa:caret-down"
-  
+    if delta3 > 0: self.label_19.icon = "fa:arrow-up"
+    elif delta3 < 0: self.label_19.icon = "fa:arrow-down"
+    else: self.label_19.icon = False
+    print(delta3)
     start_date = start_date_last_week.strftime("%b %d %Y")
     end_date = end_date_last_week.strftime("%b %d %Y")    
     self.label_20.text = "(%s to %s)" % (start_date,end_date)
