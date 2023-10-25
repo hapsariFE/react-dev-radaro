@@ -819,7 +819,7 @@ def sync_subbrand(record):
 
   print(apiServer)
   if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
     data = response.json()
     try:
       for result in data['results']:
