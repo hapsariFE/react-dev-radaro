@@ -88,20 +88,20 @@ class Homepage(HomepageTemplate):
           eres.append(val)
     eres.sort()
     self.etype = eres
-    itemlist = list()
-    for x in self.repeating_panel_1.items:
-      itemlist.append(x['id'])
-    ires = []
-    for val in itemlist:
-      if val != None:
-        if val not in ires:
-          ires.append(val)
-    self.itemlist = ires
+    #itemlist = list()
+    #for x in self.repeating_panel_1.items:
+    #  itemlist.append(x['id'])
+    #ires = []
+    #for val in itemlist:
+    #  if val != None:
+    #    if val not in ires:
+    #      ires.append(val)
+    #self.itemlist = ires
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     self.initialise_start_dates()
     self.refresh_data_bindings()
-    self.set_pages()
+    #self.set_pages()
     
   def initialise_start_dates(self):
     
@@ -113,25 +113,25 @@ class Homepage(HomepageTemplate):
     #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    itemlist = list()
-    for x in self.repeating_panel_1.items:
-      itemlist.append(x['id'])
-    ires = []
-    for val in itemlist:
-      if val != None:
-        if val not in ires:
-          ires.append(val)
-    self.itemlist = ires
-    self.set_pages()
+    #itemlist = list()
+    #for x in self.repeating_panel_1.items:
+    #  itemlist.append(x['id'])
+    #ires = []
+    #for val in itemlist:
+    #  if val != None:
+    #    if val not in ires:
+    #      ires.append(val)
+    #self.itemlist = ires
+    #self.set_pages()
   
-  def set_pages(self):
-    page = self.data_grid_1.get_page()  
-    no_rows = self.data_grid_1.rows_per_page
-    start_page = ((page + 1) * no_rows)
-    end_page = min(start_page, len(self.itemlist))
-    text = f"{(page * no_rows) + 1}-{end_page} of {len(self.itemlist)}"
-    self.label_1.text = text
-    print(page)
+  #def set_pages(self):
+   # page = self.data_grid_1.get_page()  
+   # no_rows = self.data_grid_1.rows_per_page
+   # start_page = ((page + 1) * no_rows)
+   # end_page = min(start_page, len(self.itemlist))
+   # text = f"{(page * no_rows) + 1}-{end_page} of {len(self.itemlist)}"
+   # self.label_1.text = text
+   # print(page)
   
   def log_out_click(self, **event_args):
     """This method is called when the button is clicked"""
