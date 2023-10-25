@@ -45,6 +45,7 @@ def incoming_msg(**kwargs):
   #json['topic']
   topic = data.get('topic')
   merctable = app_tables.merchant.get(token=data['token'])
+  sync_subbrand(merctable)
   lowrate_enable = merctable['low_rating_enabled']
   compcode_enable = merctable['completion_code_enabled']
   failcode_enable = merctable['fail_code_enabled']
@@ -155,6 +156,7 @@ def submit_low_rating(data):
     if existing_record is not None:
       subbrandval = existing_record['Name']
   else:
+    
     subbrandval = "---"
 
   
