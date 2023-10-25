@@ -28,28 +28,45 @@ class Reporting(ReportingTemplate):
     #New tickets last 7 days with delta and % Resolved
     last_week,delta,last_week_per,delta2,resolved,delta3,start_date_last_week,end_date_last_week,ave_resolve_time_lw, delta4 = anvil.server.call('highlights',today,currentUser)
     
+    #New tickets
     self.label_9.text = last_week   
     self.label_16.text = "%s vs prior week" % (delta)
-    #self.label_16.role = "outlined-button"
     if delta > 0: 
       self.label_16.icon = "fa:arrow-up"
-      
-    elif delta < 0 : self.label_16.icon = "fa:arrow-down"
+      self.label_16.role = "red-arrow"
+    elif delta < 0 : 
+      self.label_16.icon = "fa:arrow-down"
+      self.label_16.role = "green-arrow"
     else: self.label_16.icon = False
-    self.label_11.text = last_week_per
+    # % Resolved
+    self.label_11.text = "%s%" % (last_week_per)
     self.label_17.text = "%s vs prior week" % (delta2)
-    if delta2 > 0: self.label_17.icon = "fa:arrow-up"
-    elif delta2 < 0 : self.label_17.icon = "fa:arrow-down"
+    if delta2 > 0: 
+      self.label_17.icon = "fa:arrow-up"
+      self.label_17.role = "green-arrow"
+    elif delta2 < 0 : 
+      self.label_17.icon = "fa:arrow-down"
+      self.label_17.role = "red-arrow"
     else: self.label_17.icon = False
+    #Resolved
     self.label_10.text = resolved
     self.label_19.text = "%s vs prior week" % (delta3)
-    if delta3 > 0: self.label_19.icon = "fa:arrow-up"
-    elif delta3 < 0: self.label_19.icon = "fa:arrow-down"
+    if delta3 > 0: 
+      self.label_19.icon = "fa:arrow-up"
+      self.label_19.role = "green-arrow"
+    elif delta3 < 0: 
+      self.label_19.icon = "fa:arrow-down"
+      self.label_19.role = "red-arrow"
     else: self.label_19.icon = False
-    self.label_13.text = ave_resolve_time_lw
+    #ave resolution
+    self.label_13.text = "%sd" % (ave_resolve_time_lw)
     self.label_18.text = "%s vs prior week" % (delta4)
-    if delta4 > 0: self.label_18.icon = "fa:arrow-up"
-    elif delta4 < 0: self.label_18.icon = "fa:arrow-down"
+    if delta4 > 0: 
+      self.label_18.icon = "fa:arrow-up"
+      self.label_18.role = "red-arrow"
+    elif delta4 < 0: 
+      self.label_18.icon = "fa:arrow-down"
+      self.label_18.role = "green-arrow"
     else: self.label_18.icon = False
     
     start_date = start_date_last_week.strftime("%b %d %Y")

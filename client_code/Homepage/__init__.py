@@ -49,12 +49,10 @@ class Homepage(HomepageTemplate):
 
     Data.currentUser=anvil.users.login_with_form()
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
-    if Data.currentUser['is_super_user'] == True:
-      self.cms.visible = True
-      self.reporting.visible = True
-    else:
-      self.cms.visible = False
-      self.reporting.visible = False
+    if Data.currentUser['is_super_user'] == True: self.cms.visible = True
+    else: self.cms.visible = False
+    if Data.currentUser['is_reporting'] == True: self.reporting.visible = True
+    else: self.reporting.visible = False
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
 
@@ -239,7 +237,7 @@ class Homepage(HomepageTemplate):
 
   def reporting_click(self, **event_args):
     """This method is called when the button is clicked"""
-    if Data.currentUser['is_super_user'] == True:
+    if Data.currentUser['is_reporting'] == True:
       open_form('Reporting')
     else:
       alert("you do not have authorisation")    
