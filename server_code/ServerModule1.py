@@ -112,15 +112,15 @@ def incoming_msg(**kwargs):
         #except:
            # print("falied")
       
-    if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
-      if 'delivered'==data['order_info']['status']:
-        if compcode_enable == True:
+    #if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
+    #  if 'delivered'==data['order_info']['status']:
+    #    if compcode_enable == True:
     ##     codes=data['order_info']['completion_codes']
     ##     id_values = [str(code["code"]) for code in codes]
     ##     id_string = ";".join(id_values)
-          submit_completion_codes(data) 
-        elif failcode_enable == True and 'failed'==data['order_info']['status']:
-          submit_completion_codes(data) 
+     #     submit_completion_codes(data) 
+     #   elif failcode_enable == True and 'failed'==data['order_info']['status']:
+     #     submit_completion_codes(data) 
         #nv = data['new_values']['is_confirmed_by_customer']
        # rating = data['order_info']['rating']
        # codes=data['order_info']['completion_codes']
