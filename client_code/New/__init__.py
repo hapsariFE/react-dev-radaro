@@ -20,8 +20,6 @@ class New(NewTemplate):
     self.esc_type = esc_type
     self.assigned = ""
     self.etype = ""
-    #self.merchant_name = ""
-    #merchant_name = None
     
     self.etype = eres
     self.merchant_name = anvil.server.call('get_merchant_list')  
@@ -92,7 +90,6 @@ class New(NewTemplate):
       alert("Please submit a Comment")
     else:
       anvil.server.call('new',job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
-      #self.refresh_data_bindings()
       self.clear_button_click()
       self.raise_event('x-close-alert', article=self.item)
       

@@ -36,7 +36,7 @@ roles:
 - name: outlined-error
   components: [TextBox, TextArea, DatePicker, DropDown]
 - name: input-error
-  components: [TextBox, TextArea, DatePicker, DropDown]
+  components: [TextBox, TextArea, DatePicker, DropDown, label]
 - name: switch
   components: [CheckBox]
 - name: switch-rounded
@@ -47,6 +47,9 @@ roles:
 - {name: narrow}
 - name: cms
   components: [TextBox]
+- {name: red-arrow}
+- {name: green-arrow}
+- {name: elevated-chart}
 color_scheme:
   preset_groups:
   - name: Colour Scheme
