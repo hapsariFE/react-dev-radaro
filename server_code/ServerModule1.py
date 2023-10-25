@@ -810,6 +810,12 @@ def get_record(id):
 @anvil.server.callable
 def sync_subbrand(record):
   #print(record['APIToken'])
+  if record['server'] == '1':
+    apiServer = ""
+  else:
+    apiServer = "-" + record['server']
+
+  print(apiServer)
   if record['APIToken'] is not None:
     response = requests.get('https://api-2.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
     data = response.json()
