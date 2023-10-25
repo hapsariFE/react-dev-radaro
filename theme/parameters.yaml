@@ -49,6 +49,7 @@ roles:
   components: [TextBox]
 - {name: red-arrow}
 - {name: green-arrow}
+- {name: elevated-chart}
 color_scheme:
   preset_groups:
   - name: Colour Scheme

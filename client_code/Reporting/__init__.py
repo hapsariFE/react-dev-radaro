@@ -21,6 +21,8 @@ class Reporting(ReportingTemplate):
 
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
+    my_media = anvil.URLMedia(Data.currentUser['Logo'])
+    self.image_2.source = my_media
     today = datetime.now().astimezone().date()- timedelta(days=5)
     
     currentUser= anvil.users.login_with_form()

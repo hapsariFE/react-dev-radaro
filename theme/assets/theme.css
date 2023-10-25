@@ -841,14 +841,23 @@ button.close > span, button.close {
   padding: 15px;  
 }
 
-
-
 .anvil-role-outlined-card {
   overflow: hidden;
   border-radius: 7px;
   background-color: %color:Background%;
   border: solid 1px %color:Outline%;
   /*padding: 15px;*/
+}
+
+.anvil-role-elevated-chart {
+  overflow: hidden;
+  border-radius: 7px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  background-color: %color:Background%;
+  /* 2dp */  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 2px 6px 2px rgba(0, 0, 0, 0.15);
+  padding: 0px 5px 5px 15px;
 }
 
 .anvil-role-elevated-card {
