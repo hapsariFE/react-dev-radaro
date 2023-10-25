@@ -30,7 +30,10 @@ class Reporting(ReportingTemplate):
     
     self.label_9.text = last_week   
     self.label_16.text = "%s vs prior week" % (delta)
-    if delta > 0: self.label_16.icon = "fa:arrow-up"
+    #self.label_16.role = "outlined-button"
+    if delta > 0: 
+      self.label_16.icon = "fa:arrow-up"
+      
     elif delta < 0 : self.label_16.icon = "fa:arrow-down"
     else: self.label_16.icon = False
     self.label_11.text = last_week_per

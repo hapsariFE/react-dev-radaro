@@ -626,6 +626,15 @@ button.close > span, button.close {
   color:%color:On Background%;
   text-shadow: 0 1px 0 %color:Background%;
 }
+.anvil-role-green-arrow > .arrow-up {
+  color: rgba(0, 153, 0);
+}
+    
+
+.anvil-role-red-arrow >.arrow-down {
+  color: rgba(255, 0, 0);
+}
+
 
 /* Component: Button */
 

@@ -668,7 +668,6 @@ def chart_user(currentUser):
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
     escalations = app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))
-    print(escalations)
     data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search(escalation_id=q.any_of(*escalations))]
     df = pd.DataFrame(data)
     df1 = df.loc[df["User"] !='System' ]
