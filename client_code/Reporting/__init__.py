@@ -25,6 +25,7 @@ class Reporting(ReportingTemplate):
     self.image_2.source = my_media
     #today = datetime.now().astimezone().date()
     today = datetime.date(2023-10-15)
+    today = datetime.date('2023, 10, 15')
     currentUser= anvil.users.login_with_form()
     
     #New tickets last 7 days with delta and % Resolved
