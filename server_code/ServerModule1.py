@@ -166,10 +166,11 @@ def submit_low_rating(data):
   comp_names = [str(code["name"]) for code in codes]
   comp_string = ";".join(comp_names)
   updated_at = data.get('updated_at')
+  merctable = app_tables.merchant.get(token=data['token'])
 
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-    merctable = app_tables.merchant.get(token=data['token'])
+    
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
@@ -188,7 +189,7 @@ def submit_low_rating(data):
   #if not comp_string:
   #  print(comp_string)
     # comp_string = None
-    
+  sync_compCodes(merctable)  
   nv = data['new_values']['is_confirmed_by_customer']
   rating = data['order_info']['rating']
   counter = get_next_value_in_sequence()
@@ -238,9 +239,10 @@ def submit_completion_codes(data):
   comp_string = ";".join(comp_names)
   updated_at = data.get('updated_at')
   counter = get_next_value_in_sequence()
+  merctable = app_tables.merchant.get(token=data['token'])
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-    merctable = app_tables.merchant.get(token=data['token'])
+    
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
@@ -255,6 +257,7 @@ def submit_completion_codes(data):
   else:    
     subbrandval = "(Blank)"
   #try:
+  sync_compCodes(merctable)
   app_tables.webhook.add_row(
   job_id = str(data['order_info']['order_id']),
   id= str(counter),
@@ -313,6 +316,21 @@ def get_subbrand_list():
   #sbValues =[[row] for row in x_rows]
   SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   x_list =[r['Name'] for r in SBrecords]
+  #print(SBrecords)
+  print(x_list)
+  #x_list.sort()
+  return x_list
+
+@anvil.server.callable
+def get_compCodes_list():
+  currentUser=anvil.users.get_user()
+  #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
+  Xvalues = []
+  x_rows = currentUser['user_merchant_link']
+  #x_list =[r['name'] for r in x_rows]
+  #sbValues =[[row] for row in x_rows]
+  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  x_list =[r['Name'] for r in CCrecords]
   #print(SBrecords)
   print(x_list)
   #x_list.sort()
@@ -394,7 +412,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     print(filter_dict['sub_brand'])
 
   if escType != None:
-    filter_dict['completion_code_description'] = escType
+    filter_dict['completion_code_description'] = q.ilike(f"%{escType}%")
 
   if watch is True :
     filter_dict['watchlistUsers'] = [anvil.users.get_user()]
@@ -1023,22 +1041,27 @@ def sync_compCodes(record):
     apiServer = "-" + record['server']
 
   print(apiServer)
+  print(record['APIToken'])
   if record['APIToken'] is not None:
     response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken'])
     data = response.json()
+    #print(response.status_code)
+    #print(response.reason)
     try:
       for result in data['results']:
+          #print(result['id'])
             # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.compCodes.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
+          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'])
             
           if existing_record:
                 # Update existing record
               existing_record.update(Name=result['name'],LastUpdated=datetime.now())
           else:
                 # Insert new record
-              app_tables.compCodes.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
-    except:
+              app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record)
+    except Exception as  e:
       print("API Request Failed")
+      print(e)
   else:
     print("No API Token on record")
     
