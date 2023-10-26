@@ -263,9 +263,26 @@ def get_merchant_list():
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
   x_list =[r['name'] for r in x_rows]
+  sbValues =[[row] for row in x_rows]
+  SBrecords = app_tables.subbrands.search(MerchantLink=q.any_of(*x_rows))
+  print(x_rows)
  # print(x_list)
   x_list.sort()
   return x_list
+
+#@anvil.server.callable
+#def get_subbrand_list():
+#  currentUser=anvil.users.get_user()
+#  sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
+#  Xvalues = []
+#  x_rows = currentUser['user_merchant_link']
+#  x_list =[r['name'] for r in x_rows]
+#  sbValues =[[row] for row in x_rows]
+#  SBrecords = app_tables.users.search(merchant_link=q.any_of(*sbValues))
+#  print(SBrecords)
+ # print(x_list)
+#  x_list.sort()
+#  return x_list
 
 @anvil.server.callable
 def get_user_list():
