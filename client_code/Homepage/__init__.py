@@ -61,7 +61,7 @@ class Homepage(HomepageTemplate):
     self.subbrand = SBrecords
     print('subbrand end)'+str(datetime.now()))##################
 
-    ccRecords = anvil.server.call('get_compCodes_list')
+    #ccRecords = anvil.server.call('get_compCodes_list')
    # print('login end)'+str(datetime.now()))##################
     #print('getuser start)'+str(datetime.now()))##################
     #currentUser=anvil.users.get_user()
