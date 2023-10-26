@@ -321,6 +321,20 @@ def get_subbrand_list():
   #x_list.sort()
   return x_list
 
+def get_compCodes_list():
+  currentUser=anvil.users.get_user()
+  #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
+  Xvalues = []
+  x_rows = currentUser['user_merchant_link']
+  #x_list =[r['name'] for r in x_rows]
+  #sbValues =[[row] for row in x_rows]
+  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  x_list =[r['Name'] for r in CCrecords]
+  #print(SBrecords)
+  print(x_list)
+  #x_list.sort()
+  return x_list
+
 @anvil.server.callable
 def get_user_list():
   currentUser=anvil.users.get_user()
@@ -397,7 +411,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
     print(filter_dict['sub_brand'])
 
   if escType != None:
-    filter_dict['completion_code_description'] = escType
+    filter_dict['completion_code_description'] = q.ilike(f"%{escType}%")
 
   if watch is True :
     filter_dict['watchlistUsers'] = [anvil.users.get_user()]

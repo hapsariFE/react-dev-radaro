@@ -62,6 +62,7 @@ class Homepage(HomepageTemplate):
     print('subbrand end)'+str(datetime.now()))##################
 
     ccRecords = anvil.server.call('get_compCodes_list')
+    self.etype = ccRecords
    # print('login end)'+str(datetime.now()))##################
     #print('getuser start)'+str(datetime.now()))##################
     #currentUser=anvil.users.get_user()
@@ -111,16 +112,16 @@ class Homepage(HomepageTemplate):
     
    # print('subbrand end)'+str(datetime.now()))##################
    # print('etype start)'+str(datetime.now()))##################
-    etypes = list()
-    for x in self.repeating_panel_1.items:
-      etypes.append(x['completion_code_description'])
-    eres = []
-    for val in etypes:
-      if val != None:
-        if val not in eres:
-          eres.append(val)
-    eres.sort()
-    self.etype = eres
+    #etypes = list()
+    #for x in self.repeating_panel_1.items:
+    #  etypes.append(x['completion_code_description'])
+    #eres = []
+    #for val in etypes:
+     # if val != None:
+     #   if val not in eres:
+     #     eres.append(val)
+    #eres.sort()
+    #self.etype = eres
     itemlist = list()
     for x in self.repeating_panel_1.items:
       itemlist.append(x['id'])
