@@ -35,7 +35,7 @@ components:
     layout_properties: {grid_position: 'EOKNQD,TMUWHU', full_width_row: false}
     components:
     - type: Label
-      properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: body, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Highlights Last Week, font_size: null, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
@@ -63,12 +63,12 @@ components:
       layout_properties: {grid_position: 'FYRRET,YQIMPS'}
       components:
       - type: Label
-        properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+        properties: {role: body, align: center, tooltip: '', border: '', foreground: 'theme:Font',
           visible: true, text: New, font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_6
-        layout_properties: {row: PTPSLC, width_xs: 11, col_xs: 0, width: 173.609}
+        layout_properties: {row: PTPSLC, width_xs: 11, col_xs: 0, width: 190.453}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: right,
@@ -97,12 +97,12 @@ components:
       layout_properties: {grid_position: 'RVTOTC,TFUNVD'}
       components:
       - type: Label
-        properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+        properties: {role: body, align: center, tooltip: '', border: '', foreground: 'theme:Font',
           visible: true, text: '% Resolved', font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_7
-        layout_properties: {row: NSNYRN, width_xs: 11, col_xs: 0, width: 173.609}
+        layout_properties: {row: NSNYRN, width_xs: 11, col_xs: 0, width: 190.453}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
@@ -131,12 +131,12 @@ components:
       layout_properties: {grid_position: 'AYDYBZ,MAVECY'}
       components:
       - type: Label
-        properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+        properties: {role: body, align: center, tooltip: '', border: '', foreground: 'theme:Font',
           visible: true, text: Resolved, font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_8
-        layout_properties: {row: JWUUES, width_xs: 11, col_xs: 0, width: 173.609}
+        layout_properties: {row: JWUUES, width_xs: 11, col_xs: 0, width: 190.453}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
@@ -165,12 +165,12 @@ components:
       layout_properties: {grid_position: 'GHGRUO,IZUUOH'}
       components:
       - type: Label
-        properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
+        properties: {role: body, align: center, tooltip: '', border: '', foreground: 'theme:Font',
           visible: true, text: Ave Resolution, font_size: null, font: '', spacing_above: none,
           icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
           underline: false, icon: ''}
         name: label_12
-        layout_properties: {row: DELCQW, width_xs: 11, col_xs: 0, width: 160}
+        layout_properties: {row: DELCQW, width_xs: 11, col_xs: 0, width: 190.453}
       - type: Label
         properties: {role: body, align: center, tooltip: '', border: '', foreground: '',
           visible: true, text: '', font_size: 40, font: '', spacing_above: none, icon_align: left,
@@ -193,7 +193,7 @@ components:
     layout_properties: {grid_position: 'EOBNLM,WKWMUA'}
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Created This Week v Last Week, font_size: null, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
@@ -212,7 +212,7 @@ components:
     layout_properties: {grid_position: 'EOBNLM,WXAABP'}
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Current Status of Last Week, font_size: null, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
@@ -231,7 +231,7 @@ components:
     layout_properties: {grid_position: 'DZJRXD,OMPYJF'}
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Current Status all time, font_size: null, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
@@ -250,7 +250,7 @@ components:
     layout_properties: {grid_position: 'DZJRXD,IZAKUV'}
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Responses by User all time, font_size: null, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
@@ -270,7 +270,7 @@ components:
     layout_properties: {grid_position: 'RJBAIX,BCQRXH'}
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Tickets by Escalation Type all time, font_size: null,
         font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
@@ -289,7 +289,7 @@ components:
     layout_properties: {grid_position: 'BUWDLH,MHUOWA'}
     components:
     - type: Label
-      properties: {role: null, align: center, tooltip: '', border: '', foreground: '',
+      properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Font',
         visible: true, text: Tickets by Creation Date all time, font_size: null, font: '',
         spacing_above: none, icon_align: left, spacing_below: none, italic: false,
         background: '', bold: true, underline: false, icon: ''}
