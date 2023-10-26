@@ -692,7 +692,7 @@ def chart_user(currentUser):
     sorted_df = grouped_df.sort_values(by='count', ascending=True)
     sorted_df.reset_index(inplace=True)
     ch_user = px.bar(sorted_df, x='count', y='User', orientation='h', text ='count')
-    ch_user.update_layout(font=dict(family="Arial",color="black"),
+    ch_user.update_layout(font=dict(family="Arial",color='rgb(128,128,128)'),
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",
                         xaxis_title=None, yaxis_title=None
@@ -702,10 +702,10 @@ def chart_user(currentUser):
                         "<b>%{y}</b><br>" +
                         "Responses : %{x}<br>" +
                         "<extra></extra>")
-    ch_user.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    ch_user.update_yaxes(showline=True, linewidth=1, linecolor='black',
+    ch_user.update_xaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)')
+    ch_user.update_yaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)',
                       showticklabels=True,ticks="outside",tickson="boundaries",
-                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='rgb(128,128,128)', size=12))
     return ch_user
 
 @anvil.server.callable
@@ -809,7 +809,7 @@ def all_charts(today,currentUser):
                         "<b>%{label}</b><br>" +
                         "Tickets : %{value}<br>" +
                         "<extra></extra>")
-    pie.update_layout(font=dict(family="Arial",color="black"),
+    pie.update_layout(font=dict(family="Arial",color="rgb(128,128,128)"),
                         showlegend=False,
                         margin=dict(l=10, r=10, t=10, b=10),
                         plot_bgcolor="white")
@@ -844,7 +844,7 @@ def all_charts(today,currentUser):
     name='Last Week', marker_color='rgb(161,52,60)',texttemplate='%{y}'
     )
     chart = go.Figure(data=[trace_this_week, trace_last_week])
-    chart.update_layout(font=dict(family="Arial",color="black"),
+    chart.update_layout(font=dict(family="Arial",color="rgb(128,128,128)"),
                         showlegend=True, hovermode='closest',
                         margin=dict(l=10, r=10, t=10, b=10),
                         xaxis_title=None, yaxis_title=None,
@@ -854,9 +854,9 @@ def all_charts(today,currentUser):
     #                    "%{Week}<br>" +
     #                    "Tickets : %{x}<br>" +
     #                    "<extra></extra>")
-    chart.update_xaxes(showline=True, linewidth=1, linecolor='black',tickcolor='black',
+    chart.update_xaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)',tickcolor='rgb(128,128,128)',
                        showticklabels=True,ticks="outside",tickson="boundaries",
-                       ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
+                       ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='rgb(128,128,128)', size=12))
 
     #tickets by current status
     grouped_df = df.groupby('Status').agg(
@@ -868,7 +868,7 @@ def all_charts(today,currentUser):
     ch_status = px.bar(sorted_df, x="count", y="Status", orientation='h', color='Status', text ='count',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    ch_status.update_layout(font=dict(family="Arial",color="black"),
+    ch_status.update_layout(font=dict(family="Arial",color="rgb(128,128,128)"),
                         margin=dict(l=20, r=20, t=10, b=20),
                         showlegend=False,
                         plot_bgcolor="white",
@@ -878,10 +878,10 @@ def all_charts(today,currentUser):
                         "<b>%{y}</b><br>" +
                         "Tickets : %{x}<br>" +
                         "<extra></extra>")
-    ch_status.update_xaxes(showline=True, linewidth=1, linecolor='black')
-    ch_status.update_yaxes(showline=True, linewidth=1, linecolor='black',
+    ch_status.update_xaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)')
+    ch_status.update_yaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)',
                       showticklabels=True,ticks="outside",tickson="boundaries",
-                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='rgb(128,128,128)', size=12))
 
   #tickets by creation date
     grouped_df = df.groupby(['Date Created','Status']).agg(
@@ -894,16 +894,16 @@ def all_charts(today,currentUser):
     ch_date = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
                    color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
-    ch_date.update_layout(font=dict(family="Arial",color="black"),
+    ch_date.update_layout(font=dict(family="Arial",color="rgb(128,128,128)"),
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",hovermode='x',
                         xaxis_title=None, yaxis_title=None
                         )         
-    ch_date.update_xaxes(showline=True, linewidth=1, linecolor='black',
+    ch_date.update_xaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)',
                       showticklabels=True,ticks="outside",tickson="boundaries",
-                      minor=dict(ticklen=3, tickcolor="black", showgrid=False),
-                      ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
-    ch_date.update_yaxes(showline=True, linewidth=1, linecolor='black')
+                      minor=dict(ticklen=3, tickcolor="rgb(128,128,128)", showgrid=False),
+                      ticklen=8,tickangle=0,tickfont=dict(family='Arial', color='rgb(128,128,128)', size=12))
+    ch_date.update_yaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)')
   
     #tickets by escalation type
     df.loc[df['Escalation Type'].str.contains(';', na=False), 'Escalation Type'] = 'Multiple Escalations'
@@ -919,20 +919,20 @@ def all_charts(today,currentUser):
                            name='Count',marker_color='rgb(18,35,158)'))
     # Add a line chart for the average delta
     ch_type.add_trace(go.Scatter(x=sorted_df['average delta'], y=sorted_df['Escalation Type'], 
-                               mode='lines+markers', name='Average Resolution time', 
-                               line=dict(color='rgb(161,52,60)')
+                               mode='lines', name='Average Resolution time', 
+                               line=dict(color='rgb(161,52,60)'),line_shape='spline'
                                ))
     # Update the layout
-    ch_type.update_layout(font=dict(family="Arial",color="black"),
+    ch_type.update_layout(font=dict(family="Arial",color='rgb(128,128,128)'),
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",hovermode='y unified',
                         xaxis_title=None, yaxis_title=None
                         )
     ch_type.update_traces(hoverinfo = 'y+x')
-    ch_type.update_xaxes(showline=True, linewidth=1, linecolor='black',
+    ch_type.update_xaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)',
                       rangemode="tozero")
-    ch_type.update_yaxes(showline=True, linewidth=1, linecolor='black',
+    ch_type.update_yaxes(showline=True, linewidth=1, linecolor='rgb(128,128,128)',
                       showticklabels=True,ticks="outside",tickson="boundaries",rangemode="tozero",
-                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
+                      ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='rgb(128,128,128)', size=12))
 
     return pie,chart,ch_status,ch_date,ch_type
