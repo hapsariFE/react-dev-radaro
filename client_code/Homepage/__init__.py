@@ -105,6 +105,8 @@ class Homepage(HomepageTemplate):
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
    # print('refreshlist end)'+str(datetime.now()))##################
    # print('subbrand start)'+str(datetime.now()))##################
+    SBrecords = anvil.server.call('get_subbrand_list')
+    print(SBrecords)
     subbrands = list()
     for x in self.repeating_panel_1.items:
       subbrands.append(x['sub_brand'])
