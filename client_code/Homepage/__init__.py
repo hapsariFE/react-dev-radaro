@@ -193,13 +193,13 @@ class Homepage(HomepageTemplate):
       self.clearbutton.text = searchText
 
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    self.set_pages()
+    
 
   def handle_custom_event(self,record,assign, **event_args):
    self.action_panel.items = record
    self.assigned = assign
    self.refresh_data_bindings()
-   self.set_pages()
+   
     
   def sorting_function(self, column_name, sorting_way):
     """function used for sorting in combination with headers""" 
