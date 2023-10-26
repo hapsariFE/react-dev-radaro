@@ -216,7 +216,7 @@ def submit_completion_codes(data):
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
     merctable = app_tables.merchant.get(token=data['token'])
-    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'])
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
   else:
