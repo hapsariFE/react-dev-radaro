@@ -1013,3 +1013,31 @@ def sync_subbrand(record):
       print("API Request Failed")
   else:
     print("No API Token on record")
+
+@anvil.server.callable
+def sync_compCodes(record):
+  #print(record['APIToken'])
+  if record['server'] == '1':
+    apiServer = ""
+  else:
+    apiServer = "-" + record['server']
+
+  print(apiServer)
+  if record['APIToken'] is not None:
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken'])
+    data = response.json()
+    try:
+      for result in data['results']:
+            # Check if a record with the same MerchantID and ID exists
+          existing_record = app_tables.compCodes.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
+            
+          if existing_record:
+                # Update existing record
+              existing_record.update(Name=result['name'],LastUpdated=datetime.now())
+          else:
+                # Insert new record
+              app_tables.compCodes.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
+    except:
+      print("API Request Failed")
+  else:
+    print("No API Token on record")
