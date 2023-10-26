@@ -23,8 +23,8 @@ class Reporting(ReportingTemplate):
     # Any code you write here will run before the form opens.
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
-    today = datetime.now().astimezone().date()- timedelta(days=5)
-    
+    #today = datetime.now().astimezone().date()
+    today = datetime.date(2023-10-15)
     currentUser= anvil.users.login_with_form()
     
     #New tickets last 7 days with delta and % Resolved
