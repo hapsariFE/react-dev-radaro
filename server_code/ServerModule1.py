@@ -152,7 +152,7 @@ def submit_low_rating(data):
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
     merctable = app_tables.merchant.get(token=data['token'])
-    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'])
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
   else:
@@ -265,7 +265,7 @@ def get_merchant_list():
   x_list =[r['name'] for r in x_rows]
   sbValues =[[row] for row in x_rows]
   SBrecords = app_tables.subbrands.search(MerchantLink=q.any_of(*x_rows))
-  print(x_rows)
+  print(*SBrecords)
  # print(x_list)
   x_list.sort()
   return x_list
@@ -848,7 +848,7 @@ def sync_subbrand(record):
               existing_record.update(Logo=result['logo'], Name=result['name'],LastUpdated=datetime.now())
           else:
                 # Insert new record
-              app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Logo=result['logo'], Name=result['name'],Server=record['server'],LastUpdated=datetime.now())
+              app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Logo=result['logo'], Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
     except:
       print("API Request Failed")
   else:
