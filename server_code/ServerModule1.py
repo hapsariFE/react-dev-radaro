@@ -188,7 +188,7 @@ def submit_low_rating(data):
   #if not comp_string:
   #  print(comp_string)
     # comp_string = None
-    
+  sync_compCodes(merctable)  
   nv = data['new_values']['is_confirmed_by_customer']
   rating = data['order_info']['rating']
   counter = get_next_value_in_sequence()
@@ -255,6 +255,7 @@ def submit_completion_codes(data):
   else:    
     subbrandval = "(Blank)"
   #try:
+  sync_compCodes(merctable)
   app_tables.webhook.add_row(
   job_id = str(data['order_info']['order_id']),
   id= str(counter),
