@@ -19,6 +19,7 @@ import json
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+import requests
 
 
 #authenticated_callable = anvil.server.callable(require_user=True)
@@ -49,6 +50,7 @@ def incoming_msg(**kwargs):
   #json['topic']
   topic = data.get('topic')
   merctable = app_tables.merchant.get(token=data['token'])
+  
   lowrate_enable = merctable['low_rating_enabled']
   compcode_enable = merctable['completion_code_enabled']
   failcode_enable = merctable['fail_code_enabled']
@@ -167,8 +169,20 @@ def submit_low_rating(data):
 
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-  else:
-    subbrandval = "---"
+    merctable = app_tables.merchant.get(token=data['token'])
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
 
   
   #if not comp_string:
@@ -226,8 +240,20 @@ def submit_completion_codes(data):
   counter = get_next_value_in_sequence()
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-  else:
-    subbrandval = "---"
+    merctable = app_tables.merchant.get(token=data['token'])
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
   #try:
   app_tables.webhook.add_row(
   job_id = str(data['order_info']['order_id']),
@@ -270,8 +296,26 @@ def get_merchant_list():
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
   x_list =[r['name'] for r in x_rows]
+  #sbValues =[[row] for row in x_rows]
+  #SBrecords = app_tables.subbrands.search(MerchantLink=q.any_of(*x_rows))
+  #print(*SBrecords)
  # print(x_list)
   x_list.sort()
+  return x_list
+
+@anvil.server.callable
+def get_subbrand_list():
+  currentUser=anvil.users.get_user()
+  #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
+  Xvalues = []
+  x_rows = currentUser['user_merchant_link']
+  #x_list =[r['name'] for r in x_rows]
+  #sbValues =[[row] for row in x_rows]
+  SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  x_list =[r['Name'] for r in SBrecords]
+  #print(SBrecords)
+  print(x_list)
+  #x_list.sort()
   return x_list
 
 @anvil.server.callable
@@ -936,3 +980,36 @@ def all_charts(today,currentUser):
                       ticklen=5,tickangle=0,tickfont=dict(family='Arial', color='black', size=12))
 
     return pie,chart,ch_status,ch_date,ch_type
+    #print("-----aa")
+    #print(rowValue)
+    #print("-----bb")
+    #print(rowValue['job_status'])
+    return app_tables.webhook.get(id=q.any_of(id))
+
+@anvil.server.callable
+def sync_subbrand(record):
+  #print(record['APIToken'])
+  if record['server'] == '1':
+    apiServer = ""
+  else:
+    apiServer = "-" + record['server']
+
+  print(apiServer)
+  if record['APIToken'] is not None:
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
+    data = response.json()
+    try:
+      for result in data['results']:
+            # Check if a record with the same MerchantID and ID exists
+          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
+            
+          if existing_record:
+                # Update existing record
+              existing_record.update(Logo=result['logo'], Name=result['name'],LastUpdated=datetime.now())
+          else:
+                # Insert new record
+              app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Logo=result['logo'], Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
+    except:
+      print("API Request Failed")
+  else:
+    print("No API Token on record")

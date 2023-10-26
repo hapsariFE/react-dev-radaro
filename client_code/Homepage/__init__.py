@@ -49,10 +49,19 @@ class Homepage(HomepageTemplate):
 
     Data.currentUser=anvil.users.login_with_form()
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
-    if Data.currentUser['is_super_user'] == True: self.cms.visible = True
-    else: self.cms.visible = False
-    if Data.currentUser['is_reporting'] == True: self.reporting.visible = True
-    else: self.reporting.visible = False
+
+    if Data.currentUser['is_super_user'] == True:
+      #print('true')
+      self.cms.visible = True
+    else:
+      #print('false')
+      self.cms.visible = False
+    SBrecords = anvil.server.call('get_subbrand_list')
+    self.subbrand = SBrecords
+   # print('login end)'+str(datetime.now()))##################
+    #print('getuser start)'+str(datetime.now()))##################
+    #currentUser=anvil.users.get_user()
+    #print('getuser end)'+str(datetime.now()))##################
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
 
@@ -67,17 +76,37 @@ class Homepage(HomepageTemplate):
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
-    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)  
-    subbrands = list()
-    for x in self.repeating_panel_1.items:
-      subbrands.append(x['sub_brand'])
-    res = []
-    for val in subbrands:
-      if val != None:
-        if val not in res:
-          res.append(val)
-    res.sort()
-    self.subbrand = res
+    #self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)  
+   # subbrands = list()
+   # for x in self.repeating_panel_1.items:
+   #   subbrands.append(x['sub_brand'])
+   # res = []
+   # for val in subbrands:
+    #  if val != None:
+    #    if val not in res:
+   #       res.append(val)
+    #res.sort()
+    #self.subbrand = res
+    #print(self.start_date_picker.date)
+    #print("test2")
+   # print('refreshlist start)'+str(datetime.now()))##################
+    self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+   # print('refreshlist end)'+str(datetime.now()))##################
+   # print('subbrand start)'+str(datetime.now()))##################
+    
+    #print(SBrecords)
+    #subbrands = list()
+    #for x in self.repeating_panel_1.items:
+    #  subbrands.append(x['sub_brand'])
+    #res = []
+    #for val in subbrands:
+    #  if val != None:
+    #    if val not in res:
+    #      res.append(val)
+    #res.sort()
+    
+   # print('subbrand end)'+str(datetime.now()))##################
+   # print('etype start)'+str(datetime.now()))##################
     etypes = list()
     for x in self.repeating_panel_1.items:
       etypes.append(x['completion_code_description'])
