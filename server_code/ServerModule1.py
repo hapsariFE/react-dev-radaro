@@ -1030,21 +1030,23 @@ def sync_compCodes(record):
   if record['APIToken'] is not None:
     response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken'])
     data = response.json()
-    print(response.status_code)
-    print(response.reason)
+    #print(response.status_code)
+    #print(response.reason)
     try:
       for result in data['results']:
+          #print(result['id'])
             # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.compCodes.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
+          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'])
             
           if existing_record:
                 # Update existing record
               existing_record.update(Name=result['name'],LastUpdated=datetime.now())
           else:
                 # Insert new record
-              app_tables.compCodes.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record)
-    except:
+              app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record)
+    except Exception as  e:
       print("API Request Failed")
+      print(e)
   else:
     print("No API Token on record")
     
