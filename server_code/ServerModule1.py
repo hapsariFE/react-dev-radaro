@@ -45,7 +45,7 @@ def incoming_msg(**kwargs):
   #json['topic']
   topic = data.get('topic')
   merctable = app_tables.merchant.get(token=data['token'])
-  sync_subbrand(merctable)
+  
   lowrate_enable = merctable['low_rating_enabled']
   compcode_enable = merctable['completion_code_enabled']
   failcode_enable = merctable['fail_code_enabled']
@@ -155,9 +155,16 @@ def submit_low_rating(data):
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
-  else:
-    
-    subbrandval = "---"
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
 
   
   #if not comp_string:
@@ -219,8 +226,16 @@ def submit_completion_codes(data):
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
-  else:
-    subbrandval = "---"
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
   #try:
   app_tables.webhook.add_row(
   job_id = str(data['order_info']['order_id']),
@@ -278,7 +293,7 @@ def get_subbrand_list():
   x_rows = currentUser['user_merchant_link']
   #x_list =[r['name'] for r in x_rows]
   #sbValues =[[row] for row in x_rows]
-  SBrecords = app_tables.subbrands.search(MerchantLink=q.any_of(*x_rows))
+  SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   x_list =[r['Name'] for r in SBrecords]
   #print(SBrecords)
   print(x_list)

@@ -62,6 +62,7 @@ class Homepage(HomepageTemplate):
     else:
       #print('false')
       self.cms.visible = False
+      
    # print('login end)'+str(datetime.now()))##################
     #print('getuser start)'+str(datetime.now()))##################
     #currentUser=anvil.users.get_user()
@@ -105,18 +106,18 @@ class Homepage(HomepageTemplate):
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
    # print('refreshlist end)'+str(datetime.now()))##################
    # print('subbrand start)'+str(datetime.now()))##################
-    SBrecords = anvil.server.call('get_subbrand_list')
-    print(SBrecords)
-    subbrands = list()
-    for x in self.repeating_panel_1.items:
-      subbrands.append(x['sub_brand'])
-    res = []
-    for val in subbrands:
-      if val != None:
-        if val not in res:
-          res.append(val)
-    res.sort()
-    self.subbrand = res
+    
+    #print(SBrecords)
+    #subbrands = list()
+    #for x in self.repeating_panel_1.items:
+    #  subbrands.append(x['sub_brand'])
+    #res = []
+    #for val in subbrands:
+    #  if val != None:
+    #    if val not in res:
+    #      res.append(val)
+    #res.sort()
+    
    # print('subbrand end)'+str(datetime.now()))##################
    # print('etype start)'+str(datetime.now()))##################
     etypes = list()
