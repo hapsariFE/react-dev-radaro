@@ -166,10 +166,11 @@ def submit_low_rating(data):
   comp_names = [str(code["name"]) for code in codes]
   comp_string = ";".join(comp_names)
   updated_at = data.get('updated_at')
+  merctable = app_tables.merchant.get(token=data['token'])
 
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-    merctable = app_tables.merchant.get(token=data['token'])
+    
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
@@ -238,9 +239,10 @@ def submit_completion_codes(data):
   comp_string = ";".join(comp_names)
   updated_at = data.get('updated_at')
   counter = get_next_value_in_sequence()
+  merctable = app_tables.merchant.get(token=data['token'])
   if data['order_info']['sub_branding'] is not None:
     subbrandval = str(data['order_info']['sub_branding'])
-    merctable = app_tables.merchant.get(token=data['token'])
+    
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
       subbrandval = existing_record['Name']
@@ -1039,7 +1041,7 @@ def sync_compCodes(record):
                 # Insert new record
               app_tables.compCodes.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
     except:
-      print("API Request Failed")
+      print("API Request Failed:" + response)
   else:
     print("No API Token on record")
-    print("No API Token on record")
+    
