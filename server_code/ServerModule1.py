@@ -1041,4 +1041,4 @@ def sync_compCodes(record):
       print("API Request Failed")
   else:
     print("No API Token on record")
-    print("No API Token on record")
+    
