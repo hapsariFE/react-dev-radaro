@@ -56,8 +56,10 @@ class Homepage(HomepageTemplate):
     else:
       #print('false')
       self.cms.visible = False
+    print('subbrand start)'+str(datetime.now()))##################  
     SBrecords = anvil.server.call('get_subbrand_list')
     self.subbrand = SBrecords
+    print('subbrand end)'+str(datetime.now()))##################
    # print('login end)'+str(datetime.now()))##################
     #print('getuser start)'+str(datetime.now()))##################
     #currentUser=anvil.users.get_user()
