@@ -337,7 +337,7 @@ def get_compCodes_list(currentUser):
   return x_list
 
 @anvil.server.callable
-def get_user_list(current_user):
+def get_user_list(currentUser):
   #currentUser=anvil.users.get_user()
   related_rows = currentUser['user_merchant_link']
  # print(related_rows)
@@ -377,11 +377,11 @@ def update_cms(rowid,name,fail_code_enabled,completion_code_enabled,low_rating_e
 @anvil.server.callable
 def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
   currentUser=anvil.users.get_user()
-  kwargs={'job_status':jobValue,'completion_code_id':compCode}
-  total = []
+  #kwargs={'job_status':jobValue,'completion_code_id':compCode}
+  #total = []
   
   #print(assignrow)
-  defaultassign = get_user_list()
+  defaultassign = get_user_list(currentUser)
   #print(*defaultassign)
   #print(*[r for r in defaultassign])
   #if assignrow == None:

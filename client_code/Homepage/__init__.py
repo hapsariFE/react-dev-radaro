@@ -57,13 +57,13 @@ class Homepage(HomepageTemplate):
       #print('false')
       self.cms.visible = False
     print('subbrand start)'+str(datetime.now()))##################  
-    SBrecords = anvil.server.call('get_subbrand_list',currentUser)
+    SBrecords = anvil.server.call('get_subbrand_list',Data.currentUser)
     self.subbrand = SBrecords
     print('subbrand end)'+str(datetime.now()))##################
 
     #ccRecords = anvil.server.call('get_compCodes_list')
     print('compcode start)'+str(datetime.now()))##################
-    ccRecords = anvil.server.call('get_compCodes_list',currentUser)
+    ccRecords = anvil.server.call('get_compCodes_list',Data.currentUser)
     self.etype = ccRecords
     print('compcode end)'+str(datetime.now()))##################
    # print('login end)'+str(datetime.now()))##################
@@ -76,9 +76,9 @@ class Homepage(HomepageTemplate):
     self.refresh_data_bindings()
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
-    merchName = anvil.server.call('get_merchant_list',currentUser)
+    merchName = anvil.server.call('get_merchant_list',Data.currentUser)
     self.merchant_name = merchName
-    users = anvil.server.call('get_user_list',currentUser)
+    users = anvil.server.call('get_user_list',Data.currentUser)
     self.users = [(x['name'], x) for x in users]
     self.refresh_data_bindings()
     self.start_date_picker.date = startDate
