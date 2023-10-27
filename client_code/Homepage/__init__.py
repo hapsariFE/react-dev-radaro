@@ -14,6 +14,7 @@ from datetime import datetime, timedelta, date
 from ..New import *
 
 
+
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
@@ -57,7 +58,7 @@ class Homepage(HomepageTemplate):
       #print('false')
       self.cms.visible = False
     print('subbrand start)'+str(datetime.now()))##################  
-    SBrecords = anvil.server.call('get_subbrand_list',Data.currentUser)
+    SBrecords = anvil.server.call('get_subbrand_list')
     self.subbrand = SBrecords
     print('subbrand end)'+str(datetime.now()))##################
 

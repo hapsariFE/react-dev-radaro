@@ -22,6 +22,7 @@ from anvil.tables import app_tables
 import requests
 
 
+
 #authenticated_callable = anvil.server.callable(require_user=True)
 
 # This is a server module. It runs on the Anvil server,
@@ -308,14 +309,18 @@ def get_merchant_list(currentUser):
 
 @anvil.server.callable
 def get_subbrand_list(currentUser):
-  #currentUser=anvil.users.get_user()
+  #currentUser=Data.currentUser
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   #Xvalues = []
+  print('subbrand step1)'+str(datetime.now()))##################
   x_rows = currentUser['user_merchant_link']
+  print('subbrand step2)'+str(datetime.now()))##################
   #x_list =[r['name'] for r in x_rows]
   #sbValues =[[row] for row in x_rows]
   SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  print('subbrand step3)'+str(datetime.now()))##################
   x_list =[r['Name'] for r in SBrecords]
+  print('subbrand step4)'+str(datetime.now()))##################
   #print(SBrecords)
   #print(x_list)
   x_list.sort()
