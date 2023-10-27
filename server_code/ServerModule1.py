@@ -294,8 +294,8 @@ def submit_completion_codes(data):
   
 
 @anvil.server.callable
-def get_merchant_list():
-  currentUser=anvil.users.get_user()
+def get_merchant_list(currentUser):
+  #currentUser=anvil.users.get_user()
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
   x_list =[r['name'] for r in x_rows]
@@ -307,8 +307,8 @@ def get_merchant_list():
   return x_list
 
 @anvil.server.callable
-def get_subbrand_list():
-  currentUser=anvil.users.get_user()
+def get_subbrand_list(currentUser):
+  #currentUser=anvil.users.get_user()
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
@@ -322,8 +322,8 @@ def get_subbrand_list():
   return x_list
 
 @anvil.server.callable
-def get_compCodes_list():
-  currentUser=Data.currentUser
+def get_compCodes_list(currentUser):
+  
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   Xvalues = []
   x_rows = currentUser['user_merchant_link']
@@ -337,8 +337,8 @@ def get_compCodes_list():
   return x_list
 
 @anvil.server.callable
-def get_user_list():
-  currentUser=anvil.users.get_user()
+def get_user_list(current_user):
+  #currentUser=anvil.users.get_user()
   related_rows = currentUser['user_merchant_link']
  # print(related_rows)
   values = [[row] for row in related_rows]
