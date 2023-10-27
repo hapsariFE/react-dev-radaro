@@ -317,8 +317,8 @@ def get_subbrand_list(currentUser):
   SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   x_list =[r['Name'] for r in SBrecords]
   #print(SBrecords)
-  print(x_list)
-  #x_list.sort()
+  #print(x_list)
+  x_list.sort()
   return x_list
 
 @anvil.server.callable
@@ -332,8 +332,8 @@ def get_compCodes_list(currentUser):
   CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   x_list =[r['Name'] for r in CCrecords]
   #print(SBrecords)
-  print(x_list)
-  #x_list.sort()
+  #print(x_list)
+  x_list.sort()
   return x_list
 
 @anvil.server.callable
