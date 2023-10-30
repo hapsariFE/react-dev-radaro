@@ -1081,40 +1081,27 @@ def update_db_value(now):
     # Fetch all rows from the table
     rows = app_tables.webhook.search()
     
+    portal_for_change = "Dannys Portal"
+    status = app_tables.escalation_status.get(name="Resolved")
+    user = app_tables.users.get(name="System")
+    description="Prelaunch trial data"
+    rows = app_tables.webhook.search()
     for row in rows:
-        # Check if the value in the 'value' column matches the search_value
-        #if row["latest_status"]["name"] == "New":
-        if row["webhook_merchant_link"]["name"] == "Matt's Portal" :
-          if row["webhook_merchant_link"]["name"] == "Matt's Portal" :
-           if row["id"] == "406" :
-              print(row)
-              print(now)
-            # Update the value in the database
-              row["last_action_date"] = now
-              row['latest_status'] = "Resolved"
-            #row["description"] = "Prelaunch trial data"
-            #row["User"] = "System"
-        portal_for_change = "Dannys Portal"
-        status = app_tables.escalation_status.get(name="Resolved")
-        user = app_tables.users.get(name="System")
-        description="Prelaunch trial data"
-        rows = app_tables.webhook.search()
-        for row in rows:
-          if row["webhook_merchant_link"]["name"] == portal_for_change and row["latest_status"]["name"] != "Resolved" :
+      if row["webhook_merchant_link"]["name"] == portal_for_change and row["latest_status"]["name"] != "Resolved" :
 
-             print(row)
-             print(now)
+          print(row)
+          print(now)
              #Update the value in the database
-             row["latest_status"] = status
-             row["last_action_date"] = now
-             row["latest_assignee"]= user
-             row = app_tables.action_log.add_row(
-              job_id=row,
-              user= user,
-              description=description,
-              status=status,
-              created_date = now,
-              assign_to=user,
-              escalation_id=row)
+          row["latest_status"] = status
+          row["last_action_date"] = now
+          row["latest_assignee"]= user
+          row = app_tables.action_log.add_row(
+          job_id=row,
+          user= user,
+          description=description,
+          status=status,
+          created_date = now,
+          assign_to=user,
+          escalation_id=row)
 
              
