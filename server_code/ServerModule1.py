@@ -1070,3 +1070,28 @@ def sync_compCodes(record):
   else:
     print("No API Token on record")
     
+@anvil.server.callable
+def DB_task(now):
+  """Fire off the training task, returning the Task object to the client."""
+  anvil.server.launch_background_task('update_db_value',now)
+
+@anvil.server.background_task
+def update_db_value(now):
+    # Fetch all rows from the table
+    rows = app_tables.webhook.search()
+    
+    for row in rows:
+        # Check if the value in the 'value' column matches the search_value
+        #if row["latest_status"]["name"] == "New":
+        if row["webhook_merchant_link"]["name"] == "Matt's Portal" :
+        #  print(row)
+        #  if row["webhook_merchant_link"]["merchant_id"] == "199" :
+        #   print(row)
+        #   if row["id"] == "406" :
+             print(row)
+             print(now)
+            # Update the value in the database
+             row["last_action_date"] = now
+             row['latest_status']["name"] = "New"
+            #row["description"] = "Prelaunch trial data"
+            #row["User"] = "System"

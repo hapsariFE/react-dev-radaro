@@ -8,6 +8,7 @@ import anvil.users
 import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
+from datetime import datetime, timedelta, date
 
 class CMS(CMSTemplate):
   def __init__(self, **properties):
@@ -34,3 +35,8 @@ class CMS(CMSTemplate):
   def Dashboard_click(self, **event_args):
     """This method is called when the button is clicked"""
     open_form('Homepage')
+
+  def dbUpdateButton_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    now = datetime.now().astimezone()
+    anvil.server.call('DB_task',now)
