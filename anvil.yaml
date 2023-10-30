@@ -56,6 +56,30 @@ db_schema:
     - name: icon
       admin_ui: {order: 1, width: 200}
       type: string
+  compcodes:
+    title: compCodes
+    client: none
+    server: full
+    columns:
+    - name: Name
+      admin_ui: {width: 200}
+      type: string
+    - name: ID
+      admin_ui: {width: 200}
+      type: string
+    - name: MerchantID
+      admin_ui: {width: 200}
+      type: string
+    - name: Server
+      admin_ui: {width: 200}
+      type: string
+    - name: merchantLink
+      admin_ui: {width: 200}
+      type: link_single
+      target: merchant
+    - name: LastUpdated
+      admin_ui: {}
+      type: datetime
   test_table:
     client: none
     server: full
@@ -185,8 +209,14 @@ db_schema:
     - name: remembered_logins
       admin_ui: {width: 200}
       type: simpleObject
+    - name: is_reporting
+      admin_ui: {width: 200}
+      type: bool
+    - name: is_super_user
+      admin_ui: {width: 200}
+      type: bool
   action_log:
-    client: search
+    client: none
     server: full
     columns:
     - name: job_id
@@ -211,10 +241,14 @@ db_schema:
       admin_ui: {order: 7, width: 200}
       type: link_single
       target: escalation_status
+    - name: assign_to
+      admin_ui: {width: 270}
+      type: link_single
+      target: users
     title: action_log
   merchant:
     title: merchant
-    client: search
+    client: none
     server: full
     columns:
     - name: merchant_id
@@ -232,9 +266,21 @@ db_schema:
     - name: token
       admin_ui: {width: 200}
       type: string
+    - name: APIToken
+      admin_ui: {width: 200}
+      type: string
+    - name: completion_code_enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: fail_code_enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: low_rating_enabled
+      admin_ui: {width: 200}
+      type: bool
   webhook:
     title: webhook
-    client: search
+    client: none
     server: full
     columns:
     - name: job_id
@@ -305,5 +351,39 @@ db_schema:
       admin_ui: {width: 200}
       type: link_multiple
       target: users
+    - name: completion_code_description
+      admin_ui: {width: 243}
+      type: string
+    - name: escalation_type
+      admin_ui: {width: 191}
+      type: link_single
+      target: escalation_type
+  subbrands:
+    title: subbrands
+    client: none
+    server: full
+    columns:
+    - name: MerchantID
+      admin_ui: {width: 200}
+      type: string
+    - name: ID
+      admin_ui: {width: 200}
+      type: string
+    - name: Logo
+      admin_ui: {width: 200}
+      type: string
+    - name: Name
+      admin_ui: {width: 200}
+      type: string
+    - name: Server
+      admin_ui: {width: 200}
+      type: string
+    - name: LastUpdated
+      admin_ui: {width: 200}
+      type: datetime
+    - name: MerchantLink
+      admin_ui: {width: 200}
+      type: link_single
+      target: merchant
 uplink_visible: true
 renamed: true
