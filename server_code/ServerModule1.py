@@ -353,7 +353,8 @@ def get_user_list(currentUser):
   #print(rows)
   #return app_tables.users.search(user_merchant_link=q.any_of(*values))
   return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
-  
+
+
 #@anvil.server.callable
 #def get_active_user():
 #  active_user = anvil.users.get_user('name')
@@ -1093,3 +1094,27 @@ def update_db_value(now):
               row['latest_status'] = "Resolved"
             #row["description"] = "Prelaunch trial data"
             #row["User"] = "System"
+        portal_for_change = "Dannys Portal"
+        status = app_tables.escalation_status.get(name="Resolved")
+        user = app_tables.users.get(name="System")
+        description="Prelaunch trial data"
+        rows = app_tables.webhook.search()
+        for row in rows:
+          if row["webhook_merchant_link"]["name"] == portal_for_change and row["latest_status"]["name"] != "Resolved" :
+
+             print(row)
+             print(now)
+             #Update the value in the database
+             row["latest_status"] = status
+             row["last_action_date"] = now
+             row["latest_assignee"]= user
+             row = app_tables.action_log.add_row(
+              job_id=row,
+              user= user,
+              description=description,
+              status=status,
+              created_date = now,
+              assign_to=user,
+              escalation_id=row)
+
+             
