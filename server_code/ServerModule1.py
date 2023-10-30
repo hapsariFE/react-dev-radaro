@@ -353,7 +353,8 @@ def get_user_list(currentUser):
   #print(rows)
   #return app_tables.users.search(user_merchant_link=q.any_of(*values))
   return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
-  
+
+
 #@anvil.server.callable
 #def get_active_user():
 #  active_user = anvil.users.get_user('name')
