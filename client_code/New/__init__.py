@@ -20,13 +20,13 @@ class New(NewTemplate):
     self.esc_type = esc_type
     self.assigned = ""
     self.etype = ""
-    
-    self.etype = eres
-    self.merchant_name = anvil.server.call('get_merchant_list')  
+    fUsers, ccVals,sVals,fmerch = anvil.server.call('get_filter_value')
+    self.etype = ccVals
+    self.merchant_name = fmerch  
         
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-    users = anvil.server.call('get_user_list')
+    users = fUsers
     self.assigned = [(x['name'], x) for x in users]
     self.refresh_data_bindings()
     self.validator = validation.Validator()
