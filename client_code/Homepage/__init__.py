@@ -53,29 +53,25 @@ class Homepage(HomepageTemplate):
     print('homepage start) '+str(datetime.now()))##################
     print('login start) '+str(datetime.now()))##################
     Data.currentUser=anvil.users.login_with_form()
+    print('login end) '+str(datetime.now()))##################
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
-
+    print('filterget start)'+str(datetime.now()))##################  
+    fUsers, ccVals,sVals,fmerch = anvil.server.call('get_filter_value')
+    print('filterget end)'+str(datetime.now()))##################
+    self.subbrand = sVals
+    self.etype = ccVals
+    self.merchant_name = fmerch
+    users = fUsers
+    self.users = [(x['name'], x) for x in users]
+    
     if Data.currentUser['is_super_user'] == True:
       #print('true')
       self.cms.visible = True
     else:
       #print('false')
       self.cms.visible = False
-    print('login end) '+str(datetime.now()))##################
-    print('subbrand start)'+str(datetime.now()))##################  
-    SBrecords = anvil.server.call('get_subbrand_list',Data.currentUser)
-    self.subbrand = SBrecords
-    print('subbrand end)'+str(datetime.now()))##################
+    
 
-    #ccRecords = anvil.server.call('get_compCodes_list')
-    print('compcode start)'+str(datetime.now()))##################
-    ccRecords = anvil.server.call('get_compCodes_list',Data.currentUser)
-    self.etype = ccRecords
-    print('compcode end)'+str(datetime.now()))##################
-   # print('login end)'+str(datetime.now()))##################
-    #print('getuser start)'+str(datetime.now()))##################
-    #currentUser=anvil.users.get_user()
-    #print('getuser end)'+str(datetime.now()))##################
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
     print('refresh_db start) '+str(datetime.now()))##################
@@ -87,72 +83,27 @@ class Homepage(HomepageTemplate):
     print('repeatingfilterchange start) '+str(datetime.now()))##################
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     print('repeatingfilterchange end) '+str(datetime.now()))##################
-    print('getmerchant start) '+str(datetime.now()))##################
-    merchName = anvil.server.call('get_merchant_list',Data.currentUser)
-    self.merchant_name = merchName
-    print('getmerchant end) '+str(datetime.now()))##################
-    print('userlist start) '+str(datetime.now()))##################
-    users = anvil.server.call('get_user_list',Data.currentUser)
-    print('userlist end) '+str(datetime.now()))##################
-    self.users = [(x['name'], x) for x in users]
     print('refresh_db start) '+str(datetime.now()))##################
     self.refresh_data_bindings()
     print('refresh_db end) '+str(datetime.now()))##################
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
-    #self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)  
-   # subbrands = list()
-   # for x in self.repeating_panel_1.items:
-   #   subbrands.append(x['sub_brand'])
-   # res = []
-   # for val in subbrands:
-    #  if val != None:
-    #    if val not in res:
-   #       res.append(val)
-    #res.sort()
-    #self.subbrand = res
-    #print(self.start_date_picker.date)
-    #print("test2")
-   # print('refreshlist start)'+str(datetime.now()))##################
+    
     print('refreshlist start) '+str(datetime.now()))##################
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
     print('refreshlist end) '+str(datetime.now()))##################
    # print('refreshlist end)'+str(datetime.now()))##################
-   # print('subbrand start)'+str(datetime.now()))##################
-    
-    #print(SBrecords)
-    #subbrands = list()
+   
+    #itemlist = list()
     #for x in self.repeating_panel_1.items:
-    #  subbrands.append(x['sub_brand'])
-    #res = []
-    #for val in subbrands:
+    #  itemlist.append(x['id'])
+    #ires = []
+    #for val in itemlist:
     #  if val != None:
-    #    if val not in res:
-    #      res.append(val)
-    #res.sort()
-    
-   # print('subbrand end)'+str(datetime.now()))##################
-   # print('etype start)'+str(datetime.now()))##################
-    #etypes = list()
-    #for x in self.repeating_panel_1.items:
-    #  etypes.append(x['completion_code_description'])
-    #eres = []
-    #for val in etypes:
-     # if val != None:
-     #   if val not in eres:
-     #     eres.append(val)
-    #eres.sort()
-    #self.etype = eres
-    itemlist = list()
-    for x in self.repeating_panel_1.items:
-      itemlist.append(x['id'])
-    ires = []
-    for val in itemlist:
-      if val != None:
-        if val not in ires:
-          ires.append(val)
-    self.itemlist = ires
+     #   if val not in ires:
+     #     ires.append(val)
+    #self.itemlist = ires
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     print('dates start) '+str(datetime.now()))##################
@@ -165,6 +116,7 @@ class Homepage(HomepageTemplate):
     end_time = datetime.now()
     time_difference = (end_time - start_time).total_seconds()
     print("Time difference in seconds:", time_difference)
+    #print(merchName)
     #self.set_pages()
     
   def initialise_start_dates(self):
@@ -177,15 +129,15 @@ class Homepage(HomepageTemplate):
     #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    itemlist = list()
-    for x in self.repeating_panel_1.items:
-      itemlist.append(x['id'])
-    ires = []
-    for val in itemlist:
-      if val != None:
-        if val not in ires:
-          ires.append(val)
-    self.itemlist = ires
+    #itemlist = list()
+    #for x in self.repeating_panel_1.items:
+    # itemlist.append(x['id'])
+    #ires = []
+    #for val in itemlist:
+    #  if val != None:
+     #   if val not in ires:
+    #      ires.append(val)
+    #self.itemlist = ires
     #self.set_pages()
   
   #def set_pages(self):
