@@ -89,9 +89,14 @@ class Homepage(HomepageTemplate):
     print('getmerchant start) '+str(datetime.now()))##################
     merchName = anvil.server.call('get_merchant_list',Data.currentUser)
     self.merchant_name = merchName
+    print('getmerchant end) '+str(datetime.now()))##################
+    print('userlist start) '+str(datetime.now()))##################
     users = anvil.server.call('get_user_list',Data.currentUser)
+    print('userlist end) '+str(datetime.now()))##################
     self.users = [(x['name'], x) for x in users]
+    print('refresh_db start) '+str(datetime.now()))##################
     self.refresh_data_bindings()
+    print('refresh_db end) '+str(datetime.now()))##################
     self.start_date_picker.date = startDate
     jobValue = self.dd_job_status.selected_value
     self.end_date_picker.date = endDate
@@ -109,7 +114,9 @@ class Homepage(HomepageTemplate):
     #print(self.start_date_picker.date)
     #print("test2")
    # print('refreshlist start)'+str(datetime.now()))##################
+    print('refreshlist start) '+str(datetime.now()))##################
     self.refresh_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
+    print('refreshlist end) '+str(datetime.now()))##################
    # print('refreshlist end)'+str(datetime.now()))##################
    # print('subbrand start)'+str(datetime.now()))##################
     
@@ -147,8 +154,13 @@ class Homepage(HomepageTemplate):
     self.itemlist = ires
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
+    print('dates start) '+str(datetime.now()))##################
     self.initialise_start_dates()
+    print('dates end) '+str(datetime.now()))##################
+    print('refresh_db start) '+str(datetime.now()))##################
     self.refresh_data_bindings()
+    print('refresh_db end) '+str(datetime.now()))##################
+    print(merchName)
     #self.set_pages()
     
   def initialise_start_dates(self):
