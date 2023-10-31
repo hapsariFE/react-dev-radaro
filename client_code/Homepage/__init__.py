@@ -80,8 +80,13 @@ class Homepage(HomepageTemplate):
     print('refresh_db start) '+str(datetime.now()))##################
     self.refresh_data_bindings()
     print('refresh_db end) '+str(datetime.now()))##################
+    print('repeatingcustomevent start) '+str(datetime.now()))##################
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
+    print('repeatingcustomevent end) '+str(datetime.now()))##################
+    print('repeatingfilterchange start) '+str(datetime.now()))##################
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
+    print('repeatingfilterchange end) '+str(datetime.now()))##################
+    print('getmerchant start) '+str(datetime.now()))##################
     merchName = anvil.server.call('get_merchant_list',Data.currentUser)
     self.merchant_name = merchName
     users = anvil.server.call('get_user_list',Data.currentUser)
