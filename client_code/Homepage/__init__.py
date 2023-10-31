@@ -18,6 +18,7 @@ from ..New import *
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    print('initiate start) '+str(datetime.now()))##################
     self.filters = {}
     self.date_filters = {} 
     self.users = ""
@@ -44,10 +45,12 @@ class Homepage(HomepageTemplate):
     watch = False
     self.subbrand = ""
     self.etype = ""
+    print('initiate end) '+str(datetime.now()))##################
     
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
-
+    print('homepage start) '+str(datetime.now()))##################
+    print('login start) '+str(datetime.now()))##################
     Data.currentUser=anvil.users.login_with_form()
     self.loggedin.text = 'logged in as '+Data.currentUser['name']
 
@@ -57,6 +60,7 @@ class Homepage(HomepageTemplate):
     else:
       #print('false')
       self.cms.visible = False
+    print('login end) '+str(datetime.now()))##################
     print('subbrand start)'+str(datetime.now()))##################  
     SBrecords = anvil.server.call('get_subbrand_list',Data.currentUser)
     self.subbrand = SBrecords
