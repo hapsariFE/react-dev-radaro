@@ -77,8 +77,9 @@ class Homepage(HomepageTemplate):
     #print('getuser end)'+str(datetime.now()))##################
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
     self.image_2.source = my_media
-
+    print('refresh_db start) '+str(datetime.now()))##################
     self.refresh_data_bindings()
+    print('refresh_db end) '+str(datetime.now()))##################
     self.repeating_panel_1.set_event_handler("x-custom_event", self.handle_custom_event)
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     merchName = anvil.server.call('get_merchant_list',Data.currentUser)
