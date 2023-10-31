@@ -112,7 +112,7 @@ class Homepage(HomepageTemplate):
     print('refresh_db start) '+str(datetime.now()))##################
     self.refresh_data_bindings()
     print('refresh_db end) '+str(datetime.now()))##################
-    print(merchName)
+    #print(merchName)
     end_time = datetime.now()
     time_difference = (end_time - start_time).total_seconds()
     print("Time difference in seconds:", time_difference)
