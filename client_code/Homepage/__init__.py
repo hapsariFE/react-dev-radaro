@@ -61,15 +61,19 @@ class Homepage(HomepageTemplate):
       #print('false')
       self.cms.visible = False
     print('login end) '+str(datetime.now()))##################
+    print('filterget start)'+str(datetime.now()))##################  
+    fUsers, ccVals,sVals,fmerch = anvil.server.call('get_filter_value',Data.currentUser)
+    #print('filterget end)'+str(datetime.now()))##################
+    print(fUsers,ccVals,sVals,fmerch)
     print('subbrand start)'+str(datetime.now()))##################  
-    SBrecords = anvil.server.call('get_subbrand_list',Data.currentUser)
-    self.subbrand = SBrecords
+    #SBrecords = anvil.server.call('get_subbrand_list',Data.currentUser)
+    self.subbrand = sVals
     print('subbrand end)'+str(datetime.now()))##################
 
     #ccRecords = anvil.server.call('get_compCodes_list')
     print('compcode start)'+str(datetime.now()))##################
-    ccRecords = anvil.server.call('get_compCodes_list',Data.currentUser)
-    self.etype = ccRecords
+    #ccRecords = anvil.server.call('get_compCodes_list',Data.currentUser)
+    self.etype = ccVals
     print('compcode end)'+str(datetime.now()))##################
    # print('login end)'+str(datetime.now()))##################
     #print('getuser start)'+str(datetime.now()))##################
@@ -87,11 +91,11 @@ class Homepage(HomepageTemplate):
     self.repeating_panel_1.set_event_handler("x-edit-article", self.filter_change)
     print('repeatingfilterchange end) '+str(datetime.now()))##################
     print('getmerchant start) '+str(datetime.now()))##################
-    merchName = anvil.server.call('get_merchant_list',Data.currentUser)
-    self.merchant_name = merchName
+    #merchName = anvil.server.call('get_merchant_list',Data.currentUser)
+    self.merchant_name = fmerch
     print('getmerchant end) '+str(datetime.now()))##################
     print('userlist start) '+str(datetime.now()))##################
-    users = anvil.server.call('get_user_list',Data.currentUser)
+    users = fUsers
     print('userlist end) '+str(datetime.now()))##################
     self.users = [(x['name'], x) for x in users]
     print('refresh_db start) '+str(datetime.now()))##################

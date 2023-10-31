@@ -354,6 +354,29 @@ def get_user_list(currentUser):
   #return app_tables.users.search(user_merchant_link=q.any_of(*values))
   return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
 
+@anvil.server.callable
+def get_filter_value(currentUser):
+  #get_user_list
+  x_rows = currentUser['user_merchant_link']
+  values = [[row] for row in x_rows]
+  user_list = app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
+  ##
+  #get_comp_list
+  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  cc_list =[r['Name'] for r in CCrecords]
+  cc_list.sort()
+  ##
+  ##get_subbrands_list
+  SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  s_list =[r['Name'] for r in SBrecords]
+  s_list.sort()
+  ##
+  ##get_merchant_list
+  m_list =[r['name'] for r in x_rows]
+  m_list.sort()
+
+  return user_list,cc_list,s_list,m_list
+
 
 #@anvil.server.callable
 #def get_active_user():
