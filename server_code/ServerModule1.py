@@ -357,23 +357,31 @@ def get_user_list(currentUser):
 @anvil.server.callable
 def get_filter_value(currentUser):
   #get_user_list
+  print('filter-userlist start)'+str(datetime.now()))##################
   x_rows = currentUser['user_merchant_link']
   values = [[row] for row in x_rows]
   user_list = app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
+  print('filter-userlist end)'+str(datetime.now()))##################
   ##
   #get_comp_list
+  print('filter-complist start)'+str(datetime.now()))##################
   CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   cc_list =[r['Name'] for r in CCrecords]
   cc_list.sort()
+  print('filter-complist end)'+str(datetime.now()))##################
   ##
   ##get_subbrands_list
+  print('filter-sblist start)'+str(datetime.now()))##################
   SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   s_list =[r['Name'] for r in SBrecords]
   s_list.sort()
+  print('filter-sblist end)'+str(datetime.now()))##################
   ##
   ##get_merchant_list
+  print('filter-merchlist start)'+str(datetime.now()))##################
   m_list =[r['name'] for r in x_rows]
   m_list.sort()
+  print('filter-merchlist end)'+str(datetime.now()))##################
 
   return user_list,cc_list,s_list,m_list
 
