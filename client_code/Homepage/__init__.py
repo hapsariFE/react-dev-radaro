@@ -18,6 +18,7 @@ from ..New import *
 class Homepage(HomepageTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
+    start_time = datetime.now()
     print('initiate start) '+str(datetime.now()))##################
     self.filters = {}
     self.date_filters = {} 
@@ -161,6 +162,9 @@ class Homepage(HomepageTemplate):
     self.refresh_data_bindings()
     print('refresh_db end) '+str(datetime.now()))##################
     print(merchName)
+    end_time = datetime.now()
+    time_difference = (end_time - start_time).total_seconds()
+    print("Time difference in seconds:", time_difference)
     #self.set_pages()
     
   def initialise_start_dates(self):
