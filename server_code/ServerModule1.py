@@ -1054,7 +1054,7 @@ def sync_subbrand(record):
 
   print(apiServer)
   if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken']+'&page_size=100')
     data = response.json()
     try:
       for result in data['results']:
@@ -1083,7 +1083,7 @@ def sync_compCodes(record):
   print(apiServer)
   print(record['APIToken'])
   if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken'])
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken']+'&page_size=100')
     data = response.json()
     #print(response.status_code)
     #print(response.reason)
