@@ -95,14 +95,14 @@ class Homepage(HomepageTemplate):
     print('refreshlist end) '+str(datetime.now()))##################
    # print('refreshlist end)'+str(datetime.now()))##################
    
-    #itemlist = list()
-    #for x in self.repeating_panel_1.items:
-    #  itemlist.append(x['id'])
-    #ires = []
-    #for val in itemlist:
-    #  if val != None:
-     #   if val not in ires:
-     #     ires.append(val)
+    itemlist = list()
+    for x in self.repeating_panel_1.items:
+      itemlist.append(x['id'])
+    ires = []
+    for val in itemlist:
+      if val != None:
+        if val not in ires:
+          ires.append(val)
     #self.itemlist = ires
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
@@ -129,15 +129,15 @@ class Homepage(HomepageTemplate):
     #Load existing data from the Data Table, 
      #and display them in the RepeatingPanel+
     self.repeating_panel_1.items = anvil.server.call('get_list',jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch)
-    #itemlist = list()
-    #for x in self.repeating_panel_1.items:
-    # itemlist.append(x['id'])
-    #ires = []
-    #for val in itemlist:
-    #  if val != None:
-     #   if val not in ires:
-    #      ires.append(val)
-    #self.itemlist = ires
+    itemlist = list()
+    for x in self.repeating_panel_1.items:
+     itemlist.append(x['id'])
+    ires = []
+    for val in itemlist:
+      if val != None:
+        if val not in ires:
+          ires.append(val)
+    self.itemlist = ires
     #self.set_pages()
   
   #def set_pages(self):
