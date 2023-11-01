@@ -103,7 +103,7 @@ class Homepage(HomepageTemplate):
       if val != None:
         if val not in ires:
           ires.append(val)
-    #self.itemlist = ires
+    self.itemlist = ires
     self.start_date_picker.date = startDate
     self.end_date_picker.date = endDate
     print('dates start) '+str(datetime.now()))##################
