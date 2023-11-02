@@ -39,10 +39,10 @@ allow_embedding: false
 name: React DEV - TEST
 runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null,
   server_persist: true}
-metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: 'React
-    DEV ', description: 'Radaro reduces your operational costs whilst offering real-time
-    insights over your in-house and third-party service providers with unprecedented
-    customer insights. Transform your last mile and service delivery, today.'}
+metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: React DEV 1,
+  description: 'Radaro reduces your operational costs whilst offering real-time insights
+    over your in-house and third-party service providers with unprecedented customer
+    insights. Transform your last mile and service delivery, today.'}
 startup_form: null
 db_schema:
   escalation_status:
