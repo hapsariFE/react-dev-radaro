@@ -1054,7 +1054,7 @@ def sync_subbrand(record):
 
   print(apiServer)
   if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken'])
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken']+'&page_size=100')
     data = response.json()
     try:
       for result in data['results']:
@@ -1083,7 +1083,7 @@ def sync_compCodes(record):
   print(apiServer)
   print(record['APIToken'])
   if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken'])
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken']+'&page_size=100')
     data = response.json()
     #print(response.status_code)
     #print(response.reason)
@@ -1113,15 +1113,15 @@ def DB_task(now):
 @anvil.server.background_task
 def update_db_value(now):
     # Fetch all rows from the table
-    rows = app_tables.webhook.search()
+    #rows = app_tables.webhook.search()
     
-    portal_for_change = "Dannys Portal"
+    portal_for_change = "pqSSWhpf2nzmmcjQiRXqHA"
     status = app_tables.escalation_status.get(name="Resolved")
     user = app_tables.users.get(name="System")
     description="Prelaunch trial data"
-    rows = app_tables.webhook.search()
+    rows = app_tables.webhook.search(date_created=q.less_than(datetime(day=15, month=10, year=2023),))
     for row in rows:
-      if row["webhook_merchant_link"]["name"] == portal_for_change and row["latest_status"]["name"] != "Resolved" :
+      if row["webhook_merchant_link"]["token"] == portal_for_change and row["latest_status"]["name"] != "Resolved" :
 
           print(row)
           print(now)
