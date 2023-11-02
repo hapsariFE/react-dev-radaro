@@ -102,11 +102,6 @@ db_schema:
     - name: sysName
       admin_ui: {width: 200}
       type: string
-  table_10:
-    client: none
-    server: full
-    columns: []
-    title: Table 10
   users:
     title: users
     client: none
