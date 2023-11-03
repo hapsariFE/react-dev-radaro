@@ -53,8 +53,6 @@ components:
           width: 90, expand: false}
         - {id: DNDWUT, title: Low Rating Threshold, data_key: rating_threshold, $$hashKey: 'object:6875',
           width: 97, expand: false}
-        - {id: GVFPOJ, title: Subbrand Retrieve, data_key: '', $$hashKey: 'object:2660',
-          width: '90'}
         auto_header: true
         tooltip: ''
         border: ''
@@ -68,7 +66,7 @@ components:
         background: ''
       name: data_grid_1
       layout_properties: {grid_position: 'UZACMG,ZBGFGT', row: DIWYFL, width_xs: 12,
-        col_xs: 0, width: 597.94}
+        col_xs: 0, width: 674}
       components:
       - type: RepeatingPanel
         properties: {spacing_above: none, spacing_below: none, item_template: CMS.RowTemplate4}

@@ -57,8 +57,8 @@ components:
   - {property: checked, code: 'self.item[''fail_code_enabled'']', writeback: false}
   event_bindings: {change: update_cms}
 - type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-    foreground: '', visible: true, text: Sync SB, font_size: null, font: '', spacing_above: small,
+  properties: {role: null, align: center, tooltip: '', border: '', enabled: false,
+    foreground: '', visible: false, text: Sync SB, font_size: null, font: '', spacing_above: small,
     icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
     underline: false, icon: ''}
   name: syncSBbutton

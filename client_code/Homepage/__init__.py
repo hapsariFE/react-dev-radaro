@@ -70,6 +70,13 @@ class Homepage(HomepageTemplate):
     else:
       #print('false')
       self.cms.visible = False
+
+    if Data.currentUser['is_reporting'] == True:
+      #print('true')
+      self.reporting.visible = True
+    else:
+      #print('false')
+      self.reporting.visible = False
     
 
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
