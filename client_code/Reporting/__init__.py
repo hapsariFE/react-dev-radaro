@@ -40,12 +40,12 @@ class Reporting(ReportingTemplate):
       self.label_16.role = "green-arrow"
     else: self.label_16.icon = False
     # % Resolved
-    if delta2 != "N/A":
+    if last_week_per != "N/A":
       self.label_11.text = "%s%" % (last_week_per)
       self.label_17.text = "%s vs prior week" % (delta2)
     else:
       self.label_11.text = "%s" % (last_week_per)
-      self.label_17.text = "%s vs prior week" % (delta2)
+      self.label_17.text = "%s vs prior week" % (delta2)      
     if delta2 != "N/A":
       if delta2 > 0: 
         self.label_17.icon = "fa:arrow-up"
@@ -65,7 +65,7 @@ class Reporting(ReportingTemplate):
       self.label_19.role = "red-arrow"
     else: self.label_19.icon = False
     #ave resolution
-    if delta4 != "N/A":
+    if ave_resolve_time_lw != "N/A":
       self.label_13.text = "%sd" % (ave_resolve_time_lw)
       self.label_18.text = "%s vs prior week" % (delta4)
     else:
