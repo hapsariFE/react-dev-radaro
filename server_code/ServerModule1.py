@@ -864,11 +864,20 @@ def highlights(today,currentUser):
   
     last_week_df_resolved = filtered_df_last_week[filtered_df_last_week['Status'] == 'Resolved']
     last_week_resolved = len(last_week_df_resolved)
-    last_week_per = round(last_week_resolved / last_week *100 ,1)
+    if not last_week_df_resolved.empty:
+      last_week_per = round(last_week_resolved / last_week *100 ,1)
+    else: 
+      last_week_per = "N/A"
     prior_week_df_resolved = filtered_df_prior_week[filtered_df_prior_week['Status'] == 'Resolved']
     prior_week_resolved = len(prior_week_df_resolved)
-    prior_week_per = round(prior_week_resolved / prior_week *100 ,1)
-    delta2 = round(last_week_per - prior_week_per,1)
+    if not prior_week_df_resolved.empty:
+      prior_week_per = round(prior_week_resolved / prior_week *100 ,1)
+    else:
+      prior_week_per = "N/A"
+    if last_week_per == "N/A" or prior_week_per == "N/A":
+      delta2 = "N/A"
+    else:
+      delta2 = round(last_week_per - prior_week_per,1) 
 
     df['resolve_time'] = (df['last_action_datetime'] - df['Datetime Created']) / pd.to_timedelta(1, unit='D')
     resolved_df_last_week = df[(df['last_action_date'] >= start_date_last_week) & (df['last_action_date'] <= end_date_last_week) & (df['Status'] == 'Resolved')]
@@ -876,9 +885,19 @@ def highlights(today,currentUser):
     resolved_df_prior_week = df[(df['last_action_date'] >= start_date_prior_week) & (df['last_action_date'] <= end_date_prior_week) & (df['Status'] == 'Resolved')]
     prior_resolved = len(resolved_df_prior_week)
     delta3 = resolved - prior_resolved
-    ave_resolve_time_lw = round(resolved_df_last_week['resolve_time'].mean(),1)
-    ave_resolve_time_pw = round(resolved_df_prior_week['resolve_time'].mean(),1)
-    delta4 = round(ave_resolve_time_lw - ave_resolve_time_pw,1)
+    if not resolved_df_last_week.empty:
+      ave_resolve_time_lw = round(resolved_df_last_week['resolve_time'].mean(),1)
+    else: 
+      ave_resolve_time_lw = "N/A"
+    if not resolved_df_prior_week.empty:
+      ave_resolve_time_pw = round(resolved_df_prior_week['resolve_time'].mean(),1)
+    else: 
+      ave_resolve_time_pw = "N/A"
+    if ave_resolve_time_lw == "N/A" or ave_resolve_time_pw == "N/A":
+      delta4 = "N/A"
+    else:
+      delta4 = round(ave_resolve_time_lw - ave_resolve_time_pw,1)
+      
 
     return last_week, delta, last_week_per, delta2, resolved, delta3, start_date_last_week, end_date_last_week, ave_resolve_time_lw, delta4
 
@@ -905,7 +924,7 @@ def all_charts(today,currentUser):
     sorted_df.reset_index(inplace=True)
     pie = px.pie(sorted_df,values ='count', names ='Status', hole = 0.55,color='Status',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
-                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(252,166,54)','Pending Approval':'rgb(40,166,77)','Approved':'rgb(13,13,13)','Resolved':'rgb(153,153,153)'})
     pie.update_traces(textinfo='label+value', insidetextorientation='horizontal', pull=0.00,hoverinfo='label+value+percent',
                         hovertemplate=
                         "<b>%{label}</b><br>" +
@@ -938,7 +957,7 @@ def all_charts(today,currentUser):
     trace_this_week = go.Bar(
     x=grouped_df[grouped_df['Week'] == 'This Week']['Day'],
     y=grouped_df[grouped_df['Week'] == 'This Week']['Count'],
-    name='This Week', marker_color='rgb(11,180,87)',texttemplate='%{y}'
+    name='This Week', marker_color='rgb(40,166,77)',texttemplate='%{y}'
     )
     trace_last_week = go.Bar(
     x=grouped_df[grouped_df['Week'] == 'Last Week']['Day'],
@@ -969,7 +988,7 @@ def all_charts(today,currentUser):
     sorted_df.reset_index(inplace=True)
     ch_status = px.bar(sorted_df, x="count", y="Status", orientation='h', color='Status', text ='count',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
-                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(252,166,54)','Pending Approval':'rgb(40,166,77)','Approved':'rgb(13,13,13)','Resolved':'rgb(153,153,153)'})
     ch_status.update_layout(font=dict(family="Arial",color="rgb(128,128,128)"),
                         margin=dict(l=20, r=20, t=10, b=20),
                         showlegend=False,
@@ -995,7 +1014,7 @@ def all_charts(today,currentUser):
     sorted_df.reset_index(inplace=True)
     ch_date = px.bar(sorted_df, x="Date Created", y="count", color = 'Status', text ='count',
                    category_orders={"Status": ["New", "Active", "Pending Approval", "Approved",'Resolved']},
-                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(11,180,87)','Pending Approval':'rgb(153,153,0)','Approved':'rgb(153,153,153)','Resolved':'rgb(18,35,158)'})
+                   color_discrete_map={'New':'rgb(161,52,60)','Active':'rgb(252,166,54)','Pending Approval':'rgb(40,166,77)','Approved':'rgb(13,13,13)','Resolved':'rgb(153,153,153)'})
     ch_date.update_layout(font=dict(family="Arial",color="rgb(128,128,128)"),
                         margin=dict(l=20, r=20, t=10, b=20),
                         plot_bgcolor="white",hovermode='x',
