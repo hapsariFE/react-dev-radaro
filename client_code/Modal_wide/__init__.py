@@ -99,6 +99,8 @@ class Modal_wide(Modal_wideTemplate):
     record_copy = dict(self.item)
     submitter = Data.currentUser
     anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to,submitter)
+    if self.email_check.checked == True: 
+      self.email_click()
     actionData = anvil.server.call('get_action',self.item)
     self.action_panelwide.items = actionData
     self.clear_button_click()
@@ -168,13 +170,13 @@ class Modal_wide(Modal_wideTemplate):
     
     record_copy = dict(self.item)
     submitter = Data.currentUser
-    #recipient = self.dd_assign.selected_value['email']
-    recipient = Data.currentUser
+    recipient = self.dd_assign.selected_value
+    #recipient = Data.currentUser
     created_date = datetime.now(anvil.tz.tzlocal())
-    #status = self.dd_status.selected_value
-    status = 'active'
-    #description = self.addcomment.text
-    description ='Hi Matt, please call the customer to ask questions'
+    status = self.dd_status.selected_value
+    #status = 'active'
+    description = self.addcomment.text
+    #description ='Hi Matt, please call the customer to ask questions'
     anvil.server.call('send_email', record_copy,description,status,created_date,recipient,submitter)
 
 
