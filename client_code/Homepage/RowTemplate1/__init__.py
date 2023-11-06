@@ -57,7 +57,6 @@ class RowTemplate1(RowTemplate1Template):
     record_copy = dict(self.item)
     save_clicked = alert(
      content=Modal(item = self.item),
-     title="Job ID : " + self.item["job_reference"],
      buttons=[("Exit", False)],
    )
     self.parent.raise_event('x-edit-article', article=self.item)
@@ -69,7 +68,6 @@ class RowTemplate1(RowTemplate1Template):
     record_copy = dict(self.item)
     save_clicked = alert(
      content=Modal_wide(item=self.item,ires=iresvalue),
-     title="Job ID : " + self.item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )

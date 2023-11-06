@@ -1164,12 +1164,10 @@ def send_email(record_copy,description,status,created_date,recipient,submitter):
   print(status)
   recipientrow = app_tables.users.get(name=recipient)
   recipientemail = recipientrow['email']
-  formatted_date = created_date.strftime("%d %b, %Y %H:%M") 
-  
+  formatted_date = created_date.strftime("%d %b, %Y %H:%M")
   anvil.email.send(
       from_name="REACT Notification",
       to=recipientemail,
       subject="New Escalation: %s" % (record_copy["job_reference"]),
-      #text="Hi %s, There is a new escalation from %s, created on %s. Ticket number %s is current %s with description %s." % (recipient['name'], submitter['name'], created_date, record_copy["job_reference"], status,description),
-      html='Hi %s, <br><br> You have been assigned a ticket from %s.<br><br> <b>Comments : </b>%s <br> Click <a href="https://au-react.radaro.com.au">here</a> to action. <br><br> <b><u> Details of the ticket : </b></u><br> <b>Date created : </b>%s. <br> <b>Ticket number : </b>%s. <br> <b>Status : </b>%s' % (recipientrow['name'], submitter['name'], description, formatted_date, record_copy["job_reference"], status),
+      html='Hi %s, <br><br> You have been assigned a ticket from %s.<br><br> <b>Comments : </b>%s <br> Click <a href="https://au-react.radaro.com.au">here</a> to action. <br><br> <b><u> Details of the ticket : </b></u><br> <b>Date created : </b>%s. <br> <b>Ticket number : </b>%s. <br> <b>Status : </b>%s' % (recipientrow['name'], submitter['name'], description, formatted_date, record_copy["job_reference"], status['name']),
     )         
