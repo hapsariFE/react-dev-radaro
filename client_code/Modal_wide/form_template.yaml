@@ -255,6 +255,11 @@ components:
       underline: false, icon: ''}
     layout_properties: {grid_position: 'KTJXJG,ZQIEIF'}
     name: label_20
+  - name: email_copy_1
+    properties: {text: test email}
+    type: Button
+    layout_properties: {grid_position: 'KTJXJG,JTNMSB'}
+    event_bindings: {click: email_click}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":65,"SSSIQM":30,"ZVVCQF":46,"CUEEYM":14,"KVHWEH":46,"OJQEBA":14,"GJKPQZ":5,"IBZDCH":30,"KHYYGI":30,"VUBYAT":45,"VJMZCN":15,"VNJRDH":45,"VNBPXM":15,"VIGTRO":30,"WCZJHM":20,"YIUPIM":10}',

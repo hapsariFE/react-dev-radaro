@@ -163,3 +163,24 @@ class Modal_wide(Modal_wideTemplate):
     
     self.raise_event("x-close-alert", value=42)
     
+  def email_click(self, **event_args):
+    """This method is called when the button is clicked"""
+    
+    record_copy = dict(self.item)
+    submitter = Data.currentUser
+    #recipient = self.dd_assign.selected_value['email']
+    recipient = Data.currentUser
+    created_date = datetime.now(anvil.tz.tzlocal())
+    #status = self.dd_status.selected_value
+    status = 'active'
+    #description = self.addcomment.text
+    description ='Hi Matt, please call the customer to ask questions'
+    anvil.server.call('send_email', record_copy,description,status,created_date,recipient,submitter)
+
+
+
+
+    
+    
+    
+    

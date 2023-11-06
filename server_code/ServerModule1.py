@@ -1,3 +1,4 @@
+import anvil.email
 import anvil.microsoft.auth
 import anvil.google.auth, anvil.google.drive, anvil.google.mail
 import plotly.express as px
@@ -1157,4 +1158,14 @@ def update_db_value(now):
           assign_to=user,
           escalation_id=row)
 
-             
+@anvil.server.callable
+def send_email(record_copy,description,status,created_date,recipient,submitter):
+  senderemail = submitter['email']  
+  recipientemail = recipient['email']  
+  anvil.email.send(
+      from_name="REACT Notification",
+      to=recipientemail,
+      subject="New Escalation: %s" % (record_copy),
+      #html='The Anvil <a href="https://anvil.works/forum">Forum</a> is friendly and informative.',
+      text="Hi %s, There is a new escalation from %s, created on %s. Ticket number %s is current %s with description %s." % (recipient, submitter, created_date, record_copy, status,description),
+    )         

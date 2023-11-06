@@ -265,5 +265,7 @@ class Homepage(HomepageTemplate):
       open_form('Reporting')
     else:
       alert("you do not have authorisation")    
+
+
     
     
