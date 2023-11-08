@@ -36,7 +36,7 @@ services:
 - source: /runtime/services/anvil/email.yml
   client_config: {}
   server_config: {custom_smtp: true, smtp_host: smtp.sendgrid.net, smtp_port: 465,
-    smtp_encryption: ssl, smtp_user: apikey, smtp_password: uamgPVagj6wYbEiqgC1u3+yUAuQtQvLeUXF+j6GFF+AzIRz9MTYOF2QvB1uFpfJw1bUSkrc7SpoiTJgxY9c0aQG47W+P194LlFedeMk8C/a8k+7RdOrn7JBvdKGuSlfgYblG2w2JaBR3EaSUEn8HngQvSoFe9QP3/FCFwblhZECfXJQe/gk2t6WGLCe/jScI28io0nniRiOI9HhPkyxq4wcR7Y3wILPYAWF9JgDCD1djfcKQvntLXAvi8kvQAA==}
+    smtp_encryption: ssl, smtp_user: apikey, smtp_password: o6jheUCIPPtw3sNHe0nSYzVhV1QoZATr+v/aewUETTU7WyL/T17j3rl/WiPhhdyxoxCoLsAxYfv1E81UPDPlENo+Pr/nyKXZhUi9rAGARMuc96+JjnYnanxDAwSEg33tRNQS1oTy2sWQQbgBHcC0LILRRTxrXHMQ+2CO0iNkRMYkThBE5i1nki5vC9f/15Yam9a4Xu1+LZbZkw2/2ob9n3efJUkt1CRS6w0g0DlCsPApUA0hdZTtDE20iYYt0A==}
 startup: {type: form, module: Homepage}
 package_name: React_DEV___TEST
 allow_embedding: false
