@@ -35,7 +35,8 @@ services:
   server_config: {}
 - source: /runtime/services/anvil/email.yml
   client_config: {}
-  server_config: {}
+  server_config: {custom_smtp: true, smtp_host: smtp.sendgrid.net, smtp_port: 465,
+    smtp_encryption: ssl, smtp_user: apikey, smtp_password: uamgPVagj6wYbEiqgC1u3+yUAuQtQvLeUXF+j6GFF+AzIRz9MTYOF2QvB1uFpfJw1bUSkrc7SpoiTJgxY9c0aQG47W+P194LlFedeMk8C/a8k+7RdOrn7JBvdKGuSlfgYblG2w2JaBR3EaSUEn8HngQvSoFe9QP3/FCFwblhZECfXJQe/gk2t6WGLCe/jScI28io0nniRiOI9HhPkyxq4wcR7Y3wILPYAWF9JgDCD1djfcKQvntLXAvi8kvQAA==}
 startup: {type: form, module: Homepage}
 package_name: React_DEV___TEST
 allow_embedding: false
