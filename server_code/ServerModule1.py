@@ -1279,7 +1279,8 @@ def send_email(record_copy,description,status,created_date,recipient,submitter):
   )
 
 @anvil.server.callable
-def create_pdf(ires):
-    pdf = anvil.pdf.render_form('Modal_wide',ires)
-    print(ires,'server')
+def create_pdf(self,ires):
+    print(self)
+    print(ires)
+    pdf = anvil.pdf.render_form('Modal_wide',self,ires)
     return pdf

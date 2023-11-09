@@ -18,13 +18,16 @@ from anvil.tables import app_tables
 class Modal_wide(Modal_wideTemplate):
   def __init__(self,ires, **properties):
     # Set Form properties and Data Bindings.
-    
+    print(ires)
+    print(self)
+    print(self.item)
     self.esc_status = esc_status
     self.assigned = ""
     createdif = ""
     actiondif = ""
     self.ires = ires
-    
+    print(self.ires)
+    pdf = anvil.server.call('create_pdf',self=self.item,ires=ires)
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
@@ -176,8 +179,9 @@ class Modal_wide(Modal_wideTemplate):
 
   def pdf(self, **event_args):
     """This method is called when the button is clicked"""
-
-    pdf = anvil.server.call('create_pdf',ires=self.item)
+    ires=self.item['id']
+    print(ires)
+    #pdf = anvil.server.call('create_pdf',self,ires)
     print(ires,'modal')
     anvil.media.download(pdf)
 
