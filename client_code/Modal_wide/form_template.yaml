@@ -4,9 +4,34 @@ properties: []
 container:
   type: ColumnPanel
   properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '', spacing_below: small,
-    background: ''}
+    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"RXVEOY":15,"XBLDEN":30,"YVGVOI":15}',
+    spacing_below: small, background: ''}
 components:
+- type: Button
+  properties: {role: null, align: right, tooltip: '', border: '', enabled: true, foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: 'fa:chevron-left'}
+  layout_properties: {grid_position: 'TLMXSN,RXVEOY', x: 185.3125, y: -6, width: 64.625}
+  event_bindings: {click: prev_click}
+  name: button_2
+- type: Label
+  properties: {role: title, align: center, tooltip: '', border: '', foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: ''}
+  name: title
+  layout_properties: {grid_position: 'TLMXSN,XBLDEN'}
+  data_bindings:
+  - {property: text, code: 'self.item[''job_reference'']'}
+- type: Button
+  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: '',
+    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
+    spacing_below: none, italic: false, background: '', bold: false, underline: false,
+    icon: 'fa:chevron-right'}
+  layout_properties: {grid_position: 'TLMXSN,YVGVOI', x: 298.25, y: -6, width: 73.3594}
+  event_bindings: {click: next_click}
+  name: button_1
 - type: ColumnPanel
   properties: {role: border-bottom, tooltip: '', border: '', foreground: '', visible: true,
     wrap_on: never, col_spacing: small, spacing_above: small, col_widths: '{"QFIVOG":20,"YWNEHA":10,"PHTORU":3,"ZQIEIF":47}',
@@ -257,7 +282,7 @@ components:
     name: label_20
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-      wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":65,"SSSIQM":30,"ZVVCQF":46,"CUEEYM":14,"KVHWEH":46,"OJQEBA":14,"GJKPQZ":5,"IBZDCH":30,"KHYYGI":30,"VUBYAT":45,"VJMZCN":15,"VNJRDH":45,"VNBPXM":15,"VIGTRO":30,"WCZJHM":20,"YIUPIM":10}',
+      wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":55,"SSSIQM":42,"ZVVCQF":44,"CUEEYM":16,"KVHWEH":30,"OJQEBA":10,"GJKPQZ":3,"IBZDCH":20,"KHYYGI":40,"VIGTRO":30,"UJUTGP":40}',
       spacing_below: small, background: ''}
     layout_properties: {grid_position: 'PCBSQW,FKYJQQ'}
     name: column_panel_2
@@ -297,12 +322,20 @@ components:
         bold: false
         underline: false
         include_placeholder: true
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH EPAEXM,ZVVCQF',
-        full_width_row: false}
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH EPAEXM,ZVVCQF
+          TGMVKW,BKGMJN', full_width_row: false}
       data_bindings:
       - {code: self.esc_status, property: items}
       event_bindings: {}
       name: dd_status
+    - type: Label
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
+          Font', visible: true, text: notify by email, font_size: 12, font: '', spacing_above: small,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      name: label_28
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH EPAEXM,ZVVCQF
+          XTYZIT,SPCNSN', full_width_row: false}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: true, text: '', font_size: 8, font: '', spacing_above: small, icon_align: left,
@@ -311,27 +344,13 @@ components:
       layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH EPAEXM,CUEEYM',
         full_width_row: false}
       name: label_17
-    - type: Button
-      properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Submit, font_size: 14, font: '', spacing_above: small,
-        icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH YOKDDG,VUBYAT',
-        full_width_row: false}
-      event_bindings: {click: submit_button_click}
-      name: submit_button
-    - type: Spacer
-      properties: {height: 32}
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,IBZDCH YOKDDG,VJMZCN',
-        full_width_row: false}
-      name: spacer_1
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: false, text: Please select a status, font_size: 10, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       layout_properties: {x: 202.515625, y: 1.859375, width: 161.719, grid_position: 'SGYDHC,SSSIQM
-          YMXSCI,IBZDCH WZISEM,QXLIMF'}
+          YMXSCI,IBZDCH OQRXNZ,YBQSVO'}
       name: e_status
     - type: DropDown
       properties:
@@ -368,19 +387,31 @@ components:
         full_width_row: false}
       name: label_18
     - type: Button
-      properties: {role: null, align: full, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: small,
+      properties: {role: filled-button, align: full, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Submit, font_size: 14, font: '', spacing_above: small,
         icon_align: left, spacing_below: small, italic: false, background: '', bold: false,
         underline: false, icon: ''}
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,VNJRDH',
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI WEGICO,UJUTGP',
+        full_width_row: false}
+      event_bindings: {click: submit_button_click}
+      name: submit_button
+    - type: CheckBox
+      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
+        foreground: '', allow_indeterminate: false, visible: true, text: '', font_size: 12,
+        font: '', spacing_above: none, spacing_below: none, italic: false, background: '',
+        bold: false, checked: true, underline: false}
+      name: email_check
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,GUEMIU',
+        full_width_row: false}
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+        underline: false, icon: ''}
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,TBNMIX',
         full_width_row: false}
       event_bindings: {click: clear_button_click}
       name: clear_button
-    - type: Spacer
-      properties: {height: 32}
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,VNBPXM',
-        full_width_row: false}
-      name: spacer_2
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: false, text: Please assign, font_size: 10, font: '', spacing_above: none,
@@ -396,22 +427,6 @@ components:
         underline: false, icon: ''}
       layout_properties: {x: 202.515625, y: 0, width: 248.438, grid_position: 'NZYTEE,VIGTRO'}
       name: e_comment
-    - type: Button
-      properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:chevron-left'}
-      layout_properties: {grid_position: 'NZYTEE,WCZJHM', x: 185.3125, y: -6, width: 64.625}
-      event_bindings: {click: prev_click}
-      name: button_2
-    - type: Button
-      properties: {role: null, align: left, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: 'fa:chevron-right'}
-      layout_properties: {grid_position: 'NZYTEE,YIUPIM', x: 298.25, y: -6, width: 73.3594}
-      event_bindings: {click: next_click}
-      name: button_1
   - type: Label
     properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
       visible: true, text: Comment History, font_size: 14, font: '', spacing_above: small,

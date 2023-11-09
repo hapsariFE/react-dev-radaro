@@ -24,7 +24,7 @@ class Modal_wide(Modal_wideTemplate):
     createdif = ""
     actiondif = ""
     self.ires = ires
-
+    
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
@@ -99,6 +99,8 @@ class Modal_wide(Modal_wideTemplate):
     record_copy = dict(self.item)
     submitter = Data.currentUser
     anvil.server.call('add_comment',self.item, record_copy, description, status, created_date, assign_to,submitter)
+    if self.email_check.checked == True: 
+      self.email()
     actionData = anvil.server.call('get_action',self.item)
     self.action_panelwide.items = actionData
     self.clear_button_click()
@@ -142,7 +144,6 @@ class Modal_wide(Modal_wideTemplate):
     record_copy = dict(self.item)
     save_clicked = alert(
      content=Modal_wide(item = next_item,ires = self.ires),
-     title="Job ID : " + next_item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )
@@ -156,10 +157,27 @@ class Modal_wide(Modal_wideTemplate):
     record_copy = dict(self.item)
     save_clicked = alert(
      content=Modal_wide(item = prev_item,ires = self.ires),
-     title="Job ID : " + prev_item["job_reference"],
      large=True,
      buttons=[("Exit", False)],
    )
     
     self.raise_event("x-close-alert", value=42)
+    
+  def email(self, **event_args):
+    """This method is called when the button is clicked"""
+    
+    record_copy = dict(self.item)
+    submitter = Data.currentUser
+    recipient = self.dd_assign.selected_value
+    created_date = datetime.now(anvil.tz.tzlocal())
+    status = self.dd_status.selected_value
+    description = self.addcomment.text
+    anvil.server.call('send_email', record_copy,description,status,created_date,recipient,submitter)
+
+
+
+
+    
+    
+    
     

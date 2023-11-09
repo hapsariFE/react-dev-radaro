@@ -518,7 +518,7 @@ components:
         properties: {role: elevated-button, vertical_align: center, height: 44, tooltip: '',
           border: '', foreground: '', visible: true, display_mode: shrink_to_fit,
           spacing_above: small, source: _/theme/Your%20Logo.jpg, spacing_below: small,
-          background: '', horizontal_align: right}
+          background: '', horizontal_align: center}
         layout_properties: {row: BTNFSF, width_xs: 3, col_xs: 9, width: 229, grid_position: 'AVJIEH,LHHCLH',
           full_width_row: false}
         name: image_2
