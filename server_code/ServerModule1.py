@@ -1281,11 +1281,10 @@ def send_email(record_copy,description,status,created_date,recipient,submitter):
 
 @anvil.server.callable
 def create_pdf(ires):
+    filename=ires
     iresrow = app_tables.webhook.get(id=ires)
     ires=iresrow
     #pdf = anvil.pdf.render_form('Modal_pdf',ires)
-    pdf = PDFRenderer(filename = f'{ires} .pdf', page_size='A4').render_form('Modal_pdf',ires)
+    pdf = PDFRenderer(filename = f'{filename}.pdf', page_size='A4', scale = 0.8).render_form('Modal_pdf',ires)
     return pdf
 
-
-PDFRenderer(filename=f'{name} Ticket.pdf').render_form('Ticket', name, date)
