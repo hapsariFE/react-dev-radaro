@@ -280,6 +280,14 @@ components:
       underline: false, icon: ''}
     layout_properties: {grid_position: 'KTJXJG,ZQIEIF'}
     name: label_20
+  - type: Button
+    properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+      foreground: '', visible: true, text: download pdf, font_size: null, font: '',
+      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
+      background: '', bold: false, underline: false, icon: ''}
+    name: button_4
+    layout_properties: {grid_position: 'KTJXJG,JVOPSV'}
+    event_bindings: {click: pdf}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":55,"SSSIQM":42,"ZVVCQF":44,"CUEEYM":16,"KVHWEH":30,"OJQEBA":10,"GJKPQZ":3,"IBZDCH":20,"KHYYGI":40,"VIGTRO":30,"UJUTGP":40}',

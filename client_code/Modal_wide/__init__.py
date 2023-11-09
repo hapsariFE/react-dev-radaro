@@ -174,6 +174,12 @@ class Modal_wide(Modal_wideTemplate):
     description = self.addcomment.text
     anvil.server.call('send_email', record_copy,description,status,created_date,recipient,submitter)
 
+  def pdf(self, **event_args):
+    """This method is called when the button is clicked"""
+
+    pdf = anvil.server.call('create_pdf')
+    anvil.media.download(pdf)
+
 
 
 

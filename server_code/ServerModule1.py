@@ -21,7 +21,7 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import requests
-
+import anvil.pdf
 
 
 #authenticated_callable = anvil.server.callable(require_user=True)
@@ -1277,3 +1277,8 @@ def send_email(record_copy,description,status,created_date,recipient,submitter):
     '</html>'
 ).format(recipientrow['name'], submitter['name'], record_copy["job_id"], record_copy["job_reference"], formatted_date, status['name'],description)
   )
+
+@anvil.server.callable
+def create_pdf():
+    pdf = anvil.pdf.render_form('Modal_Wide')
+    return pdf
