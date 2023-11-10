@@ -280,14 +280,6 @@ components:
       underline: false, icon: ''}
     layout_properties: {grid_position: 'KTJXJG,ZQIEIF'}
     name: label_20
-  - type: Button
-    properties: {role: null, align: right, tooltip: '', border: '', enabled: true,
-      foreground: '', visible: true, text: download pdf, font_size: null, font: '',
-      spacing_above: small, icon_align: left, spacing_below: small, italic: false,
-      background: '', bold: false, underline: false, icon: ''}
-    name: button_4
-    layout_properties: {grid_position: 'KTJXJG,JVOPSV'}
-    event_bindings: {click: pdf}
   - type: ColumnPanel
     properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
       wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"RDQOEF":55,"SSSIQM":42,"ZVVCQF":44,"CUEEYM":16,"KVHWEH":30,"OJQEBA":10,"GJKPQZ":3,"IBZDCH":20,"KHYYGI":40,"VIGTRO":30,"UJUTGP":40}',
@@ -411,15 +403,16 @@ components:
       name: email_check
       layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,GUEMIU',
         full_width_row: false}
-    - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
-        foreground: '', visible: true, text: Clear, font_size: 14, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
+    - type: Link
+      properties: {role: filter-button, url: '', align: center, tooltip: '', border: '',
+        foreground: 'theme:Filter Font', visible: true, text: Clear, font_size: null,
+        wrap_on: never, font: '', col_spacing: medium, spacing_above: small, icon_align: left,
+        col_widths: '', spacing_below: none, italic: false, background: '', bold: false,
         underline: false, icon: ''}
-      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,TBNMIX',
+      name: link_3
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI NJXDUE,QHQJEG',
         full_width_row: false}
       event_bindings: {click: clear_button_click}
-      name: clear_button
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: false, text: Please assign, font_size: 10, font: '', spacing_above: none,
@@ -428,6 +421,14 @@ components:
       layout_properties: {x: 202.515625, y: 17.859399999999994, width: 222.516, grid_position: 'SGYDHC,SSSIQM
           YMXSCI,KHYYGI RKPBMZ,FIWGHJ'}
       name: e_assign
+    - type: Button
+      properties: {role: null, align: center, tooltip: '', border: '', enabled: true,
+        foreground: '', visible: true, text: download, font_size: null, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: false, underline: false, icon: ''}
+      name: button_4
+      layout_properties: {grid_position: 'SGYDHC,SSSIQM YMXSCI,KHYYGI RKPBMZ,EMWLLO'}
+      event_bindings: {click: pdf}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
         visible: false, text: Please add a comment, font_size: 10, font: '', spacing_above: none,
