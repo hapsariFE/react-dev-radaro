@@ -123,7 +123,7 @@ class Homepage(HomepageTemplate):
     end_time = datetime.now()
     time_difference = (end_time - start_time).total_seconds()
     print("Time difference in seconds:", time_difference)
-    #print(merchName)
+    print(fmerch)
     #self.set_pages()
     
   def initialise_start_dates(self):
