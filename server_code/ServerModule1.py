@@ -21,7 +21,8 @@ import anvil.tables as tables
 import anvil.tables.query as q
 from anvil.tables import app_tables
 import requests
-
+from fpdf import FPDF
+from anvil.pdf import PDFRenderer
 
 
 #authenticated_callable = anvil.server.callable(require_user=True)
@@ -1277,3 +1278,13 @@ def send_email(record_copy,description,status,created_date,recipient,submitter):
     '</html>'
 ).format(recipientrow['name'], submitter['name'], record_copy["job_id"], record_copy["job_reference"], formatted_date, status['name'],description)
   )
+
+@anvil.server.callable
+def create_pdf(ires):
+    filename= "REACT_" + ires
+    iresrow = app_tables.webhook.get(id=ires)
+    ires=iresrow
+    #pdf = anvil.pdf.render_form('Modal_pdf',ires)
+    pdf = PDFRenderer(filename = f'{filename}.pdf', page_size='A4', scale = 0.8).render_form('Modal_pdf',ires)
+    return pdf
+
