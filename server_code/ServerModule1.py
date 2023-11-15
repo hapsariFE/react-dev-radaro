@@ -240,6 +240,7 @@ def submit_completion_codes(data):
   id_string = ";".join(id_values)
   comp_names = [str(code["name"]) for code in codes]
   comp_string = ";".join(comp_names)
+  
   updated_at = data.get('updated_at')
   counter = get_next_value_in_sequence()
   merctable = app_tables.merchant.get(token=data['token'])
@@ -260,40 +261,48 @@ def submit_completion_codes(data):
   else:    
     subbrandval = "(Blank)"
   #try:
+  submission_made = False
   sync_compCodes(merctable)
-  app_tables.webhook.add_row(
-  job_id = str(data['order_info']['order_id']),
-  id= str(counter),
-  customer_name = data['order_info']['customer']['name'],
-  completion_code_id = id_string,
-  completion_code_description = comp_string, 
-  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
-  last_action_date = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
-  job_reference = data['order_info']['title'],
-  webhook_merchant_link=app_tables.merchant.get(token=data['token']),
-  job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
-  job_report = data['order_info']['public_report_link'],
-  customer_rating= str(rating),
-  #escalation_type = "Low Rating",
-  latest_assignee = None,
-  latest_status = app_tables.escalation_status.get(name= "New"),
-  sub_brand=subbrandval,
-  mobile_number=data['order_info']['customer']['phone'],
-  date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
-  job_reference2=data['order_info']['title_2'],
-  job_reference3=data['order_info']['title_3'],
-  address=data['order_info']['deliver_address']['address'],
-  watch_list=False,
-  watchlistUsers=[])
-  
-  jobrow = app_tables.webhook.get(id=str(counter)) 
-  jr_dict = dict(jobrow)
-  assignname = None
-  esc_status = app_tables.escalation_status.get(name= "New")
-  description = "Created from Radaro"
-  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
-  submitter = app_tables.users.get(email='system')
-  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)
+  codeChecks = comp_string.split(';')
+  for codeCheck in codeChecks:
+    category = app_tables.compcodes.get(name=codeCheck)
+    if submission_made:
+            break
+    if category and category['is_enabled']:
+      app_tables.webhook.add_row(
+      job_id = str(data['order_info']['order_id']),
+      id= str(counter),
+      customer_name = data['order_info']['customer']['name'],
+      completion_code_id = id_string,
+      completion_code_description = comp_string, 
+      date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
+      last_action_date = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
+      job_reference = data['order_info']['title'],
+      webhook_merchant_link=app_tables.merchant.get(token=data['token']),
+      job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
+      job_report = data['order_info']['public_report_link'],
+      customer_rating= str(rating),
+      #escalation_type = "Low Rating",
+      latest_assignee = None,
+      latest_status = app_tables.escalation_status.get(name= "New"),
+      sub_brand=subbrandval,
+      mobile_number=data['order_info']['customer']['phone'],
+      date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
+      job_reference2=data['order_info']['title_2'],
+      job_reference3=data['order_info']['title_3'],
+      address=data['order_info']['deliver_address']['address'],
+      watch_list=False,
+      watchlistUsers=[])
+      
+      jobrow = app_tables.webhook.get(id=str(counter)) 
+      jr_dict = dict(jobrow)
+      assignname = None
+      esc_status = app_tables.escalation_status.get(name= "New")
+      description = "Created from Radaro"
+      date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
+      submitter = app_tables.users.get(email='system')
+      add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)
+      submission_made = True
   
 
 @anvil.server.callable
