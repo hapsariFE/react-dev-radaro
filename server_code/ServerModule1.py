@@ -1112,14 +1112,17 @@ def sync_compCodes(record):
       for result in data['results']:
           #print(result['id'])
             # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'])
+          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'],codeType=result['type'])
             
           if existing_record:
                 # Update existing record
-              existing_record.update(Name=result['name'],LastUpdated=datetime.now())
+              existing_record.update(Name=result['name'],LastUpdated=datetime.now(),codeType=result['type'])
           else:
                 # Insert new record
-              app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record)
+              if 'success' == result['type']: 
+                app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record,is_enabled=False,codeType=result['type'])
+              else:
+                app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record,is_enabled=True,codeType=result['type'])
     except Exception as  e:
       print("API Request Failed")
       print(e)
