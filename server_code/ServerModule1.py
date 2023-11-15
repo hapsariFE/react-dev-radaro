@@ -1112,7 +1112,7 @@ def sync_compCodes(record):
       for result in data['results']:
           #print(result['id'])
             # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'],codeType=result['type'])
+          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'])
             
           if existing_record:
                 # Update existing record
