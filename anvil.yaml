@@ -84,6 +84,12 @@ db_schema:
     - name: LastUpdated
       admin_ui: {}
       type: datetime
+    - name: is_enabled
+      admin_ui: {order: 3.5, width: 200}
+      type: bool
+    - name: codeType
+      admin_ui: {order: 3.75, width: 200}
+      type: string
   escalation_type:
     title: escalation_type
     client: search
@@ -188,7 +194,7 @@ db_schema:
       admin_ui: {width: 200}
       type: string
     - name: name
-      admin_ui: {width: 200}
+      admin_ui: {order: -2, width: 200}
       type: string
     - name: rating_threshold
       admin_ui: {width: 200}
