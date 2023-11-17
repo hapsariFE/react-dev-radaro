@@ -208,9 +208,14 @@ def submit_failed_checklist(data):
   #  print(comp_string)
     # comp_string = None
   sync_compCodes(merctable)  
-  nv = data['new_values']['is_confirmed_by_customer']
+  nv = data['order_info']['is_confirmed_by_customer']
   rating = data['order_info']['rating']
   counter = get_next_value_in_sequence()
+  
+  if data['order_info']['completed_at'] is None:
+    completedAtVal = "---"
+  else: 
+    completedAtVal = datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z")
   #try:
   app_tables.webhook.add_row(
   job_id = str(data['order_info']['order_id']),
@@ -230,7 +235,7 @@ def submit_failed_checklist(data):
   latest_status = app_tables.escalation_status.get(name= "New"),
   sub_brand=subbrandval,
   mobile_number=data['order_info']['customer']['phone'],
-  date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
+  date_delivered=completedAtVal, 
   job_reference2=data['order_info']['title_2'],
   job_reference3=data['order_info']['title_3'],
   address=data['order_info']['deliver_address']['address'],
