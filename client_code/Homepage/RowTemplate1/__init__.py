@@ -21,6 +21,8 @@ class RowTemplate1(RowTemplate1Template):
     # Set Form properties and Data Bindings.
 
     self.init_components(**properties)
+    self.label_8.text = self.get_time_difference_string(self.item['date_created'])
+    self.label_2.text = self.get_time_difference_string(self.item['last_action_date'])
     #createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
     #if createdif.seconds < 3600:
     #  createdif = str((createdif.seconds//60)%60) + " minutes"
@@ -29,8 +31,7 @@ class RowTemplate1(RowTemplate1Template):
     #else:
     #  createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
     #self.label_8.text = createdif
-    self.label_8.text = get_time_difference_string(self.item['date_created'])
-    self.label_2.text = get_time_difference_string(self.item['last_action_date'])
+
     #actiondif = datetime.now(anvil.tz.tzlocal()) - self.item['last_action_date']
     #if actiondif.seconds < 3600:
     #  actiondif = str((actiondif.seconds//60)%60) + " minutes"
@@ -105,7 +106,7 @@ class RowTemplate1(RowTemplate1Template):
     minutes, seconds = divmod(remainder, 60)
 
     if days > 0:
-        return f"{days} days, {hours} hours, {minutes} minutes"
+        return f"{days} days, {hours} hours"
     elif hours > 0:
         return f"{hours} hours, {minutes} minutes"
     else:
