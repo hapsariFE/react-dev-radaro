@@ -21,22 +21,24 @@ class RowTemplate1(RowTemplate1Template):
     # Set Form properties and Data Bindings.
 
     self.init_components(**properties)
-    createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
-    if createdif.seconds < 3600:
-      createdif = str((createdif.seconds//60)%60) + " minutes"
-    elif createdif.days < 1:
-      createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes"
-    else:
-      createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
-    self.label_8.text = createdif
-    actiondif = datetime.now(anvil.tz.tzlocal()) - self.item['last_action_date']
-    if actiondif.seconds < 3600:
-      actiondif = str((actiondif.seconds//60)%60) + " minutes"
-    elif actiondif.days < 1:
-      actiondif = str(actiondif.seconds//3600) + " hours, " + str((actiondif.seconds//60)%60) + " minutes"
-    else:
-      actiondif = str(actiondif.days) + " days, " + str(actiondif.seconds//3600) + " hours"
-    self.label_2.text = actiondif
+    #createdif = datetime.now(anvil.tz.tzlocal()) - self.item['date_created']
+    #if createdif.seconds < 3600:
+    #  createdif = str((createdif.seconds//60)%60) + " minutes"
+    #elif createdif.days < 1:
+    #  createdif = str(createdif.seconds//3600) + " hours, " + str((createdif.seconds//60)%60) + " minutes"
+    #else:
+    #  createdif = str(createdif.days) + " days, " + str(createdif.seconds//3600) + " hours"
+    #self.label_8.text = createdif
+    self.label_8.text = get_time_difference_string(self.item['date_created'])
+    self.label_2.text = get_time_difference_string(self.item['last_action_date'])
+    #actiondif = datetime.now(anvil.tz.tzlocal()) - self.item['last_action_date']
+    #if actiondif.seconds < 3600:
+    #  actiondif = str((actiondif.seconds//60)%60) + " minutes"
+   # elif actiondif.days < 1:
+   #   actiondif = str(actiondif.seconds//3600) + " hours, " + str((actiondif.seconds//60)%60) + " minutes"
+    #else:
+    #  actiondif = str(actiondif.days) + " days, " + str(actiondif.seconds//3600) + " hours"
+   # self.label_2.text = actiondif
     if self.item['watchlistUsers'] is not None:
       if Data.currentUser in self.item['watchlistUsers']:
         self.favourite.source= "_/theme/Star%20filled.png"
@@ -94,3 +96,17 @@ class RowTemplate1(RowTemplate1Template):
     user = Data.currentUser
     anvil.server.call('update_item',article,user)
     self.refresh_data_bindings()
+
+  def get_time_difference_string(self, from_time):
+    time_difference = datetime.now(anvil.tz.tzlocal()) - from_time
+    days = time_difference.days
+    seconds = time_difference.seconds
+    hours, remainder = divmod(seconds, 3600)
+    minutes, seconds = divmod(remainder, 60)
+
+    if days > 0:
+        return f"{days} days, {hours} hours, {minutes} minutes"
+    elif hours > 0:
+        return f"{hours} hours, {minutes} minutes"
+    else:
+        return f"{minutes} minutes"
