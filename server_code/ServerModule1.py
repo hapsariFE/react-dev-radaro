@@ -213,7 +213,7 @@ def submit_failed_checklist(data):
   counter = get_next_value_in_sequence()
   
   if data['order_info']['completed_at'] is None:
-    completedAtVal = "---"
+    completedAtVal = None
   else: 
     completedAtVal = datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z")
   #try:
