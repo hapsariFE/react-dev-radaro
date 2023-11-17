@@ -74,6 +74,8 @@ def incoming_msg(**kwargs):
           submit_completion_codes(data) 
     else:
         pass 
+
+
        ##     codes=data['order_info']['completion_codes']
     ##     id_values = [str(code["code"]) for code in codes]
     ##     id_string = ";".join(id_values)
