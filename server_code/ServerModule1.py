@@ -75,6 +75,20 @@ def incoming_msg(**kwargs):
     else:
         pass 
 
+  if 'checklist.job_checklist_confirmation' in topic:
+    checklist =  data.get('result_checklist_info', {}).get('checklist', {})
+    questions = checklist.get('questions', [])
+
+    for question in questions:
+        correct_answer = question.get('correct_answer')
+        given_answer = question.get('answer', {}).get('choice')
+        # Check if the given answer does not match the correct answer
+        if given_answer != correct_answer:
+            # Code to insert the payload into an Anvil Data Table
+            submit_failed_checklist(data)
+            # Break after the first mismatch, or remove the break if you want to store all mismatches
+            break
+
 
        ##     codes=data['order_info']['completion_codes']
     ##     id_values = [str(code["code"]) for code in codes]
@@ -161,7 +175,76 @@ def incoming_msg(**kwargs):
       #  address=data['order_info']['deliver_address']['address'],
       #  watch_list=False,
       #  watchlistUsers=[])
+
+@anvil.server.callable
+def submit_failed_checklist(data):
+  codes=data['order_info']['completion_codes']
+  id_values = [str(code["code"]) for code in codes]
+  id_string = ";".join(id_values)
+  comp_names = [str(code["name"]) for code in codes]
+  comp_string = ";".join(comp_names)
+  updated_at = data.get('updated_at')
+  merctable = app_tables.merchant.get(token=data['token'])
+
+  if data['order_info']['sub_branding'] is not None:
+    subbrandval = str(data['order_info']['sub_branding'])
     
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
+
+  
+  #if not comp_string:
+  #  print(comp_string)
+    # comp_string = None
+  sync_compCodes(merctable)  
+  nv = data['new_values']['is_confirmed_by_customer']
+  rating = data['order_info']['rating']
+  counter = get_next_value_in_sequence()
+  #try:
+  app_tables.webhook.add_row(
+  job_id = str(data['order_info']['order_id']),
+  id= str(counter),
+  customer_name = data['order_info']['customer']['name'],
+  completion_code_id = id_string,
+  completion_code_description = "Failed Job Checklist", 
+  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
+  last_action_date =datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
+  job_reference = data['order_info']['title'],
+  webhook_merchant_link=app_tables.merchant.get(token=data['token']),
+  job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
+  job_report = data['order_info']['public_report_link'],
+  customer_rating= str(rating),
+  #escalation_type = "Low Rating",
+  latest_assignee = None,
+  latest_status = app_tables.escalation_status.get(name= "New"),
+  sub_brand=subbrandval,
+  mobile_number=data['order_info']['customer']['phone'],
+  date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
+  job_reference2=data['order_info']['title_2'],
+  job_reference3=data['order_info']['title_3'],
+  address=data['order_info']['deliver_address']['address'],
+  watch_list=False,
+  watchlistUsers=[])
+
+  jobrow = app_tables.webhook.get(id=str(counter)) 
+  jr_dict = dict(jobrow)
+  assignname = None
+  esc_status = app_tables.escalation_status.get(name= "New")
+  description = "Created from Radaro"
+  date_created = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z")
+  submitter = app_tables.users.get(email='system')
+  add_comment(jobrow,jr_dict,description,esc_status,date_created,assignname,submitter)    
 
 @anvil.server.callable
 def submit_low_rating(data):
