@@ -796,7 +796,14 @@ def chart_user(currentUser):
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
     escalations = app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))
-    data = [{"User": r["user"]["name"], "Status": r["status"], "Created Date": r["created_date"]} for r in app_tables.action_log.search(escalation_id=q.any_of(*escalations))]
+    data = [
+      {
+        "User": r["user"]["name"], 
+        "Status": r["status"], 
+        "Created Date": r["created_date"]
+      } 
+      for r in app_tables.action_log.search(escalation_id=q.any_of(*escalations))
+    ]
     df = pd.DataFrame(data)
     df1 = df.loc[df["User"] !='System' ]
     #https://sparkbyexamples.com/pandas/pandas-groupby-multiple-columns/
@@ -860,7 +867,9 @@ def highlights(today,currentUser):
     values = [row for row in related_rows]
     data = [{"Status": r["latest_status"]["name"], "Datetime Created": r["date_created"], "Date Created": r["date_created"].date(),
              "last_action_date": r["last_action_date"].date(),"last_action_datetime": r["last_action_date"]}
-             for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+             for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))
+             if not (r["latest_status"]["name"] == "Resolved" and r["latest_assignee"]["name"] == "System")
+           ]
     df = pd.DataFrame(data)
     today = today
     Resolved = 'Resolved'
@@ -917,13 +926,22 @@ def highlights(today,currentUser):
 
 @anvil.server.callable
 def all_charts(today,currentUser):
-    #pie chart last week and bar chart last week vs this week
+    #create dataset
     related_rows = currentUser['user_merchant_link']
     values = [row for row in related_rows]
-    data = [{"Escalation Type": r["completion_code_description"].capitalize(), "last_action_date": r["last_action_date"],
-             "Status": r["latest_status"]["name"], "Date Created": r["date_created"].date(),"Datetime Created": r["date_created"],
-            } for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+    data = [
+      {
+        "Escalation Type": r["completion_code_description"].capitalize(), 
+        "last_action_date": r["last_action_date"],
+        "Status": r["latest_status"]["name"], 
+        "Date Created": r["date_created"].date(),
+        "Datetime Created": r["date_created"],
+      } 
+      for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))
+      if not (r["latest_status"]["name"] == "Resolved" and r["latest_assignee"]["name"] == "System")
+      ]
     df = pd.DataFrame(data)
+    #pie chart last week and bar chart last week vs this week
     today = today
     days_until_sunday = (today.weekday() - 6) % 7  # Calculate the number of days until the next Sunday
     end_date = today - timedelta(days=days_until_sunday)
@@ -1154,7 +1172,7 @@ def update_db_value(now):
     status = app_tables.escalation_status.get(name="Resolved")
     user = app_tables.users.get(name="System")
     description="Prelaunch trial data"
-    rows = app_tables.webhook.search(date_created=q.less_than(datetime(day=15, month=10, year=2023),))
+    rows = app_tables.webhook.search(date_created=q.less_than(datetime(day=17, month=10, year=2023),))
     for row in rows:
       if row["webhook_merchant_link"]["token"] == portal_for_change and row["latest_status"]["name"] != "Resolved" :
 
