@@ -217,6 +217,9 @@ db_schema:
     - name: low_rating_enabled
       admin_ui: {width: 200}
       type: bool
+    - name: job_checklist_enabled
+      admin_ui: {order: 2.75, width: 200}
+      type: bool
   webhook:
     title: webhook
     client: none
