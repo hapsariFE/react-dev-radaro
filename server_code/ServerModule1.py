@@ -1238,15 +1238,17 @@ def update_db_value(now):
     # Fetch all rows from the table
     #rows = app_tables.webhook.search()
     
-    portal_for_change = "pqSSWhpf2nzmmcjQiRXqHA"
+    portal_for_change = "--"
     status = app_tables.escalation_status.get(name="Resolved")
     user = app_tables.users.get(name="System")
     description="Prelaunch trial data"
     start_date = datetime(year=2023, month=11, day=5)
-    end_date = datetime(year=2023, month=11, day=7)
+    end_date = datetime(year=2023, month=11, day=18)
     rows = app_tables.webhook.search(date_created=q.between(start_date, end_date))
+    #print(*rows) 
     for row in rows:
-      if row["webhook_merchant_link"]["token"] == portal_for_change and row["latest_status"]["name"] != "Resolved" and row['completion_code_description'] ==  :
+      print(row['completion_code_description'])
+      if row["webhook_merchant_link"]["token"] == portal_for_change and row['completion_code_description'] == "Completed" and row["latest_status"]["name"] != "Resolved":
 
           print(row)
           print(now)
