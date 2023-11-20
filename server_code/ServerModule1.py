@@ -867,7 +867,9 @@ def highlights(today,currentUser):
     values = [row for row in related_rows]
     data = [{"Status": r["latest_status"]["name"], "Datetime Created": r["date_created"], "Date Created": r["date_created"].date(),
              "last_action_date": r["last_action_date"].date(),"last_action_datetime": r["last_action_date"]}
-             for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))]
+             for r in app_tables.webhook.search(webhook_merchant_link=q.any_of(*values))
+             if not (r["latest_status"]["name"] == "Resolved" and r["latest_assignee"]["name"] == "System")
+           ]
     df = pd.DataFrame(data)
     today = today
     Resolved = 'Resolved'
