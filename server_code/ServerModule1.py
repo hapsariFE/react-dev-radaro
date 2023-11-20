@@ -57,6 +57,7 @@ def incoming_msg(**kwargs):
   lowrate_enable = merctable['low_rating_enabled']
   compcode_enable = merctable['completion_code_enabled']
   failcode_enable = merctable['fail_code_enabled']
+  jobchecklist_enable = merctable['job_checklist_enabled']
   
   if 'new_values' in data :
     if data['new_values'] is not None and 'is_confirmed_by_customer' in data['new_values'] and lowrate_enable == True:
@@ -75,7 +76,7 @@ def incoming_msg(**kwargs):
     else:
         pass 
 
-  if 'checklist.job_checklist_confirmation' in topic:
+  if 'checklist.job_checklist_confirmation' in topic and jobchecklist_enable == True:
     checklist =  data.get('result_checklist_info', {}).get('checklist', {})
     questions = checklist.get('questions', [])
 
