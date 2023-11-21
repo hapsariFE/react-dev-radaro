@@ -262,6 +262,7 @@ class Homepage(HomepageTemplate):
   def reporting_click(self, **event_args):
     """This method is called when the button is clicked"""
     if Data.currentUser['is_reporting'] == True:
+      print('reporting start) '+str(datetime.now()))##################
       open_form('Reporting')
     else:
       alert("you do not have authorisation")    

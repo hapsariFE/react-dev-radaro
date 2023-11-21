@@ -17,8 +17,8 @@ from datetime import datetime, timedelta, date
 class Reporting(ReportingTemplate):
   def __init__(self, **properties):
     # Set Form properties and Data Bindings.
-    
-
+    print('initiate start) '+str(datetime.now()))##################
+    print('initiate end) '+str(datetime.now()))##################
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
     my_media = anvil.URLMedia(Data.currentUser['Logo'])
@@ -27,8 +27,10 @@ class Reporting(ReportingTemplate):
     #today = date(2023,10,15)
     currentUser=Data.currentUser
     #New tickets last 7 days with delta and % Resolved
+    print('highlights call start) '+str(datetime.now()))##################
     last_week,delta,last_week_per,delta2,resolved,delta3,start_date_last_week,end_date_last_week,ave_resolve_time_lw, delta4 = anvil.server.call('highlights',today,currentUser)
-    
+    print('highlights call end) '+str(datetime.now()))##################
+    print('highlights calc start) '+str(datetime.now()))##################
     #New tickets
     self.label_9.text = last_week   
     self.label_16.text = "%s vs prior week" % (delta)
@@ -83,22 +85,25 @@ class Reporting(ReportingTemplate):
     start_date = start_date_last_week.strftime("%b %d %Y")
     end_date = end_date_last_week.strftime("%b %d %Y")    
     self.label_20.text = "(%s to %s)" % (start_date,end_date)
-    
+    print('highlights calc end) '+str(datetime.now()))##################
     #Resolved tickets last 7 days with delta
     
     
-
+    print('charts start) '+str(datetime.now()))##################
     pie,chart,ch_status,ch_date,ch_type = anvil.server.call('all_charts',today,currentUser) 
     self.plot_6.figure = pie
     self.plot_7.figure = chart
     self.plot_5.figure = ch_status
     self.plot_3.figure = ch_date
     self.plot_2.figure = ch_type
-    
+    print('charts end) '+str(datetime.now()))##################
+
     #response by user
+    print('user charts start) '+str(datetime.now()))##################
     ch_user = anvil.server.call('chart_user',currentUser)
     self.plot_1.figure = ch_user 
-   
+    print('user charts end) '+str(datetime.now()))##################
+    print('reporting end) '+str(datetime.now()))##################
     #create_chart4 = anvil.server.call('create_chart4',currentUser)
     #self.plot_4.figure = create_chart4
 
