@@ -892,9 +892,10 @@ def chart_user(currentUser):
         "Created Date": r["created_date"]
       } 
       for r in app_tables.action_log.search(escalation_id=q.any_of(*escalations))
+      if not (r["user"]["name"] == "System")
     ]
     df = pd.DataFrame(data)
-    df1 = df.loc[df["User"] !='System' ]
+    #df1 = df.loc[df["User"] !='System' ]
     #https://sparkbyexamples.com/pandas/pandas-groupby-multiple-columns/
     grouped_df = df1.groupby(['User']).agg(
     Count=pd.NamedAgg(column='User', aggfunc='count')

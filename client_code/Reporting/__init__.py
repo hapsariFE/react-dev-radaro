@@ -99,10 +99,10 @@ class Reporting(ReportingTemplate):
     print('charts end) '+str(datetime.now()))##################
 
     #response by user
-    print('user charts start) '+str(datetime.now()))##################
-    ch_user = anvil.server.call('chart_user',currentUser)
-    self.plot_1.figure = ch_user 
-    print('user charts end) '+str(datetime.now()))##################
+    #print('user charts start) '+str(datetime.now()))##################
+    #ch_user = anvil.server.call('chart_user',currentUser)
+    #self.plot_1.figure = ch_user 
+    #print('user charts end) '+str(datetime.now()))##################
     print('reporting end) '+str(datetime.now()))##################
     #create_chart4 = anvil.server.call('create_chart4',currentUser)
     #self.plot_4.figure = create_chart4
