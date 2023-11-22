@@ -356,7 +356,7 @@ def submit_completion_codes(data):
   sync_compCodes(merctable)
   codeChecks = comp_string.split(';')
   for codeCheck in codeChecks:
-    category = app_tables.compcodes.get(Name=codeCheck)
+    category = app_tables.compcodes.get(ID=codeCheck,MerchantID=str(data['order_info']['merchant']),Server=merctable['server'])
     if submission_made:
             break
     if category and category['is_enabled']:
