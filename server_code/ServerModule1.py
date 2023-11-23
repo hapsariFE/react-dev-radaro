@@ -359,7 +359,7 @@ def submit_completion_codes(data):
     print("Code:" + codeCheck)
     print(data['order_info']['merchant'])
     print(merctable['server'])
-    category = app_tables.compcodes.get(Name=codeCheck,MerchantID=str(data['order_info']['merchant']),Server=merctable['server'])
+    category = app_tables.compcodes.get(ID=codeCheck,MerchantID=str(data['order_info']['merchant']),Server=merctable['server'])
     print(category)
     print(category['is_enabled'])
     if submission_made:
