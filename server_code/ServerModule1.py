@@ -354,7 +354,7 @@ def submit_completion_codes(data):
   #try:
   submission_made = False
   sync_compCodes(merctable)
-  codeChecks = comp_string.split(';')
+  codeChecks = id_string.split(';')
   for codeCheck in codeChecks:
     print("Code:" + codeCheck)
     print(data['order_info']['merchant'])
