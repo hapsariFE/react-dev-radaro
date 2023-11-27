@@ -53,42 +53,46 @@ def incoming_msg(**kwargs):
   #json['topic']
   topic = data.get('topic')
   merctable = app_tables.merchant.get(token=data['token'])
+  try:
+    lowrate_enable = merctable['low_rating_enabled']
+    compcode_enable = merctable['completion_code_enabled']
+    failcode_enable = merctable['fail_code_enabled']
+    jobchecklist_enable = merctable['job_checklist_enabled']
+    
+    if 'new_values' in data :
+      if data['new_values'] is not None and 'is_confirmed_by_customer' in data['new_values'] and lowrate_enable == True:
+        if merctable is not None:
+        
+          if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
+          #print(json)
+            submit_low_rating(data)
   
-  lowrate_enable = merctable['low_rating_enabled']
-  compcode_enable = merctable['completion_code_enabled']
-  failcode_enable = merctable['fail_code_enabled']
-  jobchecklist_enable = merctable['job_checklist_enabled']
+      if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
+        if 'delivered'==data['order_info']['status'] and compcode_enable == True:
+            submit_completion_codes(data) 
+        elif failcode_enable == True and 'failed'==data['order_info']['status']:
+            print("fail code testing")
+            submit_completion_codes(data) 
+      else:
+          pass 
   
-  if 'new_values' in data :
-    if data['new_values'] is not None and 'is_confirmed_by_customer' in data['new_values'] and lowrate_enable == True:
-      if merctable is not None:
-      
-        if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
-        #print(json)
-          submit_low_rating(data)
-
-    if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
-       if 'delivered'==data['order_info']['status'] and compcode_enable == True:
-          submit_completion_codes(data) 
-       elif failcode_enable == True and 'failed'==data['order_info']['status']:
-          print("fail code testing")
-          submit_completion_codes(data) 
-    else:
-        pass 
-
-  if 'checklist.job_checklist_confirmation' in topic and jobchecklist_enable == True:
-    checklist =  data.get('result_checklist_info', {}).get('checklist', {})
-    questions = checklist.get('questions', [])
-
-    for question in questions:
-        correct_answer = question.get('correct_answer')
-        given_answer = question.get('answer', {}).get('choice')
-        # Check if the given answer does not match the correct answer
-        if given_answer != correct_answer:
-            # Code to insert the payload into an Anvil Data Table
-            submit_failed_checklist(data)
-            # Break after the first mismatch, or remove the break if you want to store all mismatches
-            break
+    if 'checklist.job_checklist_confirmation' in topic and jobchecklist_enable == True:
+      checklist =  data.get('result_checklist_info', {}).get('checklist', {})
+      questions = checklist.get('questions', [])
+  
+      for question in questions:
+          correct_answer = question.get('correct_answer')
+          given_answer = question.get('answer', {}).get('choice')
+          # Check if the given answer does not match the correct answer
+          if given_answer != correct_answer:
+              # Code to insert the payload into an Anvil Data Table
+              submit_failed_checklist(data)
+              # Break after the first mismatch, or remove the break if you want to store all mismatches
+              break
+  except Exception as error: 
+    print(data['token'])
+    print(merctable['name']) 
+    print(error)          
 
 
        ##     codes=data['order_info']['completion_codes']
