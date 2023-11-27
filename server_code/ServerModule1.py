@@ -481,6 +481,7 @@ def get_filter_value():
   print('filter-complist start)'+str(datetime.now()))##################
   CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001','00000002'])))
   cc_list =[r['Name'] for r in CCrecords]
+  cc_list = list(set(cc_list))
   cc_list.sort()
   print('filter-complist end)'+str(datetime.now()))##################
   ##
