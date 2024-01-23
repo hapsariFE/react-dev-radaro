@@ -361,7 +361,7 @@ def submit_completion_codes(data):
   codeChecks = id_string.split(';')
   for codeCheck in codeChecks:
     print("Code:" + codeCheck)
-    print(data['order_info']['merchant'])
+    #print(data['order_info']['merchant'])
     print(merctable['server'])
     category = app_tables.compcodes.get(ID=codeCheck,MerchantID=str(data['order_info']['merchant']),Server=merctable['server'])
     print(category)
