@@ -327,5 +327,9 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: merchant
+secrets:
+  new_secret:
+    type: secret
+    value: {SOY2CEZ4RU7EHXKU: ''}
 uplink_visible: true
 renamed: true
