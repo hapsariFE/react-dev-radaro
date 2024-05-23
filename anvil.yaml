@@ -139,11 +139,11 @@ db_schema:
       admin_ui: {width: 200}
       type: bool
     - name: user_merchant_link
-      admin_ui: {order: 7, width: 200}
+      admin_ui: {order: 0.875, width: 200}
       type: link_multiple
       target: merchant
     - name: Logo
-      admin_ui: {order: 8, width: 200}
+      admin_ui: {order: 0.75, width: 200}
       type: string
     - name: remembered_logins
       admin_ui: {width: 200}
