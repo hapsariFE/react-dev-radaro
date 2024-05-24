@@ -154,6 +154,10 @@ db_schema:
     - name: is_super_user
       admin_ui: {width: 200}
       type: bool
+    - name: user_subbrand_link
+      admin_ui: {order: 0.9375, width: 200}
+      type: link_multiple
+      target: subbrands
   action_log:
     client: none
     server: full
