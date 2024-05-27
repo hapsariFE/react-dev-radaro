@@ -425,7 +425,7 @@ def get_subbrand_list(currentUser):
   #Xvalues = []
   print('subbrand step1)'+str(datetime.now()))##################
   x_rows = currentUser['user_merchant_link']
-  if currentUser['user_subbrand_link'] is not None:
+  if currentUser.get('user_subbrand_link'):
     x_rows = currentUser['user_subbrand_link']
     x_list =[r['name'] for r in x_rows]
   else:
@@ -491,12 +491,13 @@ def get_filter_value():
   ##
   ##get_subbrands_list
   print('filter-sblist start)'+str(datetime.now()))##################
-  #SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+  if currentUser.get('user_subbrand_link'):
+    s_rows = currentUser['user_subbrand_link']
+    s_list =[r['Name'] for r in s_rows]
+  else:
+    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
   #sBrecords = currentUser['user_subbrand_link']
-  #s_list =[r['Name'] for r in SBrecords]
-  s_rows = currentUser['user_subbrand_link']
-  s_list =[r['Name'] for r in s_rows]
-  
+    s_list =[r['Name'] for r in SBrecords]
   s_list.sort()
   print('filter-sblist end)'+str(datetime.now()))##################
   ##
