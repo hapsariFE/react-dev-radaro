@@ -589,25 +589,46 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     if escalation_status_conditions:
         # Directly use escalation status row objects in the search
         search_params['latest_status'] = q.any_of(*escalation_status_conditions)
-      
+    
+    # Handle merchant name if provided
     results = []
-    for merchant, subbrand in merchant_subbrand_pairs.items():
-        if subbrand:
-            # Specific subbrand search
-            temp_results = app_tables.webhook.search(
+    if merchant_name:
+        merchant_rows = app_tables.merchant.search(name=merchant_name)
+        if merchant_rows:
+            #merchant_ids = [m['name'] for m in merchant_rows]
+            filter_dict['webhook_merchant_link'] = q.any_of(*merchant_rows)
+
+            current_search_params = filter_dict.copy()
+            current_search_params['webhook_merchant_link'] = q.any_of(*merchant_rows)
+            results = app_tables.webhook.search(
                 tables.order_by("last_action_date", ascending=False),
-                **search_params,
-                webhook_merchant_link=merchant,
-                webhook_subbrand_link=subbrand
-            )
+                **current_search_params,date_created=q.between(min=startDate,max=endDate),latest_status=q.any_of(*escStatus))
         else:
-            # All subbrands for this merchant
-            temp_results = app_tables.webhook.search(
-                tables.order_by("last_action_date", ascending=False),
-                **search_params,
-                webhook_merchant_link=merchant
-            )
-        results.extend(temp_results)
+
+    else:
+        for merchant, subbrand in merchant_subbrand_pairs.items():
+          current_search_params = filter_dict.copy()
+          current_search_params['webhook_merchant_link'] = merchant
+          if subbrand:
+              # Specific subbrand search
+              current_search_params = search_params.copy()  # Copy search_params to avoid altering the original
+              current_search_params.update({
+                  'webhook_merchant_link': merchant,
+                  'webhook_subbrand_link': subbrand
+              })
+              temp_results = app_tables.webhook.search(
+                  tables.order_by("last_action_date", ascending=False),
+                  **current_search_params
+              )
+          else:
+              # All subbrands for this merchant
+              current_search_params = search_params.copy()
+              current_search_params['webhook_merchant_link'] = merchant
+              temp_results = app_tables.webhook.search(
+                  tables.order_by("last_action_date", ascending=False),
+                  **current_search_params
+              )
+          results.extend(temp_results)
 
     if searchText:
         results = [
