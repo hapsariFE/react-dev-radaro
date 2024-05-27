@@ -304,6 +304,10 @@ db_schema:
       admin_ui: {width: 191}
       type: link_single
       target: escalation_type
+    - name: webhook_subbrand_link
+      admin_ui: {width: 200, order: 15.5}
+      type: link_single
+      target: subbrands
   subbrands:
     title: subbrands
     client: none

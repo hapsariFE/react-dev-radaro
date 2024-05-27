@@ -536,98 +536,92 @@ def update_cms(rowid,name,fail_code_enabled,completion_code_enabled,low_rating_e
   
 
 @anvil.server.callable
-def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name,assigned_to,searchText,resolvedStatus,watch):
-  currentUser=anvil.users.get_user()
-  #kwargs={'job_status':jobValue,'completion_code_id':compCode}
-  #total = []
+def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchant_name, assigned_to, searchText, resolvedStatus, watch):
+    currentUser = anvil.users.get_user()
+
+    filter_dict = {}
+    if assigned_to is not None:
+        defaultassign = app_tables.users.get(name=assigned_to['name'])
+        filter_dict['latest_assignee'] = defaultassign
+
+    if jobValue is not None:
+        filter_dict['job_status'] = jobValue
+
+    if compCode is not None:
+        filter_dict['sub_brand'] = compCode
+
+    if escType is not None:
+        filter_dict['completion_code_description'] = q.ilike(f"%{escType}%")
+
+    if watch:
+        filter_dict['watchlistUsers'] = [currentUser]
+
+    # Handling escalation status based on resolved status
+    escalation_status_conditions = []
+    if escStatus is not None:
+        esc_status_name = escStatus['name']
+        if resolvedStatus is False:
+            escalation_status_conditions = app_tables.escalation_status.search(name=q.none_of("Resolved"))
+        elif resolvedStatus is True:
+            escalation_status_conditions = app_tables.escalation_status.search(name=q.any_of("Resolved", esc_status_name))
+    else:
+        if resolvedStatus is False:
+            escalation_status_conditions = app_tables.escalation_status.search(name=q.none_of("Resolved"))
+        elif resolvedStatus is True:
+            escalation_status_conditions = app_tables.escalation_status.search()
   
-  #print(assignrow)
-  defaultassign = get_user_list(currentUser)
-  #print(*defaultassign)
-  #print(*[r for r in defaultassign])
-  #if assignrow == None:
-  #  assignrow = [[r] for r in defaultassign]
-  #print(escStatus)
+    # Fetch merchant and subbrand values separately
+    merchant_links = currentUser.get('user_merchant_link', [])
+    subbrand_links = currentUser.get('user_subbrand_link', [])
 
-  #print("ooooooo")
-  #print(escStatus)
-  #print(jobValue)
-  #selectedGroups = [r for r in currentUser['user_merchant_link']]
-  #print(selectedGroups)
-  #RelatedJobStatus = jobValue['name']
-#  Jobvalues = [row for row in jobValue]
-  #if jobValue is None:  
-  #  jobValue = [jobValue for jobValue in app_tables.job_status.search()]
-  #else:
-   # jobValue = [row for row in jobValue]
-  filter_dict = {}
-  if assigned_to != None:
-    defaultassign = app_tables.users.get(name=assigned_to['name'])
-    filter_dict['latest_assignee'] = defaultassign
+    # Construct pairs and determine if specific subbrands are specified
+    merchant_subbrand_pairs = {}
+    for merchant in merchant_links:
+        # Find corresponding subbrand if it exists, comparing MerchantLink to merchant row
+        corresponding_subbrand = next((sub for sub in subbrand_links if sub['MerchantLink'] == merchant), None)
+        merchant_subbrand_pairs[merchant] = corresponding_subbrand if corresponding_subbrand else None
 
-  if jobValue != None:
-    filter_dict['job_status'] = jobValue
+    # Prepare the search
+    search_params = {
+        "date_created": q.between(min=startDate, max=endDate),
+        **filter_dict
+    }
+    if escalation_status_conditions:
+        # Directly use escalation status row objects in the search
+        search_params['latest_status'] = q.any_of(*escalation_status_conditions)
+      
+    results = []
+    for merchant, subbrand in merchant_subbrand_pairs.items():
+        if subbrand:
+            # Specific subbrand search
+            temp_results = app_tables.webhook.search(
+                tables.order_by("last_action_date", ascending=False),
+                **search_params,
+                webhook_merchant_link=merchant,
+                webhook_subbrand_link=subbrand
+            )
+        else:
+            # All subbrands for this merchant
+            temp_results = app_tables.webhook.search(
+                tables.order_by("last_action_date", ascending=False),
+                **search_params,
+                webhook_merchant_link=merchant
+            )
+        results.extend(temp_results)
 
-  if compCode != None:
-    filter_dict['sub_brand'] = compCode
-    print(filter_dict['sub_brand'])
+    if searchText:
+        results = [
+            x for x in results
+            if searchText.lower() in x['job_id'].lower() or
+               searchText.lower() in x['job_reference'].lower() or
+               searchText.lower() in x['customer_name'].lower() or
+               (x['mobile_number'] and searchText.lower() in x['mobile_number'].lower()) or
+               (x['sub_brand'] and searchText.lower() in x['sub_brand'].lower()) or
+               (x['job_reference2'] and searchText.lower() in x['job_reference2'].lower()) or
+               (x['job_reference3'] and searchText.lower() in x['job_reference3'].lower())
+        ]
 
-  if escType != None:
-    filter_dict['completion_code_description'] = q.ilike(f"%{escType}%")
-
-  if watch is True :
-    filter_dict['watchlistUsers'] = [anvil.users.get_user()]
-
-  if escStatus != None:
-    if resolvedStatus is False:
-      print(escStatus['name'])
-      escStatus = app_tables.escalation_status.search(name=q.all_of(q.none_of("Resolved"),q.any_of(escStatus['name'])))    
-    if resolvedStatus is True:
-      escStatus = app_tables.escalation_status.search(name=q.any_of(q.any_of("Resolved"),q.any_of(escStatus['name']),))
-
-  if escStatus == None:
-    if resolvedStatus is False:
-      escStatus = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
-    if resolvedStatus is True:
-      escStatus = app_tables.escalation_status.search() 
-
-  related_rows = currentUser['user_merchant_link']
-  values = [row for row in related_rows]
- 
-  if merchant_name is None and assigned_to is None :
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
-
-  elif merchant_name is None and assigned_to is not None :
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
-
-  elif merchant_name is not None and assigned_to is None :
-    merchant_row = app_tables.merchant.search(name=merchant_name)
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
-
-  else:
-    merchant_row = app_tables.merchant.search(name=merchant_name)
-    custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*merchant_row),latest_status=q.any_of(*escStatus))
-
-  if searchText:
-    custTable = [
-      x for x in custTable
-        if searchText.lower() in x['job_id'].lower()
-        or searchText.lower() in x['job_reference'].lower()
-        or searchText.lower() in x['customer_name'].lower()
-        or x['mobile_number'] is not None and searchText.lower() in x['mobile_number'].lower() 
-        or x['sub_brand'] is not None and searchText.lower() in x['sub_brand'].lower() 
-        or x['job_reference2'] is not None and searchText.lower() in x['job_reference2'].lower() 
-        or x['job_reference3'] is not None and searchText.lower() in x['job_reference3'].lower()
-    ]
-    
-#  app_tables.merchant.search(name=q.all_of(*currentUser['user_merchant_link']))
-  #print(*currentUser['user_merchant_link'])
-  #if filters.get('job_status') and filters['job_status'] == Data.NO_STATUS_SELECTED:
-  #  filters['job_status'] = None
-  # Get a list of escalation from the Data Table, sorted by 'date_created' column, in descending order
-  
- #custTable = app_tables.webhook.search(job_status=jobValue,completion_code_id=compCode,escalation_type=escType,latest_status=escStatus,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values))
-  return custTable
+    return results
 
 @anvil.server.callable
 def get_action(rowValue):
