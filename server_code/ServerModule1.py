@@ -593,6 +593,7 @@ def get_list(jobValue,compCode,escType,escStatus,startDate,endDate,merchant_name
 
   related_rows = currentUser['user_merchant_link']
   values = [row for row in related_rows]
+ 
   if merchant_name is None and assigned_to is None :
     custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),**filter_dict,date_created=q.between(min=startDate,max=endDate),webhook_merchant_link=q.any_of(*values),latest_status=q.any_of(*escStatus))
 
