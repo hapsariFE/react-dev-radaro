@@ -603,8 +603,8 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
             results = app_tables.webhook.search(
                 tables.order_by("last_action_date", ascending=False),
                 **current_search_params,date_created=q.between(min=startDate,max=endDate),latest_status=q.any_of(*escStatus))
-        else:
-
+        
+        
     else:
         for merchant, subbrand in merchant_subbrand_pairs.items():
           current_search_params = filter_dict.copy()
