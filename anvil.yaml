@@ -308,6 +308,9 @@ db_schema:
       admin_ui: {width: 200, order: 15.5}
       type: link_single
       target: subbrands
+    - name: comment
+      admin_ui: {width: 200, order: 22}
+      type: string
   subbrands:
     title: subbrands
     client: none
