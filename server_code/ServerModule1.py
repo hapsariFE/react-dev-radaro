@@ -243,6 +243,7 @@ def submit_failed_checklist(data):
   date_delivered=completedAtVal, 
   job_reference2=data['order_info']['title_2'],
   job_reference3=data['order_info']['title_3'],
+  comment=data['order_info']['comment'],
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
@@ -313,6 +314,7 @@ def submit_low_rating(data):
   date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
   job_reference2=data['order_info']['title_2'],
   job_reference3=data['order_info']['title_3'],
+  comment=data['order_info']['comment'],
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
@@ -390,6 +392,7 @@ def submit_completion_codes(data):
       date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
       job_reference2=data['order_info']['title_2'],
       job_reference3=data['order_info']['title_3'],
+      comment=data['order_info']['comment'],
       address=data['order_info']['deliver_address']['address'],
       watch_list=False,
       watchlistUsers=[])
