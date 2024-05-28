@@ -560,82 +560,63 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
         filter_dict['watchlistUsers'] = [currentUser]
 
     # Handling escalation status based on resolved status
-    escalation_status_conditions = []
     if escStatus is not None:
-        esc_status_name = escStatus['name']
-        if resolvedStatus is False:
-            escalation_status_conditions = app_tables.escalation_status.search(name=q.none_of("Resolved"))
-        elif resolvedStatus is True:
-            escalation_status_conditions = app_tables.escalation_status.search(name=q.any_of("Resolved", esc_status_name))
+      if resolvedStatus is False:
+        escStatus = app_tables.escalation_status.search(name=q.all_of(q.none_of("Resolved"),q.any_of(escStatus['name'])))    
+      if resolvedStatus is True:
+        escStatus = app_tables.escalation_status.search(name=q.any_of(q.any_of("Resolved"),q.any_of(escStatus['name']),))
     else:
         if resolvedStatus is False:
-            escalation_status_conditions = app_tables.escalation_status.search(name=q.none_of("Resolved"))
-        elif resolvedStatus is True:
-            escalation_status_conditions = app_tables.escalation_status.search()
+          escStatus = app_tables.escalation_status.search(name=q.none_of("Resolved")) 
+        if resolvedStatus is True:
+          escStatus = app_tables.escalation_status.search() 
   
     # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
     subbrand_links = currentUser.get('user_subbrand_link', [])
-
-    # Construct pairs and determine if specific subbrands are specified
-    merchant_subbrand_pairs = {}
-    for merchant in merchant_links:
-        # Find corresponding subbrand if it exists, comparing MerchantLink to merchant row
-        corresponding_subbrand = next((sub for sub in subbrand_links if sub['MerchantLink'] == merchant), None)
-        merchant_subbrand_pairs[merchant] = corresponding_subbrand if corresponding_subbrand else None
-
-    # Prepare the search
-    search_params = {
-        "date_created": q.between(min=startDate, max=endDate),
-        **filter_dict
-    }
-    if escalation_status_conditions:
-        # Directly use escalation status row objects in the search
-        search_params['latest_status'] = q.any_of(*escalation_status_conditions)
-    
+  
     # Handle merchant name if provided
-    results = []
-    if merchant_name:
-        merchant_rows = app_tables.merchant.search(name=merchant_name)
-        if merchant_rows:
-            #merchant_ids = [m['name'] for m in merchant_rows]
-            filter_dict['webhook_merchant_link'] = q.any_of(*merchant_rows)
-
-            current_search_params = filter_dict.copy()
-            current_search_params['webhook_merchant_link'] = q.any_of(*merchant_rows)
-            results = app_tables.webhook.search(
-                tables.order_by("last_action_date", ascending=False),
-                **current_search_params,date_created=q.between(min=startDate,max=endDate),latest_status=q.any_of(*escStatus))
+    if merchant_name is None and compCode is None and assigned_to is None:
+      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+                                            webhook_merchant_link=q.any_of(*merchant_links),
+                                            webhook_subbrand_link=q.any_of(*subbrand_links),
+                                            latest_status=q.any_of(*escStatus))
+    
+    elif merchant_name is None and compCode is None:
+      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+                                            webhook_merchant_link=q.any_of(*merchant_links),
+                                            webhook_subbrand_link=q.any_of(*subbrand_links),
+                                            latest_status=q.any_of(*escStatus))    
         
-        
+    elif merchant_name is not None and compCode is None:
+      merchant_row = app_tables.merchant.search(name=merchant_name)
+      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+                                            webhook_merchant_link=q.any_of(*merchant_row),
+                                            webhook_subbrand_link=q.any_of(*subbrand_links),
+                                            latest_status=q.any_of(*escStatus))    
+    
+    elif merchant_name is None and compCode is not None:
+      subbrand_row = app_tables.subbrands.search(Name=compCode)
+      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+                                            webhook_merchant_link=q.any_of(*merchant_links),
+                                            webhook_subbrand_link=q.any_of(*subbrand_row),
+                                            latest_status=q.any_of(*escStatus))        
     else:
-        for merchant, subbrand in merchant_subbrand_pairs.items():
-          current_search_params = filter_dict.copy()
-          current_search_params['webhook_merchant_link'] = merchant
-          if subbrand:
-              # Specific subbrand search
-              current_search_params = search_params.copy()  # Copy search_params to avoid altering the original
-              current_search_params.update({
-                  'webhook_merchant_link': merchant,
-                  'webhook_subbrand_link': subbrand
-              })
-              temp_results = app_tables.webhook.search(
-                  tables.order_by("last_action_date", ascending=False),
-                  **current_search_params
-              )
-          else:
-              # All subbrands for this merchant
-              current_search_params = search_params.copy()
-              current_search_params['webhook_merchant_link'] = merchant
-              temp_results = app_tables.webhook.search(
-                  tables.order_by("last_action_date", ascending=False),
-                  **current_search_params
-              )
-          results.extend(temp_results)
-
+      merchant_row = app_tables.merchant.search(name=merchant_name)
+      subbrand_row = app_tables.subbrands.search(Name=compCode)
+      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+                                            webhook_merchant_link=q.any_of(*merchant_row),
+                                            webhook_subbrand_link=q.any_of(*subbrand_row),
+                                            latest_status=q.any_of(*escStatus))
+  
     if searchText:
-        results = [
-            x for x in results
+      custTable = [
+          x for x in results
             if searchText.lower() in x['job_id'].lower() or
                searchText.lower() in x['job_reference'].lower() or
                searchText.lower() in x['customer_name'].lower() or
@@ -645,7 +626,7 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
                (x['job_reference3'] and searchText.lower() in x['job_reference3'].lower())
         ]
 
-    return results
+    return custTable
 
 @anvil.server.callable
 def get_action(rowValue):
