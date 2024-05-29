@@ -577,6 +577,12 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
     subbrand_links = currentUser.get('user_subbrand_link', [])
+
+
+    # Default behavior for no user_subbrand_link
+    if not subbrand_links:  # Check if subbrand_links is empty
+        # Assume all subbrands of linked merchants are selected
+        subbrand_links = [sub for merchant in merchant_links for sub in app_tables.subbrands.search(MerchantLink=merchant)]
   
     # Handle merchant name if provided
     if merchant_name is None and compCode is None and assigned_to is None:
