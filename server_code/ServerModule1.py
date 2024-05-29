@@ -625,7 +625,7 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
   
     if searchText:
       custTable = [
-          x for x in results
+          x for x in custTable
             if searchText.lower() in x['job_id'].lower() or
                searchText.lower() in x['job_reference'].lower() or
                searchText.lower() in x['customer_name'].lower() or
