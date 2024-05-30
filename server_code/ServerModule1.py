@@ -355,10 +355,10 @@ def submit_completion_codes(data):
       if existing_record is not None:
         subbrandval = existing_record['Name']
       else:
-        subbrandval = "Unidentified"
+        subbrandval = app_tables.subbrands.get(Name="Unidentified")
             
   else:    
-    subbrandval = "(Blank)"
+    subbrandval = app_tables.subbrands.get(Name="(Blank)")
   #try:
   submission_made = False
   sync_compCodes(merctable)
