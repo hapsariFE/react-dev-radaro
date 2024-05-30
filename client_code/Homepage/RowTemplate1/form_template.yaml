@@ -196,7 +196,7 @@ components:
     name: label_4
     layout_properties: {grid_position: 'TAFSDH,KJKFNC'}
     data_bindings:
-    - {property: text, code: 'self.item[''sub_brand''].capitalize() '}
+    - {property: text, code: 'self.item[''webhook_subbrand_link''][''Name'']'}
 - type: Link
   properties: {role: null, url: '', align: left, tooltip: '', border: '', foreground: '',
     visible: true, text: '', font_size: null, wrap_on: never, font: '', col_spacing: none,
