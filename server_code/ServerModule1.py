@@ -1300,27 +1300,33 @@ def DB_task(now):
   #anvil.server.launch_background_task('update_db_value',now)
   anvil.server.launch_background_task('update_sb_value',now)
 
+@anvil.server.background_task
 def update_sb_value(now):
     # Step 1: Fetch all webhook entries
     webhooks = app_tables.webhook.search()
     
     # Step 2: Fetch all subbrands entries
     subbrands = {sub['Name']: sub for sub in app_tables.subbrands.search()}  # Dictionary for quick lookup
+    default_subbrand = app_tables.subbrands.get(ID='00000000')  # Fetch the default subbrand once
     
     # Step 3: Iterate through each webhook entry
     for webhook in webhooks:
+        # Check if webhook_subbrand_link is already set
+        if webhook['webhook_subbrand_link']:
+            continue  # Skip this webhook if link is already set
+
         sub_brand_name = webhook['sub_brand']  # Assume 'sub_brand' is the name stored in webhook
         
         # Check if the sub_brand name exists in the subbrands dictionary
         if sub_brand_name in subbrands:
             # Get the subbrands row that matches the sub_brand name
             matching_subbrand = subbrands[sub_brand_name]
-            
             # Update the 'webhook_subbrand_link' with the subbrands row
             webhook['webhook_subbrand_link'] = matching_subbrand
-            # Commit the changes (Anvil automatically commits at the end of server functions, but can be done manually if needed)
         else:
-            print(f"No matching subbrand found for {sub_brand_name}")
+            # No matching subbrand found, assign default
+            webhook['webhook_subbrand_link'] = default_subbrand
+            print(f"No matching subbrand found for {sub_brand_name}, assigned default ID='00000000'")
 
 
 @anvil.server.background_task
