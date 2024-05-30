@@ -351,23 +351,22 @@ def submit_completion_codes(data):
   merctable = app_tables.merchant.get(token=data['token'])
   
   if data['order_info']['sub_branding'] is not None:
-    subbrand_id = str(data['order_info']['sub_branding'])
-    merchant_id = str(data['order_info']['merchant'])
-    server = merctable['server']
-    # Attempt to fetch the existing subbrand
-    subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-    print('subbrand_id:',subbrand_id)
-    print('subbrand:',subbrand)    
-    if subbrand is None:
-        # If not found, maybe sync and try again
-        sync_subbrand(merctable)
-        subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-
-        # Assign the fetched subbrand or default to 'Unidentified'
-       
-    return subbrand
-  print('subbrand2:',subbrand)
-  #try:
+    subbrandval = str(data['order_info']['sub_branding'])
+    print('sub1',subbrandval)
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
+  print('sub2',subbrandval)
   submission_made = False
   sync_compCodes(merctable)
   codeChecks = id_string.split(';')
@@ -391,7 +390,7 @@ def submit_completion_codes(data):
       last_action_date = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
       job_reference = data['order_info']['title'],
       webhook_merchant_link=app_tables.merchant.get(token=data['token']),
-      webhook_subbrand_link=subbrand,
+      webhook_subbrand_link=app_tables.subbrands.get(Name=subbrandval),
       
       job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
       job_report = data['order_info']['public_report_link'],
@@ -399,7 +398,7 @@ def submit_completion_codes(data):
       #escalation_type = "Low Rating",
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
-      sub_brand= 'Meezo',
+      sub_brand=subbrandval,
       
       mobile_number=data['order_info']['customer']['phone'],
       date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
