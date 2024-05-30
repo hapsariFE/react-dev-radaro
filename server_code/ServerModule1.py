@@ -424,56 +424,56 @@ def get_merchant_list(currentUser):
   x_list.sort()
   return x_list
 
-@anvil.server.callable
-def get_subbrand_list(currentUser):
+#@anvil.server.callable
+#def get_subbrand_list(currentUser):
   #currentUser=Data.currentUser
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   #Xvalues = []
-  print('subbrand step1)'+str(datetime.now()))##################
-  x_rows = currentUser['user_merchant_link']
-  if currentUser.get('user_subbrand_link'):
-    x_rows = currentUser['user_subbrand_link']
-    x_list =[r['name'] for r in x_rows]
-  else:
-    print('subbrand step2)'+str(datetime.now()))##################
+#  print('subbrand step1)'+str(datetime.now()))##################
+#  x_rows = currentUser['user_merchant_link']
+#  if currentUser.get('user_subbrand_link'):
+#    x_rows = currentUser['user_subbrand_link']
+#    x_list =[r['name'] for r in x_rows]
+#  else:
+#    print('subbrand step2)'+str(datetime.now()))##################
   #x_list =[r['name'] for r in x_rows]
   #sbValues =[[row] for row in x_rows]
-    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
-    print('subbrand step3)'+str(datetime.now()))##################
-    x_list =[r['Name'] for r in SBrecords]
-    print('subbrand step4)'+str(datetime.now()))##################
+#    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+#    print('subbrand step3)'+str(datetime.now()))##################
+#    x_list =[r['Name'] for r in SBrecords]
+#    print('subbrand step4)'+str(datetime.now()))##################
   #print(SBrecords)
   #print(x_list)
-  x_list.sort()
-  return x_list
+#  x_list.sort()
+#  return x_list
 
-@anvil.server.callable
-def get_compCodes_list(currentUser):
+#@anvil.server.callable
+#def get_compCodes_list(currentUser):
   
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   #Xvalues = []
-  x_rows = currentUser['user_merchant_link']
+#  x_rows = currentUser['user_merchant_link']
   #x_list =[r['name'] for r in x_rows]
   #sbValues =[[row] for row in x_rows]
-  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001','00000002'])))
-  x_list =[r['Name'] for r in CCrecords]
+#  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001','00000002'])))
+#  x_list =[r['Name'] for r in CCrecords]
   #print(SBrecords)
   #print(x_list)
-  x_list.sort()
-  return x_list
+#  x_list.sort()
+#  return x_list
 
-@anvil.server.callable
-def get_user_list(currentUser):
+#@anvil.server.callable
+#def get_user_list(currentUser):
   #currentUser=anvil.users.get_user()
-  related_rows = currentUser['user_merchant_link']
+#  related_rows = currentUser['user_merchant_link']
  # print(related_rows)
-  values = [[row] for row in related_rows]
+#  values = [[row] for row in related_rows]
   #print(values)
   
   #rows = list(dict(r) for r in related_rows)
   #print(rows)
   #return app_tables.users.search(user_merchant_link=q.any_of(*values))
-  return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
+#  return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
 
 @anvil.server.callable
 def get_filter_value():
@@ -575,25 +575,23 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
           escStatus = app_tables.escalation_status.search() 
   
     # Fetch universal subbrands that are applicable to any merchant
-    universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
+    universal_subbrands = list(app_tables.subbrands.search(ID=q.any_of('00000000', '00000001')))
     print('universal_subbrands)',universal_subbrands)
   
   # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
-    subbrand_links = currentUser.get('user_subbrand_link', []) + list(universal_subbrands)  # Always include universal subbrands
+    subbrand_links = currentUser.get('user_subbrand_link', []) 
     print('merchant_links)',merchant_links)
     print('subbrand_links)',subbrand_links)
-    # Ensure universal subbrands are always included
-    universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
-    print('universal_subbrands)',universal_subbrands)
-    subbrand_links.extend(universal_subbrands)  # Add universal subbrands to the list
-    print('subbrand_links)',subbrand_links)
-    # Default behavior for no user_subbrand_link
-    if not subbrand_links:  # Check if subbrand_links is empty
-        # Assume all subbrands of linked merchants are selected
-        for merchant in merchant_links:
-            merchant_subbrands = app_tables.subbrands.search(MerchantLink=merchant)
-            subbrand_links.extend(merchant_subbrands)
+
+    # Fetch user-specific subbrand values, ensuring the return is always a list
+    
+    if subbrand_links is None:
+        user_subbrand_links = []
+        subbrand_links = user_subbrand_links + universal_subbrands  # Combine lists safely
+    else:
+        user_subbrand_links = currentUser.get('user_subbrand_link')
+        subbrand_links = user_subbrand_links + universal_subbrands  # Combine lists safely
   
     # Handle merchant name if provided
     if merchant_name is None and compCode is None: #and assigned_to is None:
