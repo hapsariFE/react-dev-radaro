@@ -365,8 +365,8 @@ def submit_completion_codes(data):
 
         # Assign the fetched subbrand or default to 'Unidentified'
        
-  return subbrand
-  print('subbrand:',subbrand)
+    return subbrand
+  print('subbrand2:',subbrand)
   #try:
   submission_made = False
   sync_compCodes(merctable)
@@ -399,7 +399,7 @@ def submit_completion_codes(data):
       #escalation_type = "Low Rating",
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
-      sub_brand= 'test', #existing_record['Name'],
+      sub_brand= 'Meezo',
       
       mobile_number=data['order_info']['customer']['phone'],
       date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
