@@ -348,7 +348,7 @@ def submit_completion_codes(data):
     
     existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
     if existing_record is not None:
-      subbrandval = existing_record['Name']
+      subbrandval = app_tables.subbrands.get(Name=existing_record['Name'])
     else:
       sync_subbrand(merctable)
       existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
@@ -391,7 +391,7 @@ def submit_completion_codes(data):
       #escalation_type = "Low Rating",
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
-      sub_brand=subbrandval,
+      sub_brand=existing_record['Name'],
       mobile_number=data['order_info']['customer']['phone'],
       date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
       job_reference2=data['order_info']['title_2'],
