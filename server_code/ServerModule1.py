@@ -424,56 +424,56 @@ def get_merchant_list(currentUser):
   x_list.sort()
   return x_list
 
-@anvil.server.callable
-def get_subbrand_list(currentUser):
+#@anvil.server.callable
+#def get_subbrand_list(currentUser):
   #currentUser=Data.currentUser
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   #Xvalues = []
-  print('subbrand step1)'+str(datetime.now()))##################
-  x_rows = currentUser['user_merchant_link']
-  if currentUser.get('user_subbrand_link'):
-    x_rows = currentUser['user_subbrand_link']
-    x_list =[r['name'] for r in x_rows]
-  else:
-    print('subbrand step2)'+str(datetime.now()))##################
+#  print('subbrand step1)'+str(datetime.now()))##################
+#  x_rows = currentUser['user_merchant_link']
+#  if currentUser.get('user_subbrand_link'):
+#    x_rows = currentUser['user_subbrand_link']
+#    x_list =[r['name'] for r in x_rows]
+#  else:
+#    print('subbrand step2)'+str(datetime.now()))##################
   #x_list =[r['name'] for r in x_rows]
   #sbValues =[[row] for row in x_rows]
-    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
-    print('subbrand step3)'+str(datetime.now()))##################
-    x_list =[r['Name'] for r in SBrecords]
-    print('subbrand step4)'+str(datetime.now()))##################
+#    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+#    print('subbrand step3)'+str(datetime.now()))##################
+#    x_list =[r['Name'] for r in SBrecords]
+#    print('subbrand step4)'+str(datetime.now()))##################
   #print(SBrecords)
   #print(x_list)
-  x_list.sort()
-  return x_list
+#  x_list.sort()
+#  return x_list
 
-@anvil.server.callable
-def get_compCodes_list(currentUser):
+#@anvil.server.callable
+#def get_compCodes_list(currentUser):
   
   #sbvalues = app_tables.subbrands.search(merchant_link=q.any_of(*values))
   #Xvalues = []
-  x_rows = currentUser['user_merchant_link']
+#  x_rows = currentUser['user_merchant_link']
   #x_list =[r['name'] for r in x_rows]
   #sbValues =[[row] for row in x_rows]
-  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001','00000002'])))
-  x_list =[r['Name'] for r in CCrecords]
+#  CCrecords = app_tables.compcodes.search(q.any_of(merchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001','00000002'])))
+#  x_list =[r['Name'] for r in CCrecords]
   #print(SBrecords)
   #print(x_list)
-  x_list.sort()
-  return x_list
+#  x_list.sort()
+#  return x_list
 
-@anvil.server.callable
-def get_user_list(currentUser):
+#@anvil.server.callable
+#def get_user_list(currentUser):
   #currentUser=anvil.users.get_user()
-  related_rows = currentUser['user_merchant_link']
+#  related_rows = currentUser['user_merchant_link']
  # print(related_rows)
-  values = [[row] for row in related_rows]
+#  values = [[row] for row in related_rows]
   #print(values)
   
   #rows = list(dict(r) for r in related_rows)
   #print(rows)
   #return app_tables.users.search(user_merchant_link=q.any_of(*values))
-  return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
+#  return app_tables.users.search(tables.order_by("name", ascending=True),user_merchant_link=q.any_of(*values))
 
 @anvil.server.callable
 def get_filter_value():
@@ -574,35 +574,39 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
         if resolvedStatus is True:
           escStatus = app_tables.escalation_status.search() 
   
-    # Fetch merchant and subbrand values separately
-    merchant_links = currentUser.get('user_merchant_link', [])
-    subbrand_links = currentUser.get('user_subbrand_link', [])
-
-    # Ensure universal subbrands are always included
-    universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
-    subbrand_links.extend(universal_subbrands)  # Add universal subbrands to the list
+    # Fetch universal subbrands that are applicable to any merchant
+    universal_subbrands = list(app_tables.subbrands.search(ID=q.any_of('00000000', '00000001')))
+    print('universal_subbrands)',universal_subbrands)
   
-    # Default behavior for no user_subbrand_link
-    if not subbrand_links:  # Check if subbrand_links is empty
-        # Assume all subbrands of linked merchants are selected
-        for merchant in merchant_links:
-            merchant_subbrands = app_tables.subbrands.search(MerchantLink=merchant)
-            subbrand_links.extend(merchant_subbrands)
+  # Fetch merchant and subbrand values separately
+    merchant_links = currentUser.get('user_merchant_link', [])
+    subbrand_links = currentUser.get('user_subbrand_link', []) 
+    print('merchant_links)',merchant_links)
+    print('subbrand_links)',subbrand_links)
+
+    # Fetch user-specific subbrand values, ensuring the return is always a list
+    
+    if subbrand_links is None:
+        user_subbrand_links = []
+        subbrand_links = user_subbrand_links + universal_subbrands  # Combine lists safely
+    else:
+        user_subbrand_links = currentUser.get('user_subbrand_link')
+        subbrand_links = user_subbrand_links + universal_subbrands  # Combine lists safely
   
     # Handle merchant name if provided
-    if merchant_name is None and compCode is None and assigned_to is None:
+    if merchant_name is None and compCode is None: #and assigned_to is None:
       custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
                                             **filter_dict,date_created=q.between(min=startDate,max=endDate),
                                             webhook_merchant_link=q.any_of(*merchant_links),
                                             webhook_subbrand_link=q.any_of(*subbrand_links),
                                             latest_status=q.any_of(*escStatus))
     
-    elif merchant_name is None and compCode is None:
-      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
-                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
-                                            webhook_merchant_link=q.any_of(*merchant_links),
-                                            webhook_subbrand_link=q.any_of(*subbrand_links),
-                                            latest_status=q.any_of(*escStatus))    
+#    elif merchant_name is None and compCode is None:
+#      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+#                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+#                                            webhook_merchant_link=q.any_of(*merchant_links),
+#                                            webhook_subbrand_link=q.any_of(*subbrand_links),
+#                                            latest_status=q.any_of(*escStatus))    
         
     elif merchant_name is not None and compCode is None:
       merchant_row = app_tables.merchant.search(name=merchant_name)
@@ -1284,7 +1288,31 @@ def sync_compCodes(record):
 @anvil.server.callable
 def DB_task(now):
   """Fire off the training task, returning the Task object to the client."""
-  anvil.server.launch_background_task('update_db_value',now)
+  #anvil.server.launch_background_task('update_db_value',now)
+  anvil.server.launch_background_task('update_sb_value',now)
+
+def update_sb_value(now):
+    # Step 1: Fetch all webhook entries
+    webhooks = app_tables.webhook.search()
+    
+    # Step 2: Fetch all subbrands entries
+    subbrands = {sub['Name']: sub for sub in app_tables.subbrands.search()}  # Dictionary for quick lookup
+    
+    # Step 3: Iterate through each webhook entry
+    for webhook in webhooks:
+        sub_brand_name = webhook['sub_brand']  # Assume 'sub_brand' is the name stored in webhook
+        
+        # Check if the sub_brand name exists in the subbrands dictionary
+        if sub_brand_name in subbrands:
+            # Get the subbrands row that matches the sub_brand name
+            matching_subbrand = subbrands[sub_brand_name]
+            
+            # Update the 'webhook_subbrand_link' with the subbrands row
+            webhook['webhook_subbrand_link'] = matching_subbrand
+            # Commit the changes (Anvil automatically commits at the end of server functions, but can be done manually if needed)
+        else:
+            print(f"No matching subbrand found for {sub_brand_name}")
+
 
 @anvil.server.background_task
 def update_db_value(now):
