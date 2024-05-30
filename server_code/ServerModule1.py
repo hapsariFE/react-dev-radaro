@@ -356,7 +356,7 @@ def submit_completion_codes(data):
     server = merctable['server']
     # Attempt to fetch the existing subbrand
     subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-        
+    print(subbrand_id,subbrand)    
     if subbrand is None:
         # If not found, maybe sync and try again
         sync_subbrand(merctable)
@@ -364,11 +364,13 @@ def submit_completion_codes(data):
 
         # Assign the fetched subbrand or default to 'Unidentified'
     subbrandval = subbrand if subbrand is not None else app_tables.subbrands.get(Name="Unidentified")
+    
   else:
         # Assign default subbrand for blank entries
         subbrandval = app_tables.subbrands.get(Name="(Blank)")
 
   return subbrandval
+  print(subbrandval)
   #try:
   submission_made = False
   sync_compCodes(merctable)
