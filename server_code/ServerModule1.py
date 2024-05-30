@@ -364,14 +364,9 @@ def submit_completion_codes(data):
         subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
 
         # Assign the fetched subbrand or default to 'Unidentified'
-    subbrandval = subbrand if subbrand is not None else app_tables.subbrands.get(Name="Unidentified")
-    
-  else:
-        # Assign default subbrand for blank entries
-        subbrandval = app_tables.subbrands.get(Name="(Blank)")
-
-  return subbrandval
-  print('subbrandval:',subbrandval)
+       
+  return subbrand
+  print('subbrand:',subbrand)
   #try:
   submission_made = False
   sync_compCodes(merctable)
@@ -396,8 +391,8 @@ def submit_completion_codes(data):
       last_action_date = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
       job_reference = data['order_info']['title'],
       webhook_merchant_link=app_tables.merchant.get(token=data['token']),
-      webhook_subbrand_link=subbrandval,
-      #webhook_subbrand_link=app_tables.subbrands.get(Name=subbrandval),
+      webhook_subbrand_link=subbrand,
+      
       job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
       job_report = data['order_info']['public_report_link'],
       customer_rating= str(rating),
