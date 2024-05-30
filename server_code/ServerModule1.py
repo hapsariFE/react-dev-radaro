@@ -574,14 +574,20 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
         if resolvedStatus is True:
           escStatus = app_tables.escalation_status.search() 
   
-    # Fetch merchant and subbrand values separately
+    # Fetch universal subbrands that are applicable to any merchant
+    universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
+    print('universal_subbrands)',universal_subbrands)
+  
+  # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
-    subbrand_links = currentUser.get('user_subbrand_link', [])
-
+    subbrand_links = currentUser.get('user_subbrand_link', []) + list(universal_subbrands)  # Always include universal subbrands
+    print('merchant_links)',merchant_links)
+    print('subbrand_links)',subbrand_links)
     # Ensure universal subbrands are always included
     universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
+    print('universal_subbrands)',universal_subbrands)
     subbrand_links.extend(universal_subbrands)  # Add universal subbrands to the list
-  
+    print('subbrand_links)',subbrand_links)
     # Default behavior for no user_subbrand_link
     if not subbrand_links:  # Check if subbrand_links is empty
         # Assume all subbrands of linked merchants are selected
@@ -590,19 +596,19 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
             subbrand_links.extend(merchant_subbrands)
   
     # Handle merchant name if provided
-    if merchant_name is None and compCode is None and assigned_to is None:
+    if merchant_name is None and compCode is None: #and assigned_to is None:
       custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
                                             **filter_dict,date_created=q.between(min=startDate,max=endDate),
                                             webhook_merchant_link=q.any_of(*merchant_links),
                                             webhook_subbrand_link=q.any_of(*subbrand_links),
                                             latest_status=q.any_of(*escStatus))
     
-    elif merchant_name is None and compCode is None:
-      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
-                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
-                                            webhook_merchant_link=q.any_of(*merchant_links),
-                                            webhook_subbrand_link=q.any_of(*subbrand_links),
-                                            latest_status=q.any_of(*escStatus))    
+#    elif merchant_name is None and compCode is None:
+#      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
+#                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
+#                                            webhook_merchant_link=q.any_of(*merchant_links),
+#                                            webhook_subbrand_link=q.any_of(*subbrand_links),
+#                                            latest_status=q.any_of(*escStatus))    
         
     elif merchant_name is not None and compCode is None:
       merchant_row = app_tables.merchant.search(name=merchant_name)
