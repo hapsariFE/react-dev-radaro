@@ -404,7 +404,7 @@ def submit_completion_codes(data):
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
       sub_brand= 'test', #existing_record['Name'],
-      print(sub_brand),
+      
       mobile_number=data['order_info']['customer']['phone'],
       date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
       job_reference2=data['order_info']['title_2'],
