@@ -40,3 +40,4 @@ class CMS(CMSTemplate):
     """This method is called when the button is clicked"""
     now = datetime.now().astimezone()
     anvil.server.call('DB_task',now)
+    

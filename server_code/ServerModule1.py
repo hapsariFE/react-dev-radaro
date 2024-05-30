@@ -1288,7 +1288,11 @@ def sync_compCodes(record):
 @anvil.server.callable
 def DB_task(now):
   """Fire off the training task, returning the Task object to the client."""
-  anvil.server.launch_background_task('update_db_value',now)
+  #anvil.server.launch_background_task('update_db_value',now)
+  anvil.server.launch_background_task('update_sb_value',now)
+
+
+
 
 @anvil.server.background_task
 def update_db_value(now):
