@@ -222,7 +222,7 @@ components:
         icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 1, col_xs: 10, width: 34.9844}
       data_bindings:
-      - {code: 'self.item[''sub_brand''].capitalize()', property: text}
+      - {code: 'self.item[''webhook_subbrand_link''][''Name'']', property: text}
       name: label_16
     - type: Label
       properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
