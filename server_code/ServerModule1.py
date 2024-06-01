@@ -597,10 +597,10 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     
     if subbrand_links is None:
         user_subbrand_links = [sub for merchant in merchant_links for sub in app_tables.subbrands.search(MerchantLink=merchant)]
-        subbrand_links = user_subbrand_links + universal_subbrands  # Combine lists safely
+        subbrand_links = user_subbrand_links #+ universal_subbrands  # Combine lists safely
     else:
         user_subbrand_links = currentUser.get('user_subbrand_link')
-        subbrand_links = user_subbrand_links #+ universal_subbrands  # Combine lists safely
+        subbrand_links = user_subbrand_links + universal_subbrands  # Combine lists safely
   
     # Handle merchant name if provided
     if merchant_name is None and compCode is None: #and assigned_to is None:
