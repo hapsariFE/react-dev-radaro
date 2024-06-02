@@ -1298,7 +1298,6 @@ def DB_task(now):
 
 @anvil.server.background_task
 def update_sb_value(now):
-def update_sb_value(now):
     # Step 1: Fetch all webhook entries
     webhooks = app_tables.webhook.search()
     
