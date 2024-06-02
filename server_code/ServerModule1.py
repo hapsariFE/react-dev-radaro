@@ -1298,11 +1298,12 @@ def DB_task(now):
 
 @anvil.server.background_task
 def update_sb_value(now):
+def update_sb_value(now):
     # Step 1: Fetch all webhook entries
     webhooks = app_tables.webhook.search()
     
     # Step 2: Fetch all subbrands entries
-    subbrands = {sub['Name']: sub for sub in app_tables.subbrands.search()}  # Dictionary for quick lookup
+    subbrands = {(sub['MerchantLink']['id'], sub['Name']): sub for sub in app_tables.subbrands.search()}  # Dictionary for quick lookup by merchant and name
     default_subbrand = app_tables.subbrands.get(ID='00000000')  # Fetch the default subbrand once
     
     # Step 3: Iterate through each webhook entry
@@ -1311,19 +1312,22 @@ def update_sb_value(now):
         if webhook['webhook_subbrand_link']:
             continue  # Skip this webhook if link is already set
 
+        merchant_id = webhook['merchant_link']['id'] if 'merchant_link' in webhook and webhook['merchant_link'] is not None else None
         sub_brand_name = webhook['sub_brand']  # Assume 'sub_brand' is the name stored in webhook
         
-        # Check if the sub_brand name exists in the subbrands dictionary
-        if sub_brand_name in subbrands:
-            # Get the subbrands row that matches the sub_brand name
-            matching_subbrand = subbrands[sub_brand_name]
+        # Use a tuple of merchant ID and sub_brand name to lookup the subbrand
+        subbrand_key = (merchant_id, sub_brand_name)
+
+        # Check if the subbrand exists for the specific merchant
+        if subbrand_key in subbrands:
+            # Get the subbrands row that matches the merchant and sub_brand name
+            matching_subbrand = subbrands[subbrand_key]
             # Update the 'webhook_subbrand_link' with the subbrands row
             webhook['webhook_subbrand_link'] = matching_subbrand
         else:
             # No matching subbrand found, assign default
             webhook['webhook_subbrand_link'] = default_subbrand
-            print(f"No matching subbrand found for {sub_brand_name}, assigned default ID='00000000'")
-
+            print(f"No matching subbrand found for {sub_brand_name} with Merchant ID {merchant_id}, assigned default ID='00000000'")
 
 @anvil.server.background_task
 def update_db_value(now):
