@@ -192,24 +192,22 @@ def submit_failed_checklist(data):
   merctable = app_tables.merchant.get(token=data['token'])
 
   if data['order_info']['sub_branding'] is not None:
-    subbrand_id = str(data['order_info']['sub_branding'])
-    merchant_id = str(data['order_info']['merchant'])
-    server = merctable['server']
-    # Attempt to fetch the existing subbrand
-    subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-        
-    if subbrand is None:
-        # If not found, maybe sync and try again
-        sync_subbrand(merctable)
-        subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-
-        # Assign the fetched subbrand or default to 'Unidentified'
-    subbrandval = subbrand if subbrand is not None else app_tables.subbrands.get(Name="Unidentified")
-  else:
-        # Assign default subbrand for blank entries
-        subbrandval = app_tables.subbrands.get(Name="(Blank)")
-
-  return subbrandval
+    subbrandval = str(data['order_info']['sub_branding'])
+    print('sub1',subbrandval)
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
+  print('sub2',subbrandval)
 
   
   #if not comp_string:
@@ -272,24 +270,22 @@ def submit_low_rating(data):
   merctable = app_tables.merchant.get(token=data['token'])
 
   if data['order_info']['sub_branding'] is not None:
-    subbrand_id = str(data['order_info']['sub_branding'])
-    merchant_id = str(data['order_info']['merchant'])
-    server = merctable['server']
-    # Attempt to fetch the existing subbrand
-    subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-        
-    if subbrand is None:
-        # If not found, maybe sync and try again
-        sync_subbrand(merctable)
-        subbrand = app_tables.subbrands.get(MerchantID=merchant_id, ID=subbrand_id, Server=server, MerchantLink=merctable)
-
-        # Assign the fetched subbrand or default to 'Unidentified'
-    subbrandval = subbrand if subbrand is not None else app_tables.subbrands.get(Name="Unidentified")
-  else:
-        # Assign default subbrand for blank entries
-        subbrandval = app_tables.subbrands.get(Name="(Blank)")
-
-  return subbrandval
+    subbrandval = str(data['order_info']['sub_branding'])
+    print('sub1',subbrandval)
+    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+    if existing_record is not None:
+      subbrandval = existing_record['Name']
+    else:
+      sync_subbrand(merctable)
+      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
+      if existing_record is not None:
+        subbrandval = existing_record['Name']
+      else:
+        subbrandval = "Unidentified"
+            
+  else:    
+    subbrandval = "(Blank)"
+  print('sub2',subbrandval)
 
   
   #if not comp_string:
