@@ -276,7 +276,7 @@ db_schema:
       admin_ui: {width: 200}
       type: bool
     - name: sub_brand
-      admin_ui: {order: 15, width: 200}
+      admin_ui: {order: 7.375, width: 200}
       type: string
     - name: mobile_number
       admin_ui: {order: 16, width: 200}
@@ -305,7 +305,7 @@ db_schema:
       type: link_single
       target: escalation_type
     - name: webhook_subbrand_link
-      admin_ui: {width: 200, order: 15.5}
+      admin_ui: {order: 7.25, width: 200}
       type: link_single
       target: subbrands
     - name: comment
