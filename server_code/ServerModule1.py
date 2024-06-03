@@ -661,17 +661,21 @@ def get_action(rowValue):
   )
 
 @anvil.server.callable
-def get_selectedMerchant(selectedMerchant):
-  related_rows = selectedMerchant
-  values = [row for row in related_rows] 
-  if selectedMerchant is None:
-    print("No Escalation Selected")
-  else:
-    xMerch = app_tables.users.search(user_merchant_link=[related_rows])
-    values = [[row] for row in xMerch]
-    x_list =[r['name'] for r in xMerch]
-    x_list.sort()
-    return x_list
+def get_selectedMerchant(selectedMerchant, selectedSubbrand):
+    if selectedMerchant is None:
+        print("No merchant selected")
+        return []
+    # Ensure the merchant and subbrand are presented as lists for the search
+    query_conditions = {'user_merchant_link': [selectedMerchant]}
+    if selectedSubbrand is not None:
+        query_conditions['user_subbrand_link'] = [selectedSubbrand]
+    # Search for users that match both the merchant and the subbrand
+    users = app_tables.users.search(**query_conditions)
+    # Extract and sort user names
+    user_names = [user['name'] for user in users]
+    user_names.sort()
+    return user_names
+
 
 @anvil.server.callable
 def add_comment(article, article_dict, description, status, created_date, assign_to,submitter):
