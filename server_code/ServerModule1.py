@@ -1302,20 +1302,29 @@ def update_sb_value(now):
     webhooks = app_tables.webhook.search()
     
     # Step 2: Fetch all subbrands entries
-    subbrands = {(sub['MerchantLink']['id'], sub['Name']): sub for sub in app_tables.subbrands.search()}  # Dictionary for quick lookup by merchant and name
-    default_subbrand = app_tables.subbrands.get(ID='00000000')  # Fetch the default subbrand once
+    # Using merchant row as part of the key
+    subbrands = {(sub['MerchantLink'], sub['Name']): sub for sub in app_tables.subbrands.search()}
+    
+    # Fetch the default subbrand once
+    default_subbrand = app_tables.subbrands.get(ID='00000000')
     
     # Step 3: Iterate through each webhook entry
     for webhook in webhooks:
-        # Check if webhook_subbrand_link is already set
+        # Skip this webhook if the link is already set
         if webhook['webhook_subbrand_link']:
-            continue  # Skip this webhook if link is already set
-
-        merchant_id = webhook['merchant_link']['id'] if 'merchant_link' in webhook and webhook['merchant_link'] is not None else None
-        sub_brand_name = webhook['sub_brand']  # Assume 'sub_brand' is the name stored in webhook
+            continue
         
-        # Use a tuple of merchant ID and sub_brand name to lookup the subbrand
-        subbrand_key = (merchant_id, sub_brand_name)
+        sub_brand_name = webhook['sub_brand']
+
+        # Handle specific exceptions for "(blank)" or "Unidentified"
+        if sub_brand_name in ["(blank)", "Unidentified"]:
+            webhook['webhook_subbrand_link'] = default_subbrand
+            continue  # Move to the next webhook after setting the default subbrand
+
+        merchant_link = webhook['webhook_merchant_link']  # Direct merchant row link
+
+        # Use a tuple of merchant link and sub_brand name to look up the subbrand
+        subbrand_key = (merchant_link, sub_brand_name)
 
         # Check if the subbrand exists for the specific merchant
         if subbrand_key in subbrands:
@@ -1326,7 +1335,8 @@ def update_sb_value(now):
         else:
             # No matching subbrand found, assign default
             webhook['webhook_subbrand_link'] = default_subbrand
-            print(f"No matching subbrand found for {sub_brand_name} with Merchant ID {merchant_id}, assigned default ID='00000000'")
+            print(f"No matching subbrand found for {sub_brand_name} with Merchant Link, assigned default ID='00000000'")
+
 
 @anvil.server.background_task
 def update_db_value(now):
