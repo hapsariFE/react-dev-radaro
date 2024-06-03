@@ -192,22 +192,16 @@ def submit_failed_checklist(data):
   merctable = app_tables.merchant.get(token=data['token'])
 
   if data['order_info']['sub_branding'] is not None:
-    subbrandval = str(data['order_info']['sub_branding'])
-    print('sub1',subbrandval)
-    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
-    if existing_record is not None:
-      subbrandval = existing_record['Name']
-    else:
-      sync_subbrand(merctable)
-      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
-      if existing_record is not None:
-        subbrandval = existing_record['Name']
-      else:
-        subbrandval = "Unidentified"
-            
-  else:    
-    subbrandval = "(Blank)"
-  print('sub2',subbrandval)
+        subbrandval = str(data['order_info']['sub_branding'])
+        existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+        if existing_record is None:
+            sync_subbrand(merctable)
+            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+            if existing_record is None:
+                existing_record = app_tables.subbrands.get(Name="Unidentified")
+
+  else:
+      existing_record = app_tables.subbrands.get(Name="(Blank)")
 
   
   #if not comp_string:
@@ -270,22 +264,16 @@ def submit_low_rating(data):
   merctable = app_tables.merchant.get(token=data['token'])
 
   if data['order_info']['sub_branding'] is not None:
-    subbrandval = str(data['order_info']['sub_branding'])
-    print('sub1',subbrandval)
-    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
-    if existing_record is not None:
-      subbrandval = existing_record['Name']
-    else:
-      sync_subbrand(merctable)
-      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
-      if existing_record is not None:
-        subbrandval = existing_record['Name']
-      else:
-        subbrandval = "Unidentified"
-            
-  else:    
-    subbrandval = "(Blank)"
-  print('sub2',subbrandval)
+        subbrandval = str(data['order_info']['sub_branding'])
+        existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+        if existing_record is None:
+            sync_subbrand(merctable)
+            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+            if existing_record is None:
+                existing_record = app_tables.subbrands.get(Name="Unidentified")
+
+  else:
+      existing_record = app_tables.subbrands.get(Name="(Blank)")
 
   
   #if not comp_string:
@@ -347,22 +335,17 @@ def submit_completion_codes(data):
   merctable = app_tables.merchant.get(token=data['token'])
   
   if data['order_info']['sub_branding'] is not None:
-    subbrandval = str(data['order_info']['sub_branding'])
-    print('sub1',subbrandval)
-    existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
-    if existing_record is not None:
-      subbrandval = existing_record['Name']
-    else:
-      sync_subbrand(merctable)
-      existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=str(subbrandval),Server=merctable['server'],MerchantLink=merctable)
-      if existing_record is not None:
-        subbrandval = existing_record['Name']
-      else:
-        subbrandval = "Unidentified"
-            
-  else:    
-    subbrandval = "(Blank)"
-  print('sub2',subbrandval)
+        subbrandval = str(data['order_info']['sub_branding'])
+        existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+        if existing_record is None:
+            sync_subbrand(merctable)
+            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+            if existing_record is None:
+                existing_record = app_tables.subbrands.get(Name="Unidentified")
+
+  else:
+      existing_record = app_tables.subbrands.get(Name="(Blank)")
+  
   submission_made = False
   sync_compCodes(merctable)
   codeChecks = id_string.split(';')
@@ -386,7 +369,7 @@ def submit_completion_codes(data):
       last_action_date = datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
       job_reference = data['order_info']['title'],
       webhook_merchant_link=app_tables.merchant.get(token=data['token']),
-      webhook_subbrand_link=app_tables.subbrands.get(Name=subbrandval),
+      webhook_subbrand_link=existing_record,
       
       job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
       job_report = data['order_info']['public_report_link'],
