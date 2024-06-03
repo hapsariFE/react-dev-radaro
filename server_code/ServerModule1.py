@@ -64,7 +64,7 @@ def incoming_msg(**kwargs):
         if merctable is not None:
         
           if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
-          #print(json)
+            print("low rating testing")
             submit_low_rating(data)
   
       if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
@@ -233,14 +233,14 @@ def submit_failed_checklist(data):
   last_action_date =datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
   job_reference = data['order_info']['title'],
   webhook_merchant_link=app_tables.merchant.get(token=data['token']),
-  webhook_subbrand_link=subbrandval,
+  webhook_subbrand_link=app_tables.subbrands.get(Name=subbrandval),
   job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
   job_report = data['order_info']['public_report_link'],
   customer_rating= str(rating),
   #escalation_type = "Low Rating",
   latest_assignee = None,
   latest_status = app_tables.escalation_status.get(name= "New"),
-  sub_brand= 'test', #existing_record['Name'],
+  sub_brand= subbrandval,
   mobile_number=data['order_info']['customer']['phone'],
   date_delivered=completedAtVal, 
   job_reference2=data['order_info']['title_2'],
@@ -306,14 +306,14 @@ def submit_low_rating(data):
   last_action_date =datetime.strptime(updated_at, "%Y-%m-%dT%H:%M:%S.%f%z"),
   job_reference = data['order_info']['title'],
   webhook_merchant_link=app_tables.merchant.get(token=data['token']),
-  webhook_subbrand_link=subbrandval,
+  webhook_subbrand_link=app_tables.subbrands.get(Name=subbrandval),
   job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
   job_report = data['order_info']['public_report_link'],
   customer_rating= str(rating),
   #escalation_type = "Low Rating",
   latest_assignee = None,
   latest_status = app_tables.escalation_status.get(name= "New"),
-  sub_brand= 'test', #existing_record['Name'],
+  sub_brand= subbrandval, 
   mobile_number=data['order_info']['customer']['phone'],
   date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
   job_reference2=data['order_info']['title_2'],
