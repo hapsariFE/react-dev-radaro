@@ -661,17 +661,21 @@ def get_action(rowValue):
   )
 
 @anvil.server.callable
-def get_selectedMerchant(selectedMerchant):
-  related_rows = selectedMerchant
-  values = [row for row in related_rows] 
-  if selectedMerchant is None:
-    print("No Escalation Selected")
-  else:
-    xMerch = app_tables.users.search(user_merchant_link=[related_rows])
-    values = [[row] for row in xMerch]
-    x_list =[r['name'] for r in xMerch]
-    x_list.sort()
-    return x_list
+def get_selectedMerchant(selectedMerchant, selectedSubbrand):
+    if selectedMerchant is None:
+        print("No merchant selected")
+        return []
+    # Ensure the merchant and subbrand are presented as lists for the search
+    query_conditions = {'user_merchant_link': [selectedMerchant]}
+    if selectedSubbrand is not None:
+        query_conditions['user_subbrand_link'] = [selectedSubbrand]
+    # Search for users that match both the merchant and the subbrand
+    users = app_tables.users.search(**query_conditions)
+    # Extract and sort user names
+    user_names = [user['name'] for user in users]
+    user_names.sort()
+    return user_names
+
 
 @anvil.server.callable
 def add_comment(article, article_dict, description, status, created_date, assign_to,submitter):
@@ -1302,27 +1306,40 @@ def update_sb_value(now):
     webhooks = app_tables.webhook.search()
     
     # Step 2: Fetch all subbrands entries
-    subbrands = {sub['Name']: sub for sub in app_tables.subbrands.search()}  # Dictionary for quick lookup
-    default_subbrand = app_tables.subbrands.get(ID='00000000')  # Fetch the default subbrand once
+    # Using merchant row as part of the key
+    subbrands = {(sub['MerchantLink'], sub['Name']): sub for sub in app_tables.subbrands.search()}
+    
+    # Fetch the default subbrand once
+    default_subbrand = app_tables.subbrands.get(ID='00000000')
     
     # Step 3: Iterate through each webhook entry
     for webhook in webhooks:
-        # Check if webhook_subbrand_link is already set
+        # Skip this webhook if the link is already set
         if webhook['webhook_subbrand_link']:
-            continue  # Skip this webhook if link is already set
-
-        sub_brand_name = webhook['sub_brand']  # Assume 'sub_brand' is the name stored in webhook
+            continue
         
-        # Check if the sub_brand name exists in the subbrands dictionary
-        if sub_brand_name in subbrands:
-            # Get the subbrands row that matches the sub_brand name
-            matching_subbrand = subbrands[sub_brand_name]
+        sub_brand_name = webhook['sub_brand']
+
+        # Handle specific exceptions for "(blank)" or "Unidentified"
+        if sub_brand_name in ["(blank)", "Unidentified"]:
+            webhook['webhook_subbrand_link'] = default_subbrand
+            continue  # Move to the next webhook after setting the default subbrand
+
+        merchant_link = webhook['webhook_merchant_link']  # Direct merchant row link
+
+        # Use a tuple of merchant link and sub_brand name to look up the subbrand
+        subbrand_key = (merchant_link, sub_brand_name)
+
+        # Check if the subbrand exists for the specific merchant
+        if subbrand_key in subbrands:
+            # Get the subbrands row that matches the merchant and sub_brand name
+            matching_subbrand = subbrands[subbrand_key]
             # Update the 'webhook_subbrand_link' with the subbrands row
             webhook['webhook_subbrand_link'] = matching_subbrand
         else:
             # No matching subbrand found, assign default
             webhook['webhook_subbrand_link'] = default_subbrand
-            print(f"No matching subbrand found for {sub_brand_name}, assigned default ID='00000000'")
+            print(f"No matching subbrand found for {sub_brand_name} with Merchant Link, assigned default ID='00000000'")
 
 
 @anvil.server.background_task

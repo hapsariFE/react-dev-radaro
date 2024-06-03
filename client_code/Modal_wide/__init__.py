@@ -46,6 +46,7 @@ class Modal_wide(Modal_wideTemplate):
     self.label_27.text = actiondif
     selectedRow = self.item
     SelectedMerchant = self.item['webhook_merchant_link']
+    selectedSubbrand = self.item['webhook_subbrand_link']
     self.next_record = None
     my_iterator = iter(ires)
     try: 
@@ -67,7 +68,7 @@ class Modal_wide(Modal_wideTemplate):
     except StopIteration as e:
       self.button_2.enabled = False
  
-    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
+    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant,selectedSubbrand)
     actionData = anvil.server.call('get_action',selectedRow)
     self.action_panelwide.items = actionData
     self.assigned = assignList
