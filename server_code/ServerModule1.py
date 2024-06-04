@@ -487,12 +487,12 @@ def get_filter_value():
   print('filter-sblist start)'+str(datetime.now()))##################
   if currentUser.get('user_subbrand_link'):
     s_rows = currentUser['user_subbrand_link']
-    s_list =[r['Name'] for r in s_rows]
+    s_list = [(s['Name'] + " - " + s['MerchantLink']['name'], s) for s in s_rows]
   else:
-    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows),ID=q.any_of(*['00000000','00000001'])))
+    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows), ID=q.any_of(*['00000000', '00000001'])))
   #sBrecords = currentUser['user_subbrand_link']
-    s_list =[r['Name'] for r in SBrecords]
-  s_list.sort()
+    s_list = [(sb['Name'] + " - " + sb['MerchantLink']['name'], sb) for sb in SBrecords]
+  s_list.sort(key=lambda item: item[0])
   print('filter-sblist end)'+str(datetime.now()))##################
   ##
   ##get_merchant_list
@@ -541,8 +541,8 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     if jobValue is not None:
         filter_dict['job_status'] = jobValue
 
-    if compCode is not None:
-        filter_dict['sub_brand'] = compCode
+    #if compCode is not None:
+    #    filter_dict['sub_brand'] = compCode
 
     if escType is not None:
         filter_dict['completion_code_description'] = q.ilike(f"%{escType}%")
@@ -605,19 +605,19 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
                                             latest_status=q.any_of(*escStatus))    
     
     elif merchant_name is None and compCode is not None:
-      subbrand_row = app_tables.subbrands.search(Name=compCode)
+      #subbrand_row = app_tables.subbrands.search(Name=compCode)
       custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
                                             **filter_dict,date_created=q.between(min=startDate,max=endDate),
                                             webhook_merchant_link=q.any_of(*merchant_links),
-                                            webhook_subbrand_link=q.any_of(*subbrand_row),
+                                            webhook_subbrand_link=compCode,
                                             latest_status=q.any_of(*escStatus))        
     else:
       merchant_row = app_tables.merchant.search(name=merchant_name)
-      subbrand_row = app_tables.subbrands.search(Name=compCode)
+      #subbrand_row = app_tables.subbrands.search(Name=compCode)
       custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
                                             **filter_dict,date_created=q.between(min=startDate,max=endDate),
                                             webhook_merchant_link=q.any_of(*merchant_row),
-                                            webhook_subbrand_link=q.any_of(*subbrand_row),
+                                            webhook_subbrand_link=compCode,
                                             latest_status=q.any_of(*escStatus))
   
     if searchText:

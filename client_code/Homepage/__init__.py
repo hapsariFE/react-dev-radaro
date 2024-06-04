@@ -167,7 +167,7 @@ class Homepage(HomepageTemplate):
   def filter_change(self, **event_args):
     """This method is called when an item is selected"""
     jobValue = self.dd_job_status.selected_value
-    compCode = self.dd_completion_code.selected_row
+    compCode = self.dd_completion_code.selected_value
     escType = self.dd_esc_type.selected_value
     escStatus = self.dd_esc_status.selected_value
     merchant_name = self.dd_merchant.selected_value
@@ -209,7 +209,7 @@ class Homepage(HomepageTemplate):
   def resolved_checkbox_click(self, **event_args):
     """This method is called when this checkbox is checked or unchecked"""
     jobValue = self.dd_job_status.selected_value
-    compCode = self.dd_completion_code.selected_row
+    compCode = self.dd_completion_code.selected_value
     escType = self.dd_esc_type.selected_value
     merchant_name = self.dd_merchant.selected_value
     startDate = self.start_date_picker.date
