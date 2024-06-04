@@ -492,12 +492,11 @@ def get_filter_value():
   else:
     #SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows), ID=q.any_of(*['00000000', '00000001'])))
     SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows)))
-    print('SBrecords',SBrecords)
     universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
-    print('univ',universal_subbrands)
+    universal_subbrands_items = [(sb['Name'], sb) for sb in universal_subbrands]
     dropdown_items = [(sb['Name'] + " - " + sb['MerchantLink']['name'], sb) for sb in SBrecords]
-    print('dropditems',dropdown_items)
-  dropdown_items.sort(key=lambda item: item[0])
+    dropdown_items = dropdown_items + universal_subbrands_items
+  dropdown_items.sort()
     
   print('filter-sblist end)'+str(datetime.now()))##################
   ##
