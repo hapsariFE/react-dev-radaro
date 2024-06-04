@@ -485,14 +485,20 @@ def get_filter_value():
   ##
   ##get_subbrands_list
   print('filter-sblist start)'+str(datetime.now()))##################
+
   if currentUser.get('user_subbrand_link'):
     s_rows = currentUser['user_subbrand_link']
-    s_list = [(s['Name'] + " - " + s['MerchantLink']['name'], s) for s in s_rows]
+    dropdown_items = [(s['Name'] + " - " + s['MerchantLink']['name'], s) for s in s_rows]
   else:
-    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows), ID=q.any_of(*['00000000', '00000001'])))
-  #sBrecords = currentUser['user_subbrand_link']
-    s_list = [(sb['Name'] + " - " + sb['MerchantLink']['name'], sb) for sb in SBrecords]
-  s_list.sort(key=lambda item: item[0])
+    #SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows), ID=q.any_of(*['00000000', '00000001'])))
+    SBrecords = app_tables.subbrands.search(q.any_of(MerchantLink=q.any_of(*x_rows)))
+    print('SBrecords',SBrecords)
+    universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
+    print('univ',universal_subbrands)
+    dropdown_items = [(sb['Name'] + " - " + sb['MerchantLink']['name'], sb) for sb in SBrecords]
+    print('dropditems',dropdown_items)
+  dropdown_items.sort(key=lambda item: item[0])
+    
   print('filter-sblist end)'+str(datetime.now()))##################
   ##
   ##get_merchant_list
@@ -501,7 +507,7 @@ def get_filter_value():
   m_list.sort()
   print('filter-merchlist end)'+str(datetime.now()))##################
 
-  return user_list,cc_list,s_list,m_list
+  return user_list,cc_list,dropdown_items,m_list
 
 
 #@anvil.server.callable
