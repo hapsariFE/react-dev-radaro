@@ -58,7 +58,11 @@ class Homepage(HomepageTemplate):
     print('filterget start)'+str(datetime.now()))##################  
     fUsers, ccVals,sVals,fmerch = anvil.server.call('get_filter_value')
     print('filterget end)'+str(datetime.now()))##################
-    self.subbrand = sVals
+    #self.subbrand = sVals
+    self.dd_completion_code.items = sVals
+    self.dd_completion_code.item_text = 'Name'  # Assuming the dictionary has a 'Name' key
+    self.dd_completion_code.item_value = lambda item: item
+    
     self.etype = ccVals
     self.merchant_name = fmerch
     users = fUsers
