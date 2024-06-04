@@ -311,8 +311,7 @@ components:
         col_xs: 3
         width: 122.828
       event_bindings: {change: filter_change}
-      data_bindings:
-      - {code: self.subbrand, property: items}
+      data_bindings: []
       name: dd_completion_code
     - type: Label
       properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter
