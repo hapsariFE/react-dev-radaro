@@ -68,7 +68,7 @@ class Modal_wide(Modal_wideTemplate):
     except StopIteration as e:
       self.button_2.enabled = False
  
-    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant,selectedSubbrand)
+    assignList = anvil.server.call('get_selectedMerchant',SelectedMerchant)
     actionData = anvil.server.call('get_action',selectedRow)
     self.action_panelwide.items = actionData
     self.assigned = assignList
