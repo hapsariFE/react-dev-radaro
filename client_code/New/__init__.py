@@ -37,6 +37,11 @@ class New(NewTemplate):
     self.validator.require(self.dd_merchant, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_merchant)
+    #self.validator.require(self.dd_subbrand, ['change'],
+    #                   lambda dropdown: (isinstance(dropdown.selected_value, dict) and
+    #                                     'MerchantLink' in dropdown.selected_value and
+    #                                     self.dd_merchant.selected_value != dropdown.selected_value['MerchantLink']['name']),
+    #                   self.e_subbrand)
     self.validator.require(self.dd_assign, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_assign)
@@ -107,7 +112,6 @@ class New(NewTemplate):
       self.clear_button_click()
       self.raise_event('x-close-alert', article=self.item)
       
-
 
 
 
