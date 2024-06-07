@@ -177,14 +177,14 @@ components:
       - {property: items, code: self.subbrand}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: true, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        visible: false, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
         spacing_below: none, italic: false, background: '', bold: false, underline: false,
         icon: 'fa:star'}
       name: label_8_copy
-      layout_properties: {row: MFKROS, width_xs: 1, col_xs: 10, width: 149.844}
+      layout_properties: {row: MFKROS, width_xs: 1, col_xs: 10, width: 13.5069}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: true, text: Please select a subbrand, font_size: 10, font: '', spacing_above: none,
+        visible: false, text: Please select a subbrand, font_size: 10, font: '', spacing_above: none,
         icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
         underline: false, icon: ''}
       name: e_subbrand

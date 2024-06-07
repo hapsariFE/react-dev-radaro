@@ -710,7 +710,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
   jr_dict = dict(jobrow)
   assignname = assign_to['name']
   app_tables.action_log.add_row(
-        assign_to=None,
+        assign_to=assign_to,
         user=anvil.users.get_user(),
         description="created manually",
         escalation_id=app_tables.webhook.get(id= str(counter)),

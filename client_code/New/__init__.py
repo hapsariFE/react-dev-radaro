@@ -37,9 +37,9 @@ class New(NewTemplate):
     self.validator.require(self.dd_merchant, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_merchant)
-    self.validator.require(self.dd_subbrand, ['change'],
-                          lambda DropDown: DropDown.selected_value is not None,
-                          self.e_subbrand)
+    #self.validator.require(self.dd_subbrand, ['change'],
+    #                      lambda DropDown: DropDown.selected_value is not None,
+    #                      self.e_subbrand)
     self.validator.require(self.dd_esc_type, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_type)    
@@ -86,6 +86,8 @@ class New(NewTemplate):
       alert("Please enter a Customer Name")
     elif merchant_name is None:
       alert("Please select a Merchant")
+    #elif subbrand is None:
+    #  alert("Please select a Subbrand")      
     elif esc_type is None:
       alert("Please select an Escalation Type")    
     elif esc_status is None:
