@@ -667,7 +667,19 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
       )        
     elif merchant_name is not None and compCode is not None:
       #subbrand_row = app_tables.subbrands.search(Name=compCode)
-      custTable = app_tables.webhook.search(
+      if compCode['ID'] in ['00000000', '00000001']:
+        # Fetch all merchant links that do not have specific subbrands linked
+        applicable_merchants = [merchant for merchant in merchant_links if not any(sb['MerchantLink'] == merchant for sb in subbrand_links)]
+        custTable = app_tables.webhook.search(
+            tables.order_by("last_action_date", ascending=False),
+            **filter_dict,
+            date_created=q.between(min=startDate, max=endDate),
+            webhook_merchant_link=q.any_of(*applicable_merchants),  # Apply to applicable merchants only
+            webhook_subbrand_link=compCode,  # Universal subbrand
+            latest_status=q.any_of(*escStatus)
+        )  
+      else:  
+        custTable = app_tables.webhook.search(
           tables.order_by("last_action_date", ascending=False),
           **filter_dict,
           date_created=q.between(min=startDate, max=endDate),
