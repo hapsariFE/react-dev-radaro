@@ -12,7 +12,7 @@ components:
   layout_properties: {grid_position: 'QHRNJM,VWZSSL', full_width_row: true}
   components:
   - type: GridPanel
-    properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
+    properties: {spacing_above: none, spacing_below: none, background: '', foreground: '',
       border: '', visible: true, role: narrow, tooltip: ''}
     name: grid_panel_1
     layout_properties: {grid_position: 'QRCWNC,LRFPDC', full_width_row: true}
@@ -151,13 +151,44 @@ components:
         underline: false, icon: ''}
       name: e_merchant
       layout_properties: {row: PSWQKO, width_xs: 9, col_xs: 0, width: 149.844}
-    - type: TextBox
-      properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: sub brand,
-        border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, type: text, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false}
-      name: subbrand_input
-      layout_properties: {row: QXSIDJ, width_xs: 11, col_xs: 0, width: 163.141}
+    - type: DropDown
+      properties:
+        role: outlined
+        align: full
+        tooltip: ''
+        placeholder: sub brand
+        border: ''
+        enabled: true
+        foreground: ''
+        items: []
+        visible: true
+        font_size: null
+        font: ''
+        spacing_above: none
+        spacing_below: none
+        italic: false
+        background: ''
+        bold: false
+        underline: false
+        include_placeholder: true
+      name: dd_subbrand
+      layout_properties: {row: MFKROS, width_xs: 11, col_xs: 0, width: 168.368}
+      data_bindings:
+      - {property: items, code: self.subbrand}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: false, text: '', font_size: 8, font: '', spacing_above: none, icon_align: left,
+        spacing_below: none, italic: false, background: '', bold: false, underline: false,
+        icon: 'fa:star'}
+      name: label_8_copy
+      layout_properties: {row: MFKROS, width_xs: 1, col_xs: 10, width: 13.5069}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: false, text: Please select a subbrand, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_subbrand
+      layout_properties: {row: AQPZAN, width_xs: 9, col_xs: 0, width: 137.396}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Escalation :', font_size: 14, font: '', spacing_above: none,
@@ -272,6 +303,13 @@ components:
         icon: 'fa:star'}
       name: label_11
       layout_properties: {row: JNCGGR, width_xs: 1, col_xs: 11, width: 149.844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please assign to a user, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_assign
+      layout_properties: {row: FJCSPL, width_xs: 8, col_xs: 0, width: 121.91}
     - type: TextArea
       properties: {role: outlined, align: left, height: 77, tooltip: '', placeholder: enter comment here,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,

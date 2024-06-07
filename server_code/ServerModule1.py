@@ -64,14 +64,14 @@ def incoming_msg(**kwargs):
         if merctable is not None:
         
           if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
-            print("low rating testing")
+            #print("low rating")
             submit_low_rating(data)
   
       if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
         if 'delivered'==data['order_info']['status'] and compcode_enable == True:
             submit_completion_codes(data) 
         elif failcode_enable == True and 'failed'==data['order_info']['status']:
-            print("fail code testing")
+            #print("fail code")
             submit_completion_codes(data) 
       else:
           pass 
@@ -90,7 +90,7 @@ def incoming_msg(**kwargs):
               # Break after the first mismatch, or remove the break if you want to store all mismatches
               break
   except Exception as error: 
-    print(data['token'])
+    #print(data['token'])
     print(merctable['name']) 
     print(error)          
 
@@ -306,7 +306,7 @@ def submit_low_rating(data):
   date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
   job_reference2=data['order_info']['title_2'],
   job_reference3=data['order_info']['title_3'],
-  comment=data['order_info']['comment'],
+  comment=data['order_info']['customer_comment'],
   address=data['order_info']['deliver_address']['address'],
   watch_list=False,
   watchlistUsers=[])
@@ -370,7 +370,6 @@ def submit_completion_codes(data):
       job_reference = data['order_info']['title'],
       webhook_merchant_link=app_tables.merchant.get(token=data['token']),
       webhook_subbrand_link=existing_record,
-      
       job_status = app_tables.job_status.get(sysName=data['order_info']['status']),
       job_report = data['order_info']['public_report_link'],
       customer_rating= str(rating),
@@ -378,12 +377,12 @@ def submit_completion_codes(data):
       latest_assignee = None,
       latest_status = app_tables.escalation_status.get(name= "New"),
       sub_brand=existing_record['Name'],
-      
       mobile_number=data['order_info']['customer']['phone'],
       date_delivered=datetime.strptime(data['order_info']['completed_at'], "%Y-%m-%dT%H:%M:%S.%f%z"), 
       job_reference2=data['order_info']['title_2'],
       job_reference3=data['order_info']['title_3'],
-      comment=data['order_info']['comment'],
+      #comment=data['order_info']['comment'],
+      comment = data['order_info'].get('error_comment', data['order_info'].get('completion_comment', 'Default comment')),
       address=data['order_info']['deliver_address']['address'],
       watch_list=False,
       watchlistUsers=[])
@@ -569,13 +568,13 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
   
     # Fetch universal subbrands that are applicable to any merchant
     universal_subbrands = list(app_tables.subbrands.search(ID=q.any_of('00000000', '00000001')))
-    print('universal_subbrands)',universal_subbrands)
+    #print('universal_subbrands)',universal_subbrands)
   
   # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
     subbrand_links = currentUser.get('user_subbrand_link', []) 
-    print('merchant_links)',merchant_links)
-    print('subbrand_links)',subbrand_links)
+    #print('merchant_links)',merchant_links)
+    #print('subbrand_links)',subbrand_links)
 
     # Fetch user-specific subbrand values, ensuring the return is always a list
     
@@ -689,13 +688,20 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
   merchant_row = app_tables.merchant.get(name=merchant_name) 
   status_row = app_tables.job_status.get(name='Failed') 
   counter = get_next_value_in_sequence()
+  #print('sub:',subbrand)
+  if subbrand is None:
+    subbrand = app_tables.subbrands.get(ID='00000001')
+  #print('sub2:',subbrand)
+  #universal_subbrands = app_tables.subbrands.search(ID=q.any_of('00000000', '00000001'))
   row = app_tables.webhook.add_row(
      job_id = job,
      job_reference = jobref,
      customer_name = customer,
      mobile_number = mobile,
      webhook_merchant_link = merchant_row,
-     sub_brand = subbrand,
+     comment = description,
+     sub_brand = subbrand['Name'],
+     webhook_subbrand_link =subbrand,
      id = str(counter),
      latest_status = esc_status,
      job_status = status_row,
@@ -708,7 +714,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
   jr_dict = dict(jobrow)
   assignname = assign_to['name']
   app_tables.action_log.add_row(
-        assign_to=None,
+        assign_to=assign_to,
         user=anvil.users.get_user(),
         description="created manually",
         escalation_id=app_tables.webhook.get(id= str(counter)),
