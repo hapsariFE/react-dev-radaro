@@ -184,11 +184,11 @@ components:
       layout_properties: {row: MFKROS, width_xs: 1, col_xs: 10, width: 13.5069}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
-        visible: false, text: Please select a subbrand, font_size: 10, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
-        underline: false, icon: ''}
+        visible: true, text: Please select a different Sub Brand, font_size: 10, font: '',
+        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
+        background: '', bold: true, underline: false, icon: ''}
       name: e_subbrand
-      layout_properties: {row: AQPZAN, width_xs: 9, col_xs: 0, width: 137.396}
+      layout_properties: {row: AQPZAN, width_xs: 10, col_xs: 0, width: 137.396}
     - type: Label
       properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
         visible: true, text: 'Escalation :', font_size: 14, font: '', spacing_above: none,

@@ -37,6 +37,14 @@ class New(NewTemplate):
     self.validator.require(self.dd_merchant, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_merchant)
+    self.validator.require(self.dd_subbrand, ['change'],                      
+                          lambda Dropdown:  (
+                          Dropdown.selected_value is None or
+                          Dropdown.selected_value.get('ID') in ['00000000', '00000001'] or
+                          ('MerchantLink' in Dropdown.selected_value and
+                          Dropdown.selected_value['MerchantLink'].get('name') == self.dd_merchant.selected_value)
+                          ),
+                          self.e_subbrand)
     self.validator.require(self.dd_assign, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_assign)
@@ -94,11 +102,8 @@ class New(NewTemplate):
       alert("Please select an Escalation Status")    
     elif description == "":
       alert("Please submit a Comment")
-    elif merchant_name and subbrand:
-        # Assuming 'selected_subbrand' is a dictionary that includes 'MerchantLink'
-        # and 'MerchantLink' is a dictionary with a 'name' key
-        if subbrand['MerchantLink'] != merchant_name:
-            # Show an error if the subbrand's merchant does not match the selected merchant
+    elif self.e_subbrand.visible: 
+    
             anvil.alert("The selected Sub Brand does not belong to the selected Merchant Details")
 
     
@@ -107,7 +112,6 @@ class New(NewTemplate):
       self.clear_button_click()
       self.raise_event('x-close-alert', article=self.item)
       
-
 
 
 
