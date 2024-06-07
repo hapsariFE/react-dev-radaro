@@ -22,7 +22,8 @@ class New(NewTemplate):
     self.etype = ""
     fUsers, ccVals,sVals,fmerch = anvil.server.call('get_filter_value')
     self.etype = ccVals
-    self.merchant_name = fmerch  
+    self.merchant_name = fmerch
+    self.subbrand = sVals
         
     self.init_components(**properties)
     # Any code you write here will run before the form opens.
@@ -36,6 +37,9 @@ class New(NewTemplate):
     self.validator.require(self.dd_merchant, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_merchant)
+    self.validator.require(self.dd_subbrand, ['change'],
+                          lambda DropDown: DropDown.selected_value is not None,
+                          self.e_subbrand)
     self.validator.require(self.dd_esc_type, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_type)    
@@ -54,7 +58,7 @@ class New(NewTemplate):
     self.customer_input.text = ""
     self.mobile_input.text = ""
     self.dd_merchant.selected_value = ""
-    self.subbrand_input.text = ""
+    self.dd_subbrand.selected_value = ""
     self.addcomment_input.text = ""    
     self.dd_esc_status.selected_value = ""
     self.dd_esc_type.selected_value = ""
@@ -68,7 +72,7 @@ class New(NewTemplate):
     customer = self.customer_input.text
     mobile = self.mobile_input.text
     merchant_name = self.dd_merchant.selected_value
-    subbrand = self.subbrand_input.text
+    subbrand = self.dd_subbrand.selected_value
     description = self.addcomment_input.text
     esc_status = self.dd_esc_status.selected_value
     esc_type = self.dd_esc_type.selected_value    

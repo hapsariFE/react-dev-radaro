@@ -64,14 +64,14 @@ def incoming_msg(**kwargs):
         if merctable is not None:
         
           if 'job.status_changed' in topic and 'updated' in data.get('event_type') and True == data['new_values']['is_confirmed_by_customer'] and merctable['rating_threshold'] >= data['order_info']['rating'] :
-            print("low rating testing")
+            #print("low rating")
             submit_low_rating(data)
   
       if 'job.completion_codes_accepted' in topic and 'updated' in data.get('event_type'):
         if 'delivered'==data['order_info']['status'] and compcode_enable == True:
             submit_completion_codes(data) 
         elif failcode_enable == True and 'failed'==data['order_info']['status']:
-            print("fail code testing")
+            #print("fail code")
             submit_completion_codes(data) 
       else:
           pass 
@@ -90,7 +90,7 @@ def incoming_msg(**kwargs):
               # Break after the first mismatch, or remove the break if you want to store all mismatches
               break
   except Exception as error: 
-    print(data['token'])
+    #print(data['token'])
     print(merctable['name']) 
     print(error)          
 
@@ -569,13 +569,13 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
   
     # Fetch universal subbrands that are applicable to any merchant
     universal_subbrands = list(app_tables.subbrands.search(ID=q.any_of('00000000', '00000001')))
-    print('universal_subbrands)',universal_subbrands)
+    #print('universal_subbrands)',universal_subbrands)
   
   # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
     subbrand_links = currentUser.get('user_subbrand_link', []) 
-    print('merchant_links)',merchant_links)
-    print('subbrand_links)',subbrand_links)
+    #print('merchant_links)',merchant_links)
+    #print('subbrand_links)',subbrand_links)
 
     # Fetch user-specific subbrand values, ensuring the return is always a list
     
