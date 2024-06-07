@@ -45,7 +45,6 @@ class New(NewTemplate):
                           Dropdown.selected_value['MerchantLink'].get('name') == self.dd_merchant.selected_value)
                           ),
                           self.e_subbrand)
-
     self.validator.require(self.dd_assign, ['change'],
                           lambda DropDown: DropDown.selected_value is not None,
                           self.e_assign)
@@ -106,7 +105,7 @@ class New(NewTemplate):
     elif merchant_name and subbrand:
         # Assuming 'selected_subbrand' is a dictionary that includes 'MerchantLink'
         # and 'MerchantLink' is a dictionary with a 'name' key
-        if subbrand['MerchantLink'] != merchant_name:
+        if subbrand['MerchantLink'] != merchant_name or subbrand('ID') not in ['00000000', '00000001']:
             # Show an error if the subbrand's merchant does not match the selected merchant
             anvil.alert("The selected Sub Brand does not belong to the selected Merchant Details")
 
