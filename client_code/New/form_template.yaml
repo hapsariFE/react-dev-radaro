@@ -303,6 +303,13 @@ components:
         icon: 'fa:star'}
       name: label_11
       layout_properties: {row: JNCGGR, width_xs: 1, col_xs: 11, width: 149.844}
+    - type: Label
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Error',
+        visible: true, text: Please assign to a user, font_size: 10, font: '', spacing_above: none,
+        icon_align: left, spacing_below: none, italic: false, background: '', bold: true,
+        underline: false, icon: ''}
+      name: e_assign
+      layout_properties: {row: FJCSPL, width_xs: 8, col_xs: 0, width: 121.91}
     - type: TextArea
       properties: {role: outlined, align: left, height: 77, tooltip: '', placeholder: enter comment here,
         border: '', enabled: true, foreground: '', visible: true, text: '', font_size: null,
