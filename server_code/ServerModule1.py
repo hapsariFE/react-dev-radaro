@@ -602,7 +602,7 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     # Optional: Print to check what's being processed
     for merchant, subbrands in merchant_subbrands.items():
         print(f"Merchant: {merchant['name']}, Subbrands: {[sb['Name'] for sb in subbrands]}")
-
+    selected_merchant = next((m for m in merchant_links if m['name'] == merchant_name), None)
     custTable = []
     # Handle merchant name if provided
     if merchant_name is None and compCode is None: #and assigned_to is None:
@@ -616,14 +616,19 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
             latest_status=q.any_of(*escStatus)
         )
         custTable.extend(results)
-   
+       
     elif merchant_name is not None and compCode is None:
-      merchant_row = app_tables.merchant.search(name=merchant_name)
-      custTable = app_tables.webhook.search(tables.order_by("last_action_date", ascending=False),
-                                            **filter_dict,date_created=q.between(min=startDate,max=endDate),
-                                            webhook_merchant_link=q.any_of(*merchant_row),
-                                            webhook_subbrand_link=q.any_of(*subbrands),
-                                            latest_status=q.any_of(*escStatus))    
+      
+      subbrands = merchant_subbrands.get(selected_merchant, [])
+      results = app_tables.webhook.search(
+          tables.order_by("last_action_date", ascending=False),
+          **filter_dict,
+          date_created=q.between(min=startDate, max=endDate),
+          webhook_merchant_link=selected_merchant,  # Use the selected merchant object
+          webhook_subbrand_link=q.any_of(*subbrands),  # Use all subbrands for this merchant
+          latest_status=q.any_of(*escStatus)
+      )
+      custTable = results   
     
     elif merchant_name is None and compCode is not None:
       #subbrand_row = app_tables.subbrands.search(Name=compCode)
