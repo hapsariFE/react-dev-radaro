@@ -92,8 +92,16 @@ class New(NewTemplate):
       alert("Please select an Escalation Type")    
     elif esc_status is None:
       alert("Please select an Escalation Status")    
-    elif description is "":
+    elif description == "":
       alert("Please submit a Comment")
+    elif merchant_name and subbrand:
+        # Assuming 'selected_subbrand' is a dictionary that includes 'MerchantLink'
+        # and 'MerchantLink' is a dictionary with a 'name' key
+        if subbrand['MerchantLink'] != merchant_name:
+            # Show an error if the subbrand's merchant does not match the selected merchant
+            anvil.alert("The selected Sub Brand does not belong to the selected Merchant Details")
+
+    
     else:
       anvil.server.call('new',job, jobref, customer, mobile, merchant_name, subbrand, description, esc_status, esc_type, date_created, last_action_date, assign_to)
       self.clear_button_click()
