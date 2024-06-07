@@ -509,9 +509,14 @@ def get_filter_value():
   dropdown_items = []
   for merchant, subbrands in merchant_subbrands.items():
       for subbrand in subbrands:
-          dropdown_item = (f"{subbrand['Name']} - {merchant['name']}", subbrand)
+          if subbrand in universal_subbrands:
+            # Format without merchant name for universal subbrands
+            dropdown_item = (subbrand['Name'], subbrand)
+          else:
+            # Format with merchant name for regular subbrands
+            dropdown_item = (f"{subbrand['Name']} - {merchant['name']}", subbrand)
           dropdown_items.append(dropdown_item)
-    
+            
   # Sort the dropdown items by the subbrand name for better user experience
   dropdown_items.sort(key=lambda item: item[0])
   
