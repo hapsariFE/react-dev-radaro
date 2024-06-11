@@ -8,19 +8,12 @@ services:
   client_config: {enable_v2: true}
   server_config: {auto_create_missing_columns: true}
 - source: /runtime/services/anvil/users.yml
-  client_config: {use_microsoft: false, require_secure_passwords: true, use_saml: false,
-    use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true,
-    confirm_email: true, remember_me_days: 30, use_google: true}
+  client_config: {use_microsoft: false, require_secure_passwords: true, use_saml: false, use_email: true, allow_remember_me: true, allow_signup: false, enable_automatically: true, confirm_email: true, remember_me_days: 30, use_google: true}
   server_config:
     user_table: users
     email_content:
-      confirm_address: {html: '<p>Hi</p><p>Thanks for registering your account with
-          us. Please confirm your email address by clicking the link below:</p><p>{{confirm_link}}</p><p><br></p><p>Thanks,</p><p>The
-          Radaro team</p>'}
-      reset_password: {html: '<p>Hi there,</p><p>You have requested a password reset
-          for your account {{email}}. To reset your password, click the link below:</p><p>{{reset_link}}</p><p>This
-          link will expire in ten minutes.</p><p><br></p><p>Thanks,</p><p>The Radaro
-          team</p>'}
+      confirm_address: {html: '<p>Hi</p><p>Thanks for registering your account with us. Please confirm your email address by clicking the link below:</p><p>{{confirm_link}}</p><p><br></p><p>Thanks,</p><p>The Radaro team</p>'}
+      reset_password: {html: '<p>Hi there,</p><p>You have requested a password reset for your account {{email}}. To reset your password, click the link below:</p><p>{{reset_link}}</p><p>This link will expire in ten minutes.</p><p><br></p><p>Thanks,</p><p>The Radaro team</p>'}
 - source: /runtime/services/anvil/secrets.yml
   client_config: {}
   server_config: {}
@@ -35,31 +28,15 @@ services:
   server_config: {}
 - source: /runtime/services/anvil/email.yml
   client_config: {}
-  server_config: {custom_smtp: true, smtp_host: smtp.sendgrid.net, smtp_port: 465,
-    smtp_encryption: ssl, smtp_user: apikey, smtp_password: o6jheUCIPPtw3sNHe0nSYzVhV1QoZATr+v/aewUETTU7WyL/T17j3rl/WiPhhdyxoxCoLsAxYfv1E81UPDPlENo+Pr/nyKXZhUi9rAGARMuc96+JjnYnanxDAwSEg33tRNQS1oTy2sWQQbgBHcC0LILRRTxrXHMQ+2CO0iNkRMYkThBE5i1nki5vC9f/15Yam9a4Xu1+LZbZkw2/2ob9n3efJUkt1CRS6w0g0DlCsPApUA0hdZTtDE20iYYt0A==}
+  server_config: {custom_smtp: true, smtp_host: smtp.sendgrid.net, smtp_port: 465, smtp_encryption: ssl, smtp_user: apikey, smtp_password: o6jheUCIPPtw3sNHe0nSYzVhV1QoZATr+v/aewUETTU7WyL/T17j3rl/WiPhhdyxoxCoLsAxYfv1E81UPDPlENo+Pr/nyKXZhUi9rAGARMuc96+JjnYnanxDAwSEg33tRNQS1oTy2sWQQbgBHcC0LILRRTxrXHMQ+2CO0iNkRMYkThBE5i1nki5vC9f/15Yam9a4Xu1+LZbZkw2/2ob9n3efJUkt1CRS6w0g0DlCsPApUA0hdZTtDE20iYYt0A==}
 startup: {type: form, module: Homepage}
 package_name: React_DEV___TEST
 allow_embedding: false
 name: React DEV - TEST
-runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null,
-  server_persist: true}
-metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: REACT,
-  description: 'Radaro reduces your operational costs whilst offering real-time insights
-    over your in-house and third-party service providers with unprecedented customer
-    insights. Transform your last mile and service delivery, today.'}
+runtime_options: {version: 2, client_version: '3', server_version: python3-full, server_spec: null, server_persist: true}
+metadata: {logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: REACT, description: 'Radaro reduces your operational costs whilst offering real-time insights over your in-house and third-party service providers with unprecedented customer insights. Transform your last mile and service delivery, today.'}
 startup_form: null
 db_schema:
-  escalation_status:
-    title: escalation_status
-    client: search
-    server: full
-    columns:
-    - name: name
-      admin_ui: {width: 200}
-      type: string
-    - name: icon
-      admin_ui: {order: 1, width: 200}
-      type: string
   compcodes:
     title: compCodes
     client: none
@@ -90,14 +67,6 @@ db_schema:
     - name: codeType
       admin_ui: {order: 3.75, width: 200}
       type: string
-  escalation_type:
-    title: escalation_type
-    client: search
-    server: full
-    columns:
-    - name: name
-      admin_ui: {width: 200}
-      type: string
   job_status:
     title: job_status
     client: search
@@ -112,118 +81,6 @@ db_schema:
     - name: sysName
       admin_ui: {width: 200}
       type: string
-  users:
-    title: users
-    client: none
-    server: full
-    columns:
-    - name: email
-      admin_ui: {width: 200}
-      type: string
-    - name: name
-      admin_ui: {width: 200}
-      type: string
-    - name: enabled
-      admin_ui: {width: 200}
-      type: bool
-    - name: last_login
-      admin_ui: {width: 200}
-      type: datetime
-    - name: password_hash
-      admin_ui: {width: 200}
-      type: string
-    - name: n_password_failures
-      admin_ui: {width: 200}
-      type: number
-    - name: confirmed_email
-      admin_ui: {width: 200}
-      type: bool
-    - name: user_merchant_link
-      admin_ui: {order: 0.875, width: 200}
-      type: link_multiple
-      target: merchant
-    - name: Logo
-      admin_ui: {order: 0.75, width: 200}
-      type: string
-    - name: remembered_logins
-      admin_ui: {width: 200}
-      type: simpleObject
-    - name: is_reporting
-      admin_ui: {width: 200}
-      type: bool
-    - name: is_super_user
-      admin_ui: {width: 200}
-      type: bool
-    - name: user_subbrand_link
-      admin_ui: {order: 0.9375, width: 200}
-      type: link_multiple
-      target: subbrands
-  action_log:
-    client: none
-    server: full
-    columns:
-    - name: job_id
-      admin_ui: {order: 1, width: 200}
-      type: link_single
-      target: webhook
-    - name: escalation_id
-      admin_ui: {order: 3, width: 200}
-      type: link_single
-      target: webhook
-    - name: user
-      admin_ui: {order: 4, width: 200}
-      type: link_single
-      target: users
-    - name: created_date
-      admin_ui: {order: 4, width: 200}
-      type: datetime
-    - name: description
-      admin_ui: {order: 5, width: 200}
-      type: string
-    - name: status
-      admin_ui: {order: 7, width: 200}
-      type: link_single
-      target: escalation_status
-    - name: assign_to
-      admin_ui: {width: 270}
-      type: link_single
-      target: users
-    title: action_log
-  merchant:
-    title: merchant
-    client: none
-    server: full
-    columns:
-    - name: merchant_id
-      admin_ui: {width: 200}
-      type: string
-    - name: name
-      admin_ui: {order: -2, width: 200}
-      type: string
-    - name: rating_threshold
-      admin_ui: {width: 200}
-      type: number
-    - name: server
-      admin_ui: {width: 200}
-      type: string
-    - name: token
-      admin_ui: {width: 200}
-      type: string
-    - name: APIToken
-      admin_ui: {width: 200}
-      type: string
-    - name: completion_code_enabled
-      admin_ui: {width: 200}
-      type: bool
-    - name: fail_code_enabled
-      admin_ui: {width: 200}
-      type: bool
-    - name: low_rating_enabled
-      admin_ui: {width: 200}
-      type: bool
-    - name: job_checklist_enabled
-      admin_ui: {order: 2.75, width: 200}
-      type: bool
   webhook:
     title: webhook
     client: none
@@ -311,6 +168,25 @@ db_schema:
     - name: comment
       admin_ui: {width: 200, order: 22}
       type: string
+  escalation_type:
+    title: escalation_type
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+  escalation_status:
+    title: escalation_status
+    client: search
+    server: full
+    columns:
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: icon
+      admin_ui: {order: 1, width: 200}
+      type: string
   subbrands:
     title: subbrands
     client: none
@@ -329,7 +205,7 @@ db_schema:
       admin_ui: {order: -2, width: 200}
       type: string
     - name: Server
-      admin_ui: {width: 200}
+      admin_ui: {order: -0.5, width: 200}
       type: string
     - name: LastUpdated
       admin_ui: {width: 200}
@@ -338,6 +214,118 @@ db_schema:
       admin_ui: {width: 200}
       type: link_single
       target: merchant
+  merchant:
+    title: merchant
+    client: none
+    server: full
+    columns:
+    - name: merchant_id
+      admin_ui: {width: 200}
+      type: string
+    - name: name
+      admin_ui: {order: -2, width: 200}
+      type: string
+    - name: rating_threshold
+      admin_ui: {width: 200}
+      type: number
+    - name: server
+      admin_ui: {width: 200}
+      type: string
+    - name: token
+      admin_ui: {width: 200}
+      type: string
+    - name: APIToken
+      admin_ui: {width: 200}
+      type: string
+    - name: completion_code_enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: fail_code_enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: low_rating_enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: job_checklist_enabled
+      admin_ui: {order: 2.75, width: 200}
+      type: bool
+  users:
+    title: users
+    client: none
+    server: full
+    columns:
+    - name: email
+      admin_ui: {width: 200}
+      type: string
+    - name: name
+      admin_ui: {width: 200}
+      type: string
+    - name: enabled
+      admin_ui: {width: 200}
+      type: bool
+    - name: last_login
+      admin_ui: {width: 200}
+      type: datetime
+    - name: password_hash
+      admin_ui: {width: 200}
+      type: string
+    - name: n_password_failures
+      admin_ui: {width: 200}
+      type: number
+    - name: confirmed_email
+      admin_ui: {width: 200}
+      type: bool
+    - name: user_merchant_link
+      admin_ui: {order: 0.875, width: 200}
+      type: link_multiple
+      target: merchant
+    - name: Logo
+      admin_ui: {order: 0.75, width: 200}
+      type: string
+    - name: remembered_logins
+      admin_ui: {width: 200}
+      type: simpleObject
+    - name: is_reporting
+      admin_ui: {width: 200}
+      type: bool
+    - name: is_super_user
+      admin_ui: {width: 200}
+      type: bool
+    - name: user_subbrand_link
+      admin_ui: {order: 0.9375, width: 200}
+      type: link_multiple
+      target: subbrands
+  action_log:
+    client: none
+    server: full
+    columns:
+    - name: job_id
+      admin_ui: {order: 1, width: 200}
+      type: link_single
+      target: webhook
+    - name: escalation_id
+      admin_ui: {order: 3, width: 200}
+      type: link_single
+      target: webhook
+    - name: user
+      admin_ui: {order: 4, width: 200}
+      type: link_single
+      target: users
+    - name: created_date
+      admin_ui: {order: 4, width: 200}
+      type: datetime
+    - name: description
+      admin_ui: {order: 5, width: 200}
+      type: string
+    - name: status
+      admin_ui: {order: 7, width: 200}
+      type: link_single
+      target: escalation_status
+    - name: assign_to
+      admin_ui: {width: 270}
+      type: link_single
+      target: users
+    title: action_log
 secrets:
   new_secret:
     type: secret

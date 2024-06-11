@@ -3,30 +3,20 @@ custom_component: true
 properties: []
 container:
   type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"XBLDEN":50,"ZKDTUX":25}',
-    spacing_below: small, background: ''}
+  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: mobile, col_spacing: none, spacing_above: small, col_widths: '{"XBLDEN":50,"ZKDTUX":25}', spacing_below: small, background: ''}
 components:
 - type: Image
-  properties: {role: null, vertical_align: center, height: 26, tooltip: '', border: '',
-    foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small,
-    source: _/theme/RadaroLogo_BlackHigh.png, spacing_below: small, background: '',
-    horizontal_align: left}
+  properties: {role: null, vertical_align: center, height: 26, tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small, source: _/theme/RadaroLogo_BlackHigh.png, spacing_below: small, background: '', horizontal_align: left}
   name: image_2
   layout_properties: {grid_position: 'TLMXSN,ZKDTUX'}
 - type: Label
-  properties: {role: title, align: left, tooltip: '', border: '', foreground: '',
-    visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left,
-    spacing_below: medium, italic: false, background: '', bold: false, underline: false,
-    icon: ''}
+  properties: {role: title, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: medium, italic: false, background: '', bold: false, underline: false, icon: ''}
   name: title
   layout_properties: {grid_position: 'TLMXSN,XBLDEN'}
   data_bindings:
   - {property: text, code: 'self.item[''job_reference'']'}
 - type: ColumnPanel
-  properties: {role: border-bottom, tooltip: '', border: '', foreground: '', visible: true,
-    wrap_on: never, col_spacing: small, spacing_above: small, col_widths: '{"QFIVOG":20}',
-    spacing_below: small, background: ''}
+  properties: {role: border-bottom, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: small, spacing_above: small, col_widths: '{"QFIVOG":20}', spacing_below: small, background: ''}
   layout_properties:
     col_widths: {}
     grid_position: GQAZHO,FFBGMH
@@ -38,190 +28,119 @@ components:
     name: grid_panel_2
     components:
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Customer Name :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Customer Name :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 0, width: 115.656}
       name: label_3
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 1, width: 99.9844}
       data_bindings:
       - {code: 'self.item[''customer_name''].capitalize()', property: text}
       name: label_4
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Escalation Type :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Escalation Type :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 3, width: 115.656}
       name: label_7
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: GKXDTS, width_xs: 2, col_xs: 4, width: 99.9844}
       data_bindings:
       - {code: 'self.item[''completion_code_description''].capitalize()', property: text}
       name: label_8
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Job Status :', font_size: 14, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Job Status :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 0, width: 115.656}
       name: label_5
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 2, width: 99.9844}
       data_bindings:
       - {code: 'self.item[''job_status''][''name'']', property: text}
       name: label_22
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Escalation Status :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Escalation Status :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 3, width: 115.656}
       name: label_13
     - type: Image
-      properties: {role: null, vertical_align: center, height: '25', tooltip: '',
-        border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: none,
-        source: '', spacing_below: none, background: '', horizontal_align: left}
+      properties: {role: null, vertical_align: center, height: '25', tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: none, source: '', spacing_below: none, background: '', horizontal_align: left}
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 6, width: 115.656}
       data_bindings:
       - {code: 'self.item[''latest_status''][''icon'']', property: source}
       name: image_1
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Assigned to :', font_size: 14, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Assigned to :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 8, width: 115.656}
       name: label_11
     - type: Button
-      properties: {role: elevated-button, align: center, tooltip: '', border: '',
-        enabled: false, foreground: 'theme:On Primary', visible: true, text: '', font_size: null,
-        font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: 'theme:Error', bold: true, underline: false, icon: ''}
+      properties: {role: elevated-button, align: center, tooltip: '', border: '', enabled: false, foreground: 'theme:On Primary', visible: true, text: '', font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: 'theme:Error', bold: true, underline: false, icon: ''}
       layout_properties: {row: JKJKTK, width_xs: 2, col_xs: 10, width: 99.9844}
       data_bindings:
-      - {code: 'self.item[''latest_assignee''][''name''] if self.item[''latest_assignee'']
-          else ''---''', property: text}
+      - {code: 'self.item[''latest_assignee''][''name''] if self.item[''latest_assignee''] else ''---''', property: text}
       name: button_3
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Mobile Number :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Mobile Number :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 0, width: 42.8281}
       name: label_6
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 2, width: 99.9844}
       data_bindings:
       - {code: 'self.item[''mobile_number'']', property: text}
       name: label_9
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Job Completed :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Job Completed :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 4, width: 99.9844}
       name: label_10
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 6, width: 99.9844}
       data_bindings:
-      - {code: 'self.item[''date_delivered''].strftime("%d %b, %Y %H:%M") if self.item[''date_delivered'']
-          else ''---''', property: text}
+      - {code: 'self.item[''date_delivered''].strftime("%d %b, %Y %H:%M") if self.item[''date_delivered''] else ''---''', property: text}
       name: label_14
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Sub Brand :', font_size: 14, font: '', spacing_above: none,
-        icon_align: left, spacing_below: none, italic: false, background: '', bold: false,
-        underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Sub Brand :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 2, col_xs: 8, width: 115.656}
       name: label_15
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: FBQPYV, width_xs: 1, col_xs: 10, width: 34.9844}
       data_bindings:
       - {code: 'self.item[''sub_brand''].capitalize()', property: text}
       name: label_16
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Time Since Creation :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Time Since Creation :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 0, width: 99.9844}
       name: label_12
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 2, width: 34.9844}
       name: label_26
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Time Since Last Action :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Time Since Last Action :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 4, width: 99.9844}
       name: label_23
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 6, width: 99.9844}
       name: label_27
     - type: Label
-      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter
-          Font', visible: true, text: 'Merchant Portal :', font_size: 14, font: '',
-        spacing_above: none, icon_align: left, spacing_below: none, italic: false,
-        background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, align: right, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: 'Merchant Portal :', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: BOSGPA, width_xs: 2, col_xs: 8, width: 99.9844}
       name: label_24
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-        visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left,
-        spacing_below: none, italic: false, background: '', bold: false, underline: false,
-        icon: ''}
+      properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
       layout_properties: {row: BOSGPA, width_xs: 1, col_xs: 10, width: 34.9844}
       data_bindings:
       - {code: 'self.item[''webhook_merchant_link''][''name'']', property: text}
       name: label_25
   - type: Label
-    properties: {role: null, align: left, tooltip: '', border: '', foreground: '',
-      visible: true, text: Comment History, font_size: 14, font: '', spacing_above: small,
-      icon_align: left, spacing_below: small, italic: false, background: '', bold: true,
-      underline: false, icon: ''}
+    properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: Comment History, font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: true, underline: false, icon: ''}
     layout_properties: {grid_position: 'RYDJVG,QFIVOG'}
     data_bindings:
     - {code: '"Comment History"', property: text}
     name: job_id
   - type: GridPanel
-    properties: {spacing_above: small, spacing_below: small, background: '', foreground: '',
-      border: '', visible: true, role: border_bottom, tooltip: ''}
+    properties: {spacing_above: small, spacing_below: small, background: '', foreground: '', border: '', visible: true, role: border_bottom, tooltip: ''}
     layout_properties: {grid_position: 'BYPWWV,NYAHLU'}
     name: grid_panel_1
     components:
@@ -229,16 +148,11 @@ components:
       properties:
         role: null
         columns:
-        - {id: ZNGNTV, title: Submitted on, data_key: created_date, $$hashKey: 'object:49867',
-          width: '160'}
-        - {id: MQEENE, title: Submitted by, data_key: user, $$hashKey: 'object:49866',
-          width: '120'}
-        - {id: VTUJFJ, title: Status, data_key: status, $$hashKey: 'object:49865',
-          width: '100'}
-        - {id: XYWCYA, title: Description, data_key: description, $$hashKey: 'object:50279',
-          width: '330'}
-        - {id: VEQFME, title: Assigned to, data_key: assign_to, $$hashKey: 'object:50277',
-          width: '120', expand: true}
+        - {id: ZNGNTV, title: Submitted on, data_key: created_date, $$hashKey: 'object:49867', width: '160'}
+        - {id: MQEENE, title: Submitted by, data_key: user, $$hashKey: 'object:49866', width: '120'}
+        - {id: VTUJFJ, title: Status, data_key: status, $$hashKey: 'object:49865', width: '100'}
+        - {id: XYWCYA, title: Description, data_key: description, $$hashKey: 'object:50279', width: '330'}
+        - {id: VEQFME, title: Assigned to, data_key: assign_to, $$hashKey: 'object:50277', width: '120', expand: true}
         auto_header: true
         tooltip: ''
         border: ''
@@ -254,8 +168,6 @@ components:
       name: data_grid_1
       components:
       - type: RepeatingPanel
-        properties: {role: null, tooltip: '', border: '', foreground: '', items: null,
-          visible: true, spacing_above: none, spacing_below: none, item_template: Modal_pdf.RowTemplate_pdf,
-          background: ''}
+        properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true, spacing_above: none, spacing_below: none, item_template: Modal_pdf.RowTemplate_pdf, background: ''}
         layout_properties: {}
         name: action_panelwide
