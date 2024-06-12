@@ -1381,8 +1381,20 @@ def update_sb_value(now):
     webhooks = app_tables.webhook.search()
 
     # Organize subbrands for quick access
-    subbrands = {(sub['MerchantLink'].get_id(), sub['Name']): sub for sub in app_tables.subbrands.search()}
+    # Initialize dictionary to hold subbrands
+    subbrands = {}
 
+    # Fetch all subbrands
+    for sub in app_tables.subbrands.search():
+      if sub['MerchantLink'] is not None:
+        # Standard subbrands with a MerchantLink
+        key = (sub['MerchantLink'].get_id(), sub['Name'])
+      else:
+        # Handle universal subbrands without a MerchantLink
+        key = (None, sub['Name'])  # Use None or a special identifier for the MerchantLink part
+
+      subbrands[key] = sub
+  
     # Iterate through each webhook entry
     for webhook in webhooks:
         # Skip if the link is already set
