@@ -1386,13 +1386,12 @@ def update_sb_value(now):
     
     # Fetch the default subbrand once
     default_subbrand = app_tables.subbrands.get(ID='00000000')
-    
+    #blank_subrand = 
     # Step 3: Iterate through each webhook entry
     for webhook in webhooks:
-        # Skip this webhook if the link is already set
+      # Skip this webhook if the link is already set
         if webhook['webhook_subbrand_link']:
-            continue
-        
+            continue        
         sub_brand_name = webhook['sub_brand']
 
         # Handle specific exceptions for "(blank)" or "Unidentified"
