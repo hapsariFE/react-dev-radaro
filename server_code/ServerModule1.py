@@ -1380,52 +1380,38 @@ def update_sb_value(now):
     # Fetch all webhook entries
     webhooks = app_tables.webhook.search()
 
-    # Fetch all subbrands and organize them for quick access
+    # Organize subbrands for quick access
     subbrands = {}
     for sub in app_tables.subbrands.search():
         if sub['MerchantLink']:
             key = (sub['MerchantLink'].get_id(), sub['Name'])
-        else:
-            key = (None, sub['Name'])  # Handle universal subbrands without a MerchantLink
-        subbrands[key] = sub
+            subbrands[key] = sub
 
     # Iterate through each webhook entry
     for webhook in webhooks:
+        # Skip if the link is already set and doesn't need updating
+        if webhook['webhook_subbrand_link']:
+            # If ID indicates it's a generic ID, find the correct subbrand
+            if webhook['webhook_subbrand_link']['ID'] in ['00000000', '00000001']:
+                sub_brand_name = webhook['webhook_subbrand_link']['Name']
+                merchant_link = webhook['webhook_merchant_link']
+                new_id = merchant_link['server'] + str(merchant_link['merchant_id']) + ('00001' if sub_brand_name == "(blank)" else '00000')
+                # Attempt to find a more specific subbrand for this merchant
+                updated_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=new_id)
+                if not updated_subbrand:
+                    # If not found, optionally create it or handle the error
+                    print(f"Specific subbrand not found for ID {new_id}. Consider creating it or checking data integrity.")
+                else:
+                    webhook['webhook_subbrand_link'] = updated_subbrand
+            continue
+
+        # Retrieve the sub_brand name from webhook
         sub_brand_name = webhook['sub_brand']
         merchant_link = webhook['webhook_merchant_link']
-        if not merchant_link:
-            print("Warning: No MerchantLink for webhook ID:", webhook.get_id())
-            continue
 
-        # Determine the correct suffix based on the sub_brand_name
-        suffix = '00001' if sub_brand_name == "(blank)" else '00000' if sub_brand_name == "Unidentified" else None
-        if suffix:
-            new_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
-
-        # Check if the webhook_subbrand_link needs to be updated
-        if webhook['webhook_subbrand_link'] and webhook['webhook_subbrand_link']['ID'] in ['00000000', '00000001']:
-            # Fetch or create the more specific subbrand
-            updated_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=new_id)
-            if not updated_subbrand:
-                updated_subbrand = app_tables.subbrands.add_row(
-                    MerchantID=str(merchant_link['merchant_id']),
-                    ID=new_id,
-                    Name=sub_brand_name,
-                    Server=merchant_link['server'],
-                    LastUpdated=datetime.now(),
-                    MerchantLink=merchant_link
-                )
-                print(f"Created/Updated subbrand to specific ID {new_id} for merchant {merchant_link['merchant_id']}")
-            webhook['webhook_subbrand_link'] = updated_subbrand
-            continue
-
-        sub_brand_key = (merchant_link.get_id(), sub_brand_name) if merchant_link else (None, sub_brand_name)
-        if sub_brand_key not in subbrands:
-            # Proceed to fetch or create as previously described
-            pass
-
-        # Regular linking logic as before
-        if sub_brand_key in subbrands:
+        # Construct key to find the correct subbrand
+        sub_brand_key = (merchant_link.get_id(), sub_brand_name) if merchant_link else None
+        if sub_brand_key and sub_brand_key in subbrands:
             webhook['webhook_subbrand_link'] = subbrands[sub_brand_key]
         else:
             print(f"No matching subbrand found for {sub_brand_name} under merchant {merchant_link['name']}")
