@@ -1383,9 +1383,9 @@ def update_sb_value(now):
     # Step 2: Fetch all subbrands entries
     # Using merchant row as part of the key
     subbrands = {(sub['MerchantLink'], sub['Name']): sub for sub in app_tables.subbrands.search()}
-    
+    merctable = webhooks('MerchantLink')
     # Fetch the default subbrand once
-    default_subbrand = app_tables.subbrands.get(ID='00000000')
+    #default_subbrand = app_tables.subbrands.get(ID='00000000')
     #blank_subrand = 
     # Step 3: Iterate through each webhook entry
     for webhook in webhooks:
@@ -1395,9 +1395,17 @@ def update_sb_value(now):
         sub_brand_name = webhook['sub_brand']
 
         # Handle specific exceptions for "(blank)" or "Unidentified"
-        if sub_brand_name in ["(blank)", "Unidentified"]:
-            webhook['webhook_subbrand_link'] = default_subbrand
-            continue  # Move to the next webhook after setting the default subbrand
+        if sub_brand_name in ["(blank)", "Unidentified"] :
+              blank_record = app_tables.subbrands.get(MerchantLink=merctable, ID=merctable['server']+str(merctable['name'])+'00001',Server=merctable['server'])
+              if blank_record is None:
+                app_tables.subbrands.add_row(MerchantID=str(merctable['merchant_id']), ID=merctable['server']+str(merctable['name'])+'00001', Name='(Blank)',Server=merctable['server'],LastUpdated=datetime.now(),MerchantLink=merctable)
+                webhook['webhook_subbrand_link'] = blank_record            
+              universal_record = app_tables.subbrands.get(MerchantLink=merctable, ID=merctable['server']+str(merctable['name'])+'00000',Server=merctable['server'])
+              if universal_record is None:
+                app_tables.subbrands.add_row(MerchantID=str(merctable['merchant']), ID=merctable['server']+str(merctable['name'])+'00000', Name='Unidentified',Server=merctable['server'],LastUpdated=datetime.now(),MerchantLink=merctable)
+                webhook['webhook_subbrand_link'] = universal_record
+      
+        continue  # Move to the next webhook after setting the default subbrand
 
         merchant_link = webhook['webhook_merchant_link']  # Direct merchant row link
 
