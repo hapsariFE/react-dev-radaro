@@ -1398,7 +1398,7 @@ def update_sb_value(now):
             continue
 
         # Ensure suffix is determined correctly
-        suffix = '00001' if sub_brand_name == "(blank)" else '00000' if sub_brand_name == "Unidentified" else ''
+        suffix = '00001' if sub_brand_name == "(Blank)" else '00000' if sub_brand_name == "Unidentified" else ''
         if suffix:
             sub_brand_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
 
