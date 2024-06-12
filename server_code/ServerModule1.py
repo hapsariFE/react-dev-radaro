@@ -336,15 +336,16 @@ def submit_completion_codes(data):
   
   if data['order_info']['sub_branding'] is not None:
         subbrandval = str(data['order_info']['sub_branding'])
+  else:
+        subbrandval = str(merctable['server']+str(data['order_info']['merchant'])+'00001')   
+  existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+  if existing_record is None:
+        sync_subbrand(merctable)
         existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
         if existing_record is None:
-            sync_subbrand(merctable)
-            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
-            if existing_record is None:
-                existing_record = app_tables.subbrands.get(Name="Unidentified")
+           existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=merctable['server']+str(data['order_info']['merchant'])+'00000', Server=merctable['server'], MerchantLink=merctable)
 
-  else:
-      existing_record = app_tables.subbrands.get(Name="(Blank)")
+    #existing_record = app_tables.subbrands.get(Name="(Blank)")
   
   submission_made = False
   sync_compCodes(merctable)
@@ -1313,8 +1314,7 @@ def sync_subbrand(record):
     try:
       for result in data['results']:
             # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
-            
+          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])          
           if existing_record:
                 # Update existing record
               existing_record.update(Logo=result['logo'], Name=result['name'],LastUpdated=datetime.now())
@@ -1325,6 +1325,13 @@ def sync_subbrand(record):
       print("API Request Failed")
   else:
     print("No API Token on record")
+  blank_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00001',Server=record['server'])
+  if blank_record is None:
+    app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00001', Name='(Blank)',Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
+  universal_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00000',Server=record['server'])
+  if universal_record is None:
+    app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00000', Name='Unidentified',Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)          
+
 
 @anvil.server.callable
 def sync_compCodes(record):

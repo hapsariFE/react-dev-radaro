@@ -295,9 +295,6 @@ db_schema:
       admin_ui: {order: 0.9375, width: 200}
       type: link_multiple
       target: subbrands
-    - name: user_universal_link
-      admin_ui: {width: 200, order: 0.96875}
-      type: bool
   action_log:
     client: none
     server: full
