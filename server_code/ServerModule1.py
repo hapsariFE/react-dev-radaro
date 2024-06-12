@@ -1376,69 +1376,6 @@ def DB_task(now):
   anvil.server.launch_background_task('update_sb_value',now)
 
 @anvil.server.background_task
-def update_sb_value(now):
-    webhooks = app_tables.webhook.search()
-    subbrands = {}
-    for sub in app_tables.subbrands.search():
-        if sub['MerchantLink']:
-            key = (sub['MerchantLink'].get_id(), sub['Name'])
-            subbrands[key] = sub
-        else:
-            key = (None, sub['Name'])
-            subbrands[key] = sub
-
-    for webhook in webhooks:
-        if webhook['webhook_subbrand_link']:
-          subbrand_link = webhook['webhook_subbrand_link']
-          merchant_link = webhook['webhook_merchant_link']
-      
-          # Determine if update is necessary
-          if subbrand_link['Name'] in ["(blank)", "Unidentified"]:
-              suffix = '00001' if subbrand_link['Name'] == "(blank)" else '00000'
-              new_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
-              # Check and update if the ID is different
-              if subbrand_link['ID'] != new_id:
-                  # Fetch the updated subbrand or create if not exists
-                  updated_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=new_id)
-                  if not updated_subbrand:
-                      updated_subbrand = app_tables.subbrands.add_row(
-                          MerchantID=str(merchant_link['merchant_id']),
-                          ID=new_id,
-                          Name=subbrand_link['Name'],
-                          Server=merchant_link['server'],
-                          LastUpdated=datetime.now(),
-                          MerchantLink=merchant_link
-                      )
-                  webhook['webhook_subbrand_link'] = updated_subbrand          
-        else:
-
-          sub_brand_name = webhook['sub_brand']
-          merchant_link = webhook['webhook_merchant_link']
-          if not merchant_link:
-              print("Warning: No MerchantLink for webhook ID:", webhook.get_id())
-              continue
-  
-          sub_brand_id = merchant_link['server'] + str(merchant_link['merchant_id']) + ('00001' if sub_brand_name == "(blank)" else '00000')
-          sub_brand_key = (merchant_link.get_id(), sub_brand_name)
-  
-          if sub_brand_key not in subbrands:
-              existing_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=sub_brand_id)
-              if not existing_subbrand:
-                  existing_subbrand = app_tables.subbrands.add_row(
-                      MerchantID=str(merchant_link['merchant_id']),
-                      ID=sub_brand_id,
-                      Name=sub_brand_name,
-                      Server=merchant_link['server'],
-                      LastUpdated=datetime.now(),
-                      MerchantLink=merchant_link
-                  )
-                  print("Created new subbrand:", sub_brand_name, "for Merchant ID:", merchant_link['merchant_id'])
-              subbrands[sub_brand_key] = existing_subbrand
-  
-          webhook['webhook_subbrand_link'] = subbrands[sub_brand_key]
-          print("Linked subbrand:", sub_brand_name, "to webhook ID:", webhook.get_id())
-
-
 
 
 @anvil.server.background_task
