@@ -1377,52 +1377,76 @@ def DB_task(now):
 
 @anvil.server.background_task
 def update_sb_value(now):
-    # Step 1: Fetch all webhook entries
+    # Fetch all webhook entries
     webhooks = app_tables.webhook.search()
-    
-    # Step 2: Fetch all subbrands entries
-    # Using merchant row as part of the key
-    subbrands = {(sub['MerchantLink'], sub['Name']): sub for sub in app_tables.subbrands.search()}
-    merctable = webhooks('MerchantLink')
-    # Fetch the default subbrand once
-    #default_subbrand = app_tables.subbrands.get(ID='00000000')
-    #blank_subrand = 
-    # Step 3: Iterate through each webhook entry
+
+    # Organize subbrands for quick access
+    subbrands = {(sub['MerchantLink'].get_id(), sub['Name']): sub for sub in app_tables.subbrands.search()}
+
+    # Iterate through each webhook entry
     for webhook in webhooks:
-      # Skip this webhook if the link is already set
+        # Skip if the link is already set
         if webhook['webhook_subbrand_link']:
-            continue        
+            continue
+
         sub_brand_name = webhook['sub_brand']
+        merchant_link = webhook['webhook_merchant_link']
 
-        # Handle specific exceptions for "(blank)" or "Unidentified"
-        if sub_brand_name in ["(blank)", "Unidentified"] :
-              blank_record = app_tables.subbrands.get(MerchantLink=merctable, ID=merctable['server']+str(merctable['name'])+'00001',Server=merctable['server'])
-              if blank_record is None:
-                app_tables.subbrands.add_row(MerchantID=str(merctable['merchant_id']), ID=merctable['server']+str(merctable['name'])+'00001', Name='(Blank)',Server=merctable['server'],LastUpdated=datetime.now(),MerchantLink=merctable)
-                webhook['webhook_subbrand_link'] = blank_record            
-              universal_record = app_tables.subbrands.get(MerchantLink=merctable, ID=merctable['server']+str(merctable['name'])+'00000',Server=merctable['server'])
-              if universal_record is None:
-                app_tables.subbrands.add_row(MerchantID=str(merctable['merchant']), ID=merctable['server']+str(merctable['name'])+'00000', Name='Unidentified',Server=merctable['server'],LastUpdated=datetime.now(),MerchantLink=merctable)
-                webhook['webhook_subbrand_link'] = universal_record
-      
-        continue  # Move to the next webhook after setting the default subbrand
+        # Handle specific cases for "(blank)" or "Unidentified"
+        if sub_brand_name in ["(blank)", "Unidentified"]:
+            suffix = '00001' if sub_brand_name == "(blank)" else '00000'
+            sub_brand_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
+            sub_brand_key = (merchant_link.get_id(), sub_brand_name)
 
-        merchant_link = webhook['webhook_merchant_link']  # Direct merchant row link
+            # Create or fetch the subbrand
+            if sub_brand_key not in subbrands:
+                # Check if the subbrand already exists
+                existing_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=sub_brand_id)
+                if not existing_subbrand:
+                    # Create new subbrand if it does not exist
+                    existing_subbrand = app_tables.subbrands.add_row(
+                        MerchantID=str(merchant_link['merchant_id']),
+                        ID=sub_brand_id,
+                        Name=sub_brand_name,
+                        Server=merchant_link['server'],
+                        LastUpdated=datetime.now(),
+                        MerchantLink=merchant_link
+                    )
+                subbrands[sub_brand_key] = existing_subbrand  # Update local cache
 
-        # Use a tuple of merchant link and sub_brand name to look up the subbrand
-        subbrand_key = (merchant_link, sub_brand_name)
+            webhook['webhook_subbrand_link'] = subbrands[sub_brand_key]
+            continue  # Move to the next webhook after setting the default subbrand
 
-        # Check if the subbrand exists for the specific merchant
+        # Regular sub_brand handling
+        subbrand_key = (merchant_link.get_id(), sub_brand_name)
         if subbrand_key in subbrands:
-            # Get the subbrands row that matches the merchant and sub_brand name
-            matching_subbrand = subbrands[subbrand_key]
-            # Update the 'webhook_subbrand_link' with the subbrands row
-            webhook['webhook_subbrand_link'] = matching_subbrand
+            webhook['webhook_subbrand_link'] = subbrands[subbrand_key]
         else:
-            # No matching subbrand found, assign default
-            webhook['webhook_subbrand_link'] = default_subbrand
+            print(f"No matching subbrand found for {sub_brand_name} under merchant {merchant_link['name']}")
+            # Optionally set a default subbrand or handle the error
+            # webhook['webhook_subbrand_link'] = default_subbrand
             
+    subbrand_link = webhook['webhook_subbrand_link']
+    merchant_link = webhook['webhook_merchant_link']
 
+    # Determine if update is necessary
+    if subbrand_link['Name'] in ["(blank)", "Unidentified"]:
+        suffix = '00001' if subbrand_link['Name'] == "(blank)" else '00000'
+        new_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
+        # Check and update if the ID is different
+        if subbrand_link['ID'] != new_id:
+            # Fetch the updated subbrand or create if not exists
+            updated_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=new_id)
+            if not updated_subbrand:
+                updated_subbrand = app_tables.subbrands.add_row(
+                    MerchantID=str(merchant_link['merchant_id']),
+                    ID=new_id,
+                    Name=subbrand_link['Name'],
+                    Server=merchant_link['server'],
+                    LastUpdated=datetime.now(),
+                    MerchantLink=merchant_link
+                )
+            webhook['webhook_subbrand_link'] = updated_subbrand
 
 @anvil.server.background_task
 def update_db_value(now):
