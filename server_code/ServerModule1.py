@@ -1417,6 +1417,29 @@ def update_sb_value(now):
         webhook['webhook_subbrand_link'] = subbrands[sub_brand_key]
         print("Linked subbrand:", sub_brand_name, "to webhook ID:", webhook.get_id())
 
+        subbrand_link = webhook['webhook_subbrand_link']
+    merchant_link = webhook['webhook_merchant_link']
+
+    # Determine if update is necessary
+    if subbrand_link['Name'] in ["(blank)", "Unidentified"]:
+        suffix = '00001' if subbrand_link['Name'] == "(blank)" else '00000'
+        new_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
+        # Check and update if the ID is different
+        if subbrand_link['ID'] != new_id:
+            # Fetch the updated subbrand or create if not exists
+            updated_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=new_id)
+            if not updated_subbrand:
+                updated_subbrand = app_tables.subbrands.add_row(
+                    MerchantID=str(merchant_link['merchant_id']),
+                    ID=new_id,
+                    Name=subbrand_link['Name'],
+                    Server=merchant_link['server'],
+                    LastUpdated=datetime.now(),
+                    MerchantLink=merchant_link
+                )
+            webhook['webhook_subbrand_link'] = updated_subbrand
+
+
 # Call the function to ensure it runs after definition
 #update_sb_value(datetime.datetime.now())
 
