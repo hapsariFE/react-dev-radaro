@@ -1376,8 +1376,6 @@ def DB_task(now):
   anvil.server.launch_background_task('update_sb_value',now)
 
 @anvil.server.background_task
-import datetime
-
 def update_sb_value(now):
     webhooks = app_tables.webhook.search()
     subbrands = {}
