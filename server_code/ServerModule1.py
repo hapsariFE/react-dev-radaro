@@ -1417,7 +1417,7 @@ def update_sb_value(now):
         webhook['webhook_subbrand_link'] = subbrands[sub_brand_key]
         print("Linked subbrand:", sub_brand_name, "to webhook ID:", webhook.get_id())
 
-        subbrand_link = webhook['webhook_subbrand_link']
+    subbrand_link = webhook['webhook_subbrand_link']
     merchant_link = webhook['webhook_merchant_link']
 
     # Determine if update is necessary
@@ -1438,10 +1438,6 @@ def update_sb_value(now):
                     MerchantLink=merchant_link
                 )
             webhook['webhook_subbrand_link'] = updated_subbrand
-
-
-# Call the function to ensure it runs after definition
-#update_sb_value(datetime.datetime.now())
 
 
 @anvil.server.background_task
