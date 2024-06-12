@@ -1421,7 +1421,7 @@ def update_sb_value(now):
         else:
             # No matching subbrand found, assign default
             webhook['webhook_subbrand_link'] = default_subbrand
-            print(f"No matching subbrand found for {sub_brand_name} with Merchant Link, assigned default ID='00000000'")
+            
 
 
 @anvil.server.background_task
