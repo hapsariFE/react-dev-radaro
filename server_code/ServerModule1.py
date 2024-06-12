@@ -1418,7 +1418,7 @@ def update_sb_value(now):
         print("Linked subbrand:", sub_brand_name, "to webhook ID:", webhook.get_id())
 
 # Call the function to ensure it runs after definition
-update_sb_value(datetime.datetime.now())
+#update_sb_value(datetime.datetime.now())
 
 
 @anvil.server.background_task
