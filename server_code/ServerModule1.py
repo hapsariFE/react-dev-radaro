@@ -511,7 +511,7 @@ def get_filter_value():
 
   
   # Debugging to check the final list of dropdown items
-  print("Dropdown items:")
+  #print("Dropdown items:")
   for item in dropdown_items:
       print(item[0])
     
