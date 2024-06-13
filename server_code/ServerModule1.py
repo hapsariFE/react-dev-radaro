@@ -1404,8 +1404,6 @@ def update_sb_value(now):
 # Call the function with the current datetime
 #update_sb_value(datetime.datetime.now())
 
-
-
 @anvil.server.background_task
 def update_db_value(now):
     # Fetch all rows from the table
