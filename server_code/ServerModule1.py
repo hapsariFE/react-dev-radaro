@@ -1371,8 +1371,9 @@ def update_sb_value(now):
         else:
             print(f"No matching subbrand found for {sub_brand_name} under merchant {merchant_link['name']}")
             # Handle (Blank) and Unidentified specially if no direct match is found
-            if sub_brand_name in ["(Blank)", "Unidentified"]:
-                suffix = '00001' if sub_brand_name == "(Blank)" else '00000'
+            if sub_brand_name in ["(Blank)", "Unidentified", "---", "None"]:
+                normalized_name = "(Blank)" if sub_brand_name in ["None", "---"] else sub_brand_name  
+                suffix = '00001' if sub_brand_name in ["(Blank)", "---", "None"] else '00000'
                 sub_brand_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
                 # Attempt to fetch or create specific subbrand
                 specific_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=sub_brand_id)
@@ -1380,7 +1381,7 @@ def update_sb_value(now):
                     specific_subbrand = app_tables.subbrands.add_row(
                         MerchantID=str(merchant_link['merchant_id']),
                         ID=sub_brand_id,
-                        Name=sub_brand_name,
+                        Name=normalized_name,
                         Server=merchant_link['server'],
                         LastUpdated=datetime.now(),
                         MerchantLink=merchant_link
