@@ -482,7 +482,7 @@ def get_filter_value():
   
   # Fetch merchant and subbrand values separately
   merchant_links = currentUser.get('user_merchant_link', [])
-  subbrand_links = currentUser.get('user_subbrand_link', [])
+  subbrand_links = currentUser.get('user_subbrand_link', []) or []
   
   merchant_subbrands = {}
   
