@@ -193,19 +193,16 @@ def submit_failed_checklist(data):
 
   if data['order_info']['sub_branding'] is not None:
         subbrandval = str(data['order_info']['sub_branding'])
+  else:
+        subbrandval = str(merctable['server']+str(data['order_info']['merchant'])+'00001')   
+  existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+  if existing_record is None:
+        sync_subbrand(merctable)
         existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
         if existing_record is None:
-            sync_subbrand(merctable)
-            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
-            if existing_record is None:
-                existing_record = app_tables.subbrands.get(Name="Unidentified")
+           existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=merctable['server']+str(data['order_info']['merchant'])+'00000', Server=merctable['server'], MerchantLink=merctable)
 
-  else:
-      existing_record = app_tables.subbrands.get(Name="(Blank)")
-
-  
-  #if not comp_string:
-  #  print(comp_string)
+    #existing_record = app_tables.subbrands.get(Name="(Blank)")
     # comp_string = None
   sync_compCodes(merctable)  
   nv = data['order_info']['is_confirmed_by_customer']
@@ -265,19 +262,16 @@ def submit_low_rating(data):
 
   if data['order_info']['sub_branding'] is not None:
         subbrandval = str(data['order_info']['sub_branding'])
+  else:
+        subbrandval = str(merctable['server']+str(data['order_info']['merchant'])+'00001')   
+  existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+  if existing_record is None:
+        sync_subbrand(merctable)
         existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
         if existing_record is None:
-            sync_subbrand(merctable)
-            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
-            if existing_record is None:
-                existing_record = app_tables.subbrands.get(Name="Unidentified")
+           existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=merctable['server']+str(data['order_info']['merchant'])+'00000', Server=merctable['server'], MerchantLink=merctable)
 
-  else:
-      existing_record = app_tables.subbrands.get(Name="(Blank)")
-
-  
-  #if not comp_string:
-  #  print(comp_string)
+    #existing_record = app_tables.subbrands.get(Name="(Blank)")
     # comp_string = None
   sync_compCodes(merctable)  
   nv = data['new_values']['is_confirmed_by_customer']
@@ -336,15 +330,16 @@ def submit_completion_codes(data):
   
   if data['order_info']['sub_branding'] is not None:
         subbrandval = str(data['order_info']['sub_branding'])
+  else:
+        subbrandval = str(merctable['server']+str(data['order_info']['merchant'])+'00001')   
+  existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
+  if existing_record is None:
+        sync_subbrand(merctable)
         existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
         if existing_record is None:
-            sync_subbrand(merctable)
-            existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=subbrandval, Server=merctable['server'], MerchantLink=merctable)
-            if existing_record is None:
-                existing_record = app_tables.subbrands.get(Name="Unidentified")
+           existing_record = app_tables.subbrands.get(MerchantID=str(data['order_info']['merchant']), ID=merctable['server']+str(data['order_info']['merchant'])+'00000', Server=merctable['server'], MerchantLink=merctable)
 
-  else:
-      existing_record = app_tables.subbrands.get(Name="(Blank)")
+    #existing_record = app_tables.subbrands.get(Name="(Blank)")
   
   submission_made = False
   sync_compCodes(merctable)
@@ -484,22 +479,20 @@ def get_filter_value():
   ##
   ##get_subbrands_list
   print('filter-sblist start)'+str(datetime.now()))##################
-  # Fetch universal subbrands that are applicable to any merchant
-  universal_subbrands = list(app_tables.subbrands.search(ID=q.any_of('00000000', '00000001')))
   
   # Fetch merchant and subbrand values separately
   merchant_links = currentUser.get('user_merchant_link', [])
-  subbrand_links = currentUser.get('user_subbrand_link', []) 
+  subbrand_links = currentUser.get('user_subbrand_link', [])
   
   merchant_subbrands = {}
   
   for merchant in merchant_links:
       # Check if the current merchant has any specific subbrand links
-      linked_subbrands = [sb for sb in (subbrand_links or []) if sb['MerchantLink'] == merchant]
+      linked_subbrands = [sb for sb in subbrand_links if sb['MerchantLink'] == merchant]
   
       if not linked_subbrands:
-          # If no specific subbrand links, show all subbrands for this merchant plus universal subbrands
-          all_subbrands = list(app_tables.subbrands.search(MerchantLink=merchant)) + universal_subbrands
+          # If no specific subbrand links, show all subbrands for this merchant
+          all_subbrands = list(app_tables.subbrands.search(MerchantLink=merchant))
           merchant_subbrands[merchant] = all_subbrands
       else:
           # Only show the linked subbrands for this merchant
@@ -509,20 +502,16 @@ def get_filter_value():
   dropdown_items = []
   for merchant, subbrands in merchant_subbrands.items():
       for subbrand in subbrands:
-          # Check if the subbrand is universal
-          if subbrand in universal_subbrands:
-              # Display universal subbrands without the merchant's name
-              dropdown_item = (subbrand['Name'], subbrand)
-          else:
-              # Display regular subbrands with the merchant's name
-              dropdown_item = (f"{subbrand['Name']} - {merchant['name']}", subbrand)
+          # Display subbrands with the merchant's name to clarify the association
+          dropdown_item = (f"{subbrand['Name']} - {merchant['name']}", subbrand)
           dropdown_items.append(dropdown_item)
-              
+  
   # Sort the dropdown items by the subbrand name for better user experience
   dropdown_items.sort(key=lambda item: item[0])
+
   
   # Debugging to check the final list of dropdown items
-  print("Dropdown items:")
+  #print("Dropdown items:")
   for item in dropdown_items:
       print(item[0])
     
@@ -589,10 +578,6 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
         if resolvedStatus is True:
           escStatus = app_tables.escalation_status.search() 
   
-    # Fetch universal subbrands that are applicable to any merchant
-    universal_subbrands = list(app_tables.subbrands.search(ID=q.any_of('00000000', '00000001')))
-    #print('universal_subbrands)',universal_subbrands)
-  
   # Fetch merchant and subbrand values separately
     merchant_links = currentUser.get('user_merchant_link', [])
     subbrand_links = currentUser.get('user_subbrand_link', []) 
@@ -605,7 +590,7 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     
         if not linked_subbrands:
             # If no specific subbrand links, show all subbrands for this merchant plus universal subbrands
-            all_subbrands = list(app_tables.subbrands.search(MerchantLink=merchant)) + universal_subbrands
+            all_subbrands = list(app_tables.subbrands.search(MerchantLink=merchant)) 
             merchant_subbrands[merchant] = all_subbrands
         else:
             # Only show the linked subbrands for this merchant
@@ -643,19 +628,6 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
       custTable = results   
     
     elif merchant_name is None and compCode is not None:
-      # Check if compCode is one of the universal subbrands
-      if compCode['ID'] in ['00000000', '00000001']:
-        # Fetch all merchant links that do not have specific subbrands linked
-        applicable_merchants = [merchant for merchant in merchant_links if not any(sb['MerchantLink'] == merchant for sb in subbrand_links)]
-        custTable = app_tables.webhook.search(
-            tables.order_by("last_action_date", ascending=False),
-            **filter_dict,
-            date_created=q.between(min=startDate, max=endDate),
-            webhook_merchant_link=q.any_of(*applicable_merchants),  # Apply to applicable merchants only
-            webhook_subbrand_link=compCode,  # Universal subbrand
-            latest_status=q.any_of(*escStatus)
-        )    
-      else:
       # Proceed with normal search for specific subbrands
         custTable = app_tables.webhook.search(
           tables.order_by("last_action_date", ascending=False),
@@ -666,19 +638,7 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
           latest_status=q.any_of(*escStatus)
       )        
     elif merchant_name is not None and compCode is not None:
-      #subbrand_row = app_tables.subbrands.search(Name=compCode)
-      if compCode['ID'] in ['00000000', '00000001']:
-        # Fetch all merchant links that do not have specific subbrands linked
-        applicable_merchants = [merchant for merchant in merchant_links if not any(sb['MerchantLink'] == merchant for sb in subbrand_links)]
-        custTable = app_tables.webhook.search(
-            tables.order_by("last_action_date", ascending=False),
-            **filter_dict,
-            date_created=q.between(min=startDate, max=endDate),
-            webhook_merchant_link=q.any_of(*applicable_merchants),  # Apply to applicable merchants only
-            webhook_subbrand_link=compCode,  # Universal subbrand
-            latest_status=q.any_of(*escStatus)
-        )  
-      else:  
+
         custTable = app_tables.webhook.search(
           tables.order_by("last_action_date", ascending=False),
           **filter_dict,
@@ -1313,8 +1273,7 @@ def sync_subbrand(record):
     try:
       for result in data['results']:
             # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])
-            
+          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])          
           if existing_record:
                 # Update existing record
               existing_record.update(Logo=result['logo'], Name=result['name'],LastUpdated=datetime.now())
@@ -1325,6 +1284,13 @@ def sync_subbrand(record):
       print("API Request Failed")
   else:
     print("No API Token on record")
+  blank_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00001',Server=record['server'])
+  if blank_record is None:
+    app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00001', Name='(Blank)',Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
+  universal_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00000',Server=record['server'])
+  if universal_record is None:
+    app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00000', Name='Unidentified',Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)          
+
 
 @anvil.server.callable
 def sync_compCodes(record):
@@ -1370,44 +1336,61 @@ def DB_task(now):
 
 @anvil.server.background_task
 def update_sb_value(now):
-    # Step 1: Fetch all webhook entries
+    # Fetch all webhook entries
     webhooks = app_tables.webhook.search()
-    
-    # Step 2: Fetch all subbrands entries
-    # Using merchant row as part of the key
-    subbrands = {(sub['MerchantLink'], sub['Name']): sub for sub in app_tables.subbrands.search()}
-    
-    # Fetch the default subbrand once
-    default_subbrand = app_tables.subbrands.get(ID='00000000')
-    
-    # Step 3: Iterate through each webhook entry
+
+    # Clear existing subbrand links
     for webhook in webhooks:
-        # Skip this webhook if the link is already set
-        if webhook['webhook_subbrand_link']:
-            continue
-        
+        webhook['webhook_subbrand_link'] = None
+
+    # Fetch all subbrands and organize them for quick access
+    subbrands = {}
+    for sub in app_tables.subbrands.search():
+        if sub['MerchantLink']:
+            key = (sub['MerchantLink'].get_id(), sub['Name'])
+            subbrands[key] = sub
+
+    # Refresh webhook entries after clearing the links
+    webhooks = app_tables.webhook.search()
+
+    for webhook in webhooks:
         sub_brand_name = webhook['sub_brand']
+        merchant_link = webhook['webhook_merchant_link']
 
-        # Handle specific exceptions for "(blank)" or "Unidentified"
-        if sub_brand_name in ["(blank)", "Unidentified"]:
-            webhook['webhook_subbrand_link'] = default_subbrand
-            continue  # Move to the next webhook after setting the default subbrand
+        if not merchant_link:
+            print("Warning: No MerchantLink for webhook ID:", webhook.get_id())
+            continue
 
-        merchant_link = webhook['webhook_merchant_link']  # Direct merchant row link
+        # Determine sub_brand_name specifics
+        sub_brand_key = (merchant_link.get_id(), sub_brand_name)
 
-        # Use a tuple of merchant link and sub_brand name to look up the subbrand
-        subbrand_key = (merchant_link, sub_brand_name)
-
-        # Check if the subbrand exists for the specific merchant
-        if subbrand_key in subbrands:
-            # Get the subbrands row that matches the merchant and sub_brand name
-            matching_subbrand = subbrands[subbrand_key]
-            # Update the 'webhook_subbrand_link' with the subbrands row
-            webhook['webhook_subbrand_link'] = matching_subbrand
+        if sub_brand_key in subbrands:
+            # Set the webhook_subbrand_link to the matching subbrand
+            webhook['webhook_subbrand_link'] = subbrands[sub_brand_key]
+            print(f"Linked subbrand {sub_brand_name} to webhook ID {webhook.get_id()}.")
         else:
-            # No matching subbrand found, assign default
-            webhook['webhook_subbrand_link'] = default_subbrand
-            print(f"No matching subbrand found for {sub_brand_name} with Merchant Link, assigned default ID='00000000'")
+            print(f"No matching subbrand found for {sub_brand_name} under merchant {merchant_link['name']}")
+            # Handle (Blank) and Unidentified specially if no direct match is found
+            if sub_brand_name in ["(blank)", "Unidentified"]:
+                suffix = '00001' if sub_brand_name == "(blank)" else '00000'
+                sub_brand_id = merchant_link['server'] + str(merchant_link['merchant_id']) + suffix
+                # Attempt to fetch or create specific subbrand
+                specific_subbrand = app_tables.subbrands.get(MerchantLink=merchant_link, ID=sub_brand_id)
+                if not specific_subbrand:
+                    specific_subbrand = app_tables.subbrands.add_row(
+                        MerchantID=str(merchant_link['merchant_id']),
+                        ID=sub_brand_id,
+                        Name=sub_brand_name,
+                        Server=merchant_link['server'],
+                        LastUpdated=datetime.now(),
+                        MerchantLink=merchant_link
+                    )
+                    print(f"Created new {sub_brand_name} subbrand for Merchant ID: {merchant_link['merchant_id']}")
+                webhook['webhook_subbrand_link'] = specific_subbrand
+
+# Call the function with the current datetime
+#update_sb_value(datetime.datetime.now())
+
 
 
 @anvil.server.background_task
