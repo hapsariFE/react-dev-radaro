@@ -512,8 +512,8 @@ def get_filter_value():
   
   # Debugging to check the final list of dropdown items
   #print("Dropdown items:")
-  for item in dropdown_items:
-      print(item[0])
+  #for item in dropdown_items:
+  #    print(item[0])
     
   print('filter-sblist end)'+str(datetime.now()))##################
   ##
@@ -598,7 +598,8 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
     
     # Optional: Print to check what's being processed
     for merchant, subbrands in merchant_subbrands.items():
-        print(f"Merchant: {merchant['name']}, Subbrands: {[sb['Name'] for sb in subbrands]}")
+      #print(f"Merchant: {merchant['name']}, Subbrands: {[sb['Name'] for sb in subbrands]}")  
+      print("filter change")
     selected_merchant = next((m for m in merchant_links if m['name'] == merchant_name), None)
     custTable = []
     # Handle merchant name if provided
