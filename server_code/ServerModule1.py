@@ -671,8 +671,9 @@ def get_list(jobValue, compCode, escType, escStatus, startDate, endDate, merchan
                (x['job_reference2'] and searchText.lower() in x['job_reference2'].lower()) or
                (x['job_reference3'] and searchText.lower() in x['job_reference3'].lower())
         ]
-
+    custTable = sorted(custTable, key=lambda x: (x['last_action_date']), reverse=True)
     return custTable
+    #custTable = sorted(custTable, key=lambda x: (x['last_action_date']), reverse=True)
 
 @anvil.server.callable
 def get_action(rowValue):
