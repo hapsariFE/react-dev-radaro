@@ -1330,6 +1330,7 @@ def sync_subbrand(record):
     # Optionally check for default subbrands for consistency
     ensure_default_subbrands(record)
 
+@anvil.server.callable
 def ensure_default_subbrands(record):
     # Check and add default "(Blank)" and "Unidentified" subbrands if not already present
     blank_subbrand = app_tables.subbrands.get(MerchantID=record['merchant_id'], ID=record['server'] + str(record['merchant_id']) + '00001')
@@ -1362,7 +1363,6 @@ def ensure_default_subbrands(record):
 def sync_compCodes(record):
     apiServer = "-" + record['server'] if record['server'] != '1' else ""
     url = f"https://api{apiServer}.radaro.com.au/api/webhooks/completion-codes/?key={record['APIToken']}&page_size=100"
-    print("Request URL:", url)
 
     if not record['APIToken']:
         print("No API Token on record")
@@ -1385,7 +1385,7 @@ def sync_compCodes(record):
             return  # Exit if no results found
 
         for result in results:
-            print(f"Processing Code: {result['name']}")
+            #print(f"Processing Code: {result['name']}")
             existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']), Server=record['server'])
 
             if existing_record:
