@@ -1292,26 +1292,32 @@ def sync_subbrand(record):
             # Check if the request was successful
             if response.status_code == 200:
                 data = response.json()
-                results = data.get('results', [])
-                # Process each subbrand in the results
-                if results:
-                    for result in results:
-                        # Fetch existing subbrand record or create a new one
-                        existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']), Server=record['server'])
-                        if existing_record:
-                            existing_record.update(Logo=result['logo'], Name=result['name'], LastUpdated=datetime.now())
-                        else:
-                            app_tables.subbrands.add_row(
-                                MerchantID=str(result['merchant']),
-                                ID=str(result['id']),
-                                Logo=result['logo'],
-                                Name=result['name'],
-                                Server=record['server'],
-                                LastUpdated=datetime.now(),
-                                MerchantLink=record
-                            )
-                else:
+                # Check the count of subbrands
+                if data['count'] == 0:
                     print("No subbrands found for the given merchant.")
+                    return  # Skip further processing as there are no subbrands
+                
+                results = data.get('results', [])
+                print(f"Processing {len(results)} subbrands.")
+                
+                # Process each subbrand in the results
+                for result in results:
+                    # Fetch existing subbrand record or create a new one
+                    existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']), Server=record['server'])
+                    if existing_record:
+                        existing_record.update(Logo=result['logo'], Name=result['name'], LastUpdated=datetime.now())
+                        print(f"Updated subbrand {result['name']} for merchant ID {result['merchant']}.")
+                    else:
+                        app_tables.subbrands.add_row(
+                            MerchantID=str(result['merchant']),
+                            ID=str(result['id']),
+                            Logo=result['logo'],
+                            Name=result['name'],
+                            Server=record['server'],
+                            LastUpdated=datetime.now(),
+                            MerchantLink=record
+                        )
+                        print(f"Added new subbrand {result['name']} for merchant ID {result['merchant']}.")
             else:
                 print(f"Failed to retrieve subbrands: {response.status_code} {response.text}")
         except requests.exceptions.RequestException as e:
