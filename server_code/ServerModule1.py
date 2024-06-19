@@ -1361,7 +1361,7 @@ def ensure_default_subbrands(record):
 @anvil.server.callable
 def sync_compCodes(record):
     apiServer = "-" + record['server'] if record['server'] != '1' else ""
-    url = f'https://api{apiServer}.radaro.com.au/api/webhooks/completion-codes/?key={record['APIToken']}&page_size=100'
+    url = f"https://api{apiServer}.radaro.com.au/api/webhooks/completion-codes/?key={record['APIToken']}&page_size=100"
     print("Request URL:", url)
 
     if not record['APIToken']:
