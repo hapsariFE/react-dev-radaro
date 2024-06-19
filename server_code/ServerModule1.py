@@ -1359,54 +1359,39 @@ def ensure_default_subbrands(record):
 
 @anvil.server.callable
 def sync_compCodes(record):
-    apiServer = "-" + record['server'] if record['server'] != '1' else ""
-    url = f"https://api{apiServer}.radaro.com.au/api/webhooks/completion-codes/?key={record['APIToken']}&page_size=100"
+  #print(record['APIToken'])
+  if record['server'] == '1':
+    apiServer = ""
+  else:
+    apiServer = "-" + record['server']
 
-    if not record['APIToken']:
-        print("No API Token on record")
-        return  # Exit if there's no API token
-
+  print(apiServer)
+  print(record['APIToken'])
+  if record['APIToken'] is not None:
+    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken']+'&page_size=100')
+    data = response.json()
+    #print(response.status_code)
+    #print(response.reason)
     try:
-        response = requests.get(url)
-        print(f"Response Status: {response.status_code}")
-
-        if response.status_code != 200:
-            print(f"Failed to retrieve completion codes: {response.text}")
-            return  # Exit if the response is not successful
-
-        data = response.json()
-        results = data.get('results', [])
-        print(f"Results Count: {len(results)}")
-
-        if not results:
-            print("No completion codes found for the given merchant.")
-            return  # Exit if no results found
-
-        for result in results:
-            #print(f"Processing Code: {result['name']}")
-            existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']), Server=record['server'])
-
-            if existing_record:
-                existing_record.update(Name=result['name'], LastUpdated=datetime.now(), codeType=result['type'])
-                #print("Updated existing completion code.")
-            else:
-                new_record_params = {
-                    'MerchantID': str(result['merchant']),
-                    'ID': str(result['code']),
-                    'Name': result['name'],
-                    'Server': record['server'],
-                    'LastUpdated': datetime.now(),
-                    'merchantLink': record,
-                    'is_enabled': result['type'] != 'success',
-                    'codeType': result['type']
-                }
-                app_tables.compcodes.add_row(**new_record_params)
-                print("Added new completion code.")
-
-    except requests.exceptions.RequestException as e:
-        print(f"API request failed: {e}")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+      for result in data['results']:
+          #print(result['id'])
+            # Check if a record with the same MerchantID and ID exists
+          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'])
+            
+          if existing_record:
+                # Update existing record
+              existing_record.update(Name=result['name'],LastUpdated=datetime.now(),codeType=result['type'])
+          else:
+                # Insert new record
+              if 'success' == result['type']: 
+                app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record,is_enabled=False,codeType=result['type'])
+              else:
+                app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record,is_enabled=True,codeType=result['type'])
+    except Exception as  e:
+      print("API Request Failed")
+      print(e)
+  else:
+    print("No API Token on record")
     
 @anvil.server.callable
 def DB_task(now):
