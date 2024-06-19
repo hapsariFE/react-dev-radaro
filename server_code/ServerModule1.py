@@ -1279,73 +1279,134 @@ def all_charts(today,currentUser):
 
 @anvil.server.callable
 def sync_subbrand(record):
-  #print(record['APIToken'])
-  if record['server'] == '1':
-    apiServer = ""
-  else:
-    apiServer = "-" + record['server']
+    # Construct API server URL based on the server number
+    apiServer = "" if record['server'] == '1' else f"-{record['server']}"
 
-  print(apiServer)
-  if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/sub-brands/?key='+record['APIToken']+'&page_size=100')
-    data = response.json()
-    try:
-      for result in data['results']:
-            # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']),Server=record['server'])          
-          if existing_record:
-                # Update existing record
-              existing_record.update(Logo=result['logo'], Name=result['name'],LastUpdated=datetime.now())
-          else:
-                # Insert new record
-              app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=str(result['id']), Logo=result['logo'], Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
-    except:
-      print("API Request Failed")
-  else:
-    print("No API Token on record")
-  blank_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00001',Server=record['server'])
-  if blank_record is None:
-    app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00001', Name='(Blank)',Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)
-  universal_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00000',Server=record['server'])
-  if universal_record is None:
-    app_tables.subbrands.add_row(MerchantID=str(result['merchant']), ID=record['server']+str(result['merchant'])+'00000', Name='Unidentified',Server=record['server'],LastUpdated=datetime.now(),MerchantLink=record)          
+    # Check if an API token is available
+    if record['APIToken']:
+        # Build the API request URL
+        url = f"https://api{apiServer}.radaro.com.au/api/webhooks/sub-brands/?key={record['APIToken']}&page_size=100"
+        try:
+            # Send the API request
+            response = requests.get(url)
+            # Check if the request was successful
+            if response.status_code == 200:
+                data = response.json()
+                # Check the count of subbrands
+                if data['count'] == 0:
+                    print("No subbrands found for the given merchant.")
+                else:
+                    results = data.get('results', [])
+                    print(f"Processing {len(results)} subbrands.")
+                    # Process each subbrand in the results
+                    for result in results:
+                        # Fetch existing subbrand record or create a new one
+                        existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']), Server=record['server'])
+                        if existing_record:
+                            existing_record.update(Logo=result['logo'], Name=result['name'], LastUpdated=datetime.now())
+                            #print(f"Updated subbrand {result['name']} for merchant ID {result['merchant']}.")
+                        else:
+                            app_tables.subbrands.add_row(
+                                MerchantID=str(result['merchant']),
+                                ID=str(result['id']),
+                                Logo=result['logo'],
+                                Name=result['name'],
+                                Server=record['server'],
+                                LastUpdated=datetime.now(),
+                                MerchantLink=record
+                            )
+                            print(f"Added new subbrand {result['name']} for merchant ID {result['merchant']}.")
+            else:
+                print(f"Failed to retrieve subbrands: {response.status_code} {response.text}")
+        except requests.exceptions.RequestException as e:
+            print("API request failed:", e)
+        except Exception as e:
+            print("An error occurred:", e)
+    else:
+        print("No API Token on record")
+
+    # Call the function to ensure default subbrands, regardless of the above results
+    ensure_default_subbrands(record)
+
+@anvil.server.callable
+def ensure_default_subbrands(record):
+    # Check and add default "(Blank)" and "Unidentified" subbrands if not already present
+    blank_subbrand = app_tables.subbrands.get(MerchantID=record['merchant_id'], ID=record['server'] + str(record['merchant_id']) + '00001')
+    if not blank_subbrand:
+        app_tables.subbrands.add_row(
+            MerchantID=str(record['merchant_id']),
+            ID=record['server'] + str(record['merchant_id']) + '00001',
+            Name="(Blank)",
+            Server=record['server'],
+            LastUpdated=datetime.now(),
+            MerchantLink=record
+        )
+        print("Default (Blank) subbrand added.")
+
+    unidentified_subbrand = app_tables.subbrands.get(MerchantID=record['merchant_id'], ID=record['server'] + str(record['merchant_id']) + '00000')
+    if not unidentified_subbrand:
+        app_tables.subbrands.add_row(
+            MerchantID=str(record['merchant_id']),
+            ID=record['server'] + str(record['merchant_id']) + '00000',
+            Name="Unidentified",
+            Server=record['server'],
+            LastUpdated=datetime.now(),
+            MerchantLink=record
+        )
+        print("Default Unidentified subbrand added.")
+       
 
 
 @anvil.server.callable
 def sync_compCodes(record):
-  #print(record['APIToken'])
-  if record['server'] == '1':
-    apiServer = ""
-  else:
-    apiServer = "-" + record['server']
+    apiServer = "-" + record['server'] if record['server'] != '1' else ""
+    url = f"https://api{apiServer}.radaro.com.au/api/webhooks/completion-codes/?key={record['APIToken']}&page_size=100"
 
-  print(apiServer)
-  print(record['APIToken'])
-  if record['APIToken'] is not None:
-    response = requests.get('https://api'+apiServer+'.radaro.com.au/api/webhooks/completion-codes/?key='+record['APIToken']+'&page_size=100')
-    data = response.json()
-    #print(response.status_code)
-    #print(response.reason)
+    if not record['APIToken']:
+        print("No API Token on record")
+        return  # Exit if there's no API token
+
     try:
-      for result in data['results']:
-          #print(result['id'])
-            # Check if a record with the same MerchantID and ID exists
-          existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']),Server=record['server'])
-            
-          if existing_record:
-                # Update existing record
-              existing_record.update(Name=result['name'],LastUpdated=datetime.now(),codeType=result['type'])
-          else:
-                # Insert new record
-              if 'success' == result['type']: 
-                app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record,is_enabled=False,codeType=result['type'])
-              else:
-                app_tables.compcodes.add_row(MerchantID=str(result['merchant']), ID=str(result['code']), Name=result['name'],Server=record['server'],LastUpdated=datetime.now(),merchantLink=record,is_enabled=True,codeType=result['type'])
-    except Exception as  e:
-      print("API Request Failed")
-      print(e)
-  else:
-    print("No API Token on record")
+        response = requests.get(url)
+        print(f"Response Status: {response.status_code}")
+
+        if response.status_code != 200:
+            print(f"Failed to retrieve completion codes: {response.text}")
+            return  # Exit if the response is not successful
+
+        data = response.json()
+        results = data.get('results', [])
+        print(f"Results Count: {len(results)}")
+
+        if not results:
+            print("No completion codes found for the given merchant.")
+            return  # Exit if no results found
+
+        for result in results:
+            #print(f"Processing Code: {result['name']}")
+            existing_record = app_tables.compcodes.get(MerchantID=str(result['merchant']), ID=str(result['code']), Server=record['server'])
+
+            if existing_record:
+                existing_record.update(Name=result['name'], LastUpdated=datetime.now(), codeType=result['type'])
+                #print("Updated existing completion code.")
+            else:
+                new_record_params = {
+                    'MerchantID': str(result['merchant']),
+                    'ID': str(result['code']),
+                    'Name': result['name'],
+                    'Server': record['server'],
+                    'LastUpdated': datetime.now(),
+                    'merchantLink': record,
+                    'is_enabled': result['type'] != 'success',
+                    'codeType': result['type']
+                }
+                app_tables.compcodes.add_row(**new_record_params)
+                print("Added new completion code.")
+
+    except requests.exceptions.RequestException as e:
+        print(f"API request failed: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
     
 @anvil.server.callable
 def DB_task(now):
