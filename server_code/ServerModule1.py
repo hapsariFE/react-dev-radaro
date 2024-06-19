@@ -1304,7 +1304,7 @@ def sync_subbrand(record):
                         existing_record = app_tables.subbrands.get(MerchantID=str(result['merchant']), ID=str(result['id']), Server=record['server'])
                         if existing_record:
                             existing_record.update(Logo=result['logo'], Name=result['name'], LastUpdated=datetime.now())
-                            print(f"Updated subbrand {result['name']} for merchant ID {result['merchant']}.")
+                            #print(f"Updated subbrand {result['name']} for merchant ID {result['merchant']}.")
                         else:
                             app_tables.subbrands.add_row(
                                 MerchantID=str(result['merchant']),
@@ -1388,7 +1388,7 @@ def sync_compCodes(record):
 
             if existing_record:
                 existing_record.update(Name=result['name'], LastUpdated=datetime.now(), codeType=result['type'])
-                print("Updated existing completion code.")
+                #print("Updated existing completion code.")
             else:
                 new_record_params = {
                     'MerchantID': str(result['merchant']),
