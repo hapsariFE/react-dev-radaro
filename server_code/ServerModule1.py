@@ -1285,7 +1285,7 @@ def sync_subbrand(record):
     # Check if an API token is available
     if record['APIToken']:
         # Build the API request URL
-        url = f'https://api{apiServer}.radaro.com.au/api/webhooks/sub-brands/?key={record['APIToken']}&page_size=100'
+        url = f"https://api{apiServer}.radaro.com.au/api/webhooks/sub-brands/?key={record['APIToken']}&page_size=100"
         try:
             # Send the API request
             response = requests.get(url)
