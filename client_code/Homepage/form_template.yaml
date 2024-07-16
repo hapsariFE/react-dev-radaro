@@ -4,7 +4,7 @@ container:
   properties: {html: '@theme:standard-page.html'}
 components:
 - type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{}', spacing_below: none, background: ''}
+  properties: {role: null, col_widths: '{}', spacing_above: none, background: '', wrap_on: never, col_spacing: medium, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
   layout_properties: {slot: filterpanel}
   name: filterpanel
   components:
@@ -19,24 +19,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Start
           Date
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: ZPIVJB,TXYOGB
@@ -46,7 +46,7 @@ components:
         width: 49.5781
       name: startdate
     - type: DatePicker
-      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '', placeholder: '', border: '', enabled: true, foreground: '', visible: true, font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false, date: '', min_date: '', background: '', bold: false, underline: false, format: '%d %b %Y'}
+      properties: {role: outlined, bold: false, format: '%d %b %Y', align: left, date: '', placeholder: '', pick_time: false, spacing_above: small, background: '', underline: false, font: '', max_date: '', foreground: '', spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: 12, tooltip: '', min_date: ''}
       layout_properties:
         col_widths: {}
         grid_position: RZBXLA,PIZDUB
@@ -61,24 +61,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Merchant
           Portal
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: VAIUAH,CDIYFH
@@ -90,23 +90,23 @@ components:
     - type: DropDown
       properties:
         role: outlined
+        include_placeholder: true
+        bold: false
         align: full
-        tooltip: ''
         placeholder: All
-        border: ''
-        enabled: true
+        spacing_above: small
+        background: ''
+        underline: false
+        font: ''
         foreground: ''
         items: []
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
         spacing_below: small
+        visible: true
+        border: ''
         italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
+        enabled: true
+        font_size: 12
+        tooltip: ''
       layout_properties:
         col_widths: {}
         grid_position: EMXCMF,TSKJLG
@@ -122,24 +122,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Assigned
           To
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: EZYFRF,HGBXAO
@@ -151,23 +151,23 @@ components:
     - type: DropDown
       properties:
         role: outlined
+        include_placeholder: true
+        bold: false
         align: full
-        tooltip: ''
         placeholder: All
-        border: ''
-        enabled: true
+        spacing_above: small
+        background: ''
+        underline: false
+        font: ''
         foreground: ''
         items: []
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
         spacing_below: small
+        visible: true
+        border: ''
         italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
+        enabled: true
+        font_size: 12
+        tooltip: ''
       layout_properties:
         col_widths: {}
         grid_position: XXIQOH,CMUKOB
@@ -183,24 +183,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Escalation
           Status
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: YRIIGM,PHJKJN
@@ -212,23 +212,23 @@ components:
     - type: DropDown
       properties:
         role: outlined
+        include_placeholder: true
+        bold: false
         align: full
-        tooltip: ''
         placeholder: All
-        border: ''
-        enabled: true
+        spacing_above: small
+        background: ''
+        underline: false
+        font: ''
         foreground: ''
         items: []
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
         spacing_below: small
+        visible: true
+        border: ''
         italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
+        enabled: true
+        font_size: 12
+        tooltip: ''
       layout_properties:
         col_widths: {}
         grid_position: AXXCLW,RLIILH
@@ -244,24 +244,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           End
           Date
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: RTRAIL,UUMMHX
@@ -271,7 +271,7 @@ components:
         width: 49.5781
       name: enddate
     - type: DatePicker
-      properties: {role: outlined, align: left, max_date: '', pick_time: false, tooltip: '', placeholder: '', border: '', enabled: true, foreground: '', visible: true, font_size: 12, font: '', spacing_above: small, spacing_below: small, italic: false, date: '', min_date: '', background: '', bold: false, underline: false, format: '%d %b %Y'}
+      properties: {role: outlined, bold: false, format: '%d %b %Y', align: left, date: '', placeholder: '', pick_time: false, spacing_above: small, background: '', underline: false, font: '', max_date: '', foreground: '', spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: 12, tooltip: '', min_date: ''}
       layout_properties:
         col_widths: {}
         grid_position: JOFSIP,YDQDGU
@@ -286,24 +286,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Job
           Status
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: BIPTRH,JGAGJC
@@ -315,23 +315,23 @@ components:
     - type: DropDown
       properties:
         role: outlined
+        include_placeholder: true
+        bold: false
         align: full
-        tooltip: ''
         placeholder: All
-        border: ''
-        enabled: true
+        spacing_above: small
+        background: ''
+        underline: false
+        font: ''
         foreground: ''
         items: []
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
         spacing_below: small
+        visible: true
+        border: ''
         italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
+        enabled: true
+        font_size: 12
+        tooltip: ''
       layout_properties:
         col_widths: {}
         grid_position: XKXRFX,BSIHTO
@@ -347,24 +347,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Sub
           Brand
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: MZOWYR,CFXUPS
@@ -376,23 +376,23 @@ components:
     - type: DropDown
       properties:
         role: outlined
+        include_placeholder: true
+        bold: false
         align: full
-        tooltip: ''
         placeholder: All
-        border: ''
-        enabled: true
+        spacing_above: small
+        background: ''
+        underline: false
+        font: ''
         foreground: ''
         items: ['']
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
         spacing_below: small
+        visible: true
+        border: ''
         italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
+        enabled: true
+        font_size: 12
+        tooltip: ''
       layout_properties:
         col_widths: {}
         grid_position: QAXRSU,BLDEFZ
@@ -406,24 +406,24 @@ components:
     - type: Label
       properties:
         role: null
+        bold: false
         align: center
-        tooltip: ''
-        border: ''
+        spacing_above: none
+        background: ''
+        icon: ''
+        underline: false
+        font: ''
+        icon_align: left
         foreground: theme:Filter Font
+        spacing_below: small
         visible: true
+        border: ''
+        italic: false
+        font_size: 12
+        tooltip: ''
         text: |-
           Escalation
           Type
-        font_size: 12
-        font: ''
-        spacing_above: none
-        icon_align: left
-        spacing_below: small
-        italic: false
-        background: ''
-        bold: false
-        underline: false
-        icon: ''
       layout_properties:
         col_widths: {}
         grid_position: CPYRQB,UXMVIQ
@@ -435,23 +435,23 @@ components:
     - type: DropDown
       properties:
         role: outlined
+        include_placeholder: true
+        bold: false
         align: full
-        tooltip: ''
         placeholder: All
-        border: ''
-        enabled: true
+        spacing_above: small
+        background: ''
+        underline: false
+        font: ''
         foreground: ''
         items: []
-        visible: true
-        font_size: 12
-        font: ''
-        spacing_above: small
         spacing_below: small
+        visible: true
+        border: ''
         italic: false
-        background: ''
-        bold: false
-        underline: false
-        include_placeholder: true
+        enabled: true
+        font_size: 12
+        tooltip: ''
       layout_properties:
         col_widths: {}
         grid_position: RYQXQU,BGAQBK
@@ -464,35 +464,35 @@ components:
       event_bindings: {change: filter_change}
       name: dd_esc_type
     - type: Button
-      properties: {role: green-filled-button, align: left, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Create new, font_size: 14, font: '', spacing_above: none, icon_align: right, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: 'fa:plus-circle'}
+      properties: {role: green-filled-button, bold: false, align: left, spacing_above: none, background: '', icon: 'fa:plus-circle', underline: false, font: '', icon_align: right, foreground: '', spacing_below: none, visible: true, border: '', italic: false, enabled: true, font_size: 14, tooltip: '', text: Create new}
       layout_properties: {row: YQKNAU, width_xs: 3, col_xs: 0, width: 199.25}
       event_bindings: {click: new_escalation}
       name: button_2
     - type: CheckBox
-      properties: {role: switch-rounded, align: right, tooltip: This will add resolved escalations to the dashboard, border: '', enabled: true, foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true, text: '', font_size: 20, font: '', spacing_above: none, spacing_below: small, italic: false, background: '', bold: false, checked: false, underline: false}
+      properties: {role: switch-rounded, bold: false, align: right, spacing_above: none, background: '', allow_indeterminate: false, underline: false, font: '', foreground: 'theme:Filter Font', checked: false, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: 20, tooltip: This will add resolved escalations to the dashboard, text: ''}
       layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 3, width: 30.3333}
       event_bindings: {change: filter_change}
       name: resolved_checkbox
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: Show resolved items, font_size: 12, font: '', spacing_above: medium, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, bold: false, align: left, spacing_above: medium, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:Filter Font', spacing_below: small, visible: true, border: '', italic: false, font_size: 12, tooltip: '', text: Show resolved items}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 4, width: 146.828}
       name: label_3
     - type: CheckBox
-      properties: {role: switch-rounded, align: right, tooltip: '', border: '', enabled: true, foreground: 'theme:Filter Font', allow_indeterminate: false, visible: true, text: '', font_size: 20, font: '', spacing_above: none, spacing_below: small, italic: false, background: '', bold: false, checked: false, underline: false}
+      properties: {role: switch-rounded, bold: false, align: right, spacing_above: none, background: '', allow_indeterminate: false, underline: false, font: '', foreground: 'theme:Filter Font', checked: false, spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: 20, tooltip: '', text: ''}
       layout_properties: {row: YQKNAU, width_xs: 1, col_xs: 6, width: 15.2188}
       event_bindings: {change: filter_change}
       name: watch_list
     - type: Label
-      properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: Show watch list, font_size: 12, font: '', spacing_above: medium, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, bold: false, align: left, spacing_above: medium, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:Filter Font', spacing_below: small, visible: true, border: '', italic: false, font_size: 12, tooltip: '', text: Show watch list}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 7, width: 60.4375}
       name: label_3_copy
     - type: Button
-      properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: false, text: admin, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+      properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: false, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: admin}
       layout_properties: {row: YQKNAU, width_xs: 2, col_xs: 9, width: 124.656}
       event_bindings: {click: cms_click}
       name: cms
 - type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none, background: ''}
+  properties: {role: null, col_widths: '{}', spacing_above: none, background: '', wrap_on: never, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
   layout_properties: {slot: default}
   name: column_panel_2
   components:
@@ -504,6 +504,7 @@ components:
     - type: DataGrid
       properties:
         role: null
+        spacing_above: none
         columns:
         - {id: LDAFAU, title: '', data_key: watch_list, $$hashKey: 'object:132614'}
         - {id: DVFNNA, title: Job Reference, data_key: job_reference, $$hashKey: 'object:393', width: '120', expand: false}
@@ -516,45 +517,44 @@ components:
         - {id: JVSRGA, title: Time Since Last Action, data_key: last_action_date, $$hashKey: 'object:403', width: '140'}
         - {id: FUNZSD, title: Time Since Creation, data_key: elapsed, $$hashKey: 'object:18690', width: '140'}
         - {id: YBLVEX, title: '', data_key: job_report, $$hashKey: 'object:405', width: '40'}
-        auto_header: true
-        tooltip: ''
-        border: ''
-        foreground: ''
-        rows_per_page: 10
-        visible: true
-        wrap_on: never
-        show_page_controls: true
-        spacing_above: none
-        spacing_below: none
         background: ''
+        rows_per_page: 10
+        wrap_on: never
+        foreground: ''
+        show_page_controls: true
+        auto_header: true
+        spacing_below: none
+        visible: true
+        border: ''
+        tooltip: ''
       layout_properties: {width: 1004, row: BEEIKG, width_xs: 12, col_xs: 0}
       name: data_grid_1
       components:
       - type: RepeatingPanel
-        properties: {role: null, tooltip: '', border: '', foreground: '', items: null, visible: true, spacing_above: none, spacing_below: none, item_template: Homepage.RowTemplate1, background: ''}
+        properties: {role: null, spacing_above: none, background: '', item_template: Homepage.RowTemplate1, foreground: '', items: null, spacing_below: none, visible: true, border: '', tooltip: ''}
         layout_properties: {}
         name: repeating_panel_1
       - type: Label
-        properties: {role: null, align: left, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: '', font_size: 12, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+        properties: {role: null, bold: false, align: left, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:Filter Font', spacing_below: small, visible: true, border: '', italic: false, font_size: 12, tooltip: '', text: ''}
         layout_properties: {slot: footer, row: YZGRYJ, width_xs: 9, col_xs: 0}
         name: label_1
 - type: FlowPanel
-  properties: {role: null, spacing: none, align: center, tooltip: '', border: '', foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}
+  properties: {role: null, align: center, spacing_above: none, background: '', foreground: '', spacing_below: none, visible: true, border: '', tooltip: '', spacing: none}
   layout_properties: {slot: title}
   name: flow_panel_1
   components:
   - type: ColumnPanel
-    properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: medium, spacing_above: none, col_widths: '{"VYNMKS":14,"GSLOXW":11,"UGWODW":34}', spacing_below: none, background: ''}
+    properties: {role: null, col_widths: '{"VYNMKS":14,"GSLOXW":11,"UGWODW":34}', spacing_above: none, background: '', wrap_on: never, col_spacing: medium, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
     layout_properties: {width: null, expand: true}
     name: column_panel_1
     components:
     - type: ColumnPanel
-      properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none, background: ''}
+      properties: {role: elevated-card, col_widths: '{}', spacing_above: none, background: '', wrap_on: never, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
       layout_properties: {grid_position: 'MPINBT,GSLOXW', full_width_row: false}
       name: outlined_card_2
       components:
       - type: Image
-        properties: {role: null, vertical_align: center, height: '44', tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small, source: _/theme/RadaroLogo_BlackHigh.png, spacing_below: small, background: '', horizontal_align: left}
+        properties: {role: null, vertical_align: center, spacing_above: small, background: '', horizontal_align: left, source: _/theme/RadaroLogo_BlackHigh.png, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: '44'}
         layout_properties:
           col_widths: {}
           grid_position: BTYFIS,POTODH
@@ -563,48 +563,48 @@ components:
           full_width_row: false
         name: image_1
     - type: Image
-      properties: {role: null, vertical_align: top, height: 47, tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: none, source: _/theme/React2.png, spacing_below: none, background: '', horizontal_align: center}
+      properties: {role: null, vertical_align: top, spacing_above: none, background: '', horizontal_align: center, source: _/theme/React2.png, foreground: '', display_mode: shrink_to_fit, spacing_below: none, visible: true, border: '', tooltip: '', height: 47}
       layout_properties: {grid_position: 'MPINBT,UGWODW', full_width_row: false}
       name: image_3
     - type: ColumnPanel
-      properties: {role: elevated-card, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none, background: ''}
+      properties: {role: elevated-card, col_widths: '{}', spacing_above: none, background: '', wrap_on: never, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
       layout_properties: {grid_position: 'MPINBT,VYNMKS'}
       name: outlined_card_1
       components:
       - type: Image
-        properties: {role: elevated-button, vertical_align: center, height: 44, tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small, source: _/theme/Your%20Logo.jpg, spacing_below: small, background: '', horizontal_align: center}
+        properties: {role: elevated-button, vertical_align: center, spacing_above: small, background: '', horizontal_align: center, source: _/theme/Your%20Logo.jpg, foreground: '', display_mode: shrink_to_fit, spacing_below: small, visible: true, border: '', tooltip: '', height: 44}
         layout_properties: {row: BTNFSF, width_xs: 3, col_xs: 9, width: 229, grid_position: 'AVJIEH,LHHCLH', full_width_row: false}
         name: image_2
 - type: FileLoader
   properties:
     role: null
-    show_state: true
-    align: center
-    tooltip: ''
-    border: ''
+    bold: false
     file_types: null
-    enabled: true
-    files: []
-    foreground: ''
-    visible: false
-    text: Upload
-    font_size: null
-    font: ''
+    align: center
     spacing_above: small
-    icon_align: left
-    spacing_below: small
-    italic: false
     file: null
     background: ''
-    bold: false
-    underline: false
-    multiple: false
     icon: fa:upload
+    multiple: false
+    underline: false
+    font: ''
+    icon_align: left
+    foreground: ''
+    show_state: true
+    files: []
+    spacing_below: small
+    visible: false
+    border: ''
+    italic: false
+    enabled: true
+    font_size: null
+    tooltip: ''
+    text: Upload
   layout_properties: {row: UCABRM, width_xs: 12, col_xs: 0, width: 1013.98, slot: ''}
   event_bindings: {change: file_loader_1_change}
   name: file_loader_1
 - type: ColumnPanel
-  properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: tiny, spacing_above: small, col_widths: '{"AQHZXR":42,"RWYDAC":5,"CFEBSB":9,"LEZBWD":9}', spacing_below: none, background: ''}
+  properties: {role: null, col_widths: '{"AQHZXR":42,"RWYDAC":5,"CFEBSB":9,"LEZBWD":9}', spacing_above: small, background: '', wrap_on: never, col_spacing: tiny, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
   layout_properties: {grid_position: 'XNUIKQ,YZNJSG', full_width_row: true, slot: filterselect}
   name: selectpanel
   components:
@@ -613,51 +613,51 @@ components:
     layout_properties: {grid_position: 'OWIDMW,RWYDAC'}
     name: spacer_2
   - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Reporting, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
+    properties: {role: null, bold: false, align: center, spacing_above: small, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: small, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: Reporting}
     layout_properties: {grid_position: 'OWIDMW,LEZBWD'}
     event_bindings: {click: reporting_click}
     name: reporting
   - type: ColumnPanel
-    properties: {role: outlined-card, tooltip: '', border: 1px solid, foreground: 'theme:Filter Border', visible: true, wrap_on: never, col_spacing: medium, spacing_above: small, col_widths: '{"KAZWCC":30,"VEIXMU":15,"JCYLBV":15}', spacing_below: none, background: ''}
+    properties: {role: outlined-card, col_widths: '{"KAZWCC":30,"VEIXMU":15,"JCYLBV":15}', spacing_above: small, background: '', wrap_on: never, col_spacing: medium, foreground: 'theme:Filter Border', spacing_below: none, visible: true, border: 1px solid, tooltip: ''}
     layout_properties: {grid_position: 'OWIDMW,AQHZXR'}
     name: column_panel_3
     components:
     - type: ColumnPanel
-      properties: {role: null, tooltip: '', border: '', foreground: '', visible: true, wrap_on: never, col_spacing: none, spacing_above: none, col_widths: '{}', spacing_below: none, background: ''}
+      properties: {role: null, col_widths: '{}', spacing_above: none, background: '', wrap_on: never, col_spacing: none, foreground: '', spacing_below: none, visible: true, border: '', tooltip: ''}
       layout_properties: {grid_position: 'BLESZH,KAZWCC'}
       name: column_panel_4
       components:
       - type: XYPanel
-        properties: {role: null, width: null, align: center, height: 28, tooltip: '', border: '', foreground: '', visible: true, spacing_above: none, spacing_below: none, background: ''}
+        properties: {role: null, align: center, spacing_above: none, width: null, background: '', foreground: '', spacing_below: none, visible: true, border: '', tooltip: '', height: 28}
         layout_properties: {grid_position: 'ATKVYV,QNEOYP'}
         name: xy_panel_1
         components:
         - type: TextBox
-          properties: {role: outlined, align: left, hide_text: false, tooltip: '', placeholder: 'Search job, reference, brand or customer', border: none, enabled: true, foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: medium, type: text, spacing_below: medium, italic: false, background: '', bold: false, underline: false}
+          properties: {role: outlined, bold: false, align: left, placeholder: 'Search job, reference, brand or customer', spacing_above: medium, background: '', type: text, underline: false, font: '', hide_text: false, foreground: '', spacing_below: medium, visible: true, border: none, italic: false, enabled: true, font_size: 14, tooltip: '', text: ''}
           layout_properties: {grid_position: 'HCNRPB,MYRKTJ', x: 0, y: 9, width: 286.297}
           event_bindings: {pressed_enter: filter_change}
           name: text_box_search
         - type: Button
-          properties: {role: filled-button, align: left, tooltip: '', border: '', enabled: true, foreground: '', visible: false, text: '', font_size: 14, font: '', spacing_above: medium, icon_align: right, spacing_below: medium, italic: false, background: '', bold: false, underline: false, icon: 'fa:times'}
+          properties: {role: filled-button, bold: false, align: left, spacing_above: medium, background: '', icon: 'fa:times', underline: false, font: '', icon_align: right, foreground: '', spacing_below: medium, visible: false, border: '', italic: false, enabled: true, font_size: 14, tooltip: '', text: ''}
           layout_properties: {grid_position: 'HCNRPB,LFMMUI', x: 17, y: 9, width: 278.297}
           event_bindings: {click: clear_search}
           name: clearbutton
     - type: Button
-      properties: {role: null, align: right, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Search, font_size: 14, font: '', spacing_above: medium, icon_align: left, spacing_below: medium, italic: false, background: '', bold: false, underline: false, icon: 'fa:search'}
+      properties: {role: null, bold: false, align: right, spacing_above: medium, background: '', icon: 'fa:search', underline: false, font: '', icon_align: left, foreground: '', spacing_below: medium, visible: true, border: '', italic: false, enabled: true, font_size: 14, tooltip: '', text: Search}
       layout_properties: {grid_position: 'BLESZH,VEIXMU'}
       event_bindings: {click: filter_change}
       name: button_4
     - type: Button
-      properties: {role: filter-button, align: left, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Filters, font_size: 14, font: '', spacing_above: medium, icon_align: left, spacing_below: medium, italic: false, background: '', bold: false, underline: false, icon: 'fa:sliders'}
+      properties: {role: filter-button, bold: false, align: left, spacing_above: medium, background: '', icon: 'fa:sliders', underline: false, font: '', icon_align: left, foreground: '', spacing_below: medium, visible: true, border: '', italic: false, enabled: true, font_size: 14, tooltip: '', text: Filters}
       layout_properties: {grid_position: 'BLESZH,JCYLBV'}
       event_bindings: {click: show_filter}
       name: filterbutton
+  - type: Label
+    properties: {role: null, bold: false, align: center, spacing_above: none, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: 'theme:Filter Font', spacing_below: none, visible: true, border: '', italic: false, font_size: 10, tooltip: '', text: ''}
+    layout_properties: {grid_position: 'OWIDMW,CFEBSB'}
+    name: loggedin
   - type: Button
-    properties: {role: null, align: center, tooltip: '', border: '', enabled: true, foreground: '', visible: true, text: Log out, font_size: null, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
-    layout_properties: {grid_position: 'OWIDMW,CFEBSB HHKJVS,FMXKZA'}
+    properties: {role: null, bold: false, align: center, spacing_above: none, background: '', icon: '', underline: false, font: '', icon_align: left, foreground: '', spacing_below: none, visible: true, border: '', italic: false, enabled: true, font_size: null, tooltip: '', text: Log out}
+    layout_properties: {grid_position: 'OWIDMW,EVZWDP'}
     event_bindings: {click: log_out_click}
     name: button_1
-  - type: Label
-    properties: {role: null, align: center, tooltip: '', border: '', foreground: 'theme:Filter Font', visible: true, text: '', font_size: 10, font: '', spacing_above: none, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
-    layout_properties: {grid_position: 'OWIDMW,CFEBSB LOKPMK,MTVGOU'}
-    name: loggedin
