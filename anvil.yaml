@@ -292,10 +292,10 @@ db_schema:
 dependencies:
 - dep_id: dep_khuebfifc49mb
   resolution_hints: {app_id: R4ETTK3T65LN6CCI, name: Clone of Form Validation, package_name: form_checker}
-  version: {dev: false}
+  version: {branch: master}
 metadata: {description: 'Radaro reduces your operational costs whilst offering real-time insights over your in-house and third-party service providers with unprecedented customer insights. Transform your last mile and service delivery, today.', logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: REACT}
 name: React DEV - TEST
-package_name: React_DEV___TEST
+package_name: React_DEV_TEST
 renamed: true
 runtime_options: {client_version: '3', server_persist: true, server_spec: null, server_version: python3-full, version: 2}
 scheduled_tasks: []
