@@ -1,18 +1,18 @@
-is_package: true
-container:
-  type: HtmlTemplate
-  properties: {html: '@theme:standard-page.html'}
 components:
-- type: ColumnPanel
-  properties: {col_widths: '{}'}
-  name: content_panel
-  layout_properties: {slot: default}
-  components:
-  - type: XYPanel
-    properties: {height: 100}
+- components:
+  - layout_properties: {grid_position: 'MAGTPV,HEWTBI'}
     name: xy_panel_1
-    layout_properties: {grid_position: 'MAGTPV,HEWTBI'}
-- type: FlowPanel
-  properties: {}
+    properties: {height: 100}
+    type: XYPanel
+  layout_properties: {slot: default}
+  name: content_panel
+  properties: {col_widths: '{}'}
+  type: ColumnPanel
+- layout_properties: {slot: nav-right}
   name: navbar_links
-  layout_properties: {slot: nav-right}
+  properties: {}
+  type: FlowPanel
+container:
+  properties: {html: '@theme:standard-page.html'}
+  type: HtmlTemplate
+is_package: true
