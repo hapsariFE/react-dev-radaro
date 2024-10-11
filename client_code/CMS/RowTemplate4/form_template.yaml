@@ -1,47 +1,47 @@
-container: {type: DataRowPanel}
 components:
-- type: TextBox
-  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '', border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '', font_size: 13, font: '', spacing_above: small, type: text, spacing_below: small, italic: false, background: '', bold: false, underline: false}
-  name: text_box_2
+- data_bindings:
+  - {code: 'self.item[''name'']', property: text, writeback: false}
+  event_bindings: {change: update_cms, pressed_enter: update_cms}
   layout_properties: {column: ECSLIN}
-  data_bindings:
-  - {property: text, code: 'self.item[''name'']', writeback: false}
-  event_bindings: {pressed_enter: update_cms, change: update_cms}
-- type: TextBox
-  properties: {role: cms, align: left, hide_text: false, tooltip: '', placeholder: '', border: none, enabled: true, foreground: 'theme:Font', visible: true, text: '', font_size: 13, font: '', spacing_above: small, type: number, spacing_below: small, italic: false, background: '', bold: false, underline: false}
-  name: text_box_7
+  name: text_box_2
+  properties: {align: left, background: '', bold: false, border: none, enabled: true, font: '', font_size: 13, foreground: 'theme:Font', hide_text: false, italic: false, placeholder: '', role: cms, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: text, underline: false, visible: true}
+  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''rating_threshold'']', property: text, writeback: false}
+  event_bindings: {change: update_cms, pressed_enter: update_cms}
   layout_properties: {column: DNDWUT}
-  data_bindings:
-  - {property: text, code: 'self.item[''rating_threshold'']', writeback: false}
-  event_bindings: {pressed_enter: update_cms, change: update_cms}
-- type: CheckBox
-  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: 'theme:Font', allow_indeterminate: false, visible: true, text: '', font_size: null, font: '', spacing_above: none, spacing_below: small, italic: false, background: '', bold: false, checked: false, underline: false}
-  name: check_box_1
+  name: text_box_7
+  properties: {align: left, background: '', bold: false, border: none, enabled: true, font: '', font_size: 13, foreground: 'theme:Font', hide_text: false, italic: false, placeholder: '', role: cms, spacing_above: small, spacing_below: small, text: '', tooltip: '', type: number, underline: false, visible: true}
+  type: TextBox
+- data_bindings:
+  - {code: 'self.item[''completion_code_enabled'']', property: checked, writeback: false}
+  event_bindings: {change: update_cms}
   layout_properties: {column: MBQKBP}
-  data_bindings:
-  - {property: checked, code: 'self.item[''completion_code_enabled'']', writeback: false}
+  name: check_box_1
+  properties: {align: left, allow_indeterminate: false, background: '', bold: false, border: '', checked: false, enabled: true, font: '', font_size: null, foreground: 'theme:Font', italic: false, role: null, spacing_above: none, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: CheckBox
+- data_bindings:
+  - {code: 'self.item[''low_rating_enabled'']', property: checked, writeback: false}
   event_bindings: {change: update_cms}
-- type: CheckBox
-  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: 'theme:Font', allow_indeterminate: false, visible: true, text: '', font_size: null, font: '', spacing_above: none, spacing_below: small, italic: false, background: '', bold: false, checked: false, underline: false}
-  name: check_box_2
   layout_properties: {column: VHZCVW}
-  data_bindings:
-  - {property: checked, code: 'self.item[''low_rating_enabled'']', writeback: false}
-  event_bindings: {change: update_cms}
-- type: ColumnPanel
-  properties: {role: tonal-card, tooltip: '', border: '', foreground: '', visible: true, wrap_on: mobile, col_spacing: medium, spacing_above: small, col_widths: '', spacing_below: small, background: ''}
+  name: check_box_2
+  properties: {align: left, allow_indeterminate: false, background: '', bold: false, border: '', checked: false, enabled: true, font: '', font_size: null, foreground: 'theme:Font', italic: false, role: null, spacing_above: none, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: CheckBox
+- layout_properties: {column: null}
   name: column_panel_1
-  layout_properties: {column: null}
-- type: CheckBox
-  properties: {role: null, align: left, tooltip: '', border: '', enabled: true, foreground: '', allow_indeterminate: false, visible: true, text: '', font_size: null, font: '', spacing_above: none, spacing_below: small, italic: false, background: '', bold: false, checked: false, underline: false}
-  name: check_box_3
-  layout_properties: {column: YZDWXM}
-  data_bindings:
-  - {property: checked, code: 'self.item[''fail_code_enabled'']', writeback: false}
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '', foreground: '', role: tonal-card, spacing_above: small, spacing_below: small, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- data_bindings:
+  - {code: 'self.item[''fail_code_enabled'']', property: checked, writeback: false}
   event_bindings: {change: update_cms}
-- type: Button
-  properties: {role: null, align: center, tooltip: '', border: '', enabled: false, foreground: '', visible: false, text: Sync SB, font_size: null, font: '', spacing_above: small, icon_align: left, spacing_below: small, italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: syncSBbutton
+  layout_properties: {column: YZDWXM}
+  name: check_box_3
+  properties: {align: left, allow_indeterminate: false, background: '', bold: false, border: '', checked: false, enabled: true, font: '', font_size: null, foreground: '', italic: false, role: null, spacing_above: none, spacing_below: small, text: '', tooltip: '', underline: false, visible: true}
+  type: CheckBox
+- event_bindings: {click: syncSBbutton_click}
   layout_properties: {column: GVFPOJ}
-  event_bindings: {click: syncSBbutton_click}
+  name: syncSBbutton
+  properties: {align: center, background: '', bold: false, border: '', enabled: false, font: '', font_size: null, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: small, text: Sync SB, tooltip: '', underline: false, visible: false}
+  type: Button
+container: {type: DataRowPanel}
 is_package: true
