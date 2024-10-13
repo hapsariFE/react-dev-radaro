@@ -295,7 +295,7 @@ dependencies:
   version: {dev: false}
 metadata: {description: 'Radaro reduces your operational costs whilst offering real-time insights over your in-house and third-party service providers with unprecedented customer insights. Transform your last mile and service delivery, today.', logo_img: 'asset:RadaroLogo_CircleBlackLow-noBG-logo.png', title: REACT}
 name: React DEV - TEST
-package_name: React_DEV___TEST
+package_name: React_DEV_TEST
 renamed: true
 runtime_options: {client_version: '3', server_persist: true, server_spec: null, server_version: python3-full, version: 2}
 scheduled_tasks: []
