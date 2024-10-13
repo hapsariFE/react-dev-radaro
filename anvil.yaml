@@ -297,7 +297,12 @@ metadata: {description: 'Radaro reduces your operational costs whilst offering r
 name: React DEV - TEST
 package_name: React_DEV_TEST
 renamed: true
-runtime_options: {client_version: '3', server_persist: true, server_spec: null, server_version: python3-full, version: 2}
+runtime_options:
+  client_version: '3'
+  server_persist: false
+  server_spec: {base: python310-minimal}
+  server_version: python3-full
+  version: 2
 scheduled_tasks: []
 secrets:
   new_secret:
