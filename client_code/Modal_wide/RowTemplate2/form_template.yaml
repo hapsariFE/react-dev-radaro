@@ -1,33 +1,33 @@
-container:
-  type: DataRowPanel
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', auto_display_data: true, visible: true, font_size: 14, font: '', spacing_above: none, spacing_below: none, italic: false, background: '', bold: false, underline: false}
 components:
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: label_2
+- data_bindings:
+  - {code: 'self.item[''assign_to''][''name''] if self.item[''assign_to''] else ''---''', property: text}
   layout_properties: {column: VEQFME}
-  data_bindings:
-  - {property: text, code: 'self.item[''assign_to''][''name''] if self.item[''assign_to''] else ''---'''}
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: label_3
+  name: label_2
+  properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: none, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''user''][''name'']', property: text}
   layout_properties: {column: MQEENE}
-  data_bindings:
-  - {property: text, code: 'self.item[''user''][''name'']'}
-- type: Label
-  properties: {role: null, align: left, tooltip: '', border: '', foreground: '', visible: true, text: '', font_size: 14, font: '', spacing_above: small, icon_align: left, spacing_below: none, italic: false, background: '', bold: false, underline: false, icon: ''}
-  name: label_4
+  name: label_3
+  properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: none, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+- data_bindings:
+  - {code: 'self.item[''created_date''].strftime("%d %b, %Y %H:%M")', property: text}
   layout_properties: {column: ZNGNTV}
-  data_bindings:
-  - {property: text, code: 'self.item[''created_date''].strftime("%d %b, %Y %H:%M")'}
-- type: ColumnPanel
-  properties: {role: tonal-card, tooltip: '', border: '', foreground: '', visible: true, wrap_on: mobile, col_spacing: medium, spacing_above: none, col_widths: '', spacing_below: none, background: ''}
+  name: label_4
+  properties: {align: left, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', icon: '', icon_align: left, italic: false, role: null, spacing_above: small, spacing_below: none, text: '', tooltip: '', underline: false, visible: true}
+  type: Label
+- layout_properties: {column: null}
   name: outlined_card_1
-  layout_properties: {column: null}
-- type: Image
-  properties: {role: null, vertical_align: center, height: '25', tooltip: '', border: '', foreground: '', visible: true, display_mode: shrink_to_fit, spacing_above: small, source: '', spacing_below: small, background: '', horizontal_align: left}
-  name: image_1
+  properties: {background: '', border: '', col_spacing: medium, col_widths: '', foreground: '', role: tonal-card, spacing_above: none, spacing_below: none, tooltip: '', visible: true, wrap_on: mobile}
+  type: ColumnPanel
+- data_bindings:
+  - {code: 'self.item[''status''][''icon'']', property: source}
   layout_properties: {column: VTUJFJ}
-  data_bindings:
-  - {property: source, code: 'self.item[''status''][''icon'']'}
+  name: image_1
+  properties: {background: '', border: '', display_mode: shrink_to_fit, foreground: '', height: '25', horizontal_align: left, role: null, source: '', spacing_above: small, spacing_below: small, tooltip: '', vertical_align: center, visible: true}
+  type: Image
+container:
+  properties: {align: left, auto_display_data: true, background: '', bold: false, border: '', font: '', font_size: 14, foreground: '', italic: false, role: null, spacing_above: none, spacing_below: none, tooltip: '', underline: false, visible: true}
+  type: DataRowPanel
 is_package: true
