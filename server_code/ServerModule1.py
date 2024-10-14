@@ -729,15 +729,16 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
 
   # Check if subbrand is None and fetch the specific "(Blank)" subbrand for the given merchant
   if subbrand is None:
-      # Construct the ID for the (Blank) subbrand specific to this merchant
-      blank_subbrand_id = merchant_row['server'] + str(merchant_row['merchant_id']) + '00001'
       
       # Attempt to fetch the specific (Blank) subbrand
-      subbrand = app_tables.subbrands.get(MerchantLink=merchant_row, ID=blank_subbrand_id)
+      subbrand_row = app_tables.subbrands.get(MerchantLink=merchant_row, ID=blank_subbrand_id)
       
-      if not subbrand:
+      if not subbrand_row:
+          # Construct the ID for the (Blank) subbrand specific to this merchant
+          blank_subbrand_id = merchant_row['server'] + str(merchant_row['merchant_id']) + '00001'
+
           # Optional: Create the subbrand if it doesn't exist
-          subbrand = app_tables.subbrands.add_row(
+          new_subbrand = app_tables.subbrands.add_row(
               MerchantID=str(merchant_row['merchant_id']),
               ID=blank_subbrand_id,
               Name='(Blank)',
@@ -745,6 +746,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
               LastUpdated=datetime.now(),
               MerchantLink=merchant_row
           )
+          subbrand_row = app_tables.subbrands.get(MerchantLink=merchant_row, ID=blank_subbrand_id)
           print("Created new (Blank) subbrand for Merchant ID:", merchant_row['merchant_id'])
   
   row = app_tables.webhook.add_row(
@@ -755,7 +757,7 @@ def new(job, jobref, customer, mobile, merchant_name, subbrand, description, esc
      webhook_merchant_link = merchant_row,
      comment = description,
      sub_brand = subbrand['Name'],
-     webhook_subbrand_link =subbrand,
+     webhook_subbrand_link = subbrand_row,
      id = str(counter),
      latest_status = esc_status,
      job_status = status_row,
