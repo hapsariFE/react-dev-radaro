@@ -54,11 +54,11 @@ def incoming_msg(**kwargs):
   topic = data.get('topic')
   merctable = app_tables.merchant.get(token=data['token'])
   try:
-    lowrate_enable = merctable['low_rating_enabled']
-    compcode_enable = merctable['completion_code_enabled']
-    failcode_enable = merctable['fail_code_enabled']
-    jobchecklist_enable = merctable['job_checklist_enabled']
-    
+    lowrate_enable = merctable['low_rating_enabled'] 
+    compcode_enable = merctable['completion_code_enabled'] // succession
+    failcode_enable = merctable['fail_code_enabled'] // failed
+    jobchecklist_enable = merctable['job_checklist_enabled'] // job checklist
+
     if 'new_values' in data :
       if data['new_values'] is not None and 'is_confirmed_by_customer' in data['new_values'] and lowrate_enable == True:
         if merctable is not None:
